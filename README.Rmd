@@ -78,7 +78,7 @@ We provide 6 tutorials illustrating these functionalities. The first three illus
   
   A schema of the tutorials is presented below:
   
- ```{r  echo = F, message=T, out.width = "80%", fig.align = 'center'}
+ ```{r  echo = F, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("utils/schema.png")
 ``` 
 

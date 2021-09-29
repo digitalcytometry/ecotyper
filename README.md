@@ -63,7 +63,7 @@ We provide 6 tutorials illustrating these functionalities. The first three illus
 
 A schema of the tutorials is presented below:
 
-<img src="utils/schema.png" width="80%" style="display: block; margin: auto;" />
+<img src="utils/schema.png" width="100%" style="display: block; margin: auto;" />
 
 ## **Tutorial 1:** Recovery of Cell States and Ecotypes in User-Provided Bulk Data
 
