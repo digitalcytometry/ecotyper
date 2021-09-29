@@ -1,12 +1,12 @@
 ---
 output:
-  html_document:
-    toc: true
-    toc_float: true
+  github_document: default
   md_document: default
   pdf_document: default
   word_document: default
-  github_document: default
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 ```{r, setup, include=FALSE}
