@@ -1,0 +1,6 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"Endothelial.cells"	0.146673151082761
+"IS02"	"Endothelial.cells"	0.388656086975765
+"IS03"	"Endothelial.cells"	2.04201230578159
+"IS04"	"Endothelial.cells"	11.0438089434025
+"IS05"	"Endothelial.cells"	3.32209913806378

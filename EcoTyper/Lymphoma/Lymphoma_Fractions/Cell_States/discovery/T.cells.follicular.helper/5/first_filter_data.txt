@@ -1,0 +1,6 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"T.cells.follicular.helper"	1.92201725934882
+"IS02"	"T.cells.follicular.helper"	0.540395420570361
+"IS03"	"T.cells.follicular.helper"	2.17249827861398
+"IS04"	"T.cells.follicular.helper"	0.380233512288013
+"IS05"	"T.cells.follicular.helper"	7.0802921901628

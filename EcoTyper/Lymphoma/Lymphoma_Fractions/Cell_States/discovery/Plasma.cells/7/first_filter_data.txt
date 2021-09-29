@@ -1,0 +1,8 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"Plasma.cells"	0.955079240009353
+"IS02"	"Plasma.cells"	4.54302111651515
+"IS03"	"Plasma.cells"	0.635915866043981
+"IS04"	"Plasma.cells"	0.711591764946488
+"IS05"	"Plasma.cells"	0.357699958594791
+"IS06"	"Plasma.cells"	3.81040156832294
+"IS07"	"Plasma.cells"	3.96410829290465

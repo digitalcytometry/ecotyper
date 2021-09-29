@@ -1,0 +1,36 @@
+default :
+  Input :    
+    Discovery dataset name : "MyDiscovery"
+    Expression matrix : "example_data/bulk_lung_data.txt"
+    #Possible values: "RNA-seq", "Affymetrix", "Other"
+    Expression type : "RNA-seq" 
+    #Possible values: "Carcinoma_Fractions", "Lymphoma_Fractions" or a path to a file containing the precomputed cell fractions
+    Cell type fractions : "Carcinoma_Fractions" 
+    Annotation file : "example_data/bulk_lung_annotation.txt"
+    Annotation file column to scale by : "Histology"
+    Annotation file column(s) to plot : ["Histology", "Tissue"]
+    CIBERSORTx username : "<Please use your username from the CIBERSORTx website>"
+    CIBERSORTx token : "<Please obtain a token from the CIBERSORTx website>"
+    
+  Output :
+    Output folder : "DiscoveryOutput"
+
+  Pipeline settings :
+    #Pipeline steps:
+    #   step 1 (cell type fraction estimation)
+    #   step 2 (cell type expression purification)
+    #   step 3 (cell state discovery)
+    #   step 4 (choosing the number of cell states)
+    #   step 5 (extracting cell state information)
+    #   step 6 (cell state QC filter)
+    #   step 7 (advanced cell state QC filter)
+    #   step 8 (ecotype discovery)
+    Pipeline steps to skip : [7,] # Step 7 is skipped by default
+    Number of threads : 10    
+    Number of NMF restarts : 5
+    Maximum number of states per cell type : 20
+    Cophenetic coefficient cutoff : 0.95
+    
+
+
+

@@ -1,0 +1,35 @@
+PDCD1	Exhaustion
+CTLA4	Exhaustion
+HAVCR2	Exhaustion
+LAG3	Exhaustion
+TIGIT	Exhaustion
+CCR7	Naive
+TCF7	Naive
+LEF1	Naive
+SELL	Naive
+CD45RA	Memory
+CD69	Memory
+ITGAE	Memory
+CXCR6	Memory
+ITGA1	Memory
+PRF1	Cytotoxicity
+IFNG	Cytotoxicity
+GZMB	Cytotoxicity
+GZMA	Cytotoxicity
+GZMH	Cytotoxicity
+GZMK	Cytotoxicity
+KLRK1	Cytotoxicity
+KLRB1	Cytotoxicity
+KLRD1	Cytotoxicity
+CTSW	Cytotoxicity
+CST7	Cytotoxicity
+CD8A	CD8 T cells
+CD3D	CD8 T cells
+CD4	CD4 T cells
+CD68	Macrophages
+CD14	Macrophages
+GNLY	NK cells
+NKG7	NK cells
+CD19	B cells
+MS4A1	B cells
+

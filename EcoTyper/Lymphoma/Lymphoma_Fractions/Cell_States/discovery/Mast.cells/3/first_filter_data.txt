@@ -1,0 +1,4 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"Mast.cells"	3.39426812448486
+"IS02"	"Mast.cells"	11.5627015580613
+"IS03"	"Mast.cells"	0.196912567370696

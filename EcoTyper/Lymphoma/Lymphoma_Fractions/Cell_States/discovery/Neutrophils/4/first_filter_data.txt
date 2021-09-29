@@ -1,0 +1,5 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"Neutrophils"	0.206158687301759
+"IS02"	"Neutrophils"	0.523323043460212
+"IS03"	"Neutrophils"	2.67580317027595
+"IS04"	"Neutrophils"	5.44717280442334

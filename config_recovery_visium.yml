@@ -1,0 +1,16 @@
+default :
+  Input :    
+    Discovery dataset name : "Carcinoma"
+    Recovery dataset name : "VisiumBreast"
+    Input Visium directory : "example_data/VisiumBreast"
+    #Path to a file containing the precomputed cell fractions for the visium array
+    Recovery cell type fractions : "NULL" 
+    Malignant cell of origin : "Epithelial.cells"
+    CIBERSORTx username : "<Please use your username from the CIBERSORTx website>"
+    CIBERSORTx token : "<Please obtain a token from the CIBERSORTx website>"
+    
+  Output :
+    Output folder : "VisiumOutput"
+    
+  Pipeline settings :
+    Number of threads : 10

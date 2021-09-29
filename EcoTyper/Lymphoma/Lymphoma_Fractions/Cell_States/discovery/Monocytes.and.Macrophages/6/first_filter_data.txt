@@ -1,0 +1,7 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"Monocytes.and.Macrophages"	3.07822332569264
+"IS02"	"Monocytes.and.Macrophages"	0.644842774593275
+"IS03"	"Monocytes.and.Macrophages"	0.211899085150831
+"IS04"	"Monocytes.and.Macrophages"	4.84951903195976
+"IS05"	"Monocytes.and.Macrophages"	0.672284795916462
+"IS06"	"Monocytes.and.Macrophages"	1.3024483678067

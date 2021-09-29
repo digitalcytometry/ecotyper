@@ -1,0 +1,30 @@
+default :
+  Input :    
+    Discovery dataset name : "PresortedDiscovery"
+    Expression matrices : "example_data/Tutorial_6/PresortedDiscovery"            
+    Annotation file : "example_data/Tutorial_6/PresortedDiscovery_annotation.txt"
+    Annotation file column to scale by : "Histology"
+    Annotation file column(s) to plot : ["Histology", "Tissue"]
+        
+  Output :
+    Output folder : "PresortedDiscoveryOutput"
+
+  Pipeline settings :
+    #Pipeline steps:
+    #   step 1 (extract cell type specific genes)    
+    #   step 2 (cell state discovery)
+    #   step 3 (choosing the number of cell states)
+    #   step 4 (extracting cell state information)
+    #   step 5 (cell state QC filter)
+    #   step 6 (advanced cell state QC filter)
+    #   step 7 (ecotype discovery)
+    Pipeline steps to skip : [6,] # Step 6 is skipped by default
+    Filter non cell type specific genes : False
+    Number of threads : 10    
+    Number of NMF restarts : 5
+    Maximum number of states per cell type : 20
+    Cophenetic coefficient cutoff : 0.95
+    
+
+
+

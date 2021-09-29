@@ -1,0 +1,13 @@
+"CellType"	"Chosen_Rank"
+"B.cells"	9
+"PCs"	14
+"CD8.T.cells"	12
+"CD4.T.cells"	14
+"NK.cells"	10
+"Monocytes.and.Macrophages"	13
+"Dendritic.cells"	19
+"Mast.cells"	8
+"PMNs"	5
+"Fibroblasts"	12
+"Endothelial.cells"	6
+"Epithelial.cells"	8

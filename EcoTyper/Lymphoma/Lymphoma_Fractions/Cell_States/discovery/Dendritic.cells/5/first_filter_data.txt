@@ -1,0 +1,6 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"Dendritic.cells"	1.25188135177886
+"IS02"	"Dendritic.cells"	0.44844480533158
+"IS03"	"Dendritic.cells"	4.07227653484867
+"IS04"	"Dendritic.cells"	1.07917775481515
+"IS05"	"Dendritic.cells"	1.08903757876026

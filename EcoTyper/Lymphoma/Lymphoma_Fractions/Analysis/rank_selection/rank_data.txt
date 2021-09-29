@@ -1,0 +1,14 @@
+"CellType"	"Chosen_rank"
+"B.cells"	6
+"Plasma.cells"	7
+"T.cells.CD8"	6
+"T.cells.CD4"	7
+"T.cells.follicular.helper"	5
+"Tregs"	7
+"NK.cells"	4
+"Monocytes.and.Macrophages"	6
+"Dendritic.cells"	5
+"Mast.cells"	3
+"Neutrophils"	4
+"Fibroblasts"	7
+"Endothelial.cells"	5

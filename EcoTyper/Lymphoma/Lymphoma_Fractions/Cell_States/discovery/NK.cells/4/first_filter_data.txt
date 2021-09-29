@@ -1,0 +1,5 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"NK.cells"	1.74334300819279
+"IS02"	"NK.cells"	0.743635476529199
+"IS03"	"NK.cells"	1.71060795977339
+"IS04"	"NK.cells"	0.554420473520905

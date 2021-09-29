@@ -1,0 +1,8 @@
+"State"	"CellType"	"PosRatio"
+"IS01"	"Fibroblasts"	0.269528790487071
+"IS02"	"Fibroblasts"	0.214152696680969
+"IS03"	"Fibroblasts"	3.92628747763889
+"IS04"	"Fibroblasts"	4.93936066644302
+"IS05"	"Fibroblasts"	1.24114172341275
+"IS06"	"Fibroblasts"	0.869152807113748
+"IS07"	"Fibroblasts"	4.77450211203719

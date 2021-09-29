@@ -1,0 +1,22 @@
+B cells naive	B cells
+B cells memory	B cells
+Plasma cells	Plasma.cells
+T cells CD8	T cells CD8
+T cells CD4 naive	T cells CD4
+T cells CD4 memory resting	T cells CD4
+T cells CD4 memory activated	T cells CD4
+T cells follicular helper	T cells follicular helper
+T cells regulatory (Tregs)	Tregs
+T cells gamma delta	T cells CD8
+NK cells resting	NK cells
+NK cells activated	NK cells
+Monocytes	Monocytes and Macrophages
+Macrophages M0	Monocytes and Macrophages
+Macrophages M1	Monocytes and Macrophages
+Macrophages M2	Monocytes and Macrophages
+Dendritic cells resting	Dendritic cells
+Dendritic cells activated	Dendritic cells
+Mast cells resting	Mast cells
+Mast cells activated	Mast cells
+Eosinophils	Eos
+Neutrophils	Neutrophils

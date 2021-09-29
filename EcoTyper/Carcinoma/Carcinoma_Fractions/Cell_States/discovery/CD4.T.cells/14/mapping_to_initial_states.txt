@@ -1,0 +1,8 @@
+"State"	"InitialState"
+"S01"	"IS05"
+"S02"	"IS06"
+"S03"	"IS07"
+"S04"	"IS04"
+"S05"	"IS14"
+"S06"	"IS01"
+"S07"	"IS09"
