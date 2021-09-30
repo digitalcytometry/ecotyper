@@ -1,12 +1,12 @@
 ---
 output:
-  github_document: default
-  md_document: default
-  pdf_document: default
-  word_document: default
   html_document:
     toc: true
     toc_float: true
+  md_document: default
+  pdf_document: default
+  word_document: default
+  github_document: default
 ---
 
 ```{r, setup, include=FALSE}
@@ -634,7 +634,7 @@ For each cell type, EcoTyper applies NMF across a range of ranks (number of cell
 
 7. **Advanced cell state QC filter**: When the discovery dataset is comprised of multiple tumor types, we recommend using this advanced filter. This filter identifies poor-quality cell states using a dropout score, which flags states whose marker genes exhibit anomalously low variance and high expression across the discovery cohort, generally an artefact of CIBEROSRTx HiRes. To calculate the dropout score for each marker gene (i.e., genes with maximal log2 fold change in each state relative to other states within a given cell type), EcoTyper determines the maximum fraction of samples for which the gene has the same value. It also calculates the average log2 expression of the gene across samples. It averages each quantity, scaled to unit variance across states, within each state, converts them to z-scores, and removes states with a mean Z >1.96 (P < 0.05).
 
-8. **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state $q$ into a binary vector $a$ of length $l$, where $l$ = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix $A$, with same number of rows as cell states across cell types and $l$ columns (samples). Given sample $s$, if state $q$ is the most abundant state among all states in cell type $i$, EcoTyper sets $A_(q,s)$ to 1; otherwise $A_(q,s) ← 0$. It then computes all pairwise Jaccard indices on the rows (states) in matrix $A$, yielding matrix $J$. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states $q$ and $k$ have no overlap. In cases where the hypergeometric p-value is >0.01, the Jaccard index for $J_(q,k)$ is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix $J^'$ is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 2 cell states are eliminated from further analysis.
+8. **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state $q$ into a binary vector $a$ of length $l$, where $l$ denotes the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix $A$, with same number of rows as cell states across cell types and $l$ columns (samples). Given sample $s$, if state $q$ is the most abundant state among all states in cell type $i$, EcoTyper sets $A_(q,s)$ to 1; otherwise $A_(q,s) ← 0$. It then computes all pairwise Jaccard indices on the rows (states) in matrix $A$, yielding matrix $J$. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states $q$ and $k$ have no overlap. In cases where the hypergeometric p-value is >0.01, the Jaccard index for $J_(q,k)$ is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix $J^'$ is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 3 cell states are eliminated from further analysis.
 
 ### 4.2. Checklist before performing cell states and ecotypes discovery
 
@@ -834,7 +834,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
     Pipeline steps to skip : [7] # by default, step 7 is skipped
 ```
 
-The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*.
+The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*. Please note that this option is only intended for cases when the pipeline had already been run once, and small adjustments are made to the parameters. For example, if the Cophenetic coefficient cutoff used in step 3 needs adjusting, the user might want to skip steps 1-2 and re-run from step 3 onwards.
 
 #### Number of threads
 
@@ -961,11 +961,11 @@ In this tutorial we illustrate how one can perform *de novo* identification of c
 
 EcoTyper derives cell states and ecotypes from scRNA-seq data in a sequence of steps:
 
-1. **Extract cell type specific genes**: The removal of genes that are not specificly expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in scRNA-seq data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected cells per cell type are used for this step. Genes with a Q-value > 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (Tutorial 4). CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type.
+1. **Extract cell type specific genes**: The removal of genes that are not specifically expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in scRNA-seq data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected cells per cell type are used for this step. Genes with a Q-value > 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (Tutorial 4). CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type.
 
-2. **Cell state discovery on correrlation matrices**: EcoTyper leverages nonnegative matrix factorization (NMF) to identify transcriptionally-defined cell states from single cell expression profiles. However, NMF applied directly on scRNA-seq expression matrices may perform sub-optimally, since scRNA-seq data is generally sparse. Therefore, EcoTyper first applies NMF on the correlation matrix between each pair of cells from a given cell type. For computational efficency, EcoTyper only uses up to 2,500 randomly selected cells for this step.
+2. **Cell state discovery on correlation matrices**: EcoTyper leverages nonnegative matrix factorization (NMF) to identify transcriptionally-defined cell states from single cell expression profiles. However, NMF applied directly on scRNA-seq expression matrices may perform sub-optimally, since scRNA-seq data is generally sparse. Therefore, EcoTyper first applies NMF on the correlation matrix between each pair of cells from a given cell type. For computational efficency, EcoTyper only uses up to 2,500 randomly selected cells for this step.
 <br/>
-To satisfy the non-negativity requirement of NMF, correlation matrices are individually processed using *posneg* transformation. This function converts an correlation matrix $V_i$ into two matrices, one containing only positive values and the other containing only negative values with the sign inverted. These two matrices are subsequently concatenated to produce $V_i^*$.
+To satisfy the non-negativity requirement of NMF, correlation matrices are individually processed using *posneg* transformation. This function converts a correlation matrix $V_i$ into two matrices, one containing only positive values and the other containing only negative values with the sign inverted. These two matrices are subsequently concatenated to produce $V_i^*$.
 <br/>
 For each cell type, EcoTyper applies NMF across a range of ranks (number of cell states), by default 2-20 states. For each rank, the NMF algorithm is applied multiple times (we recommend at least 50) with different starting seeds, for robustness.
 
@@ -981,7 +981,7 @@ For each cell type, EcoTyper only applies NMF for the rank selected in step 3. A
 
 7. **Cell state QC filter**: Although posneg transformation is required to satisfy the non-negativity constraint of NMF following standardization, it can lead to the identification of spurious cell states driven by features with more negative values than positive ones. To combat this, we devised an adaptive false positive index (AFI), a novel index defined as the ratio between the sum of weights from the W matrix corresponding to the negative and positive features. EcoTyper automatically filters the states with $AFI >= 1$.
 
-8. **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper  leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state $q$ into a binary vector $a$ of length $l$, where $l$ = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix $A$, with same number of rows as cell states across cell types and $l$ columns (samples). Given sample $s$, if state $q$ is the most abundant state among all states in cell type $i$, EcoTyper sets $A_(q,s)$ to 1; otherwise $A_(q,s) ← 0$. It then computes all pairwise Jaccard indices on the rows (states) in matrix $A$, yielding matrix $J$. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states $q$ and $k$ have no overlap. In cases where the hypergeometric p-value is >0.01, the Jaccard index for $J_(q,k)$ is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix $J^'$ is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 2 cell states are eliminated from further analysis.
+8. **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper  leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state $q$ into a binary vector $a$ of length $l$, where $l$ = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix $A$, with same number of rows as cell states across cell types and $l$ columns (samples). Given sample $s$, if state $q$ is the most abundant state among all states in cell type $i$, EcoTyper sets $A_(q,s)$ to 1; otherwise $A_(q,s) ← 0$. It then computes all pairwise Jaccard indices on the rows (states) in matrix $A$, yielding matrix $J$. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states $q$ and $k$ have no overlap. In cases where the hypergeometric p-value is >0.01, the Jaccard index for $J_(q,k)$ is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix $J^'$ is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 3 cell states are eliminated from further analysis.
 
 ### 5.2. Checklist before performing cell states and ecotypes discovery in scRNA-seq data
 
@@ -1016,7 +1016,7 @@ default :
   Pipeline settings :
     #Pipeline steps:
     #   step 1 (extract cell type specific genes)
-    #   step 2 (cell state discovery on correrlation matrices)
+    #   step 2 (cell state discovery on correlation matrices)
     #   step 3 (choosing the number of cell states)
     #   step 4 (extracting cell state information)
     #   step 5 (cell state re-discovery in expression matrices)
@@ -1081,7 +1081,7 @@ head(annotation)
 Annotation file column to scale by : NULL
 ```
 
-In order to discover pan-carcinoma cell states and ecotypes in the EcoType carcinoma paper, we standardize genes to mean 0 and unit 1 *within* each tumor type (histology). Field *Annotation file column to scale by* allows users to specify a column name in the annotation file, by which the cells will be grouped when performing standardization. However, this is an analytical choice, depending on the purpose of the analysis. If the users are interested in  defining cell states and ecotypes regardless of tumor type-specificity, this argument can be set to **NULL**. In this case, the standardization will be applied across all samples in the discovery cohort. The same will happen if the annotation file is not provided.
+In order to discover pan-carcinoma cell states and ecotypes in the EcoType carcinoma paper, we standardize genes to mean 0 and unit variance *within* each tumor type (histology). Field *Annotation file column to scale by* allows users to specify a column name in the annotation file, by which the cells will be grouped when performing standardization. However, this is an analytical choice, depending on the purpose of the analysis. If the users are interested in  defining cell states and ecotypes regardless of tumor type-specificity, this argument can be set to **NULL**. In this case, the standardization will be applied across all samples in the discovery cohort. The same will happen if the annotation file is not provided.
 
 In the current example, this field is not used and therefore set to NULL.
 
@@ -1110,7 +1110,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
 ```{cat, class.source='yaml'}
  #Pipeline steps:
     #   step 1 (extract cell type specific genes)
-    #   step 2 (cell state discovery on correrlation matrices)
+    #   step 2 (cell state discovery on correlation matrices)
     #   step 3 (choosing the number of cell states)
     #   step 4 (extracting cell state information)
     #   step 5 (cell state re-discovery in expression matrices)
@@ -1119,7 +1119,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
     #   step 8 (ecotype discovery)
 ```
 
-The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*.
+The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*. Please note that this option is only intended for cases when the pipeline had already been run once, and small adjustments are made to the parameters. For example, if the Cophenetic coefficient cutoff used in step 3 needs adjusting, the user might want to skip steps 1-2 and re-run from step 3 onwards.
 
 #### Filter non cell type specific genes
 
@@ -1256,7 +1256,7 @@ In this tutorial we illustrate how one can perform *de novo* identification of c
 
 EcoTyper derives cell states and ecotypes in a sequence of steps:
 
-1. **Extract cell type specific genes**: The removal of genes that are not specificly expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in pre-sorted data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected samples per cell type are used for this step. Genes with a Q-value > 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (e.g. Tutorial 4), as CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type. We do recommend applying it if cell type specific profiles were obtained through FACS-sorting or other deconvolution tool that does not filter for cell type specific genes.
+1. **Extract cell type specific genes**: The removal of genes that are not specifically expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in pre-sorted data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected samples per cell type are used for this step. Genes with a Q-value > 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (e.g. Tutorial 4), as CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type. We do recommend applying it if cell type specific profiles were obtained through FACS-sorting or other deconvolution tool that does not filter for cell type specific genes.
 
 2. **Cell state discovery**: EcoTyper leverages nonnegative matrix factorization (NMF) to identify transcriptionally-defined cell states from cell type specific expression profiles (step 1). Given c cell types, let $V_i$ be a $g×n$ cell type-specific expression matrix for cell type $i$ consisting of $g$ rows (the number of genes) and $n$ columns (the number of samples). The primary objective of NMF is to factorize $V_i$ into two non-negative matrices: a $g×k$ matrix, $W$, and a $k×n$ matrix, $H$, where $k$ is a user-specified rank (i.e., number of clusters). The basis matrix, $W$, encodes a representative expression level for each gene in each cell state. The mixture coefficients matrix $H$, scaled to sum to 1 across cell states, encodes the representation (relative abundance) of each cell state in each sample.
 <br/>
@@ -1272,7 +1272,7 @@ For each cell type, EcoTyper applies NMF across a range of ranks (number of cell
 
 6. **Advanced cell state QC filter**: When the discovery dataset is comprised of multiple tumor types, we recommend using this advanced filter. This filter identifies poor-quality cell states using a dropout score, which flags states whose marker genes exhibit anomalously low variance and high expression across the discovery cohort, generally an artefact of CIBEROSRTx HiRes. To calculate the dropout score for each marker gene (i.e., genes with maximal log2 fold change in each state relative to other states within a given cell type), EcoTyper determines the maximum fraction of samples for which the gene has the same value. It also calculates the average log2 expression of the gene across samples. It averages each quantity, scaled to unit variance across states, within each state, converts them to z-scores, and removes states with a mean Z >1.96 (P < 0.05).
 
-7. **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state $q$ into a binary vector $a$ of length $l$, where $l$ = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix $A$, with same number of rows as cell states across cell types and $l$ columns (samples). Given sample $s$, if state $q$ is the most abundant state among all states in cell type $i$, EcoTyper sets $A_(q,s)$ to 1; otherwise $A_(q,s) ← 0$. It then computes all pairwise Jaccard indices on the rows (states) in matrix $A$, yielding matrix $J$. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states $q$ and $k$ have no overlap. In cases where the hypergeometric p-value is >0.01, the Jaccard index for $J_(q,k)$ is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix $J^'$ is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 2 cell states are eliminated from further analysis.
+7. **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state $q$ into a binary vector $a$ of length $l$, where $l$ = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix $A$, with same number of rows as cell states across cell types and $l$ columns (samples). Given sample $s$, if state $q$ is the most abundant state among all states in cell type $i$, EcoTyper sets $A_(q,s)$ to 1; otherwise $A_(q,s) ← 0$. It then computes all pairwise Jaccard indices on the rows (states) in matrix $A$, yielding matrix $J$. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states $q$ and $k$ have no overlap. In cases where the hypergeometric p-value is >0.01, the Jaccard index for $J_(q,k)$ is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix $J^'$ is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 3 cell states are eliminated from further analysis.
 
 ### 6.2. Checklist before performing cell states and ecotypes discovery
 
@@ -1410,7 +1410,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
     Pipeline steps to skip : [6,] #by default, step 6 is skipped
 ```
 
-The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*.
+The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*. Please note that this option is only intended for cases when the pipeline had already been run once, and small adjustments are made to the parameters. For example, if the Cophenetic coefficient cutoff used in step 3 needs adjusting, the user might want to skip steps 1-2 and re-run from step 3 onwards.
 
 #### Filter non cell type specific genes
 
@@ -1454,7 +1454,7 @@ Cophenetic coefficient cutoff : 0.95
 
 This field indicates the Cophenetic coefficient cutoff, in the range [0, 1], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified.
 
-### 4.4. The command line
+### 6.4. The command line
 
 After editing the configuration file (`config_discovery_presorted.yml`), the *de novo* discovery cell states and ecotypes from presorted expression profiles can be run as is illustrated below. Please note that this script might take up to two hours to run on 10 threads. Also, although EcoTyper can be run on the example data from this tutorial using a typical laptop (16GB memory), it might not be the case for larger datasets. We recommend that cell type and ecotype discovery is generally run on a server with >32GB of RAM.
 
@@ -1462,7 +1462,7 @@ After editing the configuration file (`config_discovery_presorted.yml`), the *de
 Rscript EcoTyper_discovery_presorted.R -c config_discovery_presorted.yml
 ```
 
-### 4.5. The output format
+### 6.5. The output format
 
 EcoTyper generates for each cell type the following outputs:
 

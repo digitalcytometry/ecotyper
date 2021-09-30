@@ -189,27 +189,27 @@ data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/state_abundances.tx
 head(data[,1:5])
 ```
 
-    ##     TCGA.44.3398.01A.01R.1107.07 TCGA.78.8640.01A.11R.2403.07
-    ## S01                 1.215124e-02                 1.210697e-02
-    ## S02                 5.710264e-02                 1.037456e-14
-    ## S03                 2.385806e-01                 1.037456e-14
-    ## S04                 4.504326e-02                 3.339251e-02
-    ## S05                 9.450175e-14                 1.206938e-01
-    ## S06                 6.436860e-02                 1.271514e-01
-    ##     TCGA.49.6744.11A.01R.1858.07 TCGA.97.A4M2.01A.12R.A24X.07
-    ## S01                  0.063696059                 1.359430e-01
-    ## S02                  0.603554668                 1.677413e-01
-    ## S03                  0.008133186                 1.168304e-14
-    ## S04                  0.135665741                 2.634360e-03
-    ## S05                  0.004929718                 2.887613e-01
-    ## S06                  0.025958758                 3.237631e-02
-    ##     TCGA.49.4512.11A.01R.1858.07
-    ## S01                 4.777993e-02
-    ## S02                 1.870710e-01
-    ## S03                 1.006296e-14
-    ## S04                 3.494846e-04
-    ## S05                 1.006296e-14
-    ## S06                 1.051825e-02
+    ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
+    ## S01                 5.610752e-02                 9.612807e-15
+    ## S02                 1.280373e-02                 6.386058e-03
+    ## S03                 1.035601e-14                 6.169635e-05
+    ## S04                 1.451949e-02                 1.694938e-02
+    ## S05                 1.793168e-01                 1.726694e-02
+    ## S06                 2.209002e-01                 2.355229e-02
+    ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
+    ## S01                  0.040894068                  0.007263805
+    ## S02                  0.005972317                  0.004142070
+    ## S03                  0.012142088                  0.028884848
+    ## S04                  0.063365960                  0.019739555
+    ## S05                  0.013198449                  0.001226978
+    ## S06                  0.126574543                  0.051897896
+    ##     TCGA.05.4249.01A.01R.1107.07
+    ## S01                   0.02797270
+    ## S02                   0.05575916
+    ## S03                   0.03578894
+    ## S04                   0.25177782
+    ## S05                   0.16956906
+    ## S06                   0.03006488
 
 -   The assignment of samples to the state with highest abundance:
 
@@ -219,12 +219,12 @@ head(data[,c("ID", "State")])
 ```
 
     ##                             ID State
-    ## 1 TCGA.49.6744.11A.01R.1858.07   S02
-    ## 2 TCGA.55.6980.11A.01R.1949.07   S02
-    ## 3 TCGA.55.6985.11A.01R.1949.07   S02
-    ## 4 TCGA.55.7284.01B.11R.2241.07   S02
-    ## 5 TCGA.44.6147.11A.01R.1858.07   S02
-    ## 6 TCGA.44.5645.11A.01R.1628.07   S02
+    ## 1 TCGA.L3.A524.01A.11R.A262.07   S01
+    ## 2 TCGA.05.4397.01A.01R.1206.07   S01
+    ## 3 TCGA.68.7757.01B.11R.2296.07   S01
+    ## 4 TCGA.44.8120.01A.11R.2241.07   S02
+    ## 5 TCGA.44.6776.11A.01R.1858.07   S02
+    ## 6 TCGA.77.7138.11A.01R.2045.07   S02
 
 -   Two heatmaps: the heatmap representing the expression of "marker" genes for each state (See Tutorial 4 for more details) in the discovery dataset and in the user-provided bulk dataset:
 
@@ -243,33 +243,33 @@ assign = read.delim("RecoveryOutput/bulk_lung_data/Ecotypes/ecotype_abundance.tx
 dim(assign)
 ```
 
-    ## [1]  10 100
+    ## [1]  10 250
 
 ``` r
 head(assign[,1:5])
 ```
 
-    ##     TCGA.44.3398.01A.01R.1107.07 TCGA.78.8640.01A.11R.2403.07
-    ## CE1                   0.28440820                  0.014656278
-    ## CE2                   0.11109890                  0.152232869
-    ## CE3                   0.19505752                  0.016229464
-    ## CE4                   0.05326474                  0.097930861
-    ## CE5                   0.03882698                  0.197868270
-    ## CE6                   0.12670608                  0.009292462
-    ##     TCGA.49.6744.11A.01R.1858.07 TCGA.97.A4M2.01A.12R.A24X.07
-    ## CE1                   0.04545765                   0.01167567
-    ## CE2                   0.01427035                   0.02825504
-    ## CE3                   0.11002993                   0.10726523
-    ## CE4                   0.06296943                   0.12072876
-    ## CE5                   0.01423860                   0.08029810
-    ## CE6                   0.63434834                   0.19723193
-    ##     TCGA.49.4512.11A.01R.1858.07
-    ## CE1                   0.02127565
-    ## CE2                   0.01236343
-    ## CE3                   0.15762298
-    ## CE4                   0.08722689
-    ## CE5                   0.01740374
-    ## CE6                   0.60209157
+    ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
+    ## CE1                 2.443907e-03                  0.037977593
+    ## CE2                 1.621595e-01                  0.243041032
+    ## CE3                 1.386670e-14                  0.074717081
+    ## CE4                 7.257657e-02                  0.006520339
+    ## CE5                 1.618937e-01                  0.054195790
+    ## CE6                 1.908700e-02                  0.035478573
+    ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
+    ## CE1                  0.076640619                  0.189985630
+    ## CE2                  0.167842144                  0.219429034
+    ## CE3                  0.004333314                  0.041762329
+    ## CE4                  0.058892710                  0.063478179
+    ## CE5                  0.148527987                  0.088747961
+    ## CE6                  0.017818807                  0.009232854
+    ##     TCGA.05.4249.01A.01R.1107.07
+    ## CE1                   0.11162555
+    ## CE2                   0.03073282
+    ## CE3                   0.08510031
+    ## CE4                   0.04811969
+    ## CE5                   0.08697437
+    ## CE6                   0.07069911
 
 -   The assignment of samples to the carcinoma ecotype with the highest abundance. If the cell state fractions from the dominant ecotype are not significantly higher than the other cell state fractions in a given sample, the sample is considered unassigned and filtered out from this table:
 
@@ -278,33 +278,33 @@ discrete_assignments = read.delim("RecoveryOutput/bulk_lung_data/Ecotypes/ecotyp
 dim(discrete_assignments)
 ```
 
-    ## [1]  10 100
+    ## [1]  10 250
 
 ``` r
 head(discrete_assignments[,1:5])
 ```
 
-    ##     TCGA.44.3398.01A.01R.1107.07 TCGA.78.8640.01A.11R.2403.07
-    ## CE1                   0.28440820                  0.014656278
-    ## CE2                   0.11109890                  0.152232869
-    ## CE3                   0.19505752                  0.016229464
-    ## CE4                   0.05326474                  0.097930861
-    ## CE5                   0.03882698                  0.197868270
-    ## CE6                   0.12670608                  0.009292462
-    ##     TCGA.49.6744.11A.01R.1858.07 TCGA.97.A4M2.01A.12R.A24X.07
-    ## CE1                   0.04545765                   0.01167567
-    ## CE2                   0.01427035                   0.02825504
-    ## CE3                   0.11002993                   0.10726523
-    ## CE4                   0.06296943                   0.12072876
-    ## CE5                   0.01423860                   0.08029810
-    ## CE6                   0.63434834                   0.19723193
-    ##     TCGA.49.4512.11A.01R.1858.07
-    ## CE1                   0.02127565
-    ## CE2                   0.01236343
-    ## CE3                   0.15762298
-    ## CE4                   0.08722689
-    ## CE5                   0.01740374
-    ## CE6                   0.60209157
+    ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
+    ## CE1                 2.443907e-03                  0.037977593
+    ## CE2                 1.621595e-01                  0.243041032
+    ## CE3                 1.386670e-14                  0.074717081
+    ## CE4                 7.257657e-02                  0.006520339
+    ## CE5                 1.618937e-01                  0.054195790
+    ## CE6                 1.908700e-02                  0.035478573
+    ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
+    ## CE1                  0.076640619                  0.189985630
+    ## CE2                  0.167842144                  0.219429034
+    ## CE3                  0.004333314                  0.041762329
+    ## CE4                  0.058892710                  0.063478179
+    ## CE5                  0.148527987                  0.088747961
+    ## CE6                  0.017818807                  0.009232854
+    ##     TCGA.05.4249.01A.01R.1107.07
+    ## CE1                   0.11162555
+    ## CE2                   0.03073282
+    ## CE3                   0.08510031
+    ## CE4                   0.04811969
+    ## CE5                   0.08697437
+    ## CE6                   0.07069911
 
 -   A heatmap of cell state abundances across the samples assigned to ecotypes. Rows correspond to the cell states forming ecotypes, while columns correspond to the samples assigned to ecotypes:
 
@@ -508,7 +508,7 @@ knitr::include_graphics("RecoveryOutput/bulk_lymphoma_data/Ecotypes/heatmap_assi
 
 ## **Tutorial 2:** Recovery of Cell States and Ecotypes in User-Provided scRNA-seq Data
 
-EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and respectively lymphoma, in user-provided scRNA-seq data.
+EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and lymphoma, in user-provided scRNA-seq data.
 
 In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes, that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a downsampled version of a [scRNA-seq dataset](https://www.nature.com/articles/s41588-020-0636-z) from colorectal cancer specimens, and a downsampled version of a scRNA-seq dataset from lymphoma specimens, respectively.
 
@@ -607,7 +607,7 @@ head(data[,1:5])
     ## 4                        0                        0
     ## 5                        0                        0
 
--   *-a*/*--annotation*: Path to a tab-delimited annotation file. This file should contain at least two columns: *ID* with the same values as the columns of the expression matrix, and *CellType* (case sensitive) which contains the cell type for each cell. The values in column *CellType* should indicate for each cell its cell type. These values are limited to the set of cell types analyzed in the discovery dataset. If the argument *-d*/*--discovery* is set to *Carcinoma* (as is the case for this tutorial), then the accepted values for column *CellType* are: 'B.cells', 'CD4.T.cells', 'CD8.T.cells', 'Dendritic.cells', 'Endothelial.cells', 'Epithelial.cells', 'Fibroblasts', 'Mast.cells', 'Monocytes.and.Macrophages', 'NK.cells', 'PCs' and 'PMNs'. If the argument *-d*/*--discovery* is set to *Lymphoma*, then the accepted values for column *CellType* are: 'B.cells', 'Plasma.cells', 'T.cells.CD8', 'T.cells.CD4', 'T.cells.follicular.helper', 'Tregs', 'NK.cells', 'Monocytes.and.Macrophages', 'Dendritic.cells', 'Mast.cells', 'Neutrophils', 'Fibroblasts', 'Endothelial.cells'. All other values will be ignored for these two cases. The anntation file can contain a column called *Sample*. If this column is present, the ecotype recovery will be performed, in addition to cell state recovery. Moreover, this file can contain any number of columns, that can be used for plotting color bars in the output heatmaps (see argument *-c*/*--columns*).
+-   *-a*/*--annotation*: Path to a tab-delimited annotation file. This file should contain at least two columns: *ID* with the same values as the columns of the expression matrix, and *CellType* (case sensitive) which contains the cell type for each cell. The values in column *CellType* should indicate for each cell its cell type. These values are limited to the set of cell types analyzed in the discovery dataset. If the argument *-d*/*--discovery* is set to *Carcinoma* (as is the case for this tutorial), then the accepted values for column *CellType* are: 'B.cells', 'CD4.T.cells', 'CD8.T.cells', 'Dendritic.cells', 'Endothelial.cells', 'Epithelial.cells', 'Fibroblasts', 'Mast.cells', 'Monocytes.and.Macrophages', 'NK.cells', 'PCs' and 'PMNs'. If the argument *-d*/*--discovery* is set to *Lymphoma*, then the accepted values for column *CellType* are: 'B.cells', 'Plasma.cells', 'T.cells.CD8', 'T.cells.CD4', 'T.cells.follicular.helper', 'Tregs', 'NK.cells', 'Monocytes.and.Macrophages', 'Dendritic.cells', 'Mast.cells', 'Neutrophils', 'Fibroblasts', 'Endothelial.cells'. All other values will be ignored for these two cases. The annotation file can contain a column called *Sample*. If this column is present, the ecotype recovery will be performed, in addition to cell state recovery. Moreover, this file can contain any number of columns, that can be used for plotting color bars in the output heatmaps (see argument *-c*/*--columns*).
 
 ``` r
 data = read.delim("example_data/scRNA_CRC_annotation.txt")
@@ -668,7 +668,7 @@ knitr::include_graphics("RecoveryOutput/scRNA_CRC_data/Fibroblasts/state_assignm
 
 <img src="RecoveryOutput/scRNA_CRC_data/Fibroblasts/state_assignment_heatmap.png" width="100%" style="display: block; margin: auto;" />
 
--   If the statistical significance quantification method is applied, the resulting z-score for each cell state are output in the same directory:
+-   If the statistical significance quantification method is applied, the resulting z-scores for each cell state are output in the same directory:
 
 ``` r
 #data = read.delim("RecoveryOutput/scRNA_CRC_data/Epithelial.cells/recovery_z_scores.txt")
@@ -881,7 +881,7 @@ Since in this case the annotation file did not contain a column called *Sample*,
 
 ## **Tutorial 3:** Recovery of Cell States and Ecotypes in Spatial Transcriptomics data
 
-EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and respectively lymphoma, in user-provided expression data.
+EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and lymphoma, in user-provided expression data.
 
 Here we illustrate how one can perform cell state and ecotype recovery in Visium Spatial Gene Expression arrays from [10x Genomics](https://www.10xgenomics.com/products/spatial-gene-expression). For this tutorial we recover cell states and ecotypes defined across carcinomas in whole transcriptome spatial transcriptomics data from [breast cancer](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Breast_Cancer_Block_A_Section_1).
 
@@ -949,7 +949,7 @@ The *Input* section contains settings regarding the input data.
 Discovery dataset name : "Carcinoma"
 ```
 
-*Discovery dataset name* should contain name of the discovery dataset used for defining cell states. By default, the only accepted values are *Carcinoma* and *Lymphoma* (case sensitive), which will recover the cell states that we defined across carcinomas and in lymphoma, respectively. If the user defined cell states in their own data (**Tutorials 4-6**), the name of the discovery dataset is the value provided in the *Discovery dataset name* field of the configuration file used for running discovery. For this tutorial, we set the name of the discovery dataset to *Carcinoma*.
+*Discovery dataset name* should contain the name of the discovery dataset used for defining cell states. By default, the only accepted values are *Carcinoma* and *Lymphoma* (case sensitive), which will recover the cell states that we defined across carcinomas and in lymphoma, respectively. If the user defined cell states in their own data (**Tutorials 4-6**), the name of the discovery dataset is the value provided in the *Discovery dataset name* field of the configuration file used for running discovery. For this tutorial, we set the name of the discovery dataset to *Carcinoma*.
 
 #### Recovery dataset name
 
@@ -982,7 +982,7 @@ The filtered feature-barcode matrices `barcodes.tsv.gz`, `features.tsv.gz` and `
 Recovery cell type fractions : "NULL"
 ```
 
-*Recovery cell type fractions* should contain the path to a file containing the cell type fraction estimations for each spot on the visium array. This field is ignored when the discovery dataset is *Carcinoma* or *Lymphoma* or when the discovery has been performed as described in *Tutorial 4*, using *Carcinoma\_Fractions* or *Lymphoma\_Fractions*. It is only used when users provided their own cell type fractions for deriving cell states and ecotypes in *Tutorial 4*. In this case, the user needs to provide a path to a tab-delimited file for this field. The file should contain in the first column the same sample names used as column names in the input expression matrix, and on the next columns, the cell type fractions for the same cell populations used for discovering cell states and ecotypes. These fractions should sum up to 1 for each row. An example of such a file is provided in:
+*Recovery cell type fractions* should contain the path to a file containing the cell type fraction estimations for each spot on the visium array. This field is ignored when the discovery dataset is *Carcinoma* or *Lymphoma* or when the discovery has been performed as described in *Tutorial 4*, using *Carcinoma\_Fractions* or *Lymphoma\_Fractions*. It is only used when users provided their own cell type fractions for deriving cell states and ecotypes in *Tutorial 4*. In this case, the user needs to provide a path to a tab-delimited file for this field. The file should contain in the first column the same sample names used as column names in the input expression matrix, and in the next columns, the cell type fractions for the same cell populations used for discovering cell states and ecotypes. These fractions should sum up to 1 for each row. An example of such a file is provided in:
 
 ``` r
 data = read.delim("example_data/visium_fractions_example.txt", nrow = 5)
@@ -1129,7 +1129,7 @@ head(data[,1:10])
     ## VisiumBreast.5 0.0000000 0.1836142 0.0000000   0
     ## VisiumBreast.6 0.0000000 0.0000000 0.0000000   0
 
--   Plots illustrating the ecotype abundances. The intensity of charcoal represents the cell state abundance. The intenisty of gray represents the fraction of the cancer cell of origin population:
+-   Plots illustrating the ecotype abundances. The intensity of charcoal represents the cell state abundance. The intensity of gray represents the fraction of the cancer cell of origin population:
 
 ``` r
 knitr::include_graphics("VisiumOutput/VisiumBreast/Ecotype_spatial_heatmaps.png")
@@ -1159,7 +1159,7 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
 
 7.  **Advanced cell state QC filter**: When the discovery dataset is comprised of multiple tumor types, we recommend using this advanced filter. This filter identifies poor-quality cell states using a dropout score, which flags states whose marker genes exhibit anomalously low variance and high expression across the discovery cohort, generally an artefact of CIBEROSRTx HiRes. To calculate the dropout score for each marker gene (i.e., genes with maximal log2 fold change in each state relative to other states within a given cell type), EcoTyper determines the maximum fraction of samples for which the gene has the same value. It also calculates the average log2 expression of the gene across samples. It averages each quantity, scaled to unit variance across states, within each state, converts them to z-scores, and removes states with a mean Z &gt;1.96 (P &lt; 0.05).
 
-8.  **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state *q* into a binary vector *a* of length *l*, where *l* = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix *A*, with same number of rows as cell states across cell types and *l* columns (samples). Given sample *s*, if state *q* is the most abundant state among all states in cell type *i*, EcoTyper sets *A*<sub>(</sub>*q*, *s*) to 1; otherwise *A*<sub>(</sub>*q*, *s*)←0. It then computes all pairwise Jaccard indices on the rows (states) in matrix *A*, yielding matrix *J*. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states *q* and *k* have no overlap. In cases where the hypergeometric p-value is &gt;0.01, the Jaccard index for *J*<sub>(</sub>*q*, *k*) is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup> is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 2 cell states are eliminated from further analysis.
+8.  **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state *q* into a binary vector *a* of length *l*, where *l* denotes the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix *A*, with same number of rows as cell states across cell types and *l* columns (samples). Given sample *s*, if state *q* is the most abundant state among all states in cell type *i*, EcoTyper sets *A*<sub>(</sub>*q*, *s*) to 1; otherwise *A*<sub>(</sub>*q*, *s*)←0. It then computes all pairwise Jaccard indices on the rows (states) in matrix *A*, yielding matrix *J*. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states *q* and *k* have no overlap. In cases where the hypergeometric p-value is &gt;0.01, the Jaccard index for *J*<sub>(</sub>*q*, *k*) is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup> is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 3 cell states are eliminated from further analysis.
 
 ### 4.2. Checklist before performing cell states and ecotypes discovery
 
@@ -1291,7 +1291,7 @@ If the major cell populations expected in the user-provided discovery dataset ar
 
 In each of these cases the fractions are being estimated by serially applying two signature matrices on the discovery dataset. The first signature matrix, denoted TR4, is available in `utils/signature_matrices/TR4/TR4`. TR4 was obtained from FACS-sorted profiles of epithelial cells (EPCAM+), fibroblasts (CD10+), endothelial cells (CD31+) and immune cells (CD45+), obtained from lung cancer specimens ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2)). The second signature matrix, LM22, available in `utils/signature_matrices/LM22/LM22`, was published with [Newman et al., Nature Methods 2015](https://www.nature.com/articles/nmeth.3337), and is able to deconvolve 22 immune subsets. In the EcoTyper carcinoma paper, we first collapse the fractions for 22 subsets to obtain the representation of the 9 major cell types (B cells, plasma cells, CD4 T cells, CD8 T cells, NK cells, monocytes/macrophages, dendritic cells, mast cells, and neutrophils). We then replace the TR4 immune cell fractions with the fractions of the 9 cell lineages. This way we obtain cell abundance estimations for 12 cell populations used in that paper. An analogous process is used to obtain the lymphoma fractions.
 
-If neither of these cases apply, the user needs to provide a path to a tab-delimited file containing the cell type proportion estimations for the expected populations. The file should contain in the first column the same sample names used for column names in the input expression matrix, and on the next columns, the cell type fractions for each cell population. These fractions should sum up to 1 for each row. An example of such a file is provided in:
+If neither of these cases apply, the user needs to provide a path to a tab-delimited file containing the cell type proportion estimations for the expected populations. The file should contain in the first column the same sample names used for column names in the input expression matrix, and in the next columns, the cell type fractions for each cell population. These fractions should sum up to 1 for each row. An example of such a file is provided in:
 
 ``` r
 data = read.delim("example_data/bulk_fractions_example.txt", nrow = 5)
@@ -1425,7 +1425,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
     Pipeline steps to skip : [7] # by default, step 7 is skipped
 ```
 
-The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*.
+The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*. Please note that this option is only intended for cases when the pipeline had already been run once, and small adjustments are made to the parameters. For example, if the Cophenetic coefficient cutoff used in step 3 needs adjusting, the user might want to skip steps 1-2 and re-run from step 3 onwards.
 
 #### Number of threads
 
@@ -1651,9 +1651,9 @@ In this tutorial we illustrate how one can perform *de novo* identification of c
 
 EcoTyper derives cell states and ecotypes from scRNA-seq data in a sequence of steps:
 
-1.  **Extract cell type specific genes**: The removal of genes that are not specificly expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in scRNA-seq data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected cells per cell type are used for this step. Genes with a Q-value &gt; 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (Tutorial 4). CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type.
+1.  **Extract cell type specific genes**: The removal of genes that are not specifically expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in scRNA-seq data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected cells per cell type are used for this step. Genes with a Q-value &gt; 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (Tutorial 4). CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type.
 
-2.  **Cell state discovery on correrlation matrices**: EcoTyper leverages nonnegative matrix factorization (NMF) to identify transcriptionally-defined cell states from single cell expression profiles. However, NMF applied directly on scRNA-seq expression matrices may perform sub-optimally, since scRNA-seq data is generally sparse. Therefore, EcoTyper first applies NMF on the correlation matrix between each pair of cells from a given cell type. For computational efficency, EcoTyper only uses up to 2,500 randomly selected cells for this step. <br/> To satisfy the non-negativity requirement of NMF, correlation matrices are individually processed using *posneg* transformation. This function converts an correlation matrix *V*<sub>*i*</sub> into two matrices, one containing only positive values and the other containing only negative values with the sign inverted. These two matrices are subsequently concatenated to produce *V*<sub>*i*</sub><sup>\*</sup>. <br/> For each cell type, EcoTyper applies NMF across a range of ranks (number of cell states), by default 2-20 states. For each rank, the NMF algorithm is applied multiple times (we recommend at least 50) with different starting seeds, for robustness.
+2.  **Cell state discovery on correlation matrices**: EcoTyper leverages nonnegative matrix factorization (NMF) to identify transcriptionally-defined cell states from single cell expression profiles. However, NMF applied directly on scRNA-seq expression matrices may perform sub-optimally, since scRNA-seq data is generally sparse. Therefore, EcoTyper first applies NMF on the correlation matrix between each pair of cells from a given cell type. For computational efficency, EcoTyper only uses up to 2,500 randomly selected cells for this step. <br/> To satisfy the non-negativity requirement of NMF, correlation matrices are individually processed using *posneg* transformation. This function converts a correlation matrix *V*<sub>*i*</sub> into two matrices, one containing only positive values and the other containing only negative values with the sign inverted. These two matrices are subsequently concatenated to produce *V*<sub>*i*</sub><sup>\*</sup>. <br/> For each cell type, EcoTyper applies NMF across a range of ranks (number of cell states), by default 2-20 states. For each rank, the NMF algorithm is applied multiple times (we recommend at least 50) with different starting seeds, for robustness.
 
 3.  **Choosing the number of cell states**: Cluster (state) number selection is an important consideration in NMF applications. We found that previous approaches that rely on minimizing error measures (e.g., RMSE, KL divergence) or optimizing information-theoretic metrics either failed to converge or were dependent on the number of genes imputed. In contrast, the cophenetic coefficient quantifies the classification stability for a given rank (i.e., the number of clusters) and ranges from 0 to 1, with 1 being maximally stable. While the rank at which the cophenetic coefficient starts decreasing is typically selected, this approach is challenging to apply in situations where the cophenetic coefficient exhibits a multi-modal shape across ranks, as we found for some cell types. Therefore, we developed a heuristic approach more suitable for such settings. In each case, the rank was automatically chosen based on the cophenetic coefficient evaluated in the range 2–20 clusters (by default). Specifically, we determined the first occurrence in the interval 2–20 for which the cophenetic coefficient dropped below 0.95 (by default), having been above this level for at least two consecutive ranks. We then selected the rank immediately adjacent to this crossing point which was closest to 0.95 (by default).
 
@@ -1665,7 +1665,7 @@ EcoTyper derives cell states and ecotypes from scRNA-seq data in a sequence of s
 
 7.  **Cell state QC filter**: Although posneg transformation is required to satisfy the non-negativity constraint of NMF following standardization, it can lead to the identification of spurious cell states driven by features with more negative values than positive ones. To combat this, we devised an adaptive false positive index (AFI), a novel index defined as the ratio between the sum of weights from the W matrix corresponding to the negative and positive features. EcoTyper automatically filters the states with *A**F**I* &gt; =1.
 
-8.  **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state *q* into a binary vector *a* of length *l*, where *l* = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix *A*, with same number of rows as cell states across cell types and *l* columns (samples). Given sample *s*, if state *q* is the most abundant state among all states in cell type *i*, EcoTyper sets *A*<sub>(</sub>*q*, *s*) to 1; otherwise *A*<sub>(</sub>*q*, *s*)←0. It then computes all pairwise Jaccard indices on the rows (states) in matrix *A*, yielding matrix *J*. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states *q* and *k* have no overlap. In cases where the hypergeometric p-value is &gt;0.01, the Jaccard index for *J*<sub>(</sub>*q*, *k*) is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup> is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 2 cell states are eliminated from further analysis.
+8.  **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state *q* into a binary vector *a* of length *l*, where *l* = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix *A*, with same number of rows as cell states across cell types and *l* columns (samples). Given sample *s*, if state *q* is the most abundant state among all states in cell type *i*, EcoTyper sets *A*<sub>(</sub>*q*, *s*) to 1; otherwise *A*<sub>(</sub>*q*, *s*)←0. It then computes all pairwise Jaccard indices on the rows (states) in matrix *A*, yielding matrix *J*. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states *q* and *k* have no overlap. In cases where the hypergeometric p-value is &gt;0.01, the Jaccard index for *J*<sub>(</sub>*q*, *k*) is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup> is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 3 cell states are eliminated from further analysis.
 
 ### 5.2. Checklist before performing cell states and ecotypes discovery in scRNA-seq data
 
@@ -1707,7 +1707,7 @@ default :
   Pipeline settings :
     #Pipeline steps:
     #   step 1 (extract cell type specific genes)
-    #   step 2 (cell state discovery on correrlation matrices)
+    #   step 2 (cell state discovery on correlation matrices)
     #   step 3 (choosing the number of cell states)
     #   step 4 (extracting cell state information)
     #   step 5 (cell state re-discovery in expression matrices)
@@ -1808,7 +1808,7 @@ head(annotation)
 Annotation file column to scale by : NULL
 ```
 
-In order to discover pan-carcinoma cell states and ecotypes in the EcoType carcinoma paper, we standardize genes to mean 0 and unit 1 *within* each tumor type (histology). Field *Annotation file column to scale by* allows users to specify a column name in the annotation file, by which the cells will be grouped when performing standardization. However, this is an analytical choice, depending on the purpose of the analysis. If the users are interested in defining cell states and ecotypes regardless of tumor type-specificity, this argument can be set to **NULL**. In this case, the standardization will be applied across all samples in the discovery cohort. The same will happen if the annotation file is not provided.
+In order to discover pan-carcinoma cell states and ecotypes in the EcoType carcinoma paper, we standardize genes to mean 0 and unit variance *within* each tumor type (histology). Field *Annotation file column to scale by* allows users to specify a column name in the annotation file, by which the cells will be grouped when performing standardization. However, this is an analytical choice, depending on the purpose of the analysis. If the users are interested in defining cell states and ecotypes regardless of tumor type-specificity, this argument can be set to **NULL**. In this case, the standardization will be applied across all samples in the discovery cohort. The same will happen if the annotation file is not provided.
 
 In the current example, this field is not used and therefore set to NULL.
 
@@ -1837,7 +1837,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
 ``` yaml
  #Pipeline steps:
     #   step 1 (extract cell type specific genes)
-    #   step 2 (cell state discovery on correrlation matrices)
+    #   step 2 (cell state discovery on correlation matrices)
     #   step 3 (choosing the number of cell states)
     #   step 4 (extracting cell state information)
     #   step 5 (cell state re-discovery in expression matrices)
@@ -1846,7 +1846,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
     #   step 8 (ecotype discovery)
 ```
 
-The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*.
+The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*. Please note that this option is only intended for cases when the pipeline had already been run once, and small adjustments are made to the parameters. For example, if the Cophenetic coefficient cutoff used in step 3 needs adjusting, the user might want to skip steps 1-2 and re-run from step 3 onwards.
 
 #### Filter non cell type specific genes
 
@@ -2058,7 +2058,7 @@ In this tutorial we illustrate how one can perform *de novo* identification of c
 
 EcoTyper derives cell states and ecotypes in a sequence of steps:
 
-1.  **Extract cell type specific genes**: The removal of genes that are not specificly expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in pre-sorted data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected samples per cell type are used for this step. Genes with a Q-value &gt; 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (e.g. Tutorial 4), as CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type. We do recommend applying it if cell type specific profiles were obtained through FACS-sorting or other deconvolution tool that does not filter for cell type specific genes.
+1.  **Extract cell type specific genes**: The removal of genes that are not specifically expressed in a given cell type, is an important consideration for reducing the likelihood of identifying spurious cell states. Ecotyper applies by default a filter for non-cell type specific genes, before performing cell state discovery in pre-sorted data. Specifically, it performs a differential expression between cells from a given cell type and all other cell types combined. For computational efficency and balanced representation of cell types, only up to 500 randomly selected samples per cell type are used for this step. Genes with a Q-value &gt; 0.05 (two-sided Wilcox test, with Benjamini-Hochberg correction for multiple hypothesis correction) are filtered out from each cell type. Of note, this filter is not necessary when discovering cell states in cell type specific profiles purified using CIBERSORTx high resolution (e.g. Tutorial 4), as CIBERSORTx incorporates its own filter for genes without evidence of expression in a given cell type. We do recommend applying it if cell type specific profiles were obtained through FACS-sorting or other deconvolution tool that does not filter for cell type specific genes.
 
 2.  **Cell state discovery**: EcoTyper leverages nonnegative matrix factorization (NMF) to identify transcriptionally-defined cell states from cell type specific expression profiles (step 1). Given c cell types, let *V*<sub>*i*</sub> be a *g* × *n* cell type-specific expression matrix for cell type *i* consisting of *g* rows (the number of genes) and *n* columns (the number of samples). The primary objective of NMF is to factorize *V*<sub>*i*</sub> into two non-negative matrices: a *g* × *k* matrix, *W*, and a *k* × *n* matrix, *H*, where *k* is a user-specified rank (i.e., number of clusters). The basis matrix, *W*, encodes a representative expression level for each gene in each cell state. The mixture coefficients matrix *H*, scaled to sum to 1 across cell states, encodes the representation (relative abundance) of each cell state in each sample. <br/> EcoTyper applies NMF on the top 1000 genes with highest relative dispersion across samples. If less than 1000 genes are available, all genes are selected. If less than 50 genes are imputed for a given cell type, that cell type is not used for cell state identification. Prior to NMF, each gene is scaled to mean 0 and unit variance. To satisfy the non-negativity requirement of NMF, cell type-specific expression matrices are individually processed using *posneg* transformation. This function converts an input expression matrix *V*<sub>*i*</sub> into two matrices, one containing only positive values and the other containing only negative values with the sign inverted. These two matrices are subsequently concatenated to produce *V*<sub>*i*</sub><sup>\*</sup>. <br/> For each cell type, EcoTyper applies NMF across a range of ranks (number of cell states), by default 2-20 states. For each rank, the NMF algorithm is applied multiple times (we recommend at least 50) with different starting seeds, for robustness.
 
@@ -2070,7 +2070,7 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
 
 6.  **Advanced cell state QC filter**: When the discovery dataset is comprised of multiple tumor types, we recommend using this advanced filter. This filter identifies poor-quality cell states using a dropout score, which flags states whose marker genes exhibit anomalously low variance and high expression across the discovery cohort, generally an artefact of CIBEROSRTx HiRes. To calculate the dropout score for each marker gene (i.e., genes with maximal log2 fold change in each state relative to other states within a given cell type), EcoTyper determines the maximum fraction of samples for which the gene has the same value. It also calculates the average log2 expression of the gene across samples. It averages each quantity, scaled to unit variance across states, within each state, converts them to z-scores, and removes states with a mean Z &gt;1.96 (P &lt; 0.05).
 
-7.  **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state *q* into a binary vector *a* of length *l*, where *l* = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix *A*, with same number of rows as cell states across cell types and *l* columns (samples). Given sample *s*, if state *q* is the most abundant state among all states in cell type *i*, EcoTyper sets *A*<sub>(</sub>*q*, *s*) to 1; otherwise *A*<sub>(</sub>*q*, *s*)←0. It then computes all pairwise Jaccard indices on the rows (states) in matrix *A*, yielding matrix *J*. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states *q* and *k* have no overlap. In cases where the hypergeometric p-value is &gt;0.01, the Jaccard index for *J*<sub>(</sub>*q*, *k*) is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup> is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 2 cell states are eliminated from further analysis.
+7.  **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular communities* are derived by identifying patterns of co-occurrence of cell states across samples. First, EcoTyper leverages the Jaccard index to quantify the degree of overlap between each pair of cell states across samples in the discovery cohort. Toward this end, it discretizes each cell state *q* into a binary vector *a* of length *l*, where *l* = the number of samples in the discovery cohort. Collectively, these vectors comprise binary matrix *A*, with same number of rows as cell states across cell types and *l* columns (samples). Given sample *s*, if state *q* is the most abundant state among all states in cell type *i*, EcoTyper sets *A*<sub>(</sub>*q*, *s*) to 1; otherwise *A*<sub>(</sub>*q*, *s*)←0. It then computes all pairwise Jaccard indices on the rows (states) in matrix *A*, yielding matrix *J*. Using the hypergeometric test, it evaluates the null hypothesis that any given pair of cell states *q* and *k* have no overlap. In cases where the hypergeometric p-value is &gt;0.01, the Jaccard index for *J*<sub>(</sub>*q*, *k*) is set to 0 (i.e., no overlap). To identify communities while accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup> is hierarchically clustered using average linkage with Euclidean distance (hclust in the R stats package). The optimal number of clusters is then determined via silhouette width maximization. Clusters with less than 3 cell states are eliminated from further analysis.
 
 ### 6.2. Checklist before performing cell states and ecotypes discovery
 
@@ -2251,7 +2251,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
     Pipeline steps to skip : [6,] #by default, step 6 is skipped
 ```
 
-The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*.
+The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*. Please note that this option is only intended for cases when the pipeline had already been run once, and small adjustments are made to the parameters. For example, if the Cophenetic coefficient cutoff used in step 3 needs adjusting, the user might want to skip steps 1-2 and re-run from step 3 onwards.
 
 #### Filter non cell type specific genes
 
@@ -2295,7 +2295,7 @@ Cophenetic coefficient cutoff : 0.95
 
 This field indicates the Cophenetic coefficient cutoff, in the range \[0, 1\], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified.
 
-### 4.4. The command line
+### 6.4. The command line
 
 After editing the configuration file (`config_discovery_presorted.yml`), the *de novo* discovery cell states and ecotypes from presorted expression profiles can be run as is illustrated below. Please note that this script might take up to two hours to run on 10 threads. Also, although EcoTyper can be run on the example data from this tutorial using a typical laptop (16GB memory), it might not be the case for larger datasets. We recommend that cell type and ecotype discovery is generally run on a server with &gt;32GB of RAM.
 
@@ -2303,7 +2303,7 @@ After editing the configuration file (`config_discovery_presorted.yml`), the *de
 Rscript EcoTyper_discovery_presorted.R -c config_discovery_presorted.yml
 ```
 
-### 4.5. The output format
+### 6.5. The output format
 
 EcoTyper generates for each cell type the following outputs:
 
