@@ -62,9 +62,9 @@ if(!discovery %in% c("Carcinoma", "Lymphoma"))
 		{
 			if(config$"Input"$"Filter non cell type specific genes")
 			{
-				fractions = "scRNA_specific_genes"
+				fractions = "Cell_type_specific_genes"
 			}else{
-				fractions = "scRNA_all_genes"
+				fractions = "All_genes"
 			}
 		}else{
 			fractions = "Custom"	

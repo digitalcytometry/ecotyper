@@ -7,7 +7,7 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("scRNA_CRC_Park", "scRNA_specific_genes", "Ecotype")
+args = c("discovery_scRNA_lung", "Cell_type_specific_genes", "Ecotype")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -102,9 +102,10 @@ H = do.call(rbind, lapply(levels(ecotypes$Ecotype), function(clst){
 	inc <<- ecotypes[ecotypes$Ecotype == clst,]$ID
 	apply(all_H[rownames(all_H) %in% inc,,drop = F], 2, mean, na.rm = T)
 }))
+
 rownames(H) = levels(ecotypes$Ecotype)
 #write.table(H, file.path(output_dir, "ecotype_abundance.txt"), sep = "\t")
-H = apply(H, 2, function(x) x / sum(x))
+H = apply(H, 2, function(x) x / sum(x, na.rm = T))
 write.table(H, file.path(output_dir, "ecotype_abundance.txt"), sep = "\t")
 
 p_vals = do.call(rbind, lapply(levels(ecotypes$Ecotype), function(clst){
@@ -119,6 +120,10 @@ p_vals = do.call(rbind, lapply(levels(ecotypes$Ecotype), function(clst){
 		tryCatch({
 			p <<- t.test(x[rownames(all_H) %in% inc], x[!(rownames(all_H) %in% inc)])$p.value
 		}, error = function(x) err <<- T)
+		if(err)
+		{
+			p = NA 
+		}
 		p
 	})
 	

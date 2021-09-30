@@ -7,7 +7,7 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("discovery_scRNA_CRC", "scRNA_specific_genes", "data")
+args = c("Carcinoma", "Carcinoma_Fractions", "scRNA_")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -117,7 +117,7 @@ H = do.call(rbind, lapply(levels(ecotypes$Ecotype), function(clst){
 }))
 rownames(H) = levels(ecotypes$Ecotype)
 #write.table(H, file.path(output_dir, "ecotype_abundance.txt"), sep = "\t")
-H = apply(H, 2, function(x) x / sum(x))
+H = apply(H, 2, function(x) x / sum(x, na.rm = T))
 write.table(H, file.path(output_dir, "ecotype_abundance.txt"), sep = "\t")
 
 p_vals = do.call(rbind, lapply(levels(ecotypes$Ecotype), function(clst){
