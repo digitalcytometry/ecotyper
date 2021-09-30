@@ -1,7 +1,7 @@
 
 ## Introduction
 
-[EcoTyper](https://ecotyper.stanford.edu/) is a machine learning framework for large-scale identification of cell type-specific transcriptional states and their co-association patterns from bulk, single-cell, and FACS-sorted expression data.
+[EcoTyper](https://ecotyper.stanford.edu/) is a machine learning framework for large-scale identification of cell type-specific transcriptional states and their co-association patterns from bulk and single-cell (scRNA-seq) expression data.
 
 We have already defined cell states and ecotypes across **carcinomas** ([Luca/Steen et al., Cell 2021](https://doi.org/10.1016/j.cell.2021.09.014)) and in **diffuse large B cell lymphoma (DLBCL)** ([Steen/Luca et al., Cancer Cell 2021](https://doi.org/10.1016/j.ccell.2021.08.011)). The current version of EcoTyper allows users to recover the cell states and ecotypes for these two tumor categories in their own data. Additionally, it allows users to discover and recover cell states and ecotypes in their system of interest. Below we illustrate each of these functionalities.
 
@@ -19,7 +19,7 @@ The R packages listed below are required for running EcoTyper. The version numbe
 These packages, together with the other resources pre-stored in the EcoTyper folder, allow users to:
 
 -   perform the recovery of previously defined cell states and ecotypes in their own bulk RNA-seq, microarray and scRNA-seq data (Tutorials 1 and 2).
--   perform cell state and ecotype discovery in scRNA-seq and pre-sorted data (Tutorials 5 and 6).
+-   perform cell state and ecotype discovery in scRNA-seq and pre-sorted cell type-specific profiles (Tutorials 5 and 6).
 
 Besides these pacakges, the additional resources described in the next section are needed for analyses described in Tutorials 3 and 4.
 
@@ -28,7 +28,7 @@ Besides these pacakges, the additional resources described in the next section a
 For some use cases, such as cell state and ecotype recovery in spatial transcriptomics assays (Tutorial 3) and *de novo* identification of cell states and ecotypes from bulk expression data (Tutorial 4), EcoTyper relies on CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2), a digital cytometry framework for enumerating cell types in bulk data and performing *in silico* deconvolution of cell type specific expression profiles. In these situations, the following additional resources are needed for running EcoTyper:
 
 -   Docker.
--   CIBERSORTx executables, than can be downloaded from the [CIBERSORTx website](https://cibersortx.stanford.edu/). Specifically, EcoTyper requires the **CIBERSORTx Fractions** and **CIBERSORTx HiRes** modules. The executables for these two modules are available for download as Docker images on the [CIBERSORTx website](https://cibersortx.stanford.edu/). Please follow the instructions on the [Download](https://cibersortx.stanford.edu/download.php) section of the website to download the Docker images and obtain the Docker tokens necessary for running them.
+-   CIBERSORTx executables than can be downloaded from the [CIBERSORTx website](https://cibersortx.stanford.edu/), as Docker images. Specifically, EcoTyper requires the **CIBERSORTx Fractions** and **CIBERSORTx HiRes** modules. Please follow the instructions on the [Download](https://cibersortx.stanford.edu/download.php) section of the website to download the Docker images and obtain the Docker tokens necessary for running them.
 
 ## EcoTyper implementation
 
@@ -38,7 +38,7 @@ We provide wrappers over these scripts that encapsulate the typical EcoTyper wor
 
 ## EcoTyper overview
 
-EcoTyper performs two major types of analysis: discovery of cell states and ecotypes, starting from bulk, scRNA-seq and pre-sorted expression profiles (e.g. FACS-sorted or deconvolved *in silico*); and recovery of previously defined cell states and ecotypes in new bulk, scRNA-seq and spatial transcriptomics data.
+EcoTyper performs two major types of analysis: discovery of cell states and ecotypes, starting from bulk, scRNA-seq and pre-sorted cell type specific expression profiles (e.g. FACS-sorted or deconvolved *in silico*); and recovery of previously defined cell states and ecotypes in new bulk, scRNA-seq and spatial transcriptomics data.
 
 When the input is bulk data, EcoTyper performs the following major steps for discovering cell states and ecotypes:
 
@@ -46,7 +46,7 @@ When the input is bulk data, EcoTyper performs the following major steps for dis
 -   Cell state discovery: This step enables identification and quantitation of cell type-specific transcriptional states.
 -   Ecotype discovery: This step enables co-assignment of cell states into multicellular communities (ecotypes).
 
-When the input is scRNA-seq or pre-sorted data, EcoTyper performs the following major steps for discovering cell states and ecotypes:
+When the input is scRNA-seq or bulk-sorted cell type-specific profiles (e.g., FACS-purified), EcoTyper performs the following major steps for discovering cell states and ecotypes:
 
 -   Gene filtering: This step filters out genes that do not show cell type specificity.
 -   Cell state discovery: This step enables identification and quantitation of cell type-specific transcriptional states.
@@ -77,7 +77,7 @@ In this tutorial, we illustrate how EcoTyper can be used to recover the cell sta
 
 For this section, we used a subset of the TCGA bulk samples from lung adenocarcinoma (LUAD), available in `example_data/bulk_lung_data.txt`, together with the sample annotation file `example_data/bulk_lung_annotation.txt`.
 
-The script used to perform recovery in scRNA-seq data is called `EcoTyper_recovery_bulk.R`:
+The script used to perform recovery in bulk data is called `EcoTyper_recovery_bulk.R`:
 
 ``` bash
 Rscript EcoTyper_recovery_bulk.R -h
@@ -318,7 +318,7 @@ knitr::include_graphics("RecoveryOutput/bulk_lung_data/Ecotypes/heatmap_assigned
 
 For this section, we used a subset of the [bulk samples](https://www.nature.com/articles/s41591-018-0016-8) from diffuse large-cell lymphoma (DLBCL), available in `example_data/bulk_lymphoma_data.txt`, together with the sample annotation file `example_data/bulk_lymphoma_annotation.txt`.
 
-The script used to perform recovery in scRNA-seq data is called `EcoTyper_recovery_bulk.R`:
+The script used to perform recovery in bulk data is called `EcoTyper_recovery_bulk.R`:
 
 ``` bash
 Rscript EcoTyper_recovery_bulk.R -h
