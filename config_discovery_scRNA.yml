@@ -1,8 +1,8 @@
 default :
   Input :    
     Discovery dataset name : "discovery_scRNA_CRC"
-    Expression matrix : "example_data/discovery_scRNA_data.txt"    
-    Annotation file : "example_data/discovery_scRNA_annotation.txt" 
+    Expression matrix : "example_data/scRNA_CRC_data.txt"    
+    Annotation file : "example_data/scRNA_CRC_annotation.txt" 
     Annotation file column to scale by : NULL
     Annotation file column(s) to plot : []
     
