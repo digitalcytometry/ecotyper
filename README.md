@@ -42,7 +42,7 @@ EcoTyper performs two major types of analysis: discovery of cell states and ecot
 
 When the input is bulk data, EcoTyper performs the following major steps for discovering cell states and ecotypes:
 
--   In silico purification: This step enables imputation of cell type-specific gene expression profiles from bulk tissue transcriptomes, using CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2)).
+-   *In silico* purification: This step enables imputation of cell type-specific gene expression profiles from bulk tissue transcriptomes, using CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2)).
 -   Cell state discovery: This step enables identification and quantitation of cell type-specific transcriptional states.
 -   Ecotype discovery: This step enables co-assignment of cell states into multicellular communities (ecotypes).
 
@@ -1883,10 +1883,10 @@ Maximum number of states per cell type : 20
 #### Cophenetic coefficient cutoff
 
 ``` yaml
-Cophenetic coefficient cutoff : 0.95
+Cophenetic coefficient cutoff : 0.975
 ```
 
-This field indicates the Cophenetic coefficient cutoff, in the range \[0, 1\], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified.
+This field indicates the Cophenetic coefficient cutoff, in the range \[0, 1\], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified. In this particular example, we set it to 0.975.
 
 ### 5.4. The command line
 
@@ -1924,19 +1924,19 @@ head(data[,1:5])
 ```
 
     ##     SMC01.T_ACCTTTACATGTTCCC SMC01.T_ACGAGGAAGTAACCCT SMC01.T_AGCAGCCCACCGTTGG
-    ## S01             2.087964e-14             1.942962e-14             7.552674e-01
-    ## S02             2.087964e-14             1.942962e-14             7.956780e-15
-    ## S03             1.107385e-01             1.332787e-01             2.178472e-01
-    ## S04             1.730118e-01             1.942962e-14             5.655852e-03
-    ## S05             2.087964e-14             1.925797e-01             7.956780e-15
-    ## S06             5.611678e-02             1.942962e-14             7.956780e-15
+    ## S01             1.809522e-14             2.136881e-14             7.665166e-01
+    ## S02             9.721682e-02             1.491434e-01             2.122379e-01
+    ## S03             1.809522e-14             3.899430e-07             7.628764e-15
+    ## S04             1.956508e-01             2.136881e-14             7.628764e-15
+    ## S05             5.539194e-07             5.458558e-02             7.628764e-15
+    ## S06             1.206487e-01             2.136881e-14             7.628764e-15
     ##     SMC01.T_AGCCTAAGTTACGTCA SMC01.T_CAACCAAAGACCACGA
-    ## S01             8.567773e-04             1.918245e-14
-    ## S02             1.959011e-14             1.121488e-06
-    ## S03             2.096615e-03             8.613416e-02
-    ## S04             1.959011e-14             6.513932e-03
-    ## S05             1.959011e-14             1.957936e-01
-    ## S06             1.959011e-14             5.232227e-02
+    ## S01             2.053200e-14             1.751463e-14
+    ## S02             1.202685e-03             1.396199e-01
+    ## S03             2.053200e-14             1.843738e-03
+    ## S04             2.053200e-14             5.263944e-03
+    ## S05             2.053200e-14             1.447458e-10
+    ## S06             2.053200e-14             3.038946e-01
 
 -   Assignment of samples in the discovery dataset to the cell state with the highest abundance. Only samples assigned to the cell states remaining after the QC filters in steps 6 and 7 (if run) are included. The remaining ones are considered unassigned and removed from this table:
 
@@ -1945,19 +1945,19 @@ data = read.delim("DiscoveryOutput_scRNA/Endothelial.cells/state_assignment.txt"
 dim(data)
 ```
 
-    ## [1] 898   3
+    ## [1] 884   3
 
 ``` r
 head(data)
 ```
 
     ##                            ID State InitialState
-    ## 1180 SMC01.T_AGCAGCCCACCGTTGG   S01         IS07
-    ## 1181 SMC01.T_GAACATCCATGCTGGC   S01         IS07
-    ## 1182 SMC02.T_CAGCGACTCATCGGAT   S01         IS07
-    ## 1183 SMC02.T_CCCAGTTCATCGATTG   S01         IS07
-    ## 1184 SMC02.T_GTACTTTGTGCCTGGT   S01         IS07
-    ## 1185 SMC04.T_AGATTGCTCAGGTTCA   S01         IS07
+    ## 1408 SMC01.T_AGCAGCCCACCGTTGG   S01         IS08
+    ## 1409 SMC01.T_GAACATCCATGCTGGC   S01         IS08
+    ## 1410 SMC02.T_CAGCGACTCATCGGAT   S01         IS08
+    ## 1411 SMC02.T_GTACTTTGTGCCTGGT   S01         IS08
+    ## 1412 SMC04.T_AGATTGCTCAGGTTCA   S01         IS08
+    ## 1413 SMC04.T_AGGTCCGAGCAGCGTA   S01         IS08
 
 -   A heatmap illustrating the expression of genes used for cell state discovery, that have the highest fold-change in one of the cell states remaining after the QC filters in steps 6 and 7 (if run). In the current example, the heatmap includes in the top color bar two rows corresponding to *Tissue* and *Histology*, that have been provided in configuration file field *Annotation file column(s) to plot*, in addition to cell state labels always plotted:
 
@@ -1976,13 +1976,13 @@ ecotypes = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotypes.txt")
 head(ecotypes[,c("CellType", "State", "Ecotype")])
 ```
 
-    ##                    CellType State Ecotype
-    ## 1                   B.cells   S02      E1
-    ## 2               CD4.T.cells   S02      E1
-    ## 3           Dendritic.cells   S03      E1
-    ## 4               Fibroblasts   S06      E1
-    ## 5 Monocytes.and.Macrophages   S03      E1
-    ## 6 Monocytes.and.Macrophages   S04      E1
+    ##          CellType State Ecotype
+    ## 1         B.cells   S02      E1
+    ## 2         B.cells   S03      E1
+    ## 3     CD4.T.cells   S03      E1
+    ## 4     CD4.T.cells   S05      E1
+    ## 5     CD8.T.cells   S01      E1
+    ## 6 Dendritic.cells   S03      E1
 
 -   The number of initial clusters obtained by clustering the Jaccard index matrix, selected using the average silhouette:
 
@@ -2013,13 +2013,13 @@ dim(abundances)
 head(abundances[,1:5])
 ```
 
-    ##        SMC01.N    SMC01.T     SMC02.N   SMC02.T     SMC03.N
-    ## E1 0.351386861 0.12616663 0.219310109 0.0342655 0.415702135
-    ## E2 0.112324425 0.05901192 0.160695030 0.1438992 0.065836761
-    ## E3 0.129543509 0.10554223 0.050840239 0.1444759 0.098256379
-    ## E4 0.003191072 0.35742323 0.009958296 0.3627739 0.008047052
-    ## E5 0.139443524 0.19065780 0.179458223 0.1337538 0.049760343
-    ## E6 0.218312174 0.02090595 0.162731138 0.0000000 0.340451743
+    ##       SMC01.N     SMC01.T    SMC02.N    SMC02.T    SMC03.N
+    ## E1 0.36529972 0.112226383 0.37694206 0.09568419 0.33846514
+    ## E2 0.00000000 0.289587824 0.04471845 0.23978498 0.05062341
+    ## E3 0.17417011 0.006599186 0.19479843 0.00000000 0.18775166
+    ## E4 0.02162737 0.137419014 0.00000000 0.40639166 0.03374894
+    ## E5 0.06658287 0.108632760 0.02630497 0.14700301 0.00000000
+    ## E6 0.06179247 0.201232624 0.03105448 0.11113616 0.00000000
 
 -   The assignment of samples in the discovery dataset to ecotypes. The samples not assigned to any ecotype are filtered out from this file:
 
@@ -2028,19 +2028,19 @@ assignments = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_assignment.txt"
 dim(assignments)
 ```
 
-    ## [1] 32  6
+    ## [1] 33  6
 
 ``` r
 head(assignments[,1:5])
 ```
 
-    ##         ID MaxEcotype AssignmentP AssignmentQ AssignedToEcotypeStates
-    ## 1  SMC01-N         E1 0.000431791 0.006315741                    TRUE
-    ## 3  SMC02-N         E1 0.156778016 0.191617575                    TRUE
-    ## 5  SMC03-N         E1 0.010196768 0.042970792                    TRUE
-    ## 9  SMC05-N         E1 0.002331201 0.015385925                    TRUE
-    ## 10 SMC05-T         E1 0.057453181 0.090283571                    TRUE
-    ## 13 SMC07-N         E1 0.023809783 0.053283777                    TRUE
+    ##         ID MaxEcotype  AssignmentP AssignmentQ AssignedToEcotypeStates
+    ## 1  SMC01-N         E1 1.622561e-03 0.013493158                    TRUE
+    ## 3  SMC02-N         E1 4.094496e-03 0.021837311                    TRUE
+    ## 9  SMC05-N         E1 1.686645e-03 0.013493158                    TRUE
+    ## 15 SMC08-N         E1 2.037793e-05 0.000326047                    TRUE
+    ## 2  SMC01-T         E2 1.406832e-01 0.236940129                    TRUE
+    ## 12 SMC06-T         E2 2.349589e-01 0.317642040                    TRUE
 
 -   A heatmap of cell state fractions across the samples assigned to ecotypes:
 

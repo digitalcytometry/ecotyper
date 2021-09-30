@@ -1156,10 +1156,10 @@ Maximum number of states per cell type : 20
 #### Cophenetic coefficient cutoff
 
 ```{cat, class.source='yaml'}
-Cophenetic coefficient cutoff : 0.95
+Cophenetic coefficient cutoff : 0.975
 ```
 
-This field indicates the Cophenetic coefficient cutoff, in the range [0, 1], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified.
+This field indicates the Cophenetic coefficient cutoff, in the range [0, 1], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified. In this particular example, we set it to 0.975.
 
 ### 5.4. The command line
 
