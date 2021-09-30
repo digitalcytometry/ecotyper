@@ -3,7 +3,7 @@
 
 [EcoTyper](https://ecotyper.stanford.edu/) is a machine learning framework for large-scale identification of cell type-specific transcriptional states and their co-association patterns from bulk, single-cell, and FACS-sorted expression data.
 
-We have already defined cell states and ecotypes across **carcinomas** and in **diffuse large B cell lymphoma (DLBCL)**. The current version of EcoTyper allows users to recover the cell states and ecotypes for these two tumor categories in their own data. Additionally, it allows users to discover and recover cell states and ecotypes in their system of interest. Below we illustrate each of these functionalities.
+We have already defined cell states and ecotypes across **carcinomas** ([Luca/Steen et al., Cell 2021](https://doi.org/10.1016/j.cell.2021.09.014)) and in **diffuse large B cell lymphoma (DLBCL)** ([Steen/Luca et al., Cancer Cell 2021](https://doi.org/10.1016/j.ccell.2021.08.011)). The current version of EcoTyper allows users to recover the cell states and ecotypes for these two tumor categories in their own data. Additionally, it allows users to discover and recover cell states and ecotypes in their system of interest. Below we illustrate each of these functionalities.
 
 ## Setup
 
@@ -842,7 +842,7 @@ head(data)
 The command line for recovering the lymphoma cell states in the example scRNA-seq data is:
 
 ``` bash
-Rscript EcoTyper_recovery_scRNA.R -d Lymphoma -m example_data/scRNA_lymphoma_data.txt -a example_data/bulk_lymphoma_annotation.txt -o RecoveryOutput -c Tissue
+Rscript EcoTyper_recovery_scRNA.R -d Lymphoma -m example_data/scRNA_lymphoma_data.txt -a example_data/scRNA_lymphoma_annotation.txt -o RecoveryOutput -c Tissue
 ```
 
 The outputs of this script include the following files, for each cell type provided:

@@ -96,14 +96,14 @@ if(!file.exists(annotation_path))
 		rec_cell_types= table(annotation$CellType)
 		if(length(rec_cell_types) * 2 >= length(disc_cell_types))
 		{
-			cat("The annotation file contains column 'Sample', and more than half of the cell types are present in the recovery datasets. Will perform ecotype recovery.\n")
+			cat("The annotation file contains column 'Sample', and more than half of the cell types are present in the recovery dataset. Will perform ecotype recovery.\n")
 		}else{
-			cat("The annotation file contains column 'Sample', but less than half of the cell types are present in the recovery datasets. Will NOT perform ecotype recovery.\n")
+			cat("The annotation file contains column 'Sample', but less than half of the cell types are present in the recovery dataset. Will NOT perform ecotype recovery.\n")
 		}
 
 	}else{
 		recover_ecotypes = F
-		cat("The annotation file doesnot contains column 'Sample'. Will NOT perform ecotype recovery.\n")
+		cat("The annotation file does not contain column 'Sample'. Will NOT perform ecotype recovery.\n")
 	}
 
 	if(columns != "NULL")
