@@ -36,9 +36,11 @@ The R packages listed below are required for running EcoTyper. The version numbe
   * perform the recovery of previously defined cell states and ecotypes in their own bulk RNA-seq, microarray and scRNA-seq data (Tutorials 1 and 2).
   * perform cell state and ecotype discovery in scRNA-seq and pre-sorted data (Tutorials 5 and 6).
   
+  Besides these pacakges, the additional resources described in the next section are needed for analyses described in Tutorials 3 and 4.
+  
 ### Additional resources
   
-  For some use-cases, such as cell state and ecotype recovery in spatial transcriptomics assays (Tutorial 3) and *de novo* identification of cell states and ecotypes from bulk expression data (Tutorial 4), EcoTyper relies on CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2), a digital cytometry framework for enumerating cell types in bulk data and performing *in silico* deconvolution of cell type specific expression profiles. In these situations, the following additional resources are needed for running EcoTyper:
+  For some use cases, such as cell state and ecotype recovery in spatial transcriptomics assays (Tutorial 3) and *de novo* identification of cell states and ecotypes from bulk expression data (Tutorial 4), EcoTyper relies on CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2), a digital cytometry framework for enumerating cell types in bulk data and performing *in silico* deconvolution of cell type specific expression profiles. In these situations, the following additional resources are needed for running EcoTyper:
   
   * Docker.
   * CIBERSORTx executables, than can be downloaded from the [CIBERSORTx website](https://cibersortx.stanford.edu/). Specifically, EcoTyper requires the **CIBERSORTx Fractions** and **CIBERSORTx HiRes** modules. The executables for these two modules are available for download as Docker images on the [CIBERSORTx website](https://cibersortx.stanford.edu/). Please follow the instructions on the [Download](https://cibersortx.stanford.edu/download.php) section of the website to download the Docker images and obtain the Docker tokens necessary for running them. 
@@ -47,11 +49,11 @@ The R packages listed below are required for running EcoTyper. The version numbe
 
 EcoTyper is implemented in R. Some of the EcoTyper functions are computationally intensive, especially for the cell state discovery step described in Tutorials 4-6. Therefore, EcoTyper is designed as a collection of modular command-line R scripts, that can be run in parallel on a multi-processor server or a high-performance cluster. Each script is designed such that its instances can typically be run on a single core. 
 
-We provide wrappers over these scripts, that encapsulate the typical EcoTyper workflows (*Tutorials 1-6*). These wrappers can be run on a multi-core system, and allow users to discover cell states and ecotypes in their own bulk, scRNA-seq and FACS-sorted data, as well as recover previously discovered cell states and ecotypes in bulk tissue expression profiles, spatial transcriptomics assays, and single-cell RNA-seq data.
+We provide wrappers over these scripts that encapsulate the typical EcoTyper workflows (*Tutorials 1-6*). These wrappers can be run on a multi-core system, and allow users to discover cell states and ecotypes in their own bulk, scRNA-seq and FACS-sorted data, as well as recover previously discovered cell states and ecotypes in bulk tissue expression profiles, spatial transcriptomics assays, and single-cell RNA-seq data.
 
 ## EcoTyper overview
 
-EcoTyper performs two major types of analysis: discovery of cell states and ecotypes, starting from bulk, scRNA-seq and pre-sorted expression profiles (e.g. FACS-sorted or deconvolved *in silico*); and recovery of cell states and ecotypes previously defined in new bulk, scRNA-seq and spatial transcriptomics data.
+EcoTyper performs two major types of analysis: discovery of cell states and ecotypes, starting from bulk, scRNA-seq and pre-sorted expression profiles (e.g. FACS-sorted or deconvolved *in silico*); and recovery of previously defined cell states and ecotypes in new bulk, scRNA-seq and spatial transcriptomics data.
 
 When the input is bulk data, EcoTyper performs the following major steps for discovering cell states and ecotypes:
 
@@ -67,7 +69,7 @@ When the input is scRNA-seq or pre-sorted data, EcoTyper performs the following 
 
 Regardless of the input type used for deriving cell states and ecotypes, EcoTyper can perform cell state and ecotype recovery in external expression datasets. The recovery can be performed in bulk, scRNA-seq and spatial transcriptomics data.
  
-We provide 6 tutorials illustrating these functionalities. The first three illustrate how the recovery of cell states and ecotypes can be performed in various input types. The last three present of the discovery of cell states and ecotypes can be performed using different types of input:
+We provide 6 tutorials illustrating these functionalities. The first three demonstrate how the recovery of cell states and ecotypes can be performed with various input types. The last three demonstrate how the recovery of cell states and ecotypes can be performed with various input types:
 
   * **Tutorial 1:** Recovery of Cell States and Ecotypes in User-Provided Bulk Data
   * **Tutorial 2:** Recovery of Cell States and Ecotypes in User-Provided scRNA-seq Data
@@ -84,7 +86,7 @@ knitr::include_graphics("utils/schema.png")
 
 ## **Tutorial 1:** Recovery of Cell States and Ecotypes in User-Provided Bulk Data
 
-EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma or lymphoma, in user-provided bulk expression data. Here, we illustrate how EcoTyper can be used to recover cell states end ecotypes in a new bulk RNA-seq or microarray dataset. In the carcinoma EcoTyper paper, we demonstrate that prior deconvolution of bulk data using *CIBERSORTx HiRes* is not necessary for high-fidelity recovery of cell states in bulk-tissue expression data. We can proceed to the recovery of states based on bulk data only.
+EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma or lymphoma, in user-provided bulk expression data. In the [carcinoma EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014), we demonstrate that prior deconvolution of bulk data using *CIBERSORTx HiRes* is not necessary for high-fidelity recovery of cell states in bulk-tissue expression data. We can proceed to the recovery of states based on bulk data only.
 
 In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a set of the bulk samples from lung adenocarcinoma (LUAD) from TCGA and [bulk samples](https://www.nature.com/articles/s41591-018-0016-8) from diffuse large-cell lymphoma (DLBCL), respectively.
 
@@ -263,7 +265,7 @@ knitr::include_graphics("RecoveryOutput/bulk_lymphoma_data/Ecotypes/heatmap_assi
 
 ## **Tutorial 2:** Recovery of Cell States and Ecotypes in User-Provided scRNA-seq Data
 
-EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and respectively lymphoma, in user-provided scRNA-seq data.
+EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and lymphoma, in user-provided scRNA-seq data.
 
 In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes, that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a downsampled version of a [scRNA-seq dataset](https://www.nature.com/articles/s41588-020-0636-z) from colorectal cancer specimens, and a downsampled version of a scRNA-seq dataset from lymphoma specimens, respectively.
 
@@ -288,7 +290,7 @@ data = read.delim("example_data/scRNA_CRC_data.txt", nrow = 5)
 head(data[,1:5])
 ```
 
-* *-a*/*--annotation*: Path to a tab-delimited annotation file. This file should contain at least two columns: *ID* with the same values as the columns of the expression matrix, and *CellType* (case sensitive) which contains the cell type for each cell. The values in column *CellType* should indicate for each cell its cell type. These values are limited to the set of cell types analyzed in the discovery dataset. If the argument *-d*/*--discovery* is set to *Carcinoma* (as is the case for this tutorial), then the accepted values for column *CellType* are: 'B.cells', 'CD4.T.cells', 'CD8.T.cells', 'Dendritic.cells', 'Endothelial.cells', 'Epithelial.cells', 'Fibroblasts', 'Mast.cells', 'Monocytes.and.Macrophages', 'NK.cells', 'PCs' and 'PMNs'. If the argument *-d*/*--discovery* is set to *Lymphoma*, then the accepted values for column *CellType* are: 'B.cells', 'Plasma.cells', 'T.cells.CD8', 'T.cells.CD4', 'T.cells.follicular.helper', 'Tregs', 'NK.cells', 'Monocytes.and.Macrophages', 'Dendritic.cells', 'Mast.cells', 'Neutrophils', 'Fibroblasts', 'Endothelial.cells'. All other values will be ignored for these two cases. The anntation file can contain a column called *Sample*. If this column is present, the ecotype recovery will be performed, in addition to cell state recovery. Moreover, this file can contain any number of columns, that can be used for plotting color bars in the output heatmaps (see argument *-c*/*--columns*).
+* *-a*/*--annotation*: Path to a tab-delimited annotation file. This file should contain at least two columns: *ID* with the same values as the columns of the expression matrix, and *CellType* (case sensitive) which contains the cell type for each cell. The values in column *CellType* should indicate for each cell its cell type. These values are limited to the set of cell types analyzed in the discovery dataset. If the argument *-d*/*--discovery* is set to *Carcinoma* (as is the case for this tutorial), then the accepted values for column *CellType* are: 'B.cells', 'CD4.T.cells', 'CD8.T.cells', 'Dendritic.cells', 'Endothelial.cells', 'Epithelial.cells', 'Fibroblasts', 'Mast.cells', 'Monocytes.and.Macrophages', 'NK.cells', 'PCs' and 'PMNs'. If the argument *-d*/*--discovery* is set to *Lymphoma*, then the accepted values for column *CellType* are: 'B.cells', 'Plasma.cells', 'T.cells.CD8', 'T.cells.CD4', 'T.cells.follicular.helper', 'Tregs', 'NK.cells', 'Monocytes.and.Macrophages', 'Dendritic.cells', 'Mast.cells', 'Neutrophils', 'Fibroblasts', 'Endothelial.cells'. All other values will be ignored for these two cases. The annotation file can contain a column called *Sample*. If this column is present, the ecotype recovery will be performed, in addition to cell state recovery. Moreover, this file can contain any number of columns, that can be used for plotting color bars in the output heatmaps (see argument *-c*/*--columns*).
 
 ```{r}
 data = read.delim("example_data/scRNA_CRC_annotation.txt")
@@ -324,7 +326,7 @@ head(data[,c("ID", "State")])
 knitr::include_graphics("RecoveryOutput/scRNA_CRC_data/Fibroblasts/state_assignment_heatmap.png")
 ```
 
-* If the statistical significance quantification method is applied, the resulting z-score for each cell state are output in the same directory:
+* If the statistical significance quantification method is applied, the resulting z-scores for each cell state are output in the same directory:
 
 ```{r}
 #data = read.delim("RecoveryOutput/scRNA_CRC_data/Epithelial.cells/recovery_z_scores.txt")
@@ -425,7 +427,7 @@ Since in this case the annotation file did not contain a column called *Sample*,
 
 ## **Tutorial 3:** Recovery of Cell States and Ecotypes in Spatial Transcriptomics data
 
-EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and respectively lymphoma, in user-provided expression data.
+EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and lymphoma, in user-provided expression data.
 
 Here we illustrate how one can perform cell state and ecotype recovery in Visium Spatial Gene Expression arrays from [10x Genomics](https://www.10xgenomics.com/products/spatial-gene-expression). For this tutorial we recover cell states and ecotypes defined across carcinomas in whole transcriptome spatial transcriptomics data from [breast cancer](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Breast_Cancer_Block_A_Section_1).
 
@@ -487,7 +489,7 @@ The *Input* section contains settings regarding the input data.
 Discovery dataset name : "Carcinoma"
 ```
 
-*Discovery dataset name* should contain name of the discovery dataset used for defining cell states. By default, the only accepted values are *Carcinoma* and *Lymphoma* (case sensitive), which will recover the cell states that we defined across carcinomas and in lymphoma, respectively. If the user defined cell states in their own data (**Tutorials 4-6**), the name of the discovery dataset is the value provided in the *Discovery dataset name* field of the configuration file used for running discovery. For this tutorial, we set the name of the discovery dataset to *Carcinoma*.
+*Discovery dataset name* should contain the name of the discovery dataset used for defining cell states. By default, the only accepted values are *Carcinoma* and *Lymphoma* (case sensitive), which will recover the cell states that we defined across carcinomas and in lymphoma, respectively. If the user defined cell states in their own data (**Tutorials 4-6**), the name of the discovery dataset is the value provided in the *Discovery dataset name* field of the configuration file used for running discovery. For this tutorial, we set the name of the discovery dataset to *Carcinoma*.
 
 #### Recovery dataset name
 
@@ -517,7 +519,7 @@ The filtered feature-barcode matrices `barcodes.tsv.gz`, `features.tsv.gz` and `
 Recovery cell type fractions : "NULL"
 ```
 
-*Recovery cell type fractions* should contain the path to a file containing the cell type fraction estimations for each spot on the visium array. This field is ignored when the discovery dataset is *Carcinoma* or *Lymphoma* or when the discovery has been performed as described in *Tutorial 4*, using *Carcinoma_Fractions* or *Lymphoma_Fractions*. It is only used when users provided their own cell type fractions for deriving cell states and ecotypes in *Tutorial 4*. In this case, the user needs to provide a path to a tab-delimited file for this field. The file should contain in the first column the same sample names used as column names in the input expression matrix, and on the next columns, the cell type fractions for the same cell populations used for discovering cell states and ecotypes. These fractions should sum up to 1 for each row. An example of such a file is provided in:
+*Recovery cell type fractions* should contain the path to a file containing the cell type fraction estimations for each spot on the visium array. This field is ignored when the discovery dataset is *Carcinoma* or *Lymphoma* or when the discovery has been performed as described in *Tutorial 4*, using *Carcinoma_Fractions* or *Lymphoma_Fractions*. It is only used when users provided their own cell type fractions for deriving cell states and ecotypes in *Tutorial 4*. In this case, the user needs to provide a path to a tab-delimited file for this field. The file should contain in the first column the same sample names used as column names in the input expression matrix, and in the next columns, the cell type fractions for the same cell populations used for discovering cell states and ecotypes. These fractions should sum up to 1 for each row. An example of such a file is provided in:
 
 ```{r}
 data = read.delim("example_data/visium_fractions_example.txt", nrow = 5)
@@ -598,7 +600,7 @@ dim(data)
 head(data[,1:10])
 ```
 
-* Plots illustrating the ecotype abundances. The intensity of charcoal represents the cell state abundance. The intenisty of gray represents the fraction of the cancer cell of origin population:
+* Plots illustrating the ecotype abundances. The intensity of charcoal represents the cell state abundance. The intensity of gray represents the fraction of the cancer cell of origin population:
 
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("VisiumOutput/VisiumBreast/Ecotype_spatial_heatmaps.png")
@@ -740,7 +742,7 @@ If the major cell populations expected in the user-provided discovery dataset ar
 
 In each of these cases the fractions are being estimated by serially applying two signature matrices on the discovery dataset. The first signature matrix, denoted TR4, is available in `utils/signature_matrices/TR4/TR4`. TR4 was obtained from FACS-sorted profiles of epithelial cells (EPCAM+), fibroblasts (CD10+), endothelial cells (CD31+) and immune cells (CD45+), obtained from lung cancer specimens ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2)). The second signature matrix, LM22, available in `utils/signature_matrices/LM22/LM22`, was published with [Newman et al., Nature Methods 2015](https://www.nature.com/articles/nmeth.3337), and is able to deconvolve 22 immune subsets. In the EcoTyper carcinoma paper, we first collapse the fractions for 22 subsets to obtain the representation of the 9 major cell types (B cells, plasma cells, CD4 T cells, CD8 T cells, NK cells, monocytes/macrophages, dendritic cells, mast cells, and neutrophils). We then replace the TR4 immune cell fractions with the fractions of the 9 cell lineages. This way we obtain cell abundance estimations for 12 cell populations used in that paper. An analogous process is used to obtain the lymphoma fractions.
 
-If neither of these cases apply, the user needs to provide a path to a tab-delimited file containing the cell type proportion estimations for the expected populations. The file should contain in the first column the same sample names used for column names in the input expression matrix, and on the next columns, the cell type fractions for each cell population. These fractions should sum up to 1 for each row. An example of such a file is provided in:
+If neither of these cases apply, the user needs to provide a path to a tab-delimited file containing the cell type proportion estimations for the expected populations. The file should contain in the first column the same sample names used for column names in the input expression matrix, and in the next columns, the cell type fractions for each cell population. These fractions should sum up to 1 for each row. An example of such a file is provided in:
 
 ```{r}
 data = read.delim("example_data/bulk_fractions_example.txt", nrow = 5)

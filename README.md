@@ -21,9 +21,11 @@ These packages, together with the other resources pre-stored in the EcoTyper fol
 -   perform the recovery of previously defined cell states and ecotypes in their own bulk RNA-seq, microarray and scRNA-seq data (Tutorials 1 and 2).
 -   perform cell state and ecotype discovery in scRNA-seq and pre-sorted data (Tutorials 5 and 6).
 
+Besides these pacakges, the additional resources described in the next section are needed for analyses described in Tutorials 3 and 4.
+
 ### Additional resources
 
-For some use-cases, such as cell state and ecotype recovery in spatial transcriptomics assays (Tutorial 3) and *de novo* identification of cell states and ecotypes from bulk expression data (Tutorial 4), EcoTyper relies on CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2), a digital cytometry framework for enumerating cell types in bulk data and performing *in silico* deconvolution of cell type specific expression profiles. In these situations, the following additional resources are needed for running EcoTyper:
+For some use cases, such as cell state and ecotype recovery in spatial transcriptomics assays (Tutorial 3) and *de novo* identification of cell states and ecotypes from bulk expression data (Tutorial 4), EcoTyper relies on CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2), a digital cytometry framework for enumerating cell types in bulk data and performing *in silico* deconvolution of cell type specific expression profiles. In these situations, the following additional resources are needed for running EcoTyper:
 
 -   Docker.
 -   CIBERSORTx executables, than can be downloaded from the [CIBERSORTx website](https://cibersortx.stanford.edu/). Specifically, EcoTyper requires the **CIBERSORTx Fractions** and **CIBERSORTx HiRes** modules. The executables for these two modules are available for download as Docker images on the [CIBERSORTx website](https://cibersortx.stanford.edu/). Please follow the instructions on the [Download](https://cibersortx.stanford.edu/download.php) section of the website to download the Docker images and obtain the Docker tokens necessary for running them.
@@ -32,11 +34,11 @@ For some use-cases, such as cell state and ecotype recovery in spatial transcrip
 
 EcoTyper is implemented in R. Some of the EcoTyper functions are computationally intensive, especially for the cell state discovery step described in Tutorials 4-6. Therefore, EcoTyper is designed as a collection of modular command-line R scripts, that can be run in parallel on a multi-processor server or a high-performance cluster. Each script is designed such that its instances can typically be run on a single core.
 
-We provide wrappers over these scripts, that encapsulate the typical EcoTyper workflows (*Tutorials 1-6*). These wrappers can be run on a multi-core system, and allow users to discover cell states and ecotypes in their own bulk, scRNA-seq and FACS-sorted data, as well as recover previously discovered cell states and ecotypes in bulk tissue expression profiles, spatial transcriptomics assays, and single-cell RNA-seq data.
+We provide wrappers over these scripts that encapsulate the typical EcoTyper workflows (*Tutorials 1-6*). These wrappers can be run on a multi-core system, and allow users to discover cell states and ecotypes in their own bulk, scRNA-seq and FACS-sorted data, as well as recover previously discovered cell states and ecotypes in bulk tissue expression profiles, spatial transcriptomics assays, and single-cell RNA-seq data.
 
 ## EcoTyper overview
 
-EcoTyper performs two major types of analysis: discovery of cell states and ecotypes, starting from bulk, scRNA-seq and pre-sorted expression profiles (e.g. FACS-sorted or deconvolved *in silico*); and recovery of cell states and ecotypes previously defined in new bulk, scRNA-seq and spatial transcriptomics data.
+EcoTyper performs two major types of analysis: discovery of cell states and ecotypes, starting from bulk, scRNA-seq and pre-sorted expression profiles (e.g. FACS-sorted or deconvolved *in silico*); and recovery of previously defined cell states and ecotypes in new bulk, scRNA-seq and spatial transcriptomics data.
 
 When the input is bulk data, EcoTyper performs the following major steps for discovering cell states and ecotypes:
 
@@ -52,7 +54,7 @@ When the input is scRNA-seq or pre-sorted data, EcoTyper performs the following 
 
 Regardless of the input type used for deriving cell states and ecotypes, EcoTyper can perform cell state and ecotype recovery in external expression datasets. The recovery can be performed in bulk, scRNA-seq and spatial transcriptomics data.
 
-We provide 6 tutorials illustrating these functionalities. The first three illustrate how the recovery of cell states and ecotypes can be performed in various input types. The last three present of the discovery of cell states and ecotypes can be performed using different types of input:
+We provide 6 tutorials illustrating these functionalities. The first three demonstrate how the recovery of cell states and ecotypes can be performed with various input types. The last three demonstrate how the recovery of cell states and ecotypes can be performed with various input types:
 
 -   **Tutorial 1:** Recovery of Cell States and Ecotypes in User-Provided Bulk Data
 -   **Tutorial 2:** Recovery of Cell States and Ecotypes in User-Provided scRNA-seq Data
@@ -67,7 +69,7 @@ A schema of the tutorials is presented below:
 
 ## **Tutorial 1:** Recovery of Cell States and Ecotypes in User-Provided Bulk Data
 
-EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma or lymphoma, in user-provided bulk expression data. Here, we illustrate how EcoTyper can be used to recover cell states end ecotypes in a new bulk RNA-seq or microarray dataset. In the carcinoma EcoTyper paper, we demonstrate that prior deconvolution of bulk data using *CIBERSORTx HiRes* is not necessary for high-fidelity recovery of cell states in bulk-tissue expression data. We can proceed to the recovery of states based on bulk data only.
+EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma or lymphoma, in user-provided bulk expression data. In the [carcinoma EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014), we demonstrate that prior deconvolution of bulk data using *CIBERSORTx HiRes* is not necessary for high-fidelity recovery of cell states in bulk-tissue expression data. We can proceed to the recovery of states based on bulk data only.
 
 In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a set of the bulk samples from lung adenocarcinoma (LUAD) from TCGA and [bulk samples](https://www.nature.com/articles/s41591-018-0016-8) from diffuse large-cell lymphoma (DLBCL), respectively.
 
@@ -131,12 +133,18 @@ data = read.delim("example_data/bulk_lung_data.txt", nrow = 5)
 head(data[,1:5])
 ```
 
-    ##     Gene    C5696 C6145 C32041 C32102
-    ## 1   A1BG 179.2757     0      0      0
-    ## 2   A1CF   0.0000     0      0      0
-    ## 3    A2M   0.0000     0      0      0
-    ## 4  A2ML1   0.0000     0      0      0
-    ## 5 A4GALT   0.0000     0      0      0
+    ##      Gene TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
+    ## 1    A1BG                   18.6400165                 18.196602709
+    ## 2    A1CF                    0.0338368                  0.002095014
+    ## 3     A2M                   54.1463351                 35.714991125
+    ## 4   A2ML1                    4.9953315                  2.383752067
+    ## 5 A3GALT2                    0.0438606                  0.000000000
+    ##   TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
+    ## 1                  24.83635354                 23.579201761
+    ## 2                   0.02301987                  0.004186634
+    ## 3                  80.63633736                 86.804257397
+    ## 4                   4.08688641                  3.015307103
+    ## 5                   0.00000000                  0.000000000
 
 -   *-a*/*--annotation*: Path to a tab-delimited annotation file (not required). If provided, this file should contain a column called *ID* with the same values as the columns of the expression matrix. Additionally, this file can contain any number of columns, that can be used for plotting as color bars in the output heatmaps (see argument *-c*/*--columns*).
 
@@ -145,13 +153,20 @@ data = read.delim("example_data/bulk_lung_annotation.txt")
 head(data)
 ```
 
-    ##       ID         CellType
-    ## 1  C5696 Epithelial.cells
-    ## 2  C6145 Epithelial.cells
-    ## 3 C32041 Epithelial.cells
-    ## 4 C32102 Epithelial.cells
-    ## 5 C15268 Epithelial.cells
-    ## 6 C32071 Epithelial.cells
+    ##                             ID Tissue Histology                Type OS_Time
+    ## 1 TCGA.37.A5EN.01A.21R.A26W.07  Tumor      LUSC Primary Solid Tumor     660
+    ## 2 TCGA.37.4133.01A.01R.1100.07  Tumor      LUSC Primary Solid Tumor     238
+    ## 3 TCGA.77.7465.01A.11R.2045.07  Tumor      LUSC Primary Solid Tumor     990
+    ## 4 TCGA.34.5240.01A.01R.1443.07  Tumor      LUSC Primary Solid Tumor    1541
+    ## 5 TCGA.05.4249.01A.01R.1107.07  Tumor      LUAD Primary Solid Tumor    1523
+    ## 6 TCGA.62.8398.01A.11R.2326.07  Tumor      LUAD Primary Solid Tumor     444
+    ##   OS_Status
+    ## 1         0
+    ## 2         0
+    ## 3         0
+    ## 4         0
+    ## 5         0
+    ## 6         1
 
 -   *-c*/*--columns*: A comma-separated list of column names from the annotation file (see argument *-a*/*--annotation*) to be plotted as color bars in the output heatmaps. By default, the output heatmaps contain as color bar the cell state label each cell is assigned to. The column names indicated by this argument will be added to that color bar.
 
@@ -1244,18 +1259,24 @@ data = read.delim("example_data/bulk_lung_data.txt", nrow = 5)
 dim(data)
 ```
 
-    ## [1]    5 1001
+    ## [1]   5 251
 
 ``` r
 head(data[,1:5])
 ```
 
-    ##     Gene    C5696 C6145 C32041 C32102
-    ## 1   A1BG 179.2757     0      0      0
-    ## 2   A1CF   0.0000     0      0      0
-    ## 3    A2M   0.0000     0      0      0
-    ## 4  A2ML1   0.0000     0      0      0
-    ## 5 A4GALT   0.0000     0      0      0
+    ##      Gene TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
+    ## 1    A1BG                   18.6400165                 18.196602709
+    ## 2    A1CF                    0.0338368                  0.002095014
+    ## 3     A2M                   54.1463351                 35.714991125
+    ## 4   A2ML1                    4.9953315                  2.383752067
+    ## 5 A3GALT2                    0.0438606                  0.000000000
+    ##   TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
+    ## 1                  24.83635354                 23.579201761
+    ## 2                   0.02301987                  0.004186634
+    ## 3                  80.63633736                 86.804257397
+    ## 4                   4.08688641                  3.015307103
+    ## 5                   0.00000000                  0.000000000
 
 #### Cell type fractions
 
@@ -1331,18 +1352,24 @@ annotation = read.delim("example_data/bulk_lung_annotation.txt", nrow = 5)
 dim(annotation)
 ```
 
-    ## [1] 5 2
+    ## [1] 5 6
 
 ``` r
 head(annotation)
 ```
 
-    ##       ID         CellType
-    ## 1  C5696 Epithelial.cells
-    ## 2  C6145 Epithelial.cells
-    ## 3 C32041 Epithelial.cells
-    ## 4 C32102 Epithelial.cells
-    ## 5 C15268 Epithelial.cells
+    ##                             ID Tissue Histology                Type OS_Time
+    ## 1 TCGA.37.A5EN.01A.21R.A26W.07  Tumor      LUSC Primary Solid Tumor     660
+    ## 2 TCGA.37.4133.01A.01R.1100.07  Tumor      LUSC Primary Solid Tumor     238
+    ## 3 TCGA.77.7465.01A.11R.2045.07  Tumor      LUSC Primary Solid Tumor     990
+    ## 4 TCGA.34.5240.01A.01R.1443.07  Tumor      LUSC Primary Solid Tumor    1541
+    ## 5 TCGA.05.4249.01A.01R.1107.07  Tumor      LUAD Primary Solid Tumor    1523
+    ##   OS_Status
+    ## 1         0
+    ## 2         0
+    ## 3         0
+    ## 4         0
+    ## 5         0
 
 #### Annotation file column to scale by
 
