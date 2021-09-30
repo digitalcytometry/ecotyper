@@ -1,1001 +1,251 @@
-"ID"	"CellType"
-"C5696"	"Epithelial.cells"
-"C6145"	"Epithelial.cells"
-"C32041"	"Epithelial.cells"
-"C32102"	"Epithelial.cells"
-"C15268"	"Epithelial.cells"
-"C32071"	"Epithelial.cells"
-"C13739"	"Epithelial.cells"
-"C4146"	"Epithelial.cells"
-"C10075"	"Epithelial.cells"
-"C19963"	"Epithelial.cells"
-"C15813"	"Epithelial.cells"
-"C114"	"Epithelial.cells"
-"C9537"	"Epithelial.cells"
-"C2591"	"Epithelial.cells"
-"C10830"	"Epithelial.cells"
-"C30859"	"Epithelial.cells"
-"C31823"	"Epithelial.cells"
-"C15150"	"Epithelial.cells"
-"C282"	"Epithelial.cells"
-"C14488"	"Epithelial.cells"
-"C13965"	"Epithelial.cells"
-"C17048"	"Epithelial.cells"
-"C5389"	"Epithelial.cells"
-"C32205"	"Epithelial.cells"
-"C31797"	"Epithelial.cells"
-"C160"	"Epithelial.cells"
-"C13059"	"Epithelial.cells"
-"C13173"	"Epithelial.cells"
-"C18316"	"Epithelial.cells"
-"C31365"	"Epithelial.cells"
-"C13101"	"Epithelial.cells"
-"C30997"	"Epithelial.cells"
-"C17068"	"Epithelial.cells"
-"C381"	"Epithelial.cells"
-"C3208"	"Epithelial.cells"
-"C31141"	"Epithelial.cells"
-"C461"	"Epithelial.cells"
-"C5194"	"Epithelial.cells"
-"C2735"	"Epithelial.cells"
-"C1406"	"Epithelial.cells"
-"C13988"	"Epithelial.cells"
-"C31623"	"Epithelial.cells"
-"C30810"	"Epithelial.cells"
-"C2943"	"Epithelial.cells"
-"C2527"	"Epithelial.cells"
-"C31427"	"Epithelial.cells"
-"C10454"	"Epithelial.cells"
-"C13309"	"Epithelial.cells"
-"C15910"	"Epithelial.cells"
-"C31439"	"Epithelial.cells"
-"C31853"	"Epithelial.cells"
-"C12397"	"Epithelial.cells"
-"C31900"	"Epithelial.cells"
-"C13339"	"Epithelial.cells"
-"C11210"	"Epithelial.cells"
-"C30693"	"Epithelial.cells"
-"C32271"	"Epithelial.cells"
-"C12083"	"Epithelial.cells"
-"C15491"	"Epithelial.cells"
-"C31826"	"Epithelial.cells"
-"C11156"	"Epithelial.cells"
-"C1904"	"Epithelial.cells"
-"C15609"	"Epithelial.cells"
-"C32195"	"Epithelial.cells"
-"C10030"	"Epithelial.cells"
-"C19733"	"Epithelial.cells"
-"C7539"	"Epithelial.cells"
-"C31292"	"Epithelial.cells"
-"C31988"	"Epithelial.cells"
-"C31967"	"Epithelial.cells"
-"C427"	"Epithelial.cells"
-"C1751"	"Epithelial.cells"
-"C2703"	"Epithelial.cells"
-"C17720"	"Epithelial.cells"
-"C1225"	"Epithelial.cells"
-"C3426"	"Epithelial.cells"
-"C10864"	"Epithelial.cells"
-"C15112"	"Epithelial.cells"
-"C5311"	"Epithelial.cells"
-"C31783"	"Epithelial.cells"
-"C14741"	"Epithelial.cells"
-"C32181"	"Epithelial.cells"
-"C12525"	"Epithelial.cells"
-"C15209"	"Epithelial.cells"
-"C13009"	"Epithelial.cells"
-"C14081"	"Epithelial.cells"
-"C358"	"Epithelial.cells"
-"C3996"	"Epithelial.cells"
-"C4633"	"Epithelial.cells"
-"C13338"	"Epithelial.cells"
-"C1715"	"Epithelial.cells"
-"C31081"	"Epithelial.cells"
-"C10847"	"Epithelial.cells"
-"C31124"	"Epithelial.cells"
-"C31860"	"Epithelial.cells"
-"C831"	"Epithelial.cells"
-"C3409"	"Epithelial.cells"
-"C14877"	"Epithelial.cells"
-"C30771"	"Epithelial.cells"
-"C32207"	"Epithelial.cells"
-"C11296"	"Epithelial.cells"
-"C12252"	"Epithelial.cells"
-"C13491"	"Epithelial.cells"
-"C3787"	"Epithelial.cells"
-"C15573"	"Epithelial.cells"
-"C30905"	"Epithelial.cells"
-"C2041"	"Epithelial.cells"
-"C10968"	"Epithelial.cells"
-"C31266"	"Epithelial.cells"
-"C9833"	"Epithelial.cells"
-"C13962"	"Epithelial.cells"
-"C13729"	"Epithelial.cells"
-"C15682"	"Epithelial.cells"
-"C1635"	"Epithelial.cells"
-"C14648"	"Epithelial.cells"
-"C1819"	"Epithelial.cells"
-"C1939"	"Epithelial.cells"
-"C14026"	"Epithelial.cells"
-"C11477"	"Epithelial.cells"
-"C31277"	"Epithelial.cells"
-"C31601"	"Epithelial.cells"
-"C13108"	"Epithelial.cells"
-"C14269"	"Epithelial.cells"
-"C30861"	"Epithelial.cells"
-"C1544"	"Epithelial.cells"
-"C460"	"Epithelial.cells"
-"C13819"	"Epithelial.cells"
-"C31149"	"Epithelial.cells"
-"C2032"	"Epithelial.cells"
-"C19482"	"Epithelial.cells"
-"C30870"	"Epithelial.cells"
-"C15415"	"Epithelial.cells"
-"C31160"	"Epithelial.cells"
-"C9677"	"Epithelial.cells"
-"C11265"	"Epithelial.cells"
-"C15792"	"Epithelial.cells"
-"C3037"	"Epithelial.cells"
-"C32023"	"Epithelial.cells"
-"C11429"	"Epithelial.cells"
-"C3492"	"Epithelial.cells"
-"C32191"	"Epithelial.cells"
-"C31339"	"Epithelial.cells"
-"C31749"	"Epithelial.cells"
-"C31403"	"Epithelial.cells"
-"C13318"	"Epithelial.cells"
-"C31579"	"Epithelial.cells"
-"C12494"	"Epithelial.cells"
-"C1174"	"Epithelial.cells"
-"C31984"	"Epithelial.cells"
-"C12607"	"Epithelial.cells"
-"C31694"	"Epithelial.cells"
-"C136"	"Epithelial.cells"
-"C32167"	"Epithelial.cells"
-"C13467"	"Epithelial.cells"
-"C31589"	"Epithelial.cells"
-"C4266"	"Epithelial.cells"
-"C15900"	"Epithelial.cells"
-"C13456"	"Epithelial.cells"
-"C18524"	"Epithelial.cells"
-"C1602"	"Epithelial.cells"
-"C1836"	"Epithelial.cells"
-"C742"	"Epithelial.cells"
-"C2674"	"Epithelial.cells"
-"C9520"	"Epithelial.cells"
-"C19908"	"Epithelial.cells"
-"C654"	"Epithelial.cells"
-"C15275"	"Epithelial.cells"
-"C2541"	"Epithelial.cells"
-"C15225"	"Epithelial.cells"
-"C1161"	"Epithelial.cells"
-"C2659"	"Epithelial.cells"
-"C31331"	"Epithelial.cells"
-"C1067"	"Epithelial.cells"
-"C9598"	"Epithelial.cells"
-"C2593"	"Epithelial.cells"
-"C31844"	"Epithelial.cells"
-"C31793"	"Epithelial.cells"
-"C13585"	"Epithelial.cells"
-"C11857"	"Epithelial.cells"
-"C12554"	"Epithelial.cells"
-"C17588"	"Epithelial.cells"
-"C4845"	"Epithelial.cells"
-"C31015"	"Epithelial.cells"
-"C912"	"Epithelial.cells"
-"C31464"	"Epithelial.cells"
-"C32056"	"Epithelial.cells"
-"C3171"	"Epithelial.cells"
-"C15016"	"Epithelial.cells"
-"C6182"	"Epithelial.cells"
-"C4741"	"Epithelial.cells"
-"C7819"	"Epithelial.cells"
-"C10855"	"Epithelial.cells"
-"C13022"	"Epithelial.cells"
-"C13258"	"Epithelial.cells"
-"C11825"	"Epithelial.cells"
-"C30943"	"Epithelial.cells"
-"C31970"	"Epithelial.cells"
-"C278"	"Epithelial.cells"
-"C352"	"Epithelial.cells"
-"C14587"	"Epithelial.cells"
-"C13557"	"Epithelial.cells"
-"C4255"	"Epithelial.cells"
-"C14142"	"Epithelial.cells"
-"C14888"	"Epithelial.cells"
-"C1309"	"Epithelial.cells"
-"C11177"	"Epithelial.cells"
-"C11799"	"Epithelial.cells"
-"C2769"	"Epithelial.cells"
-"C9889"	"Epithelial.cells"
-"C12548"	"Epithelial.cells"
-"C15551"	"Epithelial.cells"
-"C4822"	"Epithelial.cells"
-"C31619"	"Epithelial.cells"
-"C12889"	"Epithelial.cells"
-"C31320"	"Epithelial.cells"
-"C15470"	"Epithelial.cells"
-"C9994"	"Epithelial.cells"
-"C31822"	"Epithelial.cells"
-"C14050"	"Epithelial.cells"
-"C273"	"Epithelial.cells"
-"C15523"	"Epithelial.cells"
-"C31718"	"Epithelial.cells"
-"C1201"	"Epithelial.cells"
-"C31284"	"Epithelial.cells"
-"C1936"	"Epithelial.cells"
-"C16560"	"Epithelial.cells"
-"C5137"	"Epithelial.cells"
-"C18563"	"Epithelial.cells"
-"C18076"	"Epithelial.cells"
-"C4236"	"Epithelial.cells"
-"C19982"	"Epithelial.cells"
-"C9576"	"Epithelial.cells"
-"C14621"	"Epithelial.cells"
-"C31383"	"Epithelial.cells"
-"C14274"	"Epithelial.cells"
-"C544"	"Epithelial.cells"
-"C13950"	"Epithelial.cells"
-"C5737"	"Epithelial.cells"
-"C11750"	"Epithelial.cells"
-"C10925"	"Epithelial.cells"
-"C15823"	"Epithelial.cells"
-"C13469"	"Epithelial.cells"
-"C16338"	"Epithelial.cells"
-"C2745"	"Epithelial.cells"
-"C12969"	"Epithelial.cells"
-"C10555"	"Epithelial.cells"
-"C14576"	"Epithelial.cells"
-"C3065"	"Epithelial.cells"
-"C12597"	"Epithelial.cells"
-"C12975"	"Epithelial.cells"
-"C31775"	"Epithelial.cells"
-"C16579"	"Epithelial.cells"
-"C3251"	"Epithelial.cells"
-"C14414"	"Epithelial.cells"
-"C108"	"Epithelial.cells"
-"C10664"	"Epithelial.cells"
-"C31947"	"Epithelial.cells"
-"C31931"	"Epithelial.cells"
-"C12016"	"Epithelial.cells"
-"C2797"	"Epithelial.cells"
-"C30999"	"Epithelial.cells"
-"C32162"	"Epithelial.cells"
-"C3227"	"Epithelial.cells"
-"C14455"	"Epithelial.cells"
-"C6591"	"Epithelial.cells"
-"C16938"	"Epithelial.cells"
-"C32079"	"Epithelial.cells"
-"C2398"	"Epithelial.cells"
-"C18669"	"Epithelial.cells"
-"C1061"	"Epithelial.cells"
-"C12075"	"Epithelial.cells"
-"C14263"	"Epithelial.cells"
-"C30981"	"Epithelial.cells"
-"C20022"	"Epithelial.cells"
-"C1357"	"Epithelial.cells"
-"C14216"	"Epithelial.cells"
-"C31800"	"Epithelial.cells"
-"C13741"	"Epithelial.cells"
-"C30784"	"Epithelial.cells"
-"C3177"	"Epithelial.cells"
-"C32258"	"Epithelial.cells"
-"C31938"	"Epithelial.cells"
-"C11745"	"Epithelial.cells"
-"C16758"	"Epithelial.cells"
-"C13543"	"Epithelial.cells"
-"C30763"	"Epithelial.cells"
-"C31095"	"Epithelial.cells"
-"C31247"	"Epithelial.cells"
-"C14765"	"Epithelial.cells"
-"C31022"	"Epithelial.cells"
-"C4992"	"Epithelial.cells"
-"C13777"	"Epithelial.cells"
-"C31337"	"Epithelial.cells"
-"C2353"	"Epithelial.cells"
-"C31541"	"Epithelial.cells"
-"C669"	"Epithelial.cells"
-"C16328"	"Epithelial.cells"
-"C15695"	"Epithelial.cells"
-"C32154"	"Epithelial.cells"
-"C30713"	"Epithelial.cells"
-"C12625"	"Epithelial.cells"
-"C13257"	"Epithelial.cells"
-"C299"	"Epithelial.cells"
-"C14566"	"Epithelial.cells"
-"C31221"	"Epithelial.cells"
-"C30904"	"Epithelial.cells"
-"C842"	"Epithelial.cells"
-"C12758"	"Epithelial.cells"
-"C30883"	"Epithelial.cells"
-"C30753"	"Epithelial.cells"
-"C19693"	"Epithelial.cells"
-"C1070"	"Epithelial.cells"
-"C30937"	"Epithelial.cells"
-"C30780"	"Epithelial.cells"
-"C12809"	"Epithelial.cells"
-"C13941"	"Epithelial.cells"
-"C11886"	"Epithelial.cells"
-"C10716"	"Epithelial.cells"
-"C609"	"Epithelial.cells"
-"C14660"	"Epithelial.cells"
-"C31654"	"Epithelial.cells"
-"C31649"	"Epithelial.cells"
-"C9573"	"Epithelial.cells"
-"C30984"	"Epithelial.cells"
-"C15548"	"Epithelial.cells"
-"C5907"	"Epithelial.cells"
-"C1065"	"Epithelial.cells"
-"C57"	"Epithelial.cells"
-"C30789"	"Epithelial.cells"
-"C31102"	"Epithelial.cells"
-"C4502"	"Epithelial.cells"
-"C30799"	"Epithelial.cells"
-"C15844"	"Epithelial.cells"
-"C10715"	"Epithelial.cells"
-"C3368"	"Epithelial.cells"
-"C1036"	"Epithelial.cells"
-"C14563"	"Epithelial.cells"
-"C12935"	"Epithelial.cells"
-"C31877"	"Epithelial.cells"
-"C30798"	"Epithelial.cells"
-"C31655"	"Epithelial.cells"
-"C31724"	"Epithelial.cells"
-"C2329"	"Epithelial.cells"
-"C11740"	"Epithelial.cells"
-"C13436"	"Epithelial.cells"
-"C14383"	"Epithelial.cells"
-"C13922"	"Epithelial.cells"
-"C1558"	"Epithelial.cells"
-"C129"	"Epithelial.cells"
-"C17289"	"Epithelial.cells"
-"C31971"	"Epithelial.cells"
-"C17032"	"Epithelial.cells"
-"C14303"	"Epithelial.cells"
-"C30893"	"Epithelial.cells"
-"C13668"	"Epithelial.cells"
-"C1363"	"Epithelial.cells"
-"C31449"	"Epithelial.cells"
-"C14102"	"Epithelial.cells"
-"C11914"	"Epithelial.cells"
-"C30919"	"Epithelial.cells"
-"C7158"	"Epithelial.cells"
-"C11965"	"Epithelial.cells"
-"C1680"	"Epithelial.cells"
-"C14144"	"Epithelial.cells"
-"C31858"	"Epithelial.cells"
-"C2937"	"Epithelial.cells"
-"C32151"	"Epithelial.cells"
-"C13728"	"Epithelial.cells"
-"C32248"	"Epithelial.cells"
-"C32087"	"Epithelial.cells"
-"C2249"	"Epithelial.cells"
-"C7467"	"Epithelial.cells"
-"C18686"	"Epithelial.cells"
-"C31435"	"Epithelial.cells"
-"C10804"	"Epithelial.cells"
-"C14731"	"Epithelial.cells"
-"C18719"	"Epithelial.cells"
-"C15804"	"Epithelial.cells"
-"C13111"	"Epithelial.cells"
-"C14093"	"Epithelial.cells"
-"C31549"	"Epithelial.cells"
-"C1214"	"Epithelial.cells"
-"C31258"	"Epithelial.cells"
-"C7585"	"Epithelial.cells"
-"C13718"	"Epithelial.cells"
-"C31736"	"Epithelial.cells"
-"C32115"	"Epithelial.cells"
-"C31031"	"Epithelial.cells"
-"C4635"	"Epithelial.cells"
-"C11640"	"Epithelial.cells"
-"C12272"	"Epithelial.cells"
-"C31064"	"Epithelial.cells"
-"C149"	"Epithelial.cells"
-"C30694"	"Epithelial.cells"
-"C12282"	"Epithelial.cells"
-"C30874"	"Epithelial.cells"
-"C14123"	"Epithelial.cells"
-"C652"	"Epithelial.cells"
-"C17107"	"Epithelial.cells"
-"C31716"	"Epithelial.cells"
-"C31470"	"Epithelial.cells"
-"C31405"	"Epithelial.cells"
-"C10870"	"Epithelial.cells"
-"C13503"	"Epithelial.cells"
-"C31371"	"Epithelial.cells"
-"C10986"	"Epithelial.cells"
-"C31695"	"Epithelial.cells"
-"C13997"	"Epithelial.cells"
-"C10006"	"Epithelial.cells"
-"C13430"	"Epithelial.cells"
-"C31086"	"Epithelial.cells"
-"C31355"	"Epithelial.cells"
-"C15142"	"Epithelial.cells"
-"C31381"	"Epithelial.cells"
-"C31893"	"Epithelial.cells"
-"C15514"	"Epithelial.cells"
-"C16047"	"Epithelial.cells"
-"C31376"	"Epithelial.cells"
-"C30865"	"Epithelial.cells"
-"C3040"	"Epithelial.cells"
-"C9728"	"Epithelial.cells"
-"C32257"	"Epithelial.cells"
-"C31524"	"Epithelial.cells"
-"C12719"	"Epithelial.cells"
-"C7567"	"Epithelial.cells"
-"C14007"	"Epithelial.cells"
-"C31087"	"Epithelial.cells"
-"C14604"	"Epithelial.cells"
-"C17722"	"Epithelial.cells"
-"C14388"	"Epithelial.cells"
-"C13261"	"Epithelial.cells"
-"C15756"	"Epithelial.cells"
-"C31674"	"Epithelial.cells"
-"C888"	"Epithelial.cells"
-"C2148"	"Epithelial.cells"
-"C13008"	"Epithelial.cells"
-"C12873"	"Epithelial.cells"
-"C5829"	"Epithelial.cells"
-"C30910"	"Epithelial.cells"
-"C32011"	"Epithelial.cells"
-"C11089"	"Epithelial.cells"
-"C30704"	"Epithelial.cells"
-"C31896"	"Epithelial.cells"
-"C14785"	"Epithelial.cells"
-"C18127"	"Epithelial.cells"
-"C7261"	"Epithelial.cells"
-"C13867"	"Epithelial.cells"
-"C7442"	"Epithelial.cells"
-"C2755"	"Epithelial.cells"
-"C31752"	"Epithelial.cells"
-"C9975"	"Epithelial.cells"
-"C31257"	"Epithelial.cells"
-"C13044"	"Epithelial.cells"
-"C11981"	"Epithelial.cells"
-"C30796"	"Epithelial.cells"
-"C15307"	"Epithelial.cells"
-"C17166"	"Epithelial.cells"
-"C31401"	"Epithelial.cells"
-"C16140"	"Epithelial.cells"
-"C13407"	"Epithelial.cells"
-"C203"	"Epithelial.cells"
-"C531"	"Epithelial.cells"
-"C31754"	"Epithelial.cells"
-"C30855"	"Epithelial.cells"
-"C4007"	"Epithelial.cells"
-"C2700"	"Epithelial.cells"
-"C11278"	"Epithelial.cells"
-"C15577"	"Epithelial.cells"
-"C3413"	"Epithelial.cells"
-"C9730"	"Epithelial.cells"
-"C4316"	"Epithelial.cells"
-"C3213"	"Epithelial.cells"
-"C6386"	"Epithelial.cells"
-"C10482"	"Epithelial.cells"
-"C19234"	"Epithelial.cells"
-"C14597"	"Epithelial.cells"
-"C7132"	"Epithelial.cells"
-"C19701"	"Epithelial.cells"
-"C30942"	"Epithelial.cells"
-"C2994"	"Epithelial.cells"
-"C429"	"Epithelial.cells"
-"C32204"	"Epithelial.cells"
-"C14692"	"Epithelial.cells"
-"C5538"	"Epithelial.cells"
-"C15909"	"Epithelial.cells"
-"C432"	"Epithelial.cells"
-"C7315"	"Epithelial.cells"
-"C1626"	"Epithelial.cells"
-"C1145"	"Epithelial.cells"
-"C15808"	"Epithelial.cells"
-"C32270"	"Epithelial.cells"
-"C4852"	"Epithelial.cells"
-"C775"	"Epithelial.cells"
-"C1670"	"Epithelial.cells"
-"C17616"	"Epithelial.cells"
-"C9893"	"Epithelial.cells"
-"C31796"	"Epithelial.cells"
-"C1824"	"Epithelial.cells"
-"C10172"	"Epithelial.cells"
-"C30747"	"Epithelial.cells"
-"C2651"	"Epithelial.cells"
-"C1355"	"Epithelial.cells"
-"C31349"	"Epithelial.cells"
-"C7473"	"Epithelial.cells"
-"C15168"	"Epithelial.cells"
-"C30888"	"Epithelial.cells"
-"C9631"	"Epithelial.cells"
-"C1678"	"Epithelial.cells"
-"C536"	"Epithelial.cells"
-"C3586"	"Epithelial.cells"
-"C32099"	"Epithelial.cells"
-"C5056"	"Epithelial.cells"
-"C16117"	"Epithelial.cells"
-"C31657"	"Epithelial.cells"
-"C9621"	"Epithelial.cells"
-"C3096"	"Epithelial.cells"
-"C15461"	"Epithelial.cells"
-"C4574"	"Epithelial.cells"
-"C1218"	"Epithelial.cells"
-"C14997"	"Epithelial.cells"
-"C31934"	"Epithelial.cells"
-"C31346"	"Epithelial.cells"
-"C9692"	"Epithelial.cells"
-"C12103"	"Epithelial.cells"
-"C3162"	"Epithelial.cells"
-"C2098"	"Epithelial.cells"
-"C1945"	"Epithelial.cells"
-"C2042"	"Epithelial.cells"
-"C11258"	"Epithelial.cells"
-"C2382"	"Epithelial.cells"
-"C797"	"Epithelial.cells"
-"C6518"	"Epithelial.cells"
-"C32085"	"Epithelial.cells"
-"C12668"	"Epithelial.cells"
-"C31093"	"Epithelial.cells"
-"C14301"	"Epithelial.cells"
-"C11726"	"Epithelial.cells"
-"C31195"	"Epithelial.cells"
-"C15563"	"Epithelial.cells"
-"C2954"	"Epithelial.cells"
-"C14341"	"Epithelial.cells"
-"C15759"	"Epithelial.cells"
-"C31177"	"Epithelial.cells"
-"C15184"	"Epithelial.cells"
-"C11085"	"Epithelial.cells"
-"C32269"	"Epithelial.cells"
-"C3295"	"Epithelial.cells"
-"C32045"	"Epithelial.cells"
-"C31530"	"Epithelial.cells"
-"C31561"	"Epithelial.cells"
-"C12892"	"Epithelial.cells"
-"C17762"	"Epithelial.cells"
-"C32234"	"Epithelial.cells"
-"C4533"	"Epithelial.cells"
-"C9982"	"Epithelial.cells"
-"C2519"	"Epithelial.cells"
-"C32231"	"Epithelial.cells"
-"C30966"	"Epithelial.cells"
-"C31484"	"Epithelial.cells"
-"C398"	"Epithelial.cells"
-"C31273"	"Epithelial.cells"
-"C2457"	"Epithelial.cells"
-"C30976"	"Epithelial.cells"
-"C32066"	"Epithelial.cells"
-"C2075"	"Epithelial.cells"
-"C12622"	"Epithelial.cells"
-"C32209"	"Epithelial.cells"
-"C17964"	"Epithelial.cells"
-"C15773"	"Epithelial.cells"
-"C2945"	"Epithelial.cells"
-"C31265"	"Epithelial.cells"
-"C15038"	"Epithelial.cells"
-"C14287"	"Epithelial.cells"
-"C31298"	"Epithelial.cells"
-"C5682"	"Epithelial.cells"
-"C10155"	"Epithelial.cells"
-"C1385"	"Epithelial.cells"
-"C15669"	"Epithelial.cells"
-"C31311"	"Epithelial.cells"
-"C31197"	"Epithelial.cells"
-"C10086"	"Epithelial.cells"
-"C31246"	"Epithelial.cells"
-"C31192"	"Epithelial.cells"
-"C15178"	"Epithelial.cells"
-"C31261"	"Epithelial.cells"
-"C58"	"Epithelial.cells"
-"C9947"	"Epithelial.cells"
-"C2386"	"Epithelial.cells"
-"C12645"	"Epithelial.cells"
-"C32241"	"Epithelial.cells"
-"C12868"	"Epithelial.cells"
-"C15113"	"Epithelial.cells"
-"C31345"	"Epithelial.cells"
-"C31756"	"Epithelial.cells"
-"C31551"	"Epithelial.cells"
-"C1388"	"Epithelial.cells"
-"C19893"	"Epithelial.cells"
-"C15005"	"Epithelial.cells"
-"C11851"	"Epithelial.cells"
-"C14338"	"Epithelial.cells"
-"C1887"	"Epithelial.cells"
-"C1417"	"Epithelial.cells"
-"C31874"	"Epithelial.cells"
-"C30982"	"Epithelial.cells"
-"C31645"	"Epithelial.cells"
-"C16926"	"Epithelial.cells"
-"C13765"	"Epithelial.cells"
-"C6748"	"Epithelial.cells"
-"C13385"	"Epithelial.cells"
-"C31679"	"Epithelial.cells"
-"C12309"	"Epithelial.cells"
-"C1649"	"Epithelial.cells"
-"C31750"	"Epithelial.cells"
-"C14645"	"Epithelial.cells"
-"C31272"	"Epithelial.cells"
-"C1411"	"Epithelial.cells"
-"C31341"	"Epithelial.cells"
-"C12194"	"Epithelial.cells"
-"C13757"	"Epithelial.cells"
-"C4597"	"Epithelial.cells"
-"C317"	"Epithelial.cells"
-"C31728"	"Epithelial.cells"
-"C13086"	"Epithelial.cells"
-"C1264"	"Epithelial.cells"
-"C31147"	"Epithelial.cells"
-"C3756"	"Epithelial.cells"
-"C12906"	"Epithelial.cells"
-"C9605"	"Epithelial.cells"
-"C1942"	"Epithelial.cells"
-"C28"	"Epithelial.cells"
-"C14450"	"Epithelial.cells"
-"C11471"	"Epithelial.cells"
-"C13316"	"Epithelial.cells"
-"C30792"	"Epithelial.cells"
-"C14413"	"Epithelial.cells"
-"C30710"	"Epithelial.cells"
-"C4514"	"Epithelial.cells"
-"C11393"	"Epithelial.cells"
-"C13439"	"Epithelial.cells"
-"C15354"	"Epithelial.cells"
-"C31451"	"Epithelial.cells"
-"C1478"	"Epithelial.cells"
-"C14148"	"Epithelial.cells"
-"C1503"	"Epithelial.cells"
-"C6976"	"Epithelial.cells"
-"C12575"	"Epithelial.cells"
-"C1016"	"Epithelial.cells"
-"C11972"	"Epithelial.cells"
-"C19960"	"Epithelial.cells"
-"C1858"	"Epithelial.cells"
-"C10407"	"Epithelial.cells"
-"C31436"	"Epithelial.cells"
-"C10859"	"Epithelial.cells"
-"C3194"	"Epithelial.cells"
-"C31732"	"Epithelial.cells"
-"C1697"	"Epithelial.cells"
-"C14504"	"Epithelial.cells"
-"C19510"	"Epithelial.cells"
-"C12566"	"Epithelial.cells"
-"C17801"	"Epithelial.cells"
-"C31596"	"Epithelial.cells"
-"C2702"	"Epithelial.cells"
-"C10615"	"Epithelial.cells"
-"C13859"	"Epithelial.cells"
-"C31804"	"Epithelial.cells"
-"C11684"	"Epithelial.cells"
-"C1879"	"Epithelial.cells"
-"C12577"	"Epithelial.cells"
-"C32274"	"Epithelial.cells"
-"C3031"	"Epithelial.cells"
-"C3166"	"Epithelial.cells"
-"C31562"	"Epithelial.cells"
-"C1505"	"Epithelial.cells"
-"C10143"	"Epithelial.cells"
-"C10326"	"Epithelial.cells"
-"C14928"	"Epithelial.cells"
-"C12664"	"Epithelial.cells"
-"C11093"	"Epithelial.cells"
-"C473"	"Epithelial.cells"
-"C2132"	"Epithelial.cells"
-"C31244"	"Epithelial.cells"
-"C181"	"Epithelial.cells"
-"C19910"	"Epithelial.cells"
-"C15839"	"Epithelial.cells"
-"C15855"	"Epithelial.cells"
-"C2775"	"Epithelial.cells"
-"C12418"	"Epithelial.cells"
-"C30801"	"Epithelial.cells"
-"C31583"	"Epithelial.cells"
-"C31669"	"Epithelial.cells"
-"C10069"	"Epithelial.cells"
-"C7609"	"Epithelial.cells"
-"C11711"	"Epithelial.cells"
-"C31766"	"Epithelial.cells"
-"C10572"	"Epithelial.cells"
-"C15810"	"Epithelial.cells"
-"C2802"	"Epithelial.cells"
-"C10696"	"Epithelial.cells"
-"C13737"	"Epithelial.cells"
-"C30952"	"Epithelial.cells"
-"C31937"	"Epithelial.cells"
-"C31204"	"Epithelial.cells"
-"C1317"	"Epithelial.cells"
-"C10365"	"Epithelial.cells"
-"C19485"	"Epithelial.cells"
-"C32004"	"Epithelial.cells"
-"C5581"	"Epithelial.cells"
-"C31193"	"Epithelial.cells"
-"C10355"	"Epithelial.cells"
-"C30980"	"Epithelial.cells"
-"C10734"	"Epithelial.cells"
-"C14598"	"Epithelial.cells"
-"C714"	"Epithelial.cells"
-"C11818"	"Epithelial.cells"
-"C2262"	"Epithelial.cells"
-"C14636"	"Epithelial.cells"
-"C13335"	"Epithelial.cells"
-"C5824"	"Epithelial.cells"
-"C14991"	"Epithelial.cells"
-"C30844"	"Epithelial.cells"
-"C30726"	"Epithelial.cells"
-"C30862"	"Epithelial.cells"
-"C13960"	"Epithelial.cells"
-"C30804"	"Epithelial.cells"
-"C6442"	"Epithelial.cells"
-"C10122"	"Epithelial.cells"
-"C2911"	"Epithelial.cells"
-"C31372"	"Epithelial.cells"
-"C31682"	"Epithelial.cells"
-"C14945"	"Epithelial.cells"
-"C2406"	"Epithelial.cells"
-"C3186"	"Epithelial.cells"
-"C31252"	"Epithelial.cells"
-"C31634"	"Epithelial.cells"
-"C14277"	"Epithelial.cells"
-"C31957"	"Epithelial.cells"
-"C31330"	"Epithelial.cells"
-"C11034"	"Epithelial.cells"
-"C11478"	"Epithelial.cells"
-"C14570"	"Epithelial.cells"
-"C11041"	"Epithelial.cells"
-"C13462"	"Epithelial.cells"
-"C16078"	"Epithelial.cells"
-"C14028"	"Epithelial.cells"
-"C30924"	"Epithelial.cells"
-"C1811"	"Epithelial.cells"
-"C32253"	"Epithelial.cells"
-"C7805"	"Epithelial.cells"
-"C2959"	"Epithelial.cells"
-"C10376"	"Epithelial.cells"
-"C31962"	"Epithelial.cells"
-"C18225"	"Epithelial.cells"
-"C32219"	"Epithelial.cells"
-"C31615"	"Epithelial.cells"
-"C1202"	"Epithelial.cells"
-"C31178"	"Epithelial.cells"
-"C31072"	"Epithelial.cells"
-"C31748"	"Epithelial.cells"
-"C6686"	"Epithelial.cells"
-"C653"	"Epithelial.cells"
-"C11512"	"Epithelial.cells"
-"C12866"	"Epithelial.cells"
-"C14884"	"Epithelial.cells"
-"C14804"	"Epithelial.cells"
-"C31289"	"Epithelial.cells"
-"C15404"	"Epithelial.cells"
-"C10629"	"Epithelial.cells"
-"C15448"	"Epithelial.cells"
-"C14696"	"Epithelial.cells"
-"C5452"	"Epithelial.cells"
-"C9751"	"Epithelial.cells"
-"C6792"	"Epithelial.cells"
-"C7767"	"Epithelial.cells"
-"C165"	"Epithelial.cells"
-"C13259"	"Epithelial.cells"
-"C31445"	"Epithelial.cells"
-"C14709"	"Epithelial.cells"
-"C746"	"Epithelial.cells"
-"C17875"	"Epithelial.cells"
-"C30928"	"Epithelial.cells"
-"C30700"	"Epithelial.cells"
-"C9888"	"Epithelial.cells"
-"C31725"	"Epithelial.cells"
-"C31070"	"Epithelial.cells"
-"C2328"	"Epithelial.cells"
-"C14617"	"Epithelial.cells"
-"C5745"	"Epithelial.cells"
-"C31194"	"Epithelial.cells"
-"C31711"	"Epithelial.cells"
-"C31773"	"Epithelial.cells"
-"C16102"	"Epithelial.cells"
-"C31872"	"Epithelial.cells"
-"C30848"	"Epithelial.cells"
-"C11342"	"Epithelial.cells"
-"C2787"	"Epithelial.cells"
-"C12438"	"Epithelial.cells"
-"C18861"	"Epithelial.cells"
-"C671"	"Epithelial.cells"
-"C12134"	"Epithelial.cells"
-"C31342"	"Epithelial.cells"
-"C9619"	"Epithelial.cells"
-"C5974"	"Epithelial.cells"
-"C31348"	"Epithelial.cells"
-"C19189"	"Epithelial.cells"
-"C31543"	"Epithelial.cells"
-"C31706"	"Epithelial.cells"
-"C12350"	"Epithelial.cells"
-"C32210"	"Epithelial.cells"
-"C15325"	"Epithelial.cells"
-"C14653"	"Epithelial.cells"
-"C1769"	"Epithelial.cells"
-"C31125"	"Epithelial.cells"
-"C31260"	"Epithelial.cells"
-"C31446"	"Epithelial.cells"
-"C31458"	"Epithelial.cells"
-"C10219"	"Epithelial.cells"
-"C12857"	"Epithelial.cells"
-"C13454"	"Epithelial.cells"
-"C32236"	"Epithelial.cells"
-"C12126"	"Epithelial.cells"
-"C4640"	"Epithelial.cells"
-"C15487"	"Epithelial.cells"
-"C31882"	"Epithelial.cells"
-"C15095"	"Epithelial.cells"
-"C14400"	"Epithelial.cells"
-"C10276"	"Epithelial.cells"
-"C13359"	"Epithelial.cells"
-"C4203"	"Epithelial.cells"
-"C31140"	"Epithelial.cells"
-"C9935"	"Epithelial.cells"
-"C30983"	"Epithelial.cells"
-"C14903"	"Epithelial.cells"
-"C30920"	"Epithelial.cells"
-"C1469"	"Epithelial.cells"
-"C9758"	"Epithelial.cells"
-"C32240"	"Epithelial.cells"
-"C4242"	"Epithelial.cells"
-"C30854"	"Epithelial.cells"
-"C10992"	"Epithelial.cells"
-"C31049"	"Epithelial.cells"
-"C31894"	"Epithelial.cells"
-"C31343"	"Epithelial.cells"
-"C3742"	"Epithelial.cells"
-"C31207"	"Epithelial.cells"
-"C14979"	"Epithelial.cells"
-"C6294"	"Epithelial.cells"
-"C15266"	"Epithelial.cells"
-"C16492"	"Epithelial.cells"
-"C31174"	"Epithelial.cells"
-"C16940"	"Epithelial.cells"
-"C32091"	"Epithelial.cells"
-"C19913"	"Epithelial.cells"
-"C3508"	"Epithelial.cells"
-"C31043"	"Epithelial.cells"
-"C12932"	"Epithelial.cells"
-"C11513"	"Epithelial.cells"
-"C1522"	"Epithelial.cells"
-"C15132"	"Epithelial.cells"
-"C13104"	"Epithelial.cells"
-"C31477"	"Epithelial.cells"
-"C31008"	"Epithelial.cells"
-"C32160"	"Epithelial.cells"
-"C12725"	"Epithelial.cells"
-"C11614"	"Epithelial.cells"
-"C10751"	"Epithelial.cells"
-"C32106"	"Epithelial.cells"
-"C31955"	"Epithelial.cells"
-"C31986"	"Epithelial.cells"
-"C9822"	"Epithelial.cells"
-"C6139"	"Epithelial.cells"
-"C14599"	"Epithelial.cells"
-"C30899"	"Epithelial.cells"
-"C14803"	"Epithelial.cells"
-"C13028"	"Epithelial.cells"
-"C4020"	"Epithelial.cells"
-"C14672"	"Epithelial.cells"
-"C15796"	"Epithelial.cells"
-"C7049"	"Epithelial.cells"
-"C9967"	"Epithelial.cells"
-"C30856"	"Epithelial.cells"
-"C13356"	"Epithelial.cells"
-"C956"	"Epithelial.cells"
-"C13120"	"Epithelial.cells"
-"C170"	"Epithelial.cells"
-"C31902"	"Epithelial.cells"
-"C15355"	"Epithelial.cells"
-"C31985"	"Epithelial.cells"
-"C3100"	"Epithelial.cells"
-"C31065"	"Epithelial.cells"
-"C31878"	"Epithelial.cells"
-"C5691"	"Epithelial.cells"
-"C31714"	"Epithelial.cells"
-"C31602"	"Epithelial.cells"
-"C10493"	"Epithelial.cells"
-"C14750"	"Epithelial.cells"
-"C7691"	"Epithelial.cells"
-"C9739"	"Epithelial.cells"
-"C11086"	"Epithelial.cells"
-"C6643"	"Epithelial.cells"
-"C17974"	"Epithelial.cells"
-"C19326"	"Epithelial.cells"
-"C14618"	"Epithelial.cells"
-"C32126"	"Epithelial.cells"
-"C3653"	"Epithelial.cells"
-"C212"	"Epithelial.cells"
-"C31226"	"Epithelial.cells"
-"C4947"	"Epithelial.cells"
-"C12639"	"Epithelial.cells"
-"C31354"	"Epithelial.cells"
-"C1056"	"Epithelial.cells"
-"C4600"	"Epithelial.cells"
-"C5963"	"Epithelial.cells"
-"C314"	"Epithelial.cells"
-"C13391"	"Epithelial.cells"
-"C14036"	"Epithelial.cells"
-"C32051"	"Epithelial.cells"
-"C31318"	"Epithelial.cells"
-"C1933"	"Epithelial.cells"
-"C5559"	"Epithelial.cells"
-"C31519"	"Epithelial.cells"
-"C12370"	"Epithelial.cells"
-"C9944"	"Epithelial.cells"
-"C12255"	"Epithelial.cells"
-"C3349"	"Epithelial.cells"
-"C15649"	"Epithelial.cells"
-"C4130"	"Epithelial.cells"
-"C32183"	"Epithelial.cells"
-"C31870"	"Epithelial.cells"
-"C5838"	"Epithelial.cells"
-"C31834"	"Epithelial.cells"
-"C30764"	"Epithelial.cells"
-"C12060"	"Epithelial.cells"
-"C615"	"Epithelial.cells"
-"C1221"	"Epithelial.cells"
-"C11526"	"Epithelial.cells"
-"C1088"	"Epithelial.cells"
-"C14293"	"Epithelial.cells"
-"C1662"	"Epithelial.cells"
-"C9600"	"Epithelial.cells"
-"C31000"	"Epithelial.cells"
-"C18792"	"Epithelial.cells"
-"C31499"	"Epithelial.cells"
-"C13675"	"Epithelial.cells"
-"C30743"	"Epithelial.cells"
-"C13536"	"Epithelial.cells"
-"C1805"	"Epithelial.cells"
-"C12936"	"Epithelial.cells"
-"C14549"	"Epithelial.cells"
-"C237"	"Epithelial.cells"
-"C12624"	"Epithelial.cells"
-"C32263"	"Epithelial.cells"
-"C30890"	"Epithelial.cells"
-"C15727"	"Epithelial.cells"
-"C4069"	"Epithelial.cells"
-"C31450"	"Epithelial.cells"
-"C10352"	"Epithelial.cells"
-"C30690"	"Epithelial.cells"
-"C31447"	"Epithelial.cells"
-"C32220"	"Epithelial.cells"
-"C11628"	"Epithelial.cells"
-"C2616"	"Epithelial.cells"
-"C31132"	"Epithelial.cells"
-"C577"	"Epithelial.cells"
-"C31061"	"Epithelial.cells"
-"C7452"	"Epithelial.cells"
-"C14808"	"Epithelial.cells"
-"C20056"	"Epithelial.cells"
-"C31707"	"Epithelial.cells"
-"C1934"	"Epithelial.cells"
-"C4697"	"Epithelial.cells"
-"C31994"	"Epithelial.cells"
-"C11214"	"Epithelial.cells"
-"C31001"	"Epithelial.cells"
-"C13236"	"Epithelial.cells"
-"C13802"	"Epithelial.cells"
-"C9855"	"Epithelial.cells"
-"C32070"	"Epithelial.cells"
-"C15863"	"Epithelial.cells"
-"C585"	"Epithelial.cells"
-"C1560"	"Epithelial.cells"
-"C30840"	"Epithelial.cells"
-"C1245"	"Epithelial.cells"
-"C10128"	"Epithelial.cells"
-"C30957"	"Epithelial.cells"
-"C242"	"Epithelial.cells"
-"C30779"	"Epithelial.cells"
-"C14859"	"Epithelial.cells"
-"C19874"	"Epithelial.cells"
-"C31085"	"Epithelial.cells"
-"C14245"	"Epithelial.cells"
-"C1312"	"Epithelial.cells"
-"C15414"	"Epithelial.cells"
-"C15303"	"Epithelial.cells"
-"C31134"	"Epithelial.cells"
-"C31504"	"Epithelial.cells"
-"C31032"	"Epithelial.cells"
-"C922"	"Epithelial.cells"
-"C15374"	"Epithelial.cells"
-"C14730"	"Epithelial.cells"
-"C14820"	"Epithelial.cells"
+"ID"	"Tissue"	"Histology"	"Type"	"OS_Time"	"OS_Status"
+"TCGA.37.A5EN.01A.21R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	660	0
+"TCGA.37.4133.01A.01R.1100.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	238	0
+"TCGA.77.7465.01A.11R.2045.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	990	0
+"TCGA.34.5240.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1541	0
+"TCGA.05.4249.01A.01R.1107.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1523	0
+"TCGA.62.8398.01A.11R.2326.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	444	1
+"TCGA.78.7161.01A.11R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	291	1
+"TCGA.55.A48Y.01A.11R.A24H.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	630	0
+"TCGA.NC.A5HM.01A.12R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1212	0
+"TCGA.66.2756.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	30	0
+"TCGA.62.A470.01A.11R.A24H.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1194	1
+"TCGA.55.6983.01A.11R.1949.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2823	0
+"TCGA.85.7950.01A.11R.2187.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	576	0
+"TCGA.MP.A4T9.01A.11R.A24X.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1265	1
+"TCGA.73.4677.01A.01R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	38	1
+"TCGA.35.4122.01A.01R.1107.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	225	0
+"TCGA.44.6775.01A.11R.1858.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	705	0
+"TCGA.50.6590.01A.12R.1858.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1288	1
+"TCGA.44.7671.01A.11R.2066.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	889	0
+"TCGA.63.5131.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	NA	1
+"TCGA.50.5044.01A.21R.1858.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	624	1
+"TCGA.55.6983.11A.01R.1949.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	2823	0
+"TCGA.18.3410.01A.01R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	146	1
+"TCGA.63.A5MM.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	456	1
+"TCGA.43.7658.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2378	1
+"TCGA.73.4670.01A.01R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	131	0
+"TCGA.63.A5ML.01A.31R.A27Q.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1386	0
+"TCGA.94.8490.01A.11R.2326.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	153	0
+"TCGA.69.7761.01A.11R.2170.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	186	0
+"TCGA.MP.A4T4.01A.11R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2617	1
+"TCGA.63.7023.01A.11R.1949.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1682	0
+"TCGA.MP.A4T7.01A.11R.A24X.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	167	1
+"TCGA.93.7347.01A.11R.2187.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	683	0
+"TCGA.37.A5EL.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1143	1
+"TCGA.73.4662.01A.01R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2515	0
+"TCGA.50.5932.01A.11R.1755.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1235	1
+"TCGA.60.2721.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	983	0
+"TCGA.66.2781.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	121	0
+"TCGA.52.7810.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	923	0
+"TCGA.44.8120.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	260	0
+"TCGA.56.7223.01A.11R.2045.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	442	1
+"TCGA.44.6776.11A.01R.1858.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	2616	0
+"TCGA.66.2800.01A.01R.1201.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1492	0
+"TCGA.77.7335.11A.01R.2045.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	2133	1
+"TCGA.75.6211.01A.11R.1755.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	NA	1
+"TCGA.75.7031.01A.11R.1949.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	NA	0
+"TCGA.69.8453.01A.12R.2326.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	788	0
+"TCGA.38.A44F.01A.11R.A24H.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	133	0
+"TCGA.62.8394.01A.11R.2326.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	139	1
+"TCGA.43.5670.01A.21R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	849	0
+"TCGA.18.3417.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1097	1
+"TCGA.63.6202.01A.11R.1820.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1602	0
+"TCGA.78.7159.01A.11R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1974	0
+"TCGA.50.5946.02A.11R.2090.07"	"Tumor"	"LUAD"	"Recurrent Solid Tumor"	1617	0
+"TCGA.O2.A5IB.01A.11R.A27Q.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	340	1
+"TCGA.NJ.A4YI.01A.11R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	4	1
+"TCGA.77.7138.11A.01R.2045.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	340	1
+"TCGA.78.8660.01A.11R.2403.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	321	1
+"TCGA.44.6778.11A.01R.1858.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	1864	0
+"TCGA.86.7701.01A.11R.2170.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	947	0
+"TCGA.60.2703.01A.11R.2045.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2945	1
+"TCGA.44.3396.01A.01R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1130	0
+"TCGA.22.4595.01A.01R.1201.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	734	1
+"TCGA.85.A513.01A.12R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	910	0
+"TCGA.22.4613.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	358	1
+"TCGA.55.7815.01A.11R.2170.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	773	0
+"TCGA.18.3406.01A.01R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	371	1
+"TCGA.J2.8194.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	724	0
+"TCGA.98.8021.01A.11R.2247.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	937	0
+"TCGA.22.4596.01A.01R.1201.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	17	1
+"TCGA.85.A4JB.01A.51R.A262.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	942	0
+"TCGA.NJ.A55A.01A.11R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	15	0
+"TCGA.50.5049.01A.01R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	3094	0
+"TCGA.38.7271.01A.11R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	800	1
+"TCGA.55.A492.01A.11R.A24H.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	596	0
+"TCGA.56.8503.01A.11R.2403.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	41	0
+"TCGA.66.2788.01A.01R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	699	0
+"TCGA.94.7557.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	5	1
+"TCGA.22.1016.01A.01R.0692.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	822	1
+"TCGA.95.8039.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	830	0
+"TCGA.22.5473.01A.01R.1635.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1933	1
+"TCGA.O1.A52J.01A.11R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1798	1
+"TCGA.MP.A4SV.01A.11R.A24X.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2620	1
+"TCGA.97.A4LX.01A.11R.A24X.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	614	0
+"TCGA.55.8094.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	541	0
+"TCGA.50.7109.01A.11R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	308	1
+"TCGA.92.7340.01A.21R.2045.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	82	0
+"TCGA.55.6971.11A.01R.1949.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	1400	0
+"TCGA.51.4081.11A.01R.1758.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	911	0
+"TCGA.86.8358.01A.11R.2326.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	653	0
+"TCGA.60.2695.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	642	0
+"TCGA.77.7337.11A.01R.2045.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	3253	1
+"TCGA.91.8496.01A.11R.2403.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	505	0
+"TCGA.85.8070.01A.11R.2247.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	960	0
+"TCGA.85.A4CL.01A.41R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	921	1
+"TCGA.MP.A4T6.01A.32R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1790	1
+"TCGA.63.A5MB.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	3123	0
+"TCGA.L3.A524.01A.11R.A262.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	490	1
+"TCGA.55.8510.01A.11R.2403.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	539	0
+"TCGA.49.4514.01A.21R.1858.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1700	0
+"TCGA.50.5066.01A.01R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1442	0
+"TCGA.56.8308.01A.11R.2296.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	517	0
+"TCGA.37.4132.01A.01R.1100.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	227	0
+"TCGA.66.2795.01A.02R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	122	0
+"TCGA.39.5011.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	4053	0
+"TCGA.34.5239.01A.21R.1820.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1834	0
+"TCGA.63.5128.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	NA	1
+"TCGA.22.5481.11A.01R.1949.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	2409	1
+"TCGA.78.7167.01A.11R.2066.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2681	1
+"TCGA.69.7978.01A.11R.2187.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	134	0
+"TCGA.85.8052.01A.11R.2247.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	734	0
+"TCGA.05.4397.01A.01R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	731	1
+"TCGA.63.A5MI.01A.12R.A27Q.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1784	0
+"TCGA.50.5931.01A.11R.1755.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	434	1
+"TCGA.34.5241.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	515	1
+"TCGA.22.5478.11A.11R.1635.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	24	1
+"TCGA.51.4080.01A.01R.1100.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	12	1
+"TCGA.58.8390.01A.11R.2326.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	911	0
+"TCGA.33.4566.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	5287	1
+"TCGA.38.4625.11A.01R.1758.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	2973	0
+"TCGA.NJ.A7XG.01A.12R.A39D.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	617	0
+"TCGA.50.6673.01A.11R.1949.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	22	1
+"TCGA.55.8620.01A.11R.2403.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	375	1
+"TCGA.58.8391.01A.11R.2326.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2167	0
+"TCGA.85.7843.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	35	0
+"TCGA.63.A5MW.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1639	0
+"TCGA.22.5471.01A.01R.1635.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1845	0
+"TCGA.55.8087.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	462	0
+"TCGA.86.6562.01A.11R.1755.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	376	1
+"TCGA.46.3767.01A.01R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	388	0
+"TCGA.MP.A4TK.01A.11R.A24X.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	582	1
+"TCGA.85.8287.01A.11R.2296.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	23	1
+"TCGA.NC.A5HD.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2	1
+"TCGA.77.8133.01A.12R.2247.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1640	1
+"TCGA.37.5819.01A.01R.1635.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	103	0
+"TCGA.56.5898.01A.11R.1635.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	555	0
+"TCGA.56.7731.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	3	1
+"TCGA.55.8085.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	904	0
+"TCGA.55.8619.01A.11R.2403.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	416	0
+"TCGA.43.A56V.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	366	0
+"TCGA.58.A46N.01A.11R.A24H.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	910	0
+"TCGA.34.8456.01A.21R.2326.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	804	0
+"TCGA.64.1679.01A.21R.2066.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2488	0
+"TCGA.66.2734.01A.01R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1311	0
+"TCGA.86.6851.01A.11R.1949.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	179	0
+"TCGA.21.5786.01A.01R.1635.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1032	0
+"TCGA.60.2712.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	274	1
+"TCGA.50.5942.01A.21R.1755.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1847	0
+"TCGA.43.6647.11A.01R.1820.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	757	0
+"TCGA.99.7458.01A.11R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	747	0
+"TCGA.NC.A5HL.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	88	1
+"TCGA.95.A4VK.01A.11R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	651	0
+"TCGA.O2.A52S.01A.11R.A262.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	387	1
+"TCGA.38.4629.01A.02R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	864	1
+"TCGA.95.7948.01A.11R.2187.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	476	0
+"TCGA.37.A5EM.01A.21R.A27Q.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	867	0
+"TCGA.77.8139.01A.11R.2247.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	3166	0
+"TCGA.64.5815.01A.01R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	866	0
+"TCGA.63.A5MT.01A.21R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	498	0
+"TCGA.43.A475.01A.11R.A24H.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	296	0
+"TCGA.85.7697.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1063	0
+"TCGA.NJ.A4YG.01A.22R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2261	0
+"TCGA.77.8009.01A.11R.2187.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1695	1
+"TCGA.NC.A5HJ.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	418	1
+"TCGA.44.5645.01A.01R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	852	0
+"TCGA.50.5931.11A.01R.1858.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	434	1
+"TCGA.60.2719.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1297	0
+"TCGA.38.4631.01A.01R.1755.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	354	1
+"TCGA.NC.A5HG.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1963	0
+"TCGA.44.5645.11A.01R.1628.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	852	0
+"TCGA.22.5483.01A.01R.1820.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	573	1
+"TCGA.55.8091.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	600	0
+"TCGA.85.8351.01A.11R.2296.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	510	0
+"TCGA.75.6206.01A.11R.1755.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2590	0
+"TCGA.91.6836.11A.01R.1858.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	417	0
+"TCGA.58.8393.01A.11R.2326.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1058	0
+"TCGA.33.4547.01A.01R.1201.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2419	0
+"TCGA.22.5489.01A.01R.1635.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1912	1
+"TCGA.94.A5I6.01A.21R.A27Q.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	538	0
+"TCGA.NC.A5HR.01A.21R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1244	0
+"TCGA.39.5035.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2080	0
+"TCGA.05.4398.01A.01R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1431	0
+"TCGA.55.8207.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	977	0
+"TCGA.44.7659.01A.11R.2066.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	691	0
+"TCGA.70.6723.01A.11R.1820.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	375	0
+"TCGA.56.A5DS.01A.11R.A27Q.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	8	0
+"TCGA.55.7570.01A.11R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	824	0
+"TCGA.33.4533.01A.01R.1201.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	4068	0
+"TCGA.55.7913.01B.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	561	1
+"TCGA.55.8090.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	598	1
+"TCGA.90.7767.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	89	0
+"TCGA.60.2704.01A.11R.2045.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1154	1
+"TCGA.05.4410.01A.21R.1858.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	NA	0
+"TCGA.55.6970.01A.11R.1949.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	464	1
+"TCGA.85.6561.01A.11R.1820.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1224	0
+"TCGA.21.1076.01A.01R.0692.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1852	0
+"TCGA.22.4591.01A.01R.1201.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	623	1
+"TCGA.NC.A5HH.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	37	0
+"TCGA.55.7725.01A.11R.2170.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	442	0
+"TCGA.64.5774.01A.01R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2676	0
+"TCGA.66.2768.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	61	0
+"TCGA.77.8008.01A.21R.2187.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2639	1
+"TCGA.55.8301.01A.11R.2287.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	534	0
+"TCGA.50.5935.11A.01R.1858.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	653	1
+"TCGA.77.8128.01A.11R.2247.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1150	1
+"TCGA.85.7699.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1001	1
+"TCGA.55.8508.01A.11R.2403.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	617	0
+"TCGA.95.8494.01A.11R.2326.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	84	0
+"TCGA.44.4112.01A.01R.1107.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	808	1
+"TCGA.94.8491.01A.11R.2326.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	810	0
+"TCGA.78.7147.01A.11R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	586	1
+"TCGA.96.8170.01A.11R.2296.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	531	0
+"TCGA.55.6971.01A.11R.1949.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1400	0
+"TCGA.97.7937.01A.11R.2170.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	564	0
+"TCGA.56.7582.11A.01R.2045.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	601	0
+"TCGA.66.2759.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	762	0
+"TCGA.91.6830.01A.11R.1949.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	60	0
+"TCGA.66.2786.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	790	0
+"TCGA.4B.A93V.01A.11R.A39D.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	300	1
+"TCGA.55.8092.01A.11R.2241.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	154	1
+"TCGA.46.3766.01A.01R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	370	0
+"TCGA.39.5021.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	2086	1
+"TCGA.97.8547.01A.11R.2403.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	657	0
+"TCGA.05.5425.01A.02R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	882	0
+"TCGA.18.3411.01A.01R.0980.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	3576	0
+"TCGA.56.8309.11A.01R.2296.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	428	0
+"TCGA.63.A5MU.01A.11R.A26W.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	773	1
+"TCGA.51.4079.01A.01R.1100.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	12	1
+"TCGA.75.5146.01A.01R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2368	0
+"TCGA.MP.A4TJ.01A.51R.A262.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	339	1
+"TCGA.55.6642.01A.11R.1858.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	2449	0
+"TCGA.NK.A7XE.01A.12R.A405.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	13	0
+"TCGA.64.5775.01A.01R.1628.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	62	1
+"TCGA.77.8156.01A.11R.2247.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1106	0
+"TCGA.85.8288.01A.11R.2296.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	402	1
+"TCGA.44.6777.11A.01R.1858.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	987	1
+"TCGA.33.6738.01A.11R.1949.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	1927	0
+"TCGA.66.2767.01A.01R.0851.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	61	0
+"TCGA.22.4593.11A.01R.1820.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	1067	1
+"TCGA.97.7553.01A.21R.2039.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1870	0
+"TCGA.98.7454.01A.11R.2045.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	652	0
+"TCGA.43.3394.11A.01R.1758.07"	"Normal"	"LUSC"	"Solid Tissue Normal"	1190	1
+"TCGA.33.4586.01A.01R.1443.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	428	1
+"TCGA.56.7822.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	532	1
+"TCGA.49.AARO.01A.12R.A41B.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	3759	0
+"TCGA.68.7757.01B.11R.2296.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	211	0
+"TCGA.77.8007.01A.11R.2187.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	198	1
+"TCGA.91.6849.11A.01R.1949.07"	"Normal"	"LUAD"	"Solid Tissue Normal"	35	0
+"TCGA.38.4628.01A.01R.1206.07"	"Tumor"	"LUAD"	"Primary Solid Tumor"	1492	1
+"TCGA.85.7710.01A.11R.2125.07"	"Tumor"	"LUSC"	"Primary Solid Tumor"	42	0
