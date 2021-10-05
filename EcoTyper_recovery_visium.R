@@ -91,6 +91,11 @@ if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript csx_fractions_two_tiered.R", "visium", recovery, "TR4", "B_mode", "LM22", "B_mode", fractions))
 	RunJobQueue()
+	coo = "Epithelial.cells"
+	if(fractions %in% "Lymphoma_Fractions")
+	{
+		coo = "B.cells"
+	}
 }else{
 	cat("\nLoading user-provided cell type fractions...\n")
 		
