@@ -35,9 +35,9 @@ check_discovery_configuration_presorted <- function(config){
 
 	if(config$"Pipeline settings"$"Filter non cell type specific genes")
 	{
-		fractions = "scRNA_specific_genes"
+		fractions = "Cell_type_specific_genes"
 	}else{
-		fractions = "scRNA_all_genes"
+		fractions = "All_genes"
 	}
 
 	output_dir = file.path("datasets/discovery", discovery)
