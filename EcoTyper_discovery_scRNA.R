@@ -25,7 +25,7 @@ if(args$h || is.null(args$config))
 config_file = abspath(args$config)
 
 config <- config::get(file = config_file)
-check_discovery_configuration(config)
+check_discovery_configuration_scRNA(config)
 
 discovery = config$Input$"Discovery dataset name"
 discovery_type = config$Input$"Expression type"

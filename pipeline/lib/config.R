@@ -7,10 +7,10 @@ check_discovery_configuration <- function(config){
 
 	if(!file.exists(input_mat))
 	{
-		stop(paste0("Error: Input file '", input_mat, "' is missing!"))
+		stop(paste0("Input format error: Input file '", input_mat, "' is missing!"))
 	}
 	
-	mat = fread(input_mat, sep = "\t")
+	mat = fread(input_mat, sep = "\t", nrows = 5)
 	if(ncol(mat) < 2)
 	{
 		stop(paste0(ncol(mat), " columns detected in file '", input_mat, "'. Please make sure that the file is tab-delimited!"))
@@ -22,10 +22,55 @@ check_discovery_configuration <- function(config){
 	{
 		if(!file.exists(annotation))
 		{
-			stop(paste0("Error: Annotation file '", annotation, "' is missing!"))
+			stop(paste0("Input format error: Annotation file '", annotation, "' is missing!"))
 		}
 		system(paste0("ln -sf ", normalizePath(annotation), " ", file.path(output_dir, "annotation.txt")))
 	}
+} 
+
+check_discovery_configuration_scRNA <- function(config){
+	input_mat = config$Input$"Expression matrix"
+	discovery = config$Input$"Discovery dataset name"
+	annotation = config$Input$"Annotation file"
+	output_dir = file.path("datasets/discovery", discovery)
+
+	if(!file.exists(input_mat))
+	{
+		stop(paste0("Input format error: Input file '", input_mat, "' is missing!"))
+	}
+	
+	mat = fread(input_mat, sep = "\t", nrows = 5)
+	if(ncol(mat) < 2)
+	{
+		stop(paste0(ncol(mat), " columns detected in file '", input_mat, "'. Please make sure that the file is tab-delimited!"))
+	}	
+	
+	dir.create(output_dir, recursive = T, showWarning = F)
+	system(paste0("ln -sf ", normalizePath(input_mat), " ", file.path(output_dir, "data.txt")))
+	
+	if(!file.exists(annotation))
+	{
+		stop(paste0("Input format error: Annotation file '", annotation, "' is missing! This file needs to be provided for discovery in scRNA-seq data!"))
+	}
+
+	ann = read.delim(annotation)
+	if(!all(c("ID", "CellType", "Sample") %in% colnames(ann)))
+	{
+		stop(paste0("Input format error: Annotation file '", annotation, "' does not contain columns: 'ID', 'CellType' or 'Sample'! All three columns are required for discovery in scRNA-seq data!"))	
+	}
+	
+	if(!all(as.character(ann$ID) == make.names(as.character(ann$ID))))
+	{
+		stop(paste0("Input format error: The values in column 'ID' of the annotation file '", annotation, "' contain special characters (e.g. ' ', '-'), or start with digits. Please make sure that this column and the column names of the expression matrix do not contain values modified by the R function 'make.names'."))	
+	}
+
+	if(!all(colnames(mat)[-1] %in% ann$ID))
+	{
+		stop(paste0("Input format error: The following ids present in the column names of the expression matrix are missing from the annotation file (column 'ID'): '", paste(colnames(mat)[-1][!colnames(mat)[-1] %in% ann$ID], collapse = "', '"), "'."))	
+	}
+
+	system(paste0("ln -sf ", normalizePath(annotation), " ", file.path(output_dir, "annotation.txt")))
+
 } 
 
 check_discovery_configuration_presorted <- function(config){
@@ -49,7 +94,7 @@ check_discovery_configuration_presorted <- function(config){
 	{
 		if(!file.exists(annotation))
 		{
-			stop(paste0("Error: Annotation file '", annotation, "' is missing!"))
+			stop(paste0("Input format error: Annotation file '", annotation, "' is missing!"))
 		}
 		system(paste0("ln -sf ", normalizePath(annotation), " ", file.path(output_dir, "annotation.txt")))
 	}
@@ -61,7 +106,7 @@ check_discovery_configuration_presorted <- function(config){
 		input_mat = file.path(input_path, file)
 		if(!file.exists(input_mat))
 		{
-			stop(paste0("Error: Input file '", input_mat, "' is missing!"))
+			stop(paste0("Input format error: Input file '", input_mat, "' is missing!"))
 		}
 	
 		mat = fread(input_mat, sep = "\t")

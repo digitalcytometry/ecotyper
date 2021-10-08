@@ -3,7 +3,7 @@
 
 [EcoTyper](https://ecotyper.stanford.edu/) is a machine learning framework for large-scale identification of cell type-specific transcriptional states and their co-association patterns from bulk and single-cell (scRNA-seq) expression data.
 
-We have already defined cell states and ecotypes across **carcinomas** ([Luca/Steen et al., Cell 2021](https://doi.org/10.1016/j.cell.2021.09.014)) and in **diffuse large B cell lymphoma (DLBCL)** ([Steen/Luca et al., Cancer Cell 2021](https://doi.org/10.1016/j.ccell.2021.08.011)). The current version of EcoTyper allows users to recover the cell states and ecotypes for these two tumor categories in their own data. Additionally, it allows users to discover and recover cell states and ecotypes in their system of interest. Below we illustrate each of these functionalities.
+We have already defined cell states and ecotypes across **carcinomas** ([Luca/Steen et al., Cell 2021](https://doi.org/10.1016/j.cell.2021.09.014)) and in **diffuse large B cell lymphoma (DLBCL)** ([Steen/Luca et al., Cancer Cell 2021](https://doi.org/10.1016/j.ccell.2021.08.011)). The current version of EcoTyper allows users to recover the cell states and ecotypes for these two tumor categories in their own data. Additionally, it allows users to discover and recover cell states and ecotypes in their system of interest, including **directly** from scRNA-seq data (see Tutorial 5). Below we illustrate each of these functionalities.
 
 ## Setup
 
@@ -615,19 +615,19 @@ head(data)
 ```
 
     ##                      Index Patient Class  Sample        Cell_type Cell_subtype
-    ## 1 SMC01-T_AAACCTGCATACGCCG   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 2 SMC01-T_AAACCTGGTCGCATAT   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 3 SMC01-T_AAACCTGTCCCTTGCA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 4 SMC01-T_AAACGGGAGGGAAACA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 5 SMC01-T_AAACGGGGTATAGGTA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 6 SMC01-T_AAAGATGAGGCCGAAT   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 1 SMC01-T_AAAGATGCATGGATGG   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 2 SMC01-T_AAAGTAGCAAGGACAC   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 3 SMC01-T_AAATGCCAGGATCGCA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 4 SMC01-T_AACTCTTCACAACGCC   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 5 SMC01-T_AACTTTCGTTCGGGCT   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 6 SMC01-T_AAGGTTCTCCAATGGT   SMC01 Tumor SMC01-T Epithelial cells         CMS2
     ##           CellType                       ID Tissue
-    ## 1 Epithelial.cells SMC01.T_AAACCTGCATACGCCG  Tumor
-    ## 2 Epithelial.cells SMC01.T_AAACCTGGTCGCATAT  Tumor
-    ## 3 Epithelial.cells SMC01.T_AAACCTGTCCCTTGCA  Tumor
-    ## 4 Epithelial.cells SMC01.T_AAACGGGAGGGAAACA  Tumor
-    ## 5 Epithelial.cells SMC01.T_AAACGGGGTATAGGTA  Tumor
-    ## 6 Epithelial.cells SMC01.T_AAAGATGAGGCCGAAT  Tumor
+    ## 1 Epithelial.cells SMC01.T_AAAGATGCATGGATGG  Tumor
+    ## 2 Epithelial.cells SMC01.T_AAAGTAGCAAGGACAC  Tumor
+    ## 3 Epithelial.cells SMC01.T_AAATGCCAGGATCGCA  Tumor
+    ## 4 Epithelial.cells SMC01.T_AACTCTTCACAACGCC  Tumor
+    ## 5 Epithelial.cells SMC01.T_AACTTTCGTTCGGGCT  Tumor
+    ## 6 Epithelial.cells SMC01.T_AAGGTTCTCCAATGGT  Tumor
 
 -   *-c*/*--columns*: A comma-separated list of column names from the annotation file (see argument *-a*/*--annotation*) to be plotted as color bars in the output heatmaps. By default, the output heatmaps contain as color bar the cell state label each cell is assigned to. The column names indicated by this argument will be added to that color bar.
 
@@ -1790,17 +1790,17 @@ head(annotation)
 ```
 
     ##                      Index Patient Class  Sample        Cell_type Cell_subtype
-    ## 1 SMC01-T_AAACCTGCATACGCCG   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 2 SMC01-T_AAACCTGGTCGCATAT   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 3 SMC01-T_AAACCTGTCCCTTGCA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 4 SMC01-T_AAACGGGAGGGAAACA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
-    ## 5 SMC01-T_AAACGGGGTATAGGTA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 1 SMC01-T_AAAGATGCATGGATGG   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 2 SMC01-T_AAAGTAGCAAGGACAC   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 3 SMC01-T_AAATGCCAGGATCGCA   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 4 SMC01-T_AACTCTTCACAACGCC   SMC01 Tumor SMC01-T Epithelial cells         CMS2
+    ## 5 SMC01-T_AACTTTCGTTCGGGCT   SMC01 Tumor SMC01-T Epithelial cells         CMS2
     ##           CellType                       ID Tissue
-    ## 1 Epithelial.cells SMC01.T_AAACCTGCATACGCCG  Tumor
-    ## 2 Epithelial.cells SMC01.T_AAACCTGGTCGCATAT  Tumor
-    ## 3 Epithelial.cells SMC01.T_AAACCTGTCCCTTGCA  Tumor
-    ## 4 Epithelial.cells SMC01.T_AAACGGGAGGGAAACA  Tumor
-    ## 5 Epithelial.cells SMC01.T_AAACGGGGTATAGGTA  Tumor
+    ## 1 Epithelial.cells SMC01.T_AAAGATGCATGGATGG  Tumor
+    ## 2 Epithelial.cells SMC01.T_AAAGTAGCAAGGACAC  Tumor
+    ## 3 Epithelial.cells SMC01.T_AAATGCCAGGATCGCA  Tumor
+    ## 4 Epithelial.cells SMC01.T_AACTCTTCACAACGCC  Tumor
+    ## 5 Epithelial.cells SMC01.T_AACTTTCGTTCGGGCT  Tumor
 
 #### Annotation file column to scale by
 
