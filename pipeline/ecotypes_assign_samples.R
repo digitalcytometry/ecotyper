@@ -7,6 +7,7 @@ source("lib/heatmaps.R")
 })
 
 args = c("Lung", "TR12", "Ecotype", "Histology", "Tissue")
+args = c("Lung", "TR12", "Ecotype", "Histology", "Tissue")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -106,9 +107,6 @@ clinical$Ecotype = ifelse((clinical$AssignmentQ < 0.25) & clinical$AssignedToEco
 
 write.table(clinical, file.path(output_dir, "initial_ecotype_assignment.txt"), sep = "\t")
 
-clinical_filt = clinical[clinical$Ecotype != "Unassigned",]
-write.table(clinical_filt, file.path(output_dir, "ecotype_assignment.txt"), sep = "\t")
-
 tmp = read_clinical(clinical$ID, dataset = dataset)
 tmp = tmp[,!colnames(tmp) %in% colnames(clinical)]
 clinical = cbind(clinical, tmp)
@@ -127,8 +125,14 @@ pdf(file.path(output_dir, "heatmap_all_samples.pdf"), width = 12, height = 7)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 tmp = dev.off()
 
+clinical_filt = clinical[clinical$Ecotype != "Unassigned",]
+write.table(clinical_filt, file.path(output_dir, "ecotype_assignment.txt"), sep = "\t")
+
+clinical_filt$Ecotype = ecotype_to_factor(clinical_filt$Ecotype)
+clinical_filt = clinical_filt[order(clinical_filt$Ecotype),]
+
 small_H = as.matrix(all_H[,match(clinical_filt$ID, colnames(all_H))])
-h = heatmap_simple(small_H, top_annotation = clinical, top_columns = top_cols, 
+h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
 	width = unit(5, "in"), height = unit(3, "in"),
 	legend_name = "State abundance",
@@ -162,7 +166,7 @@ decorate_heatmap_body("hmap", {
 })
 tmp = dev.off()
 
-h = heatmap_simple(small_H, top_annotation = clinical, top_columns = top_cols, 
+h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
 	width = unit(5, "in"), height = unit(3, "in"), 
 	legend_name = "State abundance",

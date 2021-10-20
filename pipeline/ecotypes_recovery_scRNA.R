@@ -151,8 +151,14 @@ assignment = as.data.frame(apply(H, 2, function(x) {
 
 clinical = data.frame(ID = rownames(assignment), MaxEcotype = assignment[,1])
 clinical$AssignmentP = sapply(1:ncol(H), function(i) {
-	p_vals[which.max(H[,i]), i] 
-	})
+	idx = which.max(H[,i])
+	if(length(idx)==0)
+	{
+		NA
+	}else{
+		p_vals[idx, i] 
+	}		
+})
 clinical$AssignmentQ = p.adjust(clinical$AssignmentP, method = "BH")
 
 clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID

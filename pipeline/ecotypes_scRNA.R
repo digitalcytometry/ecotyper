@@ -125,7 +125,11 @@ sil = silhouette(clust, as.dist(1-jaccard))
 avg_silhouette = summary(sil)
 write.table(avg_silhouette$avg.width, file.path(output_dir, "silhouette_initial.txt"), sep = "\t", row.names = F)
 
-top_ann = as.data.frame(t(sapply(rownames(jaccard), function(x) strsplit(x, "_")[[1]])))
+top_ann = as.data.frame(t(sapply(rownames(jaccard), function(x) {
+	s= strsplit(x, "_")[[1]]
+	c(paste0(s[-length(s)],collapse = "_"), s[length(s)])
+})))
+
 colnames(top_ann) = c("CellType","State")
 top_ann$InitialEcotype = as.factor(sprintf("IE%02d", clust))
 write.table(top_ann, file.path(output_dir, "initial_ecotypes.txt"), sep = "\t")
@@ -166,6 +170,7 @@ mapping = sprintf("E%d", 1:length(nm))
 names(mapping) = nm
 
 top_ann$Ecotype = mapping[as.character(top_ann$InitialEcotype)]
+top_ann$Ecotype = ecotype_to_factor(top_ann$Ecotype)
 top_ann = top_ann[order(top_ann$Ecotype),]
 write.table(top_ann, file.path(output_dir, "ecotypes.txt"), sep = "\t", row.names = F)
 

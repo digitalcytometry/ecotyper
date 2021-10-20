@@ -7,6 +7,7 @@ source("lib/heatmaps.R")
 })
 
 args = c("MyDiscovery", "Carcinoma")
+args = c("MyDiscovery", "Carcinoma")
 args = commandArgs(T)  
 dataset = args[1]
 fractions = args[2]
@@ -124,7 +125,11 @@ sil = silhouette(clust, as.dist(1-jaccard))
 avg_silhouette = summary(sil)
 write.table(avg_silhouette$avg.width, file.path(output_dir, "silhouette_initial.txt"), sep = "\t", row.names = F)
 
-top_ann = as.data.frame(t(sapply(rownames(jaccard), function(x) strsplit(x, "_")[[1]])))
+top_ann = as.data.frame(t(sapply(rownames(jaccard), function(x) {
+	s= strsplit(x, "_")[[1]]
+	c(paste0(s[-length(s)],collapse = "_"), s[length(s)])
+})))
+
 colnames(top_ann) = c("CellType","State")
 top_ann$InitialEcotype = as.factor(sprintf("IE%02d", clust))
 write.table(top_ann, file.path(output_dir, "initial_ecotypes.txt"), sep = "\t")
@@ -140,6 +145,7 @@ mapping = sprintf("E%d", 1:length(nm))
 names(mapping) = nm
 
 top_ann$Ecotype = mapping[as.character(top_ann$InitialEcotype)]
+top_ann$Ecotype = ecotype_to_factor(top_ann$Ecotype)
 top_ann = top_ann[order(top_ann$Ecotype),]
 write.table(top_ann, file.path(output_dir, "ecotypes.txt"), sep = "\t", row.names = F)
 
@@ -150,7 +156,7 @@ avg_silhouette <<- summary(sil)
 write.table(avg_silhouette$avg.width, file.path(output_dir, "silhouette.txt"), sep = "\t", row.names = F)
 
 top_ann$"Cell type" = top_ann$CellType
-pdf(file.path(output_dir, "jaccard_matrix.pdf"), width = 5, height = 7, family = "Helvetica")
+pdf(file.path(output_dir, "jaccard_matrix.pdf"), width = 8, height = 7, family = "Helvetica")
 h <- heatmap_simple(jaccard, name = "ht1", top_annotation = top_ann, top_columns = c("Ecotype", "Cell type", "State"), 
  legend_name = "Jaccard index", width = unit(2, "in"), height = unit(2, "in"),
 color_palette = c("white", viridis(4)), 
@@ -167,7 +173,7 @@ decorate_heatmap_body("ht1", {
 })
 tmp = dev.off()
 
-png(file.path(output_dir, "jaccard_matrix.png"), width = 5, height = 7, res = 300, units = "in", family = "Helvetica")
+png(file.path(output_dir, "jaccard_matrix.png"), width = 8, height = 7, res = 300, units = "in", family = "Helvetica")
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", 
 	adjust_annotation_extension = T, merge_legends = T)	
 decorate_heatmap_body("ht1", {
