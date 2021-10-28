@@ -7,7 +7,6 @@ source("lib/heatmaps.R")
 })
 
 args = c("discovery_scRNA_CRC", "scRNA_specific_genes", "TCGA_COAD_tpm.fullIDs.remapped")
-args = c("discovery_scRNA_Lambrechts", "scRNA_specific_genes",  "TCGA_LUAD_tpm.fullIDs.remapped") 
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -30,11 +29,7 @@ dir.create(output_dir, recursive = T, showWarning = F)
 
 key = read.delim(file.path(key_dir, "rank_data.txt"))
 ecotypes = read.delim(file.path(inpput_dir, 'ecotypes.txt'), sep = '\t')
-
-cf2 <- as.numeric(gsub("[^[:digit:]]", "", levels(as.factor(ecotypes$Ecotype))))
-names(cf2) = levels(as.factor(ecotypes$Ecotype))
-cf2 = sort(cf2)
-ecotypes$Ecotype = factor(as.character(ecotypes$Ecotype), levels = names(cf2))
+ecotypes$Ecotype = ecotype_to_factor(ecotypes$Ecotype)
 ecotypes = ecotypes[order(ecotypes$Ecotype),]
 
 all_H = NULL
@@ -105,25 +100,29 @@ clinical$AssignmentQ = p.adjust(clinical$AssignmentP, method = "BH")
 clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID
 clinical$Ecotype = ifelse((clinical$AssignmentQ < 0.25) & clinical$AssignedToEcotypeStates, as.character(clinical$MaxEcotype), "Unassigned")
 clinical$Ecotype = factor(as.character(clinical$Ecotype), levels = c(levels(ecotypes$Ecotype), "Unassigned"))
-clinical = clinical[order(clinical$Ecotype),]
-write.table(clinical, file.path(output_dir, "initial_ecotype_assignment.txt"), sep = "\t")
 
-clinical_filt = clinical[clinical$Ecotype != "Unassigned",]
-clinical_filt$Ecotype = factor(as.character(clinical_filt$Ecotype), levels = levels(ecotypes$Ecotype))
-write.table(clinical_filt, file.path(output_dir, "ecotype_assignment.txt"), sep = "\t")
+tmp = read_clinical(clinical$ID, dataset = test_dataset, dataset_type = "bulk")
+to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
+to_rem = to_rem[to_rem != "ID"]
+tmp = tmp[,!colnames(tmp) %in% to_rem]
+clinical = merge(clinical, tmp, by = "ID", all.x = T)
+
+clinical = clinical[order(clinical$Ecotype),]
 
 H = H[,match(clinical$ID, colnames(H))]
 all_H = all_H[,match(clinical$ID, colnames(all_H))]
 all_H = all_H[match(ecotypes$ID, rownames(all_H)),]
 
-tmp = read_clinical(clinical$ID, dataset = test_dataset, dataset_type = "bulk")
-tmp = tmp[,!colnames(tmp) %in% colnames(clinical)]
-clinical = cbind(clinical, tmp)
+write.table(clinical, file.path(output_dir, "initial_ecotype_assignment.txt"), sep = "\t")
 
 rownames(clinical) = clinical$ID
 rownames(ecotypes) = ecotypes$ID
 
-h <- heatmap_simple(all_H, top_annotation = clinical, top_columns = top_cols, 
+clinical_filt = clinical[clinical$Ecotype != "Unassigned",]
+clinical_filt$Ecotype = factor(as.character(clinical_filt$Ecotype), levels = levels(ecotypes$Ecotype))
+write.table(clinical_filt, file.path(output_dir, "ecotype_assignment.txt"), sep = "\t")
+
+h <- heatmap_simple(all_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
 	column_split = ifelse(clinical$Ecotype == "Unassigned", "Unassigned", "Assigned"),
 	width = unit(7, "in"), height = unit(4, "in"),
@@ -135,7 +134,7 @@ draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge
 tmp = dev.off()
 
 small_H = as.matrix(all_H[,match(clinical_filt$ID, colnames(all_H))])
-h = heatmap_simple(small_H, top_annotation = clinical, top_columns = top_cols, 
+h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
 	width = unit(5, "in"), height = unit(3, "in"),
 	legend_name = "State abundance",

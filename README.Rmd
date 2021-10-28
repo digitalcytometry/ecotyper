@@ -22,7 +22,22 @@ We have already defined cell states and ecotypes across **carcinomas** ([Luca/St
 
 ## Setup
 
-The latest version of EcoTyper source code can be found on [EcoTyper GitHub repository](https://github.com/digitalcytometry/ecotyper) and [Ecotyper website](https://ecotyper.stanford.edu/). To set up EcoTyper, please download this folder locally. 
+The latest version of EcoTyper source code can be found on [EcoTyper GitHub repository](https://github.com/digitalcytometry/ecotyper) and [Ecotyper website](https://ecotyper.stanford.edu/). To set up EcoTyper, please download this folder locally:
+
+```{bash, eval = F}
+git clone https://github.com/digitalcytometry/ecotyper
+cd ecotyper
+```
+
+or:
+
+```{bash, eval = F}
+wget https://github.com/digitalcytometry/ecotyper/archive/refs/heads/master.zip
+unzip master.zip
+cd ecotyper-master
+```
+
+
 
 ### Basic resources
 
@@ -47,7 +62,7 @@ The R packages listed below are required for running EcoTyper. The version numbe
 
 ## EcoTyper implementation
 
-EcoTyper is implemented in R. Some of the EcoTyper functions are computationally intensive, especially for the cell state discovery step described in Tutorials 4-6. Therefore, EcoTyper is designed as a collection of modular command-line R scripts, that can be run in parallel on a multi-processor server or a high-performance cluster. Each script is designed such that its instances can typically be run on a single core. 
+EcoTyper is a standalone software, implemented in R (not an R package). Some of the EcoTyper functions are computationally intensive, especially for the cell state discovery step described in Tutorials 4-6. Therefore, EcoTyper is designed as a collection of modular command-line R scripts, that can be run in parallel on a multi-processor server or a high-performance cluster. Each script is designed such that its instances can typically be run on a single core. 
 
 We provide wrappers over these scripts that encapsulate the typical EcoTyper workflows (*Tutorials 1-6*). These wrappers can be run on a multi-core system, and allow users to discover cell states and ecotypes in their own bulk, scRNA-seq and FACS-sorted data, as well as recover previously discovered cell states and ecotypes in bulk tissue expression profiles, spatial transcriptomics assays, and single-cell RNA-seq data.
 
@@ -80,7 +95,7 @@ We provide 6 tutorials illustrating these functionalities. The first three demon
   
   A schema of the tutorials is presented below:
   
- ```{r  echo = F, message=T, out.width = "100%", fig.align = 'center'}
+```{r  echo = F, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("utils/schema.png")
 ``` 
 

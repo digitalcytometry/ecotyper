@@ -96,20 +96,21 @@ clinical$AssignmentP = sapply(1:ncol(H), function(i) {
 	p_vals[which.max(H[,i]), i] 
 	})
 clinical$AssignmentQ = p.adjust(clinical$AssignmentP, method = "BH")
-clinical = clinical[order(clinical$MaxEcotype),]
+clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID
+clinical$Ecotype = ifelse((clinical$AssignmentQ < 0.25) & clinical$AssignedToEcotypeStates, as.character(clinical$MaxEcotype), "Unassigned")
 
+tmp = read_clinical(clinical$ID, dataset = dataset)
+to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
+to_rem = to_rem[to_rem != "ID"]
+tmp = tmp[,!colnames(tmp) %in% to_rem]
+clinical = merge(clinical, tmp, by = "ID", all.x = T)
+
+clinical = clinical[order(clinical$MaxEcotype),]
 H = H[,match(clinical$ID, colnames(H))]
 all_H = all_H[,match(clinical$ID, colnames(all_H))]
 all_H = all_H[match(ecotypes$ID, rownames(all_H)),]
 
-clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID
-clinical$Ecotype = ifelse((clinical$AssignmentQ < 0.25) & clinical$AssignedToEcotypeStates, as.character(clinical$MaxEcotype), "Unassigned")
-
 write.table(clinical, file.path(output_dir, "initial_ecotype_assignment.txt"), sep = "\t")
-
-tmp = read_clinical(clinical$ID, dataset = dataset)
-tmp = tmp[,!colnames(tmp) %in% colnames(clinical)]
-clinical = cbind(clinical, tmp)
 
 rownames(clinical) = clinical$ID
 rownames(ecotypes) = ecotypes$ID

@@ -166,8 +166,13 @@ clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID
 clinical$Ecotype = ifelse( clinical$AssignedToEcotypeStates, as.character(clinical$MaxEcotype), "Unassigned")
 clinical$Ecotype = factor(as.character(clinical$Ecotype), levels = c(levels(ecotypes$Ecotype), "Unassigned"))
 
-clinical = clinical[order(clinical$Ecotype),]
+tmp = read_clinical(clinical$ID, dataset = test_dataset, dataset_type =  "scRNA")
+to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
+to_rem = to_rem[to_rem != "ID"]
+tmp = tmp[,!colnames(tmp) %in% to_rem]
+clinical = merge(clinical, tmp, by = "ID", all.x = T)
 
+clinical = clinical[order(clinical$Ecotype),]
 H = H[,match(clinical$ID, colnames(H))]
 all_H = all_H[,match(clinical$ID, colnames(all_H))]
 all_H = all_H[match(ecotypes$ID, rownames(all_H)),]
@@ -175,11 +180,8 @@ all_H = all_H[match(ecotypes$ID, rownames(all_H)),]
 write.table(clinical, file.path(output_dir, "initial_ecotype_assignment.txt"), sep = "\t")
 
 clinical_filt = clinical[clinical$Ecotype != "Unassigned",]
+clinical_filt$Ecotype = factor(as.character(clinical_filt$Ecotype), levels = levels(ecotypes$Ecotype))
 write.table(clinical_filt, file.path(output_dir, "ecotype_assignment.txt"), sep = "\t")
-
-tmp = read_clinical(clinical$ID, dataset = test_dataset, dataset_type =  "scRNA")
-tmp = tmp[,!colnames(tmp) %in% colnames(clinical)]
-clinical = cbind(clinical, tmp)
 
 rownames(clinical) = clinical$ID
 rownames(ecotypes) = ecotypes$ID
