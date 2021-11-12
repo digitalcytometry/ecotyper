@@ -25,6 +25,9 @@ default :
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.975
+    #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for 
+    #discovering ecotypes in step 8. Default: 1 (no filtering).
+    Jaccard matrix p-value cutoff : 1
     
 
 

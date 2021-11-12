@@ -7,10 +7,16 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("discovery_scRNA_Lambrechts", "scRNA_specific_genes") 
+args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "0.05") 
 args = commandArgs(T)   
 dataset = args[1]
 fractions = args[2]
+p_val_cutoff = as.numeric(as.character(args[3]))
+
+if(is.na(p_val_cutoff))
+{
+	p_val_cutoff = 1
+}
 
 key_dir = file.path("../EcoTyper", dataset, fractions, "Analysis", "rank_selection")
 states_dir = file.path("../EcoTyper", dataset, fractions, "Cell_States", "discovery")
@@ -59,7 +65,6 @@ all_mapping$ID = paste(all_mapping$CellType, all_mapping$State, sep = "_")
 write.table(all_mapping, file.path(output_dir, "mapping_all_states.txt"), sep = "\t", row.names = F)
 
 casted = dcast(all_classes, ID ~ CellType + State, value.var = "Max")
-#jaccard = cor(casted[,-1], use = "complete.obs")
 clusters = t(casted[,-1])
 clusters[is.na(clusters)] = 0
 
@@ -76,10 +81,11 @@ for(i in 1:(nrow(clusters)))
 	{
 		int <- sum(clusters[i,] & clusters[j,])
 		idx <- int / (sum(clusters[i,]) + sum(clusters[j,]) - int)
-		p = 1 - phyper(int, sum(clusters[i,]), ncol(all_classes) - sum(clusters[i,]), sum(clusters[j,]))
-		if(is.na(p) | (p > 0.1)){
-			#idx = 0
-		}
+		
+		p = 1 - phyper(int, sum(clusters[i,]), ncol(clusters) - sum(clusters[i,]), sum(clusters[j,]))
+		if(is.na(p) | (p >= p_val_cutoff)){			
+			idx = 0
+		}		
 		jaccard[i, j] = jaccard[j, i] = idx
 	}
 }
@@ -90,8 +96,7 @@ write.table(jaccard, file.path(output_dir, "jaccard_matrix.txt"), sep = "\t")
 
 hclusCut <- function(x, k, ...) list(cluster = cutree(hclust(as.dist(1-x), method = "average", ...), k=k))
 choose_clusters <- function(data, name, range = 2:10)
-{
-	#gap = clusGap(jaccard, hclusCut, 50, B = 100) 
+{	
 	silh <- data.frame(K = range, Silhouette = sapply(range, function(k){
 		sil <<- silhouette(hclusCut(data, k)$cluster, as.dist(1-data))
 		tmp <<- summary(sil)
@@ -99,14 +104,12 @@ choose_clusters <- function(data, name, range = 2:10)
 	}))
 
 	g2 <- ggplot(silh, aes(x = K, y = Silhouette)) + 
-		geom_point() +
-		#ylab("Sparseness (coef)") + 
+		geom_point() +		
 		geom_line() + 
 		geom_vline(xintercept = silh[which.max(silh$Silhouette), 1], lty = 2, colour = "red") + 
 		theme_bw() +
 		theme(panel.grid = element_blank()) + 
-		theme(aspect.ratio = 1) 
-		#facet_wrap(CellType, ncol = 4) + 
+		theme(aspect.ratio = 1) 		
 		
 	pdf(file.path(output_dir, paste0("nclusters_", name, ".pdf")), width = 4, height = 4)
 	plot(g2)
@@ -118,7 +121,6 @@ choose_clusters <- function(data, name, range = 2:10)
 }
 hc = hclust(as.dist(1-jaccard), method = "average")
 n_clust = choose_clusters(jaccard, "jaccard", range = 2:(nrow(jaccard) - 1))
-#n_clust = 30
 clust =  hclusCut(jaccard, n_clust)$cluster
 
 sil = silhouette(clust, as.dist(1-jaccard))
@@ -139,7 +141,6 @@ top_ann = top_ann[order(top_ann$InitialEcotype),]
 write.table(top_ann, file.path(output_dir, "ecotypes.txt"), sep = "\t", row.names = F)
 
 jaccard = jaccard[match(top_ann$ID, rownames(jaccard)), match(top_ann$ID, rownames(jaccard))]
-
 
 top_ann$"Cell type" = top_ann$CellType
 diag(jaccard) = 1

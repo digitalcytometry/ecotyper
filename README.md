@@ -2546,32 +2546,34 @@ tutorial is available in `config_discovery_scRNA.yml`:
 
 ``` yaml
 default :
-  Input :
+  Input :    
     Discovery dataset name : "discovery_scRNA_CRC"
-    Expression matrix : "example_data/scRNA_CRC_data.txt"
-    Annotation file : "example_data/scRNA_CRC_annotation.txt"
+    Expression matrix : "example_data/scRNA_CRC_data.txt"    
+    Annotation file : "example_data/scRNA_CRC_annotation.txt" 
     Annotation file column to scale by : NULL
     Annotation file column(s) to plot : []
-
+    
   Output :
     Output folder : "DiscoveryOutput_scRNA"
 
   Pipeline settings :
     #Pipeline steps:
     #   step 1 (extract cell type specific genes)
-    #   step 2 (cell state discovery on correlation matrices)
+    #   step 2 (cell state discovery on correrlation matrices)
     #   step 3 (choosing the number of cell states)
     #   step 4 (extracting cell state information)
     #   step 5 (cell state re-discovery in expression matrices)
     #   step 6 (extracting information for re-discovered cell states)
     #   step 7 (cell state QC filter)
     #   step 8 (ecotype discovery)
-    Pipeline steps to skip : []
+    Pipeline steps to skip : [] 
     Filter non cell type specific genes : True
     Number of threads : 10
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
+    #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for discovering ecotypes in step 8. Default: 1 (no filtering).
+    Jaccard matrix p-value cutoff : 1
 ```
 
 The configuration file has three sections, *Input*, *Output* and
@@ -2808,6 +2810,26 @@ This field indicates the Cophenetic coefficient cutoff, in the range
 step 4. Lower values generally lead to more clusters being identified.
 In this particular example, we set it to 0.975.
 
+#### Jaccard matrix p-value cutoff
+
+``` yaml
+Jaccard matrix p-value cutoff : 1
+```
+
+Ecotype identification on step 8 is performed by clustering a jaccard
+matrix that quantifies the sample overlap between each pair of states.
+Prior to performing ecotype identification, the jaccard matrix values
+corresponding to pairs of states for which the sample overlap is not
+significant are set to 0, in order to mitigate the noise introduced by
+spurious overlaps. The value provided in this field specifies the
+p-value cutoff above which the overlaps are considered non-significant.
+When the number of samples in the scRNA-seq dataset is small, such as in
+the current example, we recommend this filter is disabled (p-value
+cutoff = 1), to avoid over-filtering the jaccard matrix. However, we
+encourage users to set this cutoff to lower values (e.g. 0.05), if the
+discovery scRNA-seq dataset contains a number of samples large enough to
+reliably evaluate the significance of overlaps.
+
 ### 5.4. The command line
 
 After editing the configuration file (`config_discovery_scRNA.yml`), the
@@ -2857,26 +2879,26 @@ data = read.delim("DiscoveryOutput_scRNA/Endothelial.cells/state_abundances.txt"
 dim(data)
 ```
 
-    ## [1]    9 1507
+    ## [1]    6 1500
 
 ``` r
 head(data[,1:5])
 ```
 
     ##     SMC01.T_ACCTTTACATGTTCCC SMC01.T_ACGAGGAAGTAACCCT SMC01.T_AGCAGCCCACCGTTGG
-    ## S01             2.414755e-14             2.455054e-14             7.090235e-01
-    ## S02             2.414755e-14             2.455054e-14             1.197760e-14
-    ## S03             7.179178e-02             4.619702e-02             2.102831e-01
-    ## S04             1.319392e-01             2.455054e-14             1.147989e-02
-    ## S05             2.414755e-14             2.455054e-14             1.197760e-14
-    ## S06             2.614053e-01             2.455054e-14             1.197760e-14
+    ## S01             1.809522e-14             2.136881e-14             7.665166e-01
+    ## S02             9.721682e-02             1.491434e-01             2.122379e-01
+    ## S03             1.809522e-14             3.899430e-07             7.628764e-15
+    ## S04             1.956508e-01             2.136881e-14             7.628764e-15
+    ## S05             5.539194e-07             5.458558e-02             7.628764e-15
+    ## S06             1.206487e-01             2.136881e-14             7.628764e-15
     ##     SMC01.T_AGCCTAAGTTACGTCA SMC01.T_CAACCAAAGACCACGA
-    ## S01             8.381902e-04             1.844651e-14
-    ## S02             2.887211e-14             1.844651e-14
-    ## S03             6.612869e-04             5.758410e-02
-    ## S04             2.887211e-14             1.844651e-14
-    ## S05             2.887211e-14             1.844651e-14
-    ## S06             2.887211e-14             1.895120e-02
+    ## S01             2.053200e-14             1.751463e-14
+    ## S02             1.202685e-03             1.396199e-01
+    ## S03             2.053200e-14             1.843738e-03
+    ## S04             2.053200e-14             5.263944e-03
+    ## S05             2.053200e-14             1.447458e-10
+    ## S06             2.053200e-14             3.038946e-01
 
 -   Assignment of samples in the discovery dataset to the cell state
     with the highest abundance. Only samples assigned to the cell states
@@ -2889,19 +2911,19 @@ data = read.delim("DiscoveryOutput_scRNA/Endothelial.cells/state_assignment.txt"
 dim(data)
 ```
 
-    ## [1] 987   3
+    ## [1] 884   3
 
 ``` r
 head(data)
 ```
 
-    ##                           ID State InitialState
-    ## 271 SMC01.T_AGCAGCCCACCGTTGG   S01         IS04
-    ## 272 SMC01.T_GAACATCCATGCTGGC   S01         IS04
-    ## 273 SMC02.T_CAGCGACTCATCGGAT   S01         IS04
-    ## 274 SMC02.T_GTACTTTGTGCCTGGT   S01         IS04
-    ## 275 SMC04.T_AGATTGCTCAGGTTCA   S01         IS04
-    ## 276 SMC04.T_AGGTCCGAGCAGCGTA   S01         IS04
+    ##                            ID State InitialState
+    ## 1408 SMC01.T_AGCAGCCCACCGTTGG   S01         IS08
+    ## 1409 SMC01.T_GAACATCCATGCTGGC   S01         IS08
+    ## 1410 SMC02.T_CAGCGACTCATCGGAT   S01         IS08
+    ## 1411 SMC02.T_GTACTTTGTGCCTGGT   S01         IS08
+    ## 1412 SMC04.T_AGATTGCTCAGGTTCA   S01         IS08
+    ## 1413 SMC04.T_AGGTCCGAGCAGCGTA   S01         IS08
 
 -   A heatmap illustrating the expression of genes used for cell state
     discovery, that have the highest fold-change in one of the cell
@@ -2927,13 +2949,13 @@ ecotypes = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotypes.txt")
 head(ecotypes[,c("CellType", "State", "Ecotype")])
 ```
 
-    ##      CellType State Ecotype
-    ## 1     B.cells   S06      E1
-    ## 2 CD4.T.cells   S02      E1
-    ## 3 CD8.T.cells   S03      E1
-    ## 4    NK.cells   S04      E1
-    ## 5 CD4.T.cells   S01      E2
-    ## 6 Fibroblasts   S03      E2
+    ##          CellType State Ecotype
+    ## 1         B.cells   S02      E1
+    ## 2         B.cells   S03      E1
+    ## 3     CD4.T.cells   S03      E1
+    ## 4     CD4.T.cells   S05      E1
+    ## 5     CD8.T.cells   S01      E1
+    ## 6 Dendritic.cells   S03      E1
 
 -   The number of initial clusters obtained by clustering the Jaccard
     index matrix, selected using the average silhouette:
@@ -2961,19 +2983,19 @@ abundances = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_abundance.txt")
 dim(abundances)
 ```
 
-    ## [1]  6 33
+    ## [1]  8 33
 
 ``` r
 head(abundances[,1:5])
 ```
 
-    ##       SMC01.N     SMC01.T    SMC02.N    SMC02.T   SMC03.N
-    ## E1 0.67731893 0.145731977 0.62135372 0.09384642 0.4011572
-    ## E2 0.01467598 0.236169770 0.08963470 0.52079368 0.1692382
-    ## E3 0.02668361 0.177497349 0.00000000 0.10133729 0.1692382
-    ## E4 0.02668361 0.074072761 0.22332713 0.15758682 0.0000000
-    ## E5 0.05336722 0.358398205 0.00000000 0.09441012 0.0000000
-    ## E6 0.20127065 0.008129937 0.06568445 0.03202567 0.2603664
+    ##       SMC01.N     SMC01.T    SMC02.N    SMC02.T    SMC03.N
+    ## E1 0.36529972 0.112226383 0.37694206 0.09568419 0.33846514
+    ## E2 0.00000000 0.289587824 0.04471845 0.23978498 0.05062341
+    ## E3 0.17417011 0.006599186 0.19479843 0.00000000 0.18775166
+    ## E4 0.02162737 0.137419014 0.00000000 0.40639166 0.03374894
+    ## E5 0.06658287 0.108632760 0.02630497 0.14700301 0.00000000
+    ## E6 0.06179247 0.201232624 0.03105448 0.11113616 0.00000000
 
 -   The assignment of samples in the discovery dataset to ecotypes. The
     samples not assigned to any ecotype are filtered out from this file:
@@ -2983,19 +3005,19 @@ assignments = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_assignment.txt"
 dim(assignments)
 ```
 
-    ## [1] 30 14
+    ## [1] 33 14
 
 ``` r
 head(assignments[,1:5])
 ```
 
-    ##              ID MaxEcotype AssignmentP AssignmentQ AssignedToEcotypeStates
-    ## SMC01-N SMC01-N         E1 0.005504474  0.03522863                    TRUE
-    ## SMC02-N SMC02-N         E1 0.038501847  0.11211857                    TRUE
-    ## SMC03-N SMC03-N         E1 0.575302222  0.57530222                    TRUE
-    ## SMC04-N SMC04-N         E1 0.082058338  0.13390359                    TRUE
-    ## SMC05-N SMC05-N         E1 0.018705756  0.07482302                    TRUE
-    ## SMC06-N SMC06-N         E1 0.041838426  0.11211857                    TRUE
+    ##              ID MaxEcotype  AssignmentP AssignmentQ AssignedToEcotypeStates
+    ## SMC01-N SMC01-N         E1 1.622561e-03 0.013493158                    TRUE
+    ## SMC02-N SMC02-N         E1 4.094496e-03 0.021837311                    TRUE
+    ## SMC05-N SMC05-N         E1 1.686645e-03 0.013493158                    TRUE
+    ## SMC08-N SMC08-N         E1 2.037793e-05 0.000326047                    TRUE
+    ## SMC01-T SMC01-T         E2 1.406832e-01 0.236940129                    TRUE
+    ## SMC06-T SMC06-T         E2 2.349589e-01 0.317642040                    TRUE
 
 -   A heatmap of cell state fractions across the samples assigned to
     ecotypes:

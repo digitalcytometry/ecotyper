@@ -40,6 +40,7 @@ nmf_restarts = config$"Pipeline settings"$"Number of NMF restarts"
 max_clusters = config$"Pipeline settings"$"Maximum number of states per cell type"
 cohpenetic_cutoff = config$"Pipeline settings"$"Cophenetic coefficient cutoff"
 skip_steps = config$"Pipeline settings"$"Pipeline steps to skip"
+p_value_cutoff = config$"Pipeline settings"$"Jaccard matrix p-value cutoff"
 
 suppressWarnings({
 	final_output = abspath(final_output)	
@@ -243,7 +244,7 @@ if(!7 %in% skip_steps)
 if(!8 %in% skip_steps)
 {
 	cat("\nStep 8 (ecotype discovery)...\n")
-	PushToJobQueue(paste("Rscript ecotypes_scRNA.R", discovery, fractions)) 
+	PushToJobQueue(paste("Rscript ecotypes_scRNA.R", discovery, fractions, p_value_cutoff)) 
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript ecotypes_assign_samples_scRNA.R", discovery, fractions, "State",paste(additional_columns, collapse = " "))) 
 	cat("Step 8 (ecotype discovery) finished successfully!\n")

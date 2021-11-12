@@ -1018,32 +1018,34 @@ This script takes as input file a configuration file in [YAML](https://yaml.org/
 
 ```{cat, class.source='yaml'}
 default :
-  Input :
+  Input :    
     Discovery dataset name : "discovery_scRNA_CRC"
-    Expression matrix : "example_data/scRNA_CRC_data.txt"
-    Annotation file : "example_data/scRNA_CRC_annotation.txt"
+    Expression matrix : "example_data/scRNA_CRC_data.txt"    
+    Annotation file : "example_data/scRNA_CRC_annotation.txt" 
     Annotation file column to scale by : NULL
     Annotation file column(s) to plot : []
-
+    
   Output :
     Output folder : "DiscoveryOutput_scRNA"
 
   Pipeline settings :
     #Pipeline steps:
     #   step 1 (extract cell type specific genes)
-    #   step 2 (cell state discovery on correlation matrices)
+    #   step 2 (cell state discovery on correrlation matrices)
     #   step 3 (choosing the number of cell states)
     #   step 4 (extracting cell state information)
     #   step 5 (cell state re-discovery in expression matrices)
     #   step 6 (extracting information for re-discovered cell states)
     #   step 7 (cell state QC filter)
     #   step 8 (ecotype discovery)
-    Pipeline steps to skip : []
+    Pipeline steps to skip : [] 
     Filter non cell type specific genes : True
     Number of threads : 10
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
+    #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for discovering ecotypes in step 8. Default: 1 (no filtering).
+    Jaccard matrix p-value cutoff : 1
 ```
 
 The configuration file has three sections, *Input*, *Output* and *Pipeline settings*. We next will describe the expected content in each of these three sections, and instruct the user how to set the appropriate settings in their applications.
@@ -1175,6 +1177,14 @@ Cophenetic coefficient cutoff : 0.975
 ```
 
 This field indicates the Cophenetic coefficient cutoff, in the range [0, 1], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified. In this particular example, we set it to 0.975.
+
+#### Jaccard matrix p-value cutoff
+
+```{cat, class.source='yaml'}
+Jaccard matrix p-value cutoff : 1
+```
+
+Ecotype identification on step 8 is performed by clustering a jaccard matrix that quantifies the sample overlap between each pair of states. Prior to performing ecotype identification, the jaccard matrix values corresponding to pairs of states for which the sample overlap is not significant are set to 0, in order to mitigate the noise introduced by spurious overlaps. The value provided in this field specifies the p-value cutoff above which the overlaps are considered non-significant. When the number of samples in the scRNA-seq dataset is small, such as in the current example, we recommend this filter is disabled (p-value cutoff = 1), to avoid over-filtering the jaccard matrix. However, we encourage users to set this cutoff to lower values (e.g. 0.05), if the discovery scRNA-seq dataset contains a number of samples large enough to reliably evaluate the significance of overlaps.
 
 ### 5.4. The command line
 

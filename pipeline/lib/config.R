@@ -2,7 +2,7 @@ library(data.table)
 check_discovery_configuration <- function(config){
 	input_mat = config$Input$"Expression matrix"
 	discovery = config$Input$"Discovery dataset name"
-	annotation = config$Input$"Annotation file"
+	annotation = config$Input$"Annotation file"	
 	output_dir = file.path("datasets/discovery", discovery)
 
 	if(!file.exists(input_mat))
@@ -32,6 +32,7 @@ check_discovery_configuration_scRNA <- function(config){
 	input_mat = config$Input$"Expression matrix"
 	discovery = config$Input$"Discovery dataset name"
 	annotation = config$Input$"Annotation file"
+	p_value_cutoff = as.numeric(as.character(config$"Pipeline settings"$"Jaccard matrix p-value cutoff"))
 	output_dir = file.path("datasets/discovery", discovery)
 
 	if(!file.exists(input_mat))
@@ -39,6 +40,12 @@ check_discovery_configuration_scRNA <- function(config){
 		stop(paste0("Input format error: Input file '", input_mat, "' is missing!"))
 	}
 	
+	if(length(p_value_cutoff) == 0 || is.na(p_value_cutoff) || p_value_cutoff <= 0 || p_value_cutoff >1)
+	{
+		
+		stop(paste0("The p-value cutoff in field 'Jaccard matrix p-value cutoff' needs to be a number in the iterval (0,1]. Value provided:", p_value_cutoff, "."))
+	}
+
 	mat = fread(input_mat, sep = "\t", nrows = 5)
 	if(ncol(mat) < 2)
 	{
