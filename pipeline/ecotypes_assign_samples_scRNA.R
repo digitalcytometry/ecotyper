@@ -7,13 +7,12 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("discovery_scRNA_lung", "Cell_type_specific_genes", "Ecotype")
+args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "Ecotype")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
 fraction_processing = args[3]
 top_cols = args[4:length(args)]
-
 
 if(is.na(top_cols[1]))
 {
@@ -52,8 +51,7 @@ for(cell_type in key[,1])
 		spl$Max= ifelse(which.max(spl$Freq) == spl$Freq, 1, 0)
 		spl
 		}))
-	classes$CellType = cell_type
-	
+	classes$CellType = cell_type		
 	H = dcast(classes, State~ID, value.var = "Frac")
 	rownames(H)  = H[,1]
 	H = H[,-1]
@@ -61,8 +59,10 @@ for(cell_type in key[,1])
 	H =H[match(mapping$InitialState, rownames(H)),]
 	rownames(H) = mapping$State
 
-	rownames(H) = paste0(cell_type, "_", rownames(H))
-	all_H = rbind(all_H, H)
+	rownames(H) = paste0(cell_type, "_", rownames(H))	
+	keep_rowname = c(rownames(all_H), rownames(H))
+	all_H = rbind.fill(all_H, H)
+	rownames(all_H) = keep_rowname
 
 	classes = as.data.frame(apply(H_raw, 2, function(x) {
 		idx = which.max(x)
@@ -158,11 +158,11 @@ clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID
 clinical$Ecotype = ifelse( clinical$AssignedToEcotypeStates, as.character(clinical$MaxEcotype), "Unassigned")
 clinical$Ecotype = factor(as.character(clinical$Ecotype), levels = c(levels(ecotypes$Ecotype), "Unassigned"))
 
-tmp = read_clinical(clinical$ID, dataset = dataset)
-to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
-to_rem = to_rem[to_rem != "ID"]
-tmp = tmp[,!colnames(tmp) %in% to_rem]
-clinical = merge(clinical, tmp, by = "ID", all.x = T)
+#tmp = read_clinical(clinical$ID, dataset = dataset)
+#to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
+#to_rem = to_rem[to_rem != "ID"]
+#tmp = tmp[,!colnames(tmp) %in% to_rem]
+#clinical = merge(clinical, tmp, by = "ID", all.x = T)
 
 clinical = clinical[order(clinical$Ecotype),]
 H = H[,match(clinical$ID, colnames(H))]
@@ -179,14 +179,14 @@ h <- heatmap_simple(all_H, top_annotation = clinical, top_columns = top_cols,
 	column_split = ifelse(clinical$Ecotype == "Unassigned", "Unassigned", "Assigned"),
 	width = unit(7, "in"), height = unit(4, "in"),
 	legend_name = "State abundance",
-	color_range = seq(0, quantile(as.matrix(all_H), .9, na.rm = T), length.out = 8), color_palette = c("white", viridis(8)), raster_quality = 5)
+	color_range = seq(0, quantile(as.matrix(all_H), .9, na.rm = T), length.out = 8), color_palette = c("gray", viridis(8)), raster_quality = 5)
 
 pdf(file.path(output_dir, "heatmap_all_samples.pdf"), width = 12, height = 7)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 tmp = dev.off()
 
 clinical_filt = clinical[clinical$Ecotype != "Unassigned",]
-clinical_filt$Ecotype = ecotype_to_factor(clinical_filt$Ecotype)
+clinical_filt$Ecotype = factor(as.character(clinical_filt$Ecotype), levels = levels(ecotypes$Ecotype))
 clinical_filt = clinical_filt[order(clinical_filt$Ecotype),]
 write.table(clinical_filt, file.path(output_dir, "ecotype_assignment.txt"), sep = "\t")
 small_H = as.matrix(all_H[,match(clinical_filt$ID, colnames(all_H))])

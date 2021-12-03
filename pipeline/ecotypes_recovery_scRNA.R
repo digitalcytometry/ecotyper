@@ -7,7 +7,7 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("Carcinoma", "Carcinoma_Fractions", "scRNA_")
+args = c("Carcinoma", "Carcinoma_Fractions", "scRNA_CRC_data")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -60,16 +60,21 @@ for(cell_type in key[,1])
 		spl
 		}))
 	classes$CellType = cell_type
-	
+	if(cell_type == "B.cells")
+	{
+		classes = classes[classes$ID != "SMC14-T",]
+	}
+
 	H = dcast(classes, State~ID, value.var = "Frac")
 	rownames(H)  = H[,1]
 	H = H[,-1]
 	H_raw = H
 	H =H[match(mapping$InitialState, rownames(H)),]
 	rownames(H) = mapping$State
-
 	rownames(H) = paste0(cell_type, "_", rownames(H))
-	all_H = rbind(all_H, H)
+	keep_rowname = c(rownames(all_H), rownames(H))
+	all_H = rbind.fill(all_H, H)
+	rownames(all_H) = keep_rowname
 
 	classes = as.data.frame(apply(H_raw, 2, function(x) {
 		idx = which.max(x)
@@ -80,8 +85,8 @@ for(cell_type in key[,1])
 			rownames(H_raw)[idx]
 		}
 		
-	}
-		))
+	}))
+	
 	classes_raw = data.frame(ID = rownames(classes), InitialState = classes[,1])
 	classes_raw = classes_raw[classes_raw$InitialState %in% mapping$InitialState,]
 	classes_raw$State = mapping[match(classes_raw$InitialState, mapping$InitialState), "State"]

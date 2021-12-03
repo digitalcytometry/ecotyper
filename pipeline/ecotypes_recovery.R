@@ -104,7 +104,7 @@ clinical$Ecotype = factor(as.character(clinical$Ecotype), levels = c(levels(ecot
 tmp = read_clinical(clinical$ID, dataset = test_dataset, dataset_type = "bulk")
 to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
 to_rem = to_rem[to_rem != "ID"]
-tmp = tmp[,!colnames(tmp) %in% to_rem]
+tmp = tmp[,!colnames(tmp) %in% to_rem, drop = F]
 clinical = merge(clinical, tmp, by = "ID", all.x = T)
 
 clinical = clinical[order(clinical$Ecotype),]
