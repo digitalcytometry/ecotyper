@@ -60,11 +60,7 @@ for(cell_type in key[,1])
 		spl
 		}))
 	classes$CellType = cell_type
-	if(cell_type == "B.cells")
-	{
-		classes = classes[classes$ID != "SMC14-T",]
-	}
-
+	
 	H = dcast(classes, State~ID, value.var = "Frac")
 	rownames(H)  = H[,1]
 	H = H[,-1]
@@ -86,7 +82,7 @@ for(cell_type in key[,1])
 		}
 		
 	}))
-	
+
 	classes_raw = data.frame(ID = rownames(classes), InitialState = classes[,1])
 	classes_raw = classes_raw[classes_raw$InitialState %in% mapping$InitialState,]
 	classes_raw$State = mapping[match(classes_raw$InitialState, mapping$InitialState), "State"]
