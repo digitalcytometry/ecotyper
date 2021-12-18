@@ -725,8 +725,8 @@ Rscript EcoTyper_recovery_scRNA.R -h
 ```
 
     ## usage: EcoTyper_recovery_scRNA.R [-d <character>] [-m <PATH>] [-a <PATH>]
-    ##                                  [-c <character>] [-z <bool>] [-t <integer>]
-    ##                                  [-o <PATH>] [-h]
+    ##                                  [-c <character>] [-z <bool>] [-s <integer>]
+    ##                                  [-t <integer>] [-o <PATH>] [-h]
     ## 
     ## Arguments:
     ##   -d <character>, --discovery <character>
@@ -779,6 +779,11 @@ Rscript EcoTyper_recovery_scRNA.R -h
     ##                         quantification procedure should be run. Note that this
     ##                         procedure might be slow, as the NMF model is applied
     ##                         30 times on the same dataset. [default: 'FALSE']
+    ##   -s <integer>, --subsample <integer>
+    ##                         An integer specifying the number of cells each cell
+    ##                         type will be downsampled to. For values <50, no
+    ##                         downsampling will be performed. [default: '-1' (no
+    ##                         downsampling)]
     ##   -t <integer>, --threads <integer>
     ##                         Number of threads. [default: '10']
     ##   -o <PATH>, --output <PATH>
@@ -884,6 +889,10 @@ head(data)
     significantly recovered in a given dataset. Please note that this
     procedure can be very slow, as the NMF model is applied 30 times on
     the same dataset.
+
+-   *-s*/*–subsample*: An integer specifying the number of cells each
+    cell type will be downsampled to. For values \<50, no downsampling
+    will be performed. Default: -1 (no downsampling).
 
 -   *-t*/*–threads*: Number of threads. Default: 10.
 
@@ -1010,8 +1019,8 @@ Rscript EcoTyper_recovery_scRNA.R -h
 ```
 
     ## usage: EcoTyper_recovery_scRNA.R [-d <character>] [-m <PATH>] [-a <PATH>]
-    ##                                  [-c <character>] [-z <bool>] [-t <integer>]
-    ##                                  [-o <PATH>] [-h]
+    ##                                  [-c <character>] [-z <bool>] [-s <integer>]
+    ##                                  [-t <integer>] [-o <PATH>] [-h]
     ## 
     ## Arguments:
     ##   -d <character>, --discovery <character>
@@ -1064,6 +1073,11 @@ Rscript EcoTyper_recovery_scRNA.R -h
     ##                         quantification procedure should be run. Note that this
     ##                         procedure might be slow, as the NMF model is applied
     ##                         30 times on the same dataset. [default: 'FALSE']
+    ##   -s <integer>, --subsample <integer>
+    ##                         An integer specifying the number of cells each cell
+    ##                         type will be downsampled to. For values <50, no
+    ##                         downsampling will be performed. [default: '-1' (no
+    ##                         downsampling)]
     ##   -t <integer>, --threads <integer>
     ##                         Number of threads. [default: '10']
     ##   -o <PATH>, --output <PATH>
@@ -1149,6 +1163,10 @@ head(data)
     significantly recovered in a given dataset. Please note that this
     procedure can be very slow, as the NMF model is applied 30 times on
     the same dataset.
+
+-   *-s*/*–subsample*: An integer specifying the number of cells each
+    cell type will be downsampled to. For values \<50, no downsampling
+    will be performed. Default: -1 (no downsampling).
 
 -   *-t*/*–threads*: Number of threads. Default: 10.
 

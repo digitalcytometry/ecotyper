@@ -23,6 +23,8 @@ arguments$add_argument("-c", "--columns",  type = "character",  metavar="<charac
     help="A comma-spearated list of column names from the annotation file to be plotted as color bar in the output heatmaps. [default: '%(default)s']")
 arguments$add_argument("-z", "--z-score",  type = "character",  metavar="<bool>", default="FALSE", 
     help="A flag indicating whether the significance quantification procedure should be run. Note that this procedure might be slow, as the NMF model is applied 30 times on the same dataset. [default: '%(default)s']")
+arguments$add_argument("-s", "--subsample",  type = "integer",  metavar="<integer>", default=-1, 
+    help="An integer specifying the number of cells each cell type will be downsampled to. For values <50, no downsampling will be performed. [default: '%(default)s' (no downsampling)]")
 arguments$add_argument("-t", "--threads",  type = "integer",  metavar="<integer>", default=10, 
     help="Number of threads. [default: '%(default)s']")
 arguments$add_argument("-o", "--output", type = "character",  metavar="<PATH>", default="RecoveryOutput",
@@ -44,6 +46,7 @@ annotation_path = normalizePath(args$annotation)
 columns = args$columns
 z_flag = as.logical(args$z)
 n_threads = as.numeric(args$threads)
+subsample = as.integer(args$subsample)
 
 if(!file.exists(input_mat))
 {
@@ -146,7 +149,7 @@ if(nrow(key) == 0)
 for(cell_type in key[,1])
 {
     n_states = key[key[,1] == cell_type, 2]
-    PushToJobQueue((paste("Rscript state_recovery_scRNA.R", discovery, fractions, cell_type, n_states, recovery, z_flag, paste(additional_columns, collapse = " ")))) 
+    PushToJobQueue((paste("Rscript state_recovery_scRNA.R", discovery, fractions, cell_type, n_states, recovery, z_flag, subsample, paste(additional_columns, collapse = " ")))) 
 }   
 RunJobQueue()
 

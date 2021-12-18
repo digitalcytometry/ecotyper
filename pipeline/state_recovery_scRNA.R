@@ -7,7 +7,7 @@ source("lib/scRNA.R")
 source("lib/ecotyper.R")
 })
 
-args = c("Carcinoma", "Carcinoma_Fractions", "Epithelial.cells", "8", "single_cell_test_data", "FALSE")
+args = c("Carcinoma", "Carcinoma_Fractions", "Epithelial.cells", "8", "scRNA_CRC_data", "FALSE", "100")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -15,7 +15,8 @@ cell_type = args[3]
 n_states = args[4]
 scRNA_dataset = args[5]
 calculate_significance_flag = as.logical(args[6])
-top_cols = args[7:length(args)]
+subsample = as.integer(args[7])
+top_cols = args[8:length(args)]
 
 cat(paste0("Running cell state recovery on cell type: ", cell_type, "...\n"))
 
@@ -24,6 +25,11 @@ n_bootstraps = 10
 if(is.na(top_cols[1]))
 {
 	top_cols = c("State")
+}
+
+if(is.na(subsample))
+{
+	subsample = -1
 }
 
 states_dir = file.path("../EcoTyper", dataset, fractions, "Cell_States", "discovery", cell_type, n_states) 
@@ -46,10 +52,16 @@ data = data[match(initial_gene_info$Gene, rownames(data)),]
 rownames(data) = initial_gene_info$Gene
 data[is.na(data)] = 0
 
-if(ncol(data) > 2500)
+if(ncol(data) > 2500 && subsample < 50)
 {
+	warning(paste0("More than 2500 cells are available for cell type '", cell_type, "'. State recovery might take a long time. We recommend using the option -s to downsample the data..."))
+}
+
+if(subsample >= 50 && ncol(data) > subsample)
+{
+	cat(paste0("Downsampling cell type '", cell_type, "' to ", subsample, " cells...\n"))
 	set.seed(1234)
-	data = data[,sample(1:ncol(data), 2500)]
+	data = data[,sample(1:ncol(data), subsample)]
 	scRNA_clinical = scRNA_clinical[match(colnames(data), scRNA_clinical$ID),]
 }
 
