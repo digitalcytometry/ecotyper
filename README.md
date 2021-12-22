@@ -175,8 +175,8 @@ types:
     Bulk Expression
     Data](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)
 -   [**Tutorial 5:** *De novo* Discovery of Cell States and Ecotypes in
-    scRNA-seq
-    Data](#tutorial-5-de-novo-discovery-of-cell-states-and-ecotypes-in-scrna-seq-data)
+    **scRNA-seq
+    Data**](#tutorial-5-de-novo-discovery-of-cell-states-and-ecotypes-in-scrna-seq-data)
 -   [**Tutorial 6.** *De novo* Discovery of Cell States and Ecotypes in
     Pre-Sorted
     Data](#tutorial-6-de-novo-discovery-of-cell-states-and-ecotypes-in-pre-sorted-data)

@@ -97,7 +97,7 @@ We provide 6 tutorials illustrating these functionalities. The first three demon
   * [**Tutorial 2:** Recovery of Cell States and Ecotypes in User-Provided scRNA-seq Data](#tutorial-2-recovery-of-cell-states-and-ecotypes-in-user-provided-scrna-seq-data)
   * [**Tutorial 3:** Recovery of Cell States and Ecotypes in Visium Spatial Gene Expression Data](#tutorial-3-recovery-of-cell-states-and-ecotypes-in-spatial-transcriptomics-data)
   * [**Tutorial 4:** *De novo* Discovery of Cell States and Ecotypes in Bulk Expression Data](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)
-  * [**Tutorial 5:** *De novo* Discovery of Cell States and Ecotypes in scRNA-seq Data](#tutorial-5-de-novo-discovery-of-cell-states-and-ecotypes-in-scrna-seq-data)
+  * [**Tutorial 5:** *De novo* Discovery of Cell States and Ecotypes in **scRNA-seq Data**](#tutorial-5-de-novo-discovery-of-cell-states-and-ecotypes-in-scrna-seq-data)
   * [**Tutorial 6.** *De novo* Discovery of Cell States and Ecotypes in Pre-Sorted Data](#tutorial-6-de-novo-discovery-of-cell-states-and-ecotypes-in-pre-sorted-data)
   
   A schema of the tutorials is presented below:
