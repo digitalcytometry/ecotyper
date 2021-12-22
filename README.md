@@ -14,8 +14,21 @@ large B cell lymphoma (DLBCL)** ([Steen/Luca et al., Cancer Cell
 of EcoTyper allows users to recover the cell states and ecotypes for
 these two tumor categories in their own data. Additionally, it allows
 users to discover and recover cell states and ecotypes in their system
-of interest, including **directly** from scRNA-seq data (see Tutorial
-5). Below we illustrate each of these functionalities.
+of interest, including **directly** from scRNA-seq data (see [Tutorial
+5](#tutorial-5-de-novo-discovery-of-cell-states-and-ecotypes-in-scrna-seq-data)).
+Below we illustrate each of these functionalities.
+
+## Citation
+
+If EcoTyper software, data, and/or website are used in your publication,
+please cite the following paper(s):
+
+-   [Luca/Steen et al., Cell
+    2021](https://doi.org/10.1016/j.cell.2021.09.014) (detailed
+    description of EcoTyper and application to carcinomas).
+-   [Steen/Luca et al., Cancer Cell
+    2021](https://doi.org/10.1016/j.ccell.2021.08.011) (application of
+    EcoTyper to lymphoma).
 
 ## Setup
 
@@ -68,9 +81,12 @@ section are needed for analyses described in Tutorials 3 and 4.
 ### Additional resources
 
 For some use cases, such as cell state and ecotype recovery in spatial
-transcriptomics assays (Tutorial 3) and *de novo* identification of cell
-states and ecotypes from bulk expression data (Tutorial 4), EcoTyper
-relies on CIBERSORTx ([Newman et al., Nature Biotechnology
+transcriptomics assays ([Tutorial
+3](#tutorial-3-recovery-of-cell-states-and-ecotypes-in-spatial-transcriptomics-data))
+and *de novo* identification of cell states and ecotypes from bulk
+expression data ([Tutorial
+4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)),
+EcoTyper relies on CIBERSORTx ([Newman et al., Nature Biotechnology
 2019](https://www.nature.com/articles/s41587-019-0114-2), a digital
 cytometry framework for enumerating cell types in bulk data and
 performing *in silico* deconvolution of cell type specific expression
@@ -146,18 +162,24 @@ performed with various input types. The last three demonstrate how the
 recovery of cell states and ecotypes can be performed with various input
 types:
 
--   **Tutorial 1:** Recovery of Cell States and Ecotypes in
-    User-Provided Bulk Data
--   **Tutorial 2:** Recovery of Cell States and Ecotypes in
-    User-Provided scRNA-seq Data
--   **Tutorial 3:** Recovery of Cell States and Ecotypes in Visium
-    Spatial Gene Expression Data
--   **Tutorial 4:** *De novo* Discovery of Cell States and Ecotypes in
-    Bulk Expression Data
--   **Tutorial 5:** *De novo* Discovery of Cell States and Ecotypes in
-    scRNA-seq Data
--   **Tutorial 6.** *De novo* Discovery of Cell States and Ecotypes in
-    Pre-Sorted Data
+-   [**Tutorial 1:** Recovery of Cell States and Ecotypes in
+    User-Provided Bulk
+    Data](#tutorial-1-recovery-of-cell-states-and-ecotypes-in-user-provided-bulk-data)
+-   [**Tutorial 2:** Recovery of Cell States and Ecotypes in
+    User-Provided scRNA-seq
+    Data](#tutorial-2-recovery-of-cell-states-and-ecotypes-in-user-provided-scrna-seq-data)
+-   [**Tutorial 3:** Recovery of Cell States and Ecotypes in Visium
+    Spatial Gene Expression
+    Data](#tutorial-3-recovery-of-cell-states-and-ecotypes-in-spatial-transcriptomics-data)
+-   [**Tutorial 4:** *De novo* Discovery of Cell States and Ecotypes in
+    Bulk Expression
+    Data](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)
+-   [**Tutorial 5:** *De novo* Discovery of Cell States and Ecotypes in
+    scRNA-seq
+    Data](#tutorial-5-de-novo-discovery-of-cell-states-and-ecotypes-in-scrna-seq-data)
+-   [**Tutorial 6.** *De novo* Discovery of Cell States and Ecotypes in
+    Pre-Sorted
+    Data](#tutorial-6-de-novo-discovery-of-cell-states-and-ecotypes-in-pre-sorted-data)
 
 A schema of the tutorials is presented below:
 
@@ -629,8 +651,10 @@ head(data[,c("ID", "State")])
     ## 6 MS2010072040   S01
 
 -   Two heatmaps: the heatmap representing the expression of “marker”
-    genes for each state (See Tutorial 3 for more details) in the
-    discovery dataset and in the user-provided bulk dataset:
+    genes for each state (See [Tutorial
+    3](#tutorial-3-recovery-of-cell-states-and-ecotypes-in-spatial-transcriptomics-data)
+    for more details) in the discovery dataset and in the user-provided
+    bulk dataset:
 
 ``` r
 knitr::include_graphics("RecoveryOutput/bulk_lymphoma_data/B.cells/state_assignment_heatmap.png")
@@ -925,10 +949,11 @@ head(data[,c("ID", "State")])
     ## 6 SMC20.T_GTTACAGTCGCGTTTC   S01
 
 -   Two heatmaps: a heatmap representing the expression of cell state
-    marker genes (see Tutorial 4 for more details) in the discovery
-    dataset, and a heatmap with the expression of the same marker genes
-    in the scRNA-seq dataset, smoothed to mitigate the impact of
-    scRNA-seq dropout:
+    marker genes (see [Tutorial
+    4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)
+    for more details) in the discovery dataset, and a heatmap with the
+    expression of the same marker genes in the scRNA-seq dataset,
+    smoothed to mitigate the impact of scRNA-seq dropout:
 
 ``` r
 knitr::include_graphics("RecoveryOutput/scRNA_CRC_data/Fibroblasts/state_assignment_heatmap.png")
@@ -1390,15 +1415,18 @@ Recovery cell type fractions : "NULL"
 containing the cell type fraction estimations for each spot on the
 visium array. This field is ignored when the discovery dataset is
 *Carcinoma* or *Lymphoma* or when the discovery has been performed as
-described in *Tutorial 4*, using *Carcinoma_Fractions* or
-*Lymphoma_Fractions*. It is only used when users provided their own cell
-type fractions for deriving cell states and ecotypes in *Tutorial 4*. In
-this case, the user needs to provide a path to a tab-delimited file for
-this field. The file should contain in the first column the same sample
-names used as column names in the input expression matrix, and in the
-next columns, the cell type fractions for the same cell populations used
-for discovering cell states and ecotypes. These fractions should sum up
-to 1 for each row. An example of such a file is provided in:
+described in [*Tutorial
+4*](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data),
+using *Carcinoma_Fractions* or *Lymphoma_Fractions*. It is only used
+when users provided their own cell type fractions for deriving cell
+states and ecotypes in [*Tutorial
+4*](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data).
+In this case, the user needs to provide a path to a tab-delimited file
+for this field. The file should contain in the first column the same
+sample names used as column names in the input expression matrix, and in
+the next columns, the cell type fractions for the same cell populations
+used for discovering cell states and ecotypes. These fractions should
+sum up to 1 for each row. An example of such a file is provided in:
 
 ``` r
 data = read.delim("example_data/visium_fractions_example.txt", nrow = 5)
@@ -2422,7 +2450,8 @@ sequence of steps:
     Benjamini-Hochberg correction for multiple hypothesis correction)
     are filtered out from each cell type. Of note, this filter is not
     necessary when discovering cell states in cell type specific
-    profiles purified using CIBERSORTx high resolution (Tutorial 4).
+    profiles purified using CIBERSORTx high resolution ([Tutorial
+    4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)).
     CIBERSORTx incorporates its own filter for genes without evidence of
     expression in a given cell type.
 
@@ -3055,8 +3084,10 @@ populations of interest and then peforming bulk tissue expression
 profiling of each cell population, or by performing *in silico*
 purification, using CIBERSORTx or any other tool. For illustration
 purposes, we use the cell type specific profiles inferred by CIBERSORTx
-in Tutorial 4, based on a downsampled version of the TCGA samples from
-lung adenocarcinoma (LUAD) and lung squamous cell carcinoma (LUSC).
+in [Tutorial
+4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data),
+based on a downsampled version of the TCGA samples from lung
+adenocarcinoma (LUAD) and lung squamous cell carcinoma (LUSC).
 
 ### 6.1. Overview of the EcoTyper workflow for discovering cell states in pre-sorted data
 
@@ -3075,12 +3106,13 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
     Benjamini-Hochberg correction for multiple hypothesis correction)
     are filtered out from each cell type. Of note, this filter is not
     necessary when discovering cell states in cell type specific
-    profiles purified using CIBERSORTx high resolution (e.g. Tutorial
-    4), as CIBERSORTx incorporates its own filter for genes without
-    evidence of expression in a given cell type. We do recommend
-    applying it if cell type specific profiles were obtained through
-    FACS-sorting or other deconvolution tool that does not filter for
-    cell type specific genes.
+    profiles purified using CIBERSORTx high resolution (e.g. [Tutorial
+    4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)),
+    as CIBERSORTx incorporates its own filter for genes without evidence
+    of expression in a given cell type. We do recommend applying it if
+    cell type specific profiles were obtained through FACS-sorting or
+    other deconvolution tool that does not filter for cell type specific
+    genes.
 
 2.  **Cell state discovery**: EcoTyper leverages nonnegative matrix
     factorization (NMF) to identify transcriptionally-defined cell
@@ -3443,11 +3475,12 @@ Flag indicated whether to apply the filter for cell type specific genes
 in step 1, outlined in section *Overview of the EcoTyper workflow for
 discovering cell states*. This filter is not necessary when discovering
 cell states in cell type specific profiles purified using CIBERSORTx
-high resolution (e.g. Tutorial 4), as CIBERSORTx incorporates its own
-filter for genes without evidence of expression in a given cell type. We
-do recommend applying it if cell type specific profiles were obtained
-through FACS-sorting or other deconvolution tool that does not filter
-for cell type specific genes.
+high resolution (e.g. [Tutorial
+4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)),
+as CIBERSORTx incorporates its own filter for genes without evidence of
+expression in a given cell type. We do recommend applying it if cell
+type specific profiles were obtained through FACS-sorting or other
+deconvolution tool that does not filter for cell type specific genes.
 
 We set it to False in this tutorial, as the input matrices were obtained
 using CIBERSORTx.
