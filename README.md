@@ -2916,36 +2916,34 @@ knitr::include_graphics("DiscoveryOutput_scRNA/rank_plot.png")
 <img src="DiscoveryOutput_scRNA/rank_plot.png" width="100%" style="display: block; margin: auto;" />
 
 -   For each cell type, the following outputs, exemplified here for
-    endothelial cells, are produced:
+    fibroblasts, are produced:
 
     -   Abundances of cell states remaining after the QC filters in
         steps 6 and 7 (if run), across samples in the discovery dataset:
 
 ``` r
-data = read.delim("DiscoveryOutput_scRNA/Endothelial.cells/state_abundances.txt")
+data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_abundances.txt")
 dim(data)
 ```
 
-    ## [1]    6 1500
+    ## [1]    5 1500
 
 ``` r
 head(data[,1:5])
 ```
 
-    ##     SMC01.T_ACCTTTACATGTTCCC SMC01.T_ACGAGGAAGTAACCCT SMC01.T_AGCAGCCCACCGTTGG
-    ## S01             1.809522e-14             2.136881e-14             7.665166e-01
-    ## S02             9.721682e-02             1.491434e-01             2.122379e-01
-    ## S03             1.809522e-14             3.899430e-07             7.628764e-15
-    ## S04             1.956508e-01             2.136881e-14             7.628764e-15
-    ## S05             5.539194e-07             5.458558e-02             7.628764e-15
-    ## S06             1.206487e-01             2.136881e-14             7.628764e-15
-    ##     SMC01.T_AGCCTAAGTTACGTCA SMC01.T_CAACCAAAGACCACGA
-    ## S01             2.053200e-14             1.751463e-14
-    ## S02             1.202685e-03             1.396199e-01
-    ## S03             2.053200e-14             1.843738e-03
-    ## S04             2.053200e-14             5.263944e-03
-    ## S05             2.053200e-14             1.447458e-10
-    ## S06             2.053200e-14             3.038946e-01
+    ##     SMC01.T_AAAGTAGAGTGGTAGC SMC01.T_ACACCCTGTTGGTAAA SMC01.T_ACATCAGTCGCCTGAG
+    ## S01             2.074345e-14             4.262766e-02             1.352784e-14
+    ## S02             2.074345e-14             3.332167e-01             3.957569e-01
+    ## S03             2.781436e-02             1.204917e-02             1.706085e-01
+    ## S04             2.074345e-14             9.441681e-13             1.352784e-14
+    ## S05             2.074345e-14             6.121064e-01             7.391235e-02
+    ##     SMC01.T_ACTATCTAGCTAGTCT SMC01.T_ACTGATGAGCACCGCT
+    ## S01             5.529717e-02             1.022447e-14
+    ## S02             2.081811e-14             1.805516e-01
+    ## S03             3.519208e-02             6.787254e-01
+    ## S04             2.081811e-14             1.022447e-14
+    ## S05             2.081811e-14             7.112757e-02
 
 -   Assignment of samples in the discovery dataset to the cell state
     with the highest abundance. Only samples assigned to the cell states
@@ -2954,23 +2952,23 @@ head(data[,1:5])
     from this table:
 
 ``` r
-data = read.delim("DiscoveryOutput_scRNA/Endothelial.cells/state_assignment.txt")
+data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_assignment.txt")
 dim(data)
 ```
 
-    ## [1] 884   3
+    ## [1] 899   3
 
 ``` r
 head(data)
 ```
 
-    ##                            ID State InitialState
-    ## 1408 SMC01.T_AGCAGCCCACCGTTGG   S01         IS08
-    ## 1409 SMC01.T_GAACATCCATGCTGGC   S01         IS08
-    ## 1410 SMC02.T_CAGCGACTCATCGGAT   S01         IS08
-    ## 1411 SMC02.T_GTACTTTGTGCCTGGT   S01         IS08
-    ## 1412 SMC04.T_AGATTGCTCAGGTTCA   S01         IS08
-    ## 1413 SMC04.T_AGGTCCGAGCAGCGTA   S01         IS08
+    ##                           ID State InitialState
+    ## 723 SMC15.T_CATCGAAGTGACCAAG   S01         IS05
+    ## 724 SMC18.T_CTTGGCTCAGTGACAG   S01         IS05
+    ## 725 SMC24.T_TACTTACAGCGCCTTG   S01         IS05
+    ## 726 SMC01.N_CACCAGGCAATAAGCA   S01         IS05
+    ## 727 SMC02.N_AGAGCTTTCTAACCGA   S01         IS05
+    ## 728 SMC02.N_ATAACGCCAATACGCT   S01         IS05
 
 -   A heatmap illustrating the expression of genes used for cell state
     discovery, that have the highest fold-change in one of the cell
@@ -2981,10 +2979,10 @@ head(data)
     plot*, in addition to cell state labels always plotted:
 
 ``` r
-knitr::include_graphics("DiscoveryOutput_scRNA/Endothelial.cells/state_assignment_heatmap.png")
+knitr::include_graphics("DiscoveryOutput_scRNA/Fibroblasts/state_assignment_heatmap.png")
 ```
 
-<img src="DiscoveryOutput_scRNA/Endothelial.cells/state_assignment_heatmap.png" width="100%" style="display: block; margin: auto;" />
+<img src="DiscoveryOutput_scRNA/Fibroblasts/state_assignment_heatmap.png" width="100%" style="display: block; margin: auto;" />
 
 The ecotype output files include:
 
@@ -2996,13 +2994,13 @@ ecotypes = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotypes.txt")
 head(ecotypes[,c("CellType", "State", "Ecotype")])
 ```
 
-    ##          CellType State Ecotype
-    ## 1         B.cells   S02      E1
-    ## 2         B.cells   S03      E1
-    ## 3     CD4.T.cells   S03      E1
-    ## 4     CD4.T.cells   S05      E1
-    ## 5     CD8.T.cells   S01      E1
-    ## 6 Dendritic.cells   S03      E1
+    ##                    CellType State Ecotype
+    ## 1                   B.cells   S02      E1
+    ## 2               CD4.T.cells   S02      E1
+    ## 3               CD8.T.cells   S01      E1
+    ## 4           Dendritic.cells   S03      E1
+    ## 5               Fibroblasts   S05      E1
+    ## 6 Monocytes.and.Macrophages   S03      E1
 
 -   The number of initial clusters obtained by clustering the Jaccard
     index matrix, selected using the average silhouette:
@@ -3030,19 +3028,19 @@ abundances = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_abundance.txt")
 dim(abundances)
 ```
 
-    ## [1]  8 33
+    ## [1]  9 33
 
 ``` r
 head(abundances[,1:5])
 ```
 
-    ##       SMC01.N     SMC01.T    SMC02.N    SMC02.T    SMC03.N
-    ## E1 0.36529972 0.112226383 0.37694206 0.09568419 0.33846514
-    ## E2 0.00000000 0.289587824 0.04471845 0.23978498 0.05062341
-    ## E3 0.17417011 0.006599186 0.19479843 0.00000000 0.18775166
-    ## E4 0.02162737 0.137419014 0.00000000 0.40639166 0.03374894
-    ## E5 0.06658287 0.108632760 0.02630497 0.14700301 0.00000000
-    ## E6 0.06179247 0.201232624 0.03105448 0.11113616 0.00000000
+    ##       SMC01.N    SMC01.T    SMC02.N    SMC02.T    SMC03.N
+    ## E1 0.34064095 0.07302366 0.20329837 0.02049678 0.27718758
+    ## E2 0.06078240 0.17093342 0.02937202 0.10322721 0.05241208
+    ## E3 0.02315383 0.34562878 0.01355632 0.36202739 0.01278497
+    ## E4 0.13787420 0.12543986 0.14604672 0.16681631 0.06725426
+    ## E5 0.16081886 0.10434607 0.28980392 0.11903111 0.14459666
+    ## E6 0.00000000 0.07347385 0.03524642 0.14282270 0.00000000
 
 -   The assignment of samples in the discovery dataset to ecotypes. The
     samples not assigned to any ecotype are filtered out from this file:
@@ -3052,19 +3050,19 @@ assignments = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_assignment.txt"
 dim(assignments)
 ```
 
-    ## [1] 33 14
+    ## [1] 32  6
 
 ``` r
 head(assignments[,1:5])
 ```
 
-    ##              ID MaxEcotype  AssignmentP AssignmentQ AssignedToEcotypeStates
-    ## SMC01-N SMC01-N         E1 1.622561e-03 0.013493158                    TRUE
-    ## SMC02-N SMC02-N         E1 4.094496e-03 0.021837311                    TRUE
-    ## SMC05-N SMC05-N         E1 1.686645e-03 0.013493158                    TRUE
-    ## SMC08-N SMC08-N         E1 2.037793e-05 0.000326047                    TRUE
-    ## SMC01-T SMC01-T         E2 1.406832e-01 0.236940129                    TRUE
-    ## SMC06-T SMC06-T         E2 2.349589e-01 0.317642040                    TRUE
+    ##              ID MaxEcotype  AssignmentP  AssignmentQ AssignedToEcotypeStates
+    ## SMC01-N SMC01-N         E1 1.938649e-04 0.0012795085                    TRUE
+    ## SMC05-N SMC05-N         E1 5.000404e-03 0.0183348142                    TRUE
+    ## SMC05-T SMC05-T         E1 7.568441e-02 0.1541417608                    TRUE
+    ## SMC07-N SMC07-N         E1 2.928585e-03 0.0138061877                    TRUE
+    ## SMC08-N SMC08-N         E1 9.015769e-05 0.0007438009                    TRUE
+    ## SMC19-T SMC19-T         E1 5.936002e-03 0.0195888071                    TRUE
 
 -   A heatmap of cell state fractions across the samples assigned to
     ecotypes:

@@ -1,12 +1,12 @@
 "CellType"	"Chosen_Rank"	"Redefined"
 "B.cells"	6	FALSE
-"CD4.T.cells"	7	FALSE
-"CD8.T.cells"	5	FALSE
+"CD4.T.cells"	4	FALSE
+"CD8.T.cells"	7	FALSE
 "Dendritic.cells"	7	FALSE
 "Endothelial.cells"	8	FALSE
-"Epithelial.cells"	6	FALSE
-"Fibroblasts"	9	FALSE
+"Epithelial.cells"	8	FALSE
+"Fibroblasts"	7	FALSE
 "Mast.cells"	5	FALSE
-"Monocytes.and.Macrophages"	8	FALSE
+"Monocytes.and.Macrophages"	7	FALSE
 "NK.cells"	6	FALSE
 "PCs"	6	FALSE

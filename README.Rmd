@@ -1,12 +1,12 @@
 ---
 output:
-  html_document:
-    toc: true
-    toc_float: true
+  github_document: default
   md_document: default
   pdf_document: default
   word_document: default
-  github_document: default
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 ```{r, setup, include=FALSE}
@@ -1215,12 +1215,12 @@ EcoTyper generates for each cell type the following outputs:
 knitr::include_graphics("DiscoveryOutput_scRNA/rank_plot.png")
 ```
 
-* For each cell type, the following outputs, exemplified here for endothelial cells, are produced:
+* For each cell type, the following outputs, exemplified here for fibroblasts, are produced:
 
   * Abundances of cell states remaining after the QC filters in steps 6 and 7 (if run),  across samples in the discovery dataset:
 
 ```{r}
-data = read.delim("DiscoveryOutput_scRNA/Endothelial.cells/state_abundances.txt")
+data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_abundances.txt")
 dim(data)
 head(data[,1:5])
 ```
@@ -1228,7 +1228,7 @@ head(data[,1:5])
   * Assignment of samples in the discovery dataset to the cell state with the highest abundance. Only samples assigned to the cell states remaining after the QC filters in steps 6 and 7 (if run) are included. The remaining ones are considered unassigned and removed from this table:
 
 ```{r}
-data = read.delim("DiscoveryOutput_scRNA/Endothelial.cells/state_assignment.txt")
+data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_assignment.txt")
 dim(data)
 head(data)
 ```
@@ -1236,7 +1236,7 @@ head(data)
   * A heatmap illustrating the expression of genes used for cell state discovery, that have the highest fold-change in one of the cell states remaining after the QC filters in steps 6 and 7 (if run). In the current example, the heatmap includes in the top color bar two rows corresponding to *Tissue* and *Histology*, that have been provided in configuration file field *Annotation file column(s) to plot*, in addition to cell state labels always plotted:
 
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("DiscoveryOutput_scRNA/Endothelial.cells/state_assignment_heatmap.png")
+knitr::include_graphics("DiscoveryOutput_scRNA/Fibroblasts/state_assignment_heatmap.png")
 ```
 
 The ecotype output files include:
