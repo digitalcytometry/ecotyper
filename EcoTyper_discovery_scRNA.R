@@ -199,7 +199,7 @@ if(!5 %in% skip_steps)
 		{			
 			next
 		}				
-		PushToJobQueue(paste("Rscript state_discovery_combine_NMF_restarts.R", "discovery", discovery, fractions, cell_type, max_clusters, nmf_restarts))
+		PushToJobQueue(paste("Rscript state_discovery_combine_NMF_restarts.R", "discovery", discovery, fractions, cell_type, max_clusters, nmf_restarts, "FALSE"))
 	} 
 	RunJobQueue()
 	cat("Step 5 (cell state re-discovery in expression matrices) finished successfully!\n")

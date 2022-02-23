@@ -7,7 +7,7 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "0.05") 
+args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "1") 
 args = commandArgs(T)   
 dataset = args[1]
 fractions = args[2]
@@ -161,8 +161,13 @@ decorate_heatmap_body("ht1", {
 })
 tmp = dev.off()
 
-tb = table(top_ann$InitialEcotype)
-tb = tb[tb > 2]
+initial_tb = table(top_ann$InitialEcotype)
+tb = initial_tb[initial_tb > 2]
+if(length(tb) == 0)
+{
+	warning("No ecotype contains more than three cell states. Including ecotypes of size 2.")
+	tb = initial_tb[initial_tb > 1]
+}
 
 top_ann = top_ann[top_ann$InitialEcotype %in% names(tb),]
 

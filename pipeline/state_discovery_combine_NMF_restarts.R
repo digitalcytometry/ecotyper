@@ -11,6 +11,12 @@ fractions = args[3]
 cell_type = args[4]
 max_n_clusters = as.integer(as.character(args[5]))
 max_restarts = as.integer(as.character(args[6]))
+verbose = as.logical(as.character(args[7]))
+
+if(is.na(verbose))
+{
+	verbose = T
+}
 
 base_dir = file.path("../EcoTyper", dataset, fractions, "Cell_States", dataset_type, cell_type) 
 if(!file.exists(file.path(base_dir, "expression_top_genes_scaled.txt")))
@@ -33,7 +39,10 @@ for(n_clusters in 2:max_n_clusters)
 		
 		if(!file.exists(file.path(input_dir, "estim.RData")))
 		{
-			cat(paste0("Warning: NMF output file '", file.path(input_dir, "estim.RData"), "' is missing! Skipping it...\n"))
+			if(verbose)
+			{
+				cat(paste0("Warning: NMF output file '", file.path(input_dir, "estim.RData"), "' is missing! Skipping it...\n"))	
+			}			
 			next
 		}
 		used_reps = c(used_reps, restart)
