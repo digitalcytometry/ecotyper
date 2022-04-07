@@ -1,3 +1,6 @@
+<p align="center">
+  <img width="300" src="utils/EcoTyper_Logo.png">
+</p>
 
 ## Introduction
 
