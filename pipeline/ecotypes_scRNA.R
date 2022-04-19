@@ -163,9 +163,9 @@ tmp = dev.off()
 
 initial_tb = table(top_ann$InitialEcotype)
 tb = initial_tb[initial_tb > 2]
-if(length(tb) == 0)
+if(length(tb) < 2)
 {
-	warning("No ecotype contains more than three cell states. Including ecotypes of size 2.")
+	warning("There are less than 2 ecotypes with more than three cell states. Including ecotypes of size 2.")
 	tb = initial_tb[initial_tb > 1]
 }
 

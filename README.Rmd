@@ -1,12 +1,15 @@
 ---
 output:
-  github_document: default
-  md_document: default
-  pdf_document: default
-  word_document: default
+  github_document:
+    math_method:
+      engine: webtex
+      url: http://chart.apis.google.com/chart?cht=tx&chl=
   html_document:
     toc: true
     toc_float: true
+  pdf_document: default
+  word_document: default
+  md_document: default
 ---
 
 ```{r, setup, include=FALSE}
@@ -110,7 +113,7 @@ knitr::include_graphics("utils/schema.png")
 
 EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma or lymphoma, in user-provided bulk expression data. In the [carcinoma EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014), we demonstrate that prior deconvolution of bulk data using *CIBERSORTx HiRes* is not necessary for high-fidelity recovery of cell states in bulk-tissue expression data. We can proceed to the recovery of states based on bulk data only.
 
-In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a set of the bulk samples from lung adenocarcinoma (LUAD) from TCGA and [bulk samples](https://www.nature.com/articles/s41591-018-0016-8) from diffuse large-cell lymphoma (DLBCL), respectively.
+In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a set of the bulk samples from lung adenocarcinoma (LUAD) from TCGA and [bulk samples](https://www.nature.com/articles/s41591-018-0016-8) from diffuse large-cell lymphoma (DLBCL), respectively. Plese note that the recovery procedure described in this tutorial can also be applied on user-defined cell states and ecotypes, derived as described in Tutorials 4-6.
 
 ### 1.1. Recovery of **Carcinoma** Cell States and Ecotypes in Bulk Data
 
@@ -161,7 +164,7 @@ data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/state_abundances.tx
 head(data[,1:5])
 ```
 
-* The assignment of samples to the state with highest abundance:
+* The assignment of samples to the state with highest abundance. If the cell state with the highest abundance is one of the cell states filtered by the automatic QC filters of EcoTyper, the sample is considered unassigned and filtered out from this table. For more information about the sample filtering procedure please see the *Cell state quality control* section of the [EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014) methods:
 
 ```{r}
 data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/state_assignment.txt")
@@ -184,7 +187,7 @@ dim(assign)
 head(assign[,1:5])
 ```
 
- * The assignment of samples to the carcinoma ecotype with the highest abundance. If the cell state fractions from the dominant ecotype are not significantly higher than the other cell state fractions in a given sample, the sample is considered unassigned and filtered out from this table:
+ * The assignment of samples to the carcinoma ecotype with the highest abundance. If the cell state fractions from the dominant ecotype are not significantly higher than the other cell state fractions in a given sample, the sample is considered unassigned and filtered out from this table. For more information about the sample filtering procedure please see the *Ecotype discovery* section of the [EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014) methods:
 
 ```{r}
 discrete_assignments = read.delim("RecoveryOutput/bulk_lung_data/Ecotypes/ecotype_abundance.txt")
@@ -248,7 +251,7 @@ data = read.delim("RecoveryOutput/bulk_lymphoma_data/B.cells/state_abundances.tx
 head(data[,1:5])
 ```
 
-* The assignment of samples to the state with highest abundance:
+* The assignment of samples to the state with highest abundance. If the cell state with the highest abundance is one of the cell states filtered by the automatic QC filters of EcoTyper, the sample is considered unassigned and filtered out from this table. For more information about the sample filtering procedure please see the *Cell state quality control* section of the [EcoTyper paper] (https://doi.org/10.1016/j.cell.2021.09.014) methods:
 
 ```{r}
 data = read.delim("RecoveryOutput/bulk_lymphoma_data/B.cells/state_assignment.txt")
@@ -271,7 +274,7 @@ dim(assign)
 head(assign[,1:5])
 ```
 
- * The assignment of samples to the lymphoma ecotype with the highest abundance. If the cell state fractions from the dominant ecotype are not significantly higher than the other cell state fractions in a given sample, the sample is considered unassigned and filtered out from this table:
+ * The assignment of samples to the lymphoma ecotype with the highest abundance. If the cell state fractions from the dominant ecotype are not significantly higher than the other cell state fractions in a given sample, the sample is considered unassigned and filtered out from this table. For more information about the sample filtering procedure please see the *Ecotype discovery* section of the [EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014) methods:
 
 ```{r}
 discrete_assignments = read.delim("RecoveryOutput/bulk_lymphoma_data/Ecotypes/ecotype_abundance.txt")
@@ -289,7 +292,7 @@ knitr::include_graphics("RecoveryOutput/bulk_lymphoma_data/Ecotypes/heatmap_assi
 
 EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and lymphoma, in user-provided scRNA-seq data.
 
-In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes, that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a downsampled version of a [scRNA-seq dataset](https://www.nature.com/articles/s41588-020-0636-z) from colorectal cancer specimens, and a downsampled version of a scRNA-seq dataset from lymphoma specimens, respectively.
+In this tutorial, we illustrate how EcoTyper can be used to recover the cell states and ecotypes, that we defined across **carcinomas** and in **diffuse large B cell lymphoma** (DLBCL), in a downsampled version of a [scRNA-seq dataset](https://www.nature.com/articles/s41588-020-0636-z) from colorectal cancer specimens, and a downsampled version of a scRNA-seq dataset from lymphoma specimens, respectively. Plese note that the recovery procedure described in this tutorial can also be applied on user-defined cell states and ecotypes, derived as described in Tutorials 4-6.
 
 ### 2.1. Recovery of **Carcinoma** Cell States and Ecotypes in scRNA-seq Data
 
@@ -367,7 +370,7 @@ dim(assign)
 head(assign[,1:5])
 ```
 
- * The assignment of samples to the carcinoma ecotype with the highest abundance. If the cell state fractions from the dominant ecotype are not significantly higher than the other cell state fractions in a given sample, the sample is considered unassigned and filtered out from this table:
+* The assignment of samples to the carcinoma ecotype with the highest abundance. If the cell state fractions from the dominant ecotype are not significantly higher than the other cell state fractions in a given sample, the sample is considered unassigned and filtered out from this table. For more information about the sample filtering procedure please see the *Ecotype discovery* section of the [EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014) methods:
 
 ```{r}
 discrete_assignments = read.delim("RecoveryOutput/scRNA_CRC_data/Ecotypes/ecotype_abundance.txt")
@@ -453,7 +456,7 @@ Since in this case the annotation file did not contain a column called *Sample*,
 
 ## **Tutorial 3:** Recovery of Cell States and Ecotypes in Spatial Transcriptomics data
 
-EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and lymphoma, in user-provided expression data.
+EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma and lymphoma, in user-provided expression data. The recovery procedure described in this tutorial can also be applied on user-defined cell states and ecotypes, derived as described in Tutorials 4-6.
 
 Here we illustrate how one can perform cell state and ecotype recovery in Visium Spatial Gene Expression arrays from [10x Genomics](https://www.10xgenomics.com/products/spatial-gene-expression). For this tutorial we recover cell states and ecotypes defined across carcinomas in whole transcriptome spatial transcriptomics data from [breast cancer](https://support.10xgenomics.com/spatial-gene-expression/datasets/1.1.0/V1_Breast_Cancer_Block_A_Section_1).
 
@@ -906,7 +909,11 @@ Rscript EcoTyper_discovery_bulk.R -c config_discovery_bulk.yml
 
 EcoTyper generates for each cell type the following outputs:
 
-* Plots displaying the Cophenetic coefficient calculated in step 4. The horizontal dotted line indicates the Cophenetic coefficient cutoff provided in the configuration file *Cophenetic coefficient cutoff* field. The vertical dotted red line indicates the number of states automatically selected based on the Cophenetic coefficient cutoff provided. We recommend that users inspect this file to make sure that the automatic selection provides sensible results. If the user wants to adjust the Cophenetic coefficient cutoff after inspecting this plot, they can rerun the discovery procedure skipping steps 1-3. **Please note that these plots indicate the number of states obtained before applying the filters for low-quality states in steps 6 and 7. Therefore, the final results will probably contain fewer states**.
+* Plots displaying the Cophenetic coefficient calculated in step 4. The horizontal dotted line indicates the Cophenetic coefficient cutoff provided in the configuration file *Cophenetic coefficient cutoff* field. The vertical dotted red line indicates the number of states automatically selected based on the Cophenetic coefficient cutoff provided. We recommend that users inspect this file to make sure that the automatic selection provides sensible results. If the user wants to adjust the Cophenetic coefficient cutoff after inspecting this plot, they can rerun the discovery procedure skipping steps 1-3. **Please note that:**
+
+  1. **These plots indicate the number of states obtained before applying the filters for low-quality states in steps 6 and 7. Therefore, the final results will probably contain fewer states**.
+  2. **The plots below might look slightly different when generated with R versions other than R/3.6.0. This is because some EcoTyper steps, including NMF algorithm initialization, depend on random number generation. Althoguh EcoTyper sets random seeds before each such step, different R version output different random numbers for the same seed. To mitigate this issue, we recommend at least 50 NMF restarts when running EcoTyper**.
+  
 
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("DiscoveryOutput/rank_plot.png")
@@ -1079,7 +1086,7 @@ Discovery dataset name : "discovery_scRNA_CRC"
 Expression matrix : "example_data/scRNA_CRC_data.txt"
 ```
 
-*Expression matrix* field should contain the path to a tab-delimited file containing the expression data, with genes as rows and cells as columns. The expression matrix should be in the TPM, CPM or other suitable normalized space. It should have gene symbols on the first column and gene counts for each cell on the next columns. Column (cells) names should be unique. Also, we recommend that the column names do not contain special characters that are modified by the R function *make.names*, *e.g.* having digits at the beginning of the name or containing characters such as *space*, *tab* or *-*:
+*Expression matrix* field should contain the path to a tab-delimited file containing the expression data, with genes as rows and cells as columns. The expression matrix should be in the TPM, CPM or other suitable normalized space. The users should perform their own quality control of the expression matrix before applying EcoTyper (e.g. to filter low-quality cells, doublets, etc.). However we do not recommend to pre-filter the matrix for variable genes, as EcoTyper performs an internal selection for genes that show cell-type specificity. The matrix should have gene symbols on the first column and gene counts for each cell on the next columns. Column (cells) names should be unique. Also, we recommend that the column names do not contain special characters that are modified by the R function *make.names*, *e.g.* having digits at the beginning of the name or containing characters such as *space*, *tab* or *-*:
 
 The expected format for the expression matrix is:
 
@@ -1209,7 +1216,10 @@ Rscript EcoTyper_discovery_scRNA.R -c config_discovery_scRNA.yml
 
 EcoTyper generates for each cell type the following outputs:
 
-* Plots displaying the Cophenetic coefficient calculated in step 4. The horizontal dotted line indicates the Cophenetic coefficient cutoff provided in the configuration file *Cophenetic coefficient cutoff* field. The vertical dotted red line indicates the number of states automatically selected based on the Cophenetic coefficient cutoff provided. We recommend that users inspect this file to make sure that the automatic selection provides sensible results. If the user wants to adjust the Cophenetic coefficient cutoff after inspecting this plot, they can rerun the discovery procedure skipping steps 1-3. **Please note that these plots indicate the number of states obtained before applying the filters for low-quality states in steps 6 and 7. Therefore, the final results will probably contain fewer states**.
+* Plots displaying the Cophenetic coefficient calculated in step 4. The horizontal dotted line indicates the Cophenetic coefficient cutoff provided in the configuration file *Cophenetic coefficient cutoff* field. The vertical dotted red line indicates the number of states automatically selected based on the Cophenetic coefficient cutoff provided. We recommend that users inspect this file to make sure that the automatic selection provides sensible results. If the user wants to adjust the Cophenetic coefficient cutoff after inspecting this plot, they can rerun the discovery procedure skipping steps 1-3. **Please note that:**
+
+  1. **These plots indicate the number of states obtained before applying the filters for low-quality states in steps 6 and 7. Therefore, the final results will probably contain fewer states**.
+  2. **The plots below might look slightly different when generated with R versions other than R/3.6.0. This is because some EcoTyper steps, including NMF algorithm initialization, depend on random number generation. Althoguh EcoTyper sets random seeds before each such step, different R version output different random numbers for the same seed. To mitigate this issue, we recommend at least 50 NMF restarts when running EcoTyper**.
 
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("DiscoveryOutput_scRNA/rank_plot.png")
@@ -1502,7 +1512,10 @@ Rscript EcoTyper_discovery_presorted.R -c config_discovery_presorted.yml
 
 EcoTyper generates for each cell type the following outputs:
 
-* Plots displaying the Cophenetic coefficient calculated in step 4. The horizontal dotted line indicates the Cophenetic coefficient cutoff provided in the configuration file *Cophenetic coefficient cutoff* field. The vertical dotted red line indicates the number of states automatically selected based on the Cophenetic coefficient cutoff provided. We recommend that users inspect this file to make sure that the automatic selection provides sensible results. If the user wants to adjust the Cophenetic coefficient cutoff after inspecting this plot, they can rerun the discovery procedure skipping steps 1-3. **Please note that these plots indicate the number of states obtained before applying the filters for low-quality states in steps 6 and 7. Therefore, the final results will probably contain fewer states**.
+* Plots displaying the Cophenetic coefficient calculated in step 4. The horizontal dotted line indicates the Cophenetic coefficient cutoff provided in the configuration file *Cophenetic coefficient cutoff* field. The vertical dotted red line indicates the number of states automatically selected based on the Cophenetic coefficient cutoff provided. We recommend that users inspect this file to make sure that the automatic selection provides sensible results. If the user wants to adjust the Cophenetic coefficient cutoff after inspecting this plot, they can rerun the discovery procedure skipping steps 1-3. **Please note that:**
+
+  1. **These plots indicate the number of states obtained before applying the filters for low-quality states in steps 6 and 7. Therefore, the final results will probably contain fewer states**.
+  2. **The plots below might look slightly different when generated with R versions other than R/3.6.0. This is because some EcoTyper steps, including NMF algorithm initialization, depend on random number generation. Althoguh EcoTyper sets random seeds before each such step, different R version output different random numbers for the same seed. To mitigate this issue, we recommend at least 50 NMF restarts when running EcoTyper**.
 
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("PresortedDiscoveryOutput/rank_plot.png")

@@ -201,7 +201,9 @@ cell states and ecotypes that we defined across **carcinomas** and in
 **diffuse large B cell lymphoma** (DLBCL), in a set of the bulk samples
 from lung adenocarcinoma (LUAD) from TCGA and [bulk
 samples](https://www.nature.com/articles/s41591-018-0016-8) from diffuse
-large-cell lymphoma (DLBCL), respectively.
+large-cell lymphoma (DLBCL), respectively. Plese note that the recovery
+procedure described in this tutorial can also be applied on user-defined
+cell states and ecotypes, derived as described in Tutorials 4-6.
 
 ### 1.1. Recovery of **Carcinoma** Cell States and Ecotypes in Bulk Data
 
@@ -353,28 +355,28 @@ head(data[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## S01                 5.610752e-02                 9.612807e-15
-    ## S02                 1.280373e-02                 6.386058e-03
-    ## S03                 1.035601e-14                 6.169635e-05
-    ## S04                 1.451949e-02                 1.694938e-02
-    ## S05                 1.793168e-01                 1.726694e-02
-    ## S06                 2.209002e-01                 2.355229e-02
+    ## S01                 2.083264e-15                  0.018526046
+    ## S02                 1.379863e-01                  0.012301783
+    ## S03                 1.296628e-01                  0.003181937
+    ## S04                 7.119142e-03                  0.003346075
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## S01                  0.040894068                  0.007263805
-    ## S02                  0.005972317                  0.004142070
-    ## S03                  0.012142088                  0.028884848
-    ## S04                  0.063365960                  0.019739555
-    ## S05                  0.013198449                  0.001226978
-    ## S06                  0.126574543                  0.051897896
+    ## S01                   0.05884281                   0.01150542
+    ## S02                   0.18379510                   0.05917894
+    ## S03                   0.07466737                   0.06311084
+    ## S04                   0.05295505                   0.03820861
     ##     TCGA.05.4249.01A.01R.1107.07
-    ## S01                   0.02797270
-    ## S02                   0.05575916
-    ## S03                   0.03578894
-    ## S04                   0.25177782
-    ## S05                   0.16956906
-    ## S06                   0.03006488
+    ## S01                   0.35434105
+    ## S02                   0.28080083
+    ## S03                   0.11240927
+    ## S04                   0.04851547
 
--   The assignment of samples to the state with highest abundance:
+-   The assignment of samples to the state with highest abundance. If
+    the cell state with the highest abundance is one of the cell states
+    filtered by the automatic QC filters of EcoTyper, the sample is
+    considered unassigned and filtered out from this table. For more
+    information about the sample filtering procedure please see the
+    *Cell state quality control* section of the [EcoTyper
+    paper](https://doi.org/10.1016/j.cell.2021.09.014) methods:
 
 ``` r
 data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/state_assignment.txt")
@@ -382,12 +384,12 @@ head(data[,c("ID", "State")])
 ```
 
     ##                             ID State
-    ## 1 TCGA.L3.A524.01A.11R.A262.07   S01
-    ## 2 TCGA.05.4397.01A.01R.1206.07   S01
-    ## 3 TCGA.68.7757.01B.11R.2296.07   S01
-    ## 4 TCGA.44.8120.01A.11R.2241.07   S02
-    ## 5 TCGA.44.6776.11A.01R.1858.07   S02
-    ## 6 TCGA.77.7138.11A.01R.2045.07   S02
+    ## 1 TCGA.05.4249.01A.01R.1107.07   S01
+    ## 2 TCGA.50.6590.01A.12R.1858.07   S01
+    ## 3 TCGA.55.6983.11A.01R.1949.07   S01
+    ## 4 TCGA.69.7761.01A.11R.2170.07   S01
+    ## 5 TCGA.93.7347.01A.11R.2187.07   S01
+    ## 6 TCGA.73.4662.01A.01R.1206.07   S01
 
 -   Two heatmaps: the heatmap representing the expression of “marker”
     genes for each state (See Tutorial 4 for more details) in the
@@ -408,72 +410,75 @@ assign = read.delim("RecoveryOutput/bulk_lung_data/Ecotypes/ecotype_abundance.tx
 dim(assign)
 ```
 
-    ## [1]  10 250
+    ## [1]   9 250
 
 ``` r
 head(assign[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443907e-03                  0.037977593
-    ## CE2                 1.621595e-01                  0.243041032
-    ## CE3                 1.386670e-14                  0.074717081
-    ## CE4                 7.257657e-02                  0.006520339
-    ## CE5                 1.618937e-01                  0.054195790
-    ## CE6                 1.908700e-02                  0.035478573
+    ## LE1                   0.16417228                   0.02365489
+    ## LE2                   0.08192505                   0.05046453
+    ## LE3                   0.12463032                   0.61936802
+    ## LE4                   0.01515642                   0.04878655
+    ## LE5                   0.16935221                   0.04596270
+    ## LE6                   0.18055183                   0.04292269
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189985630
-    ## CE2                  0.167842144                  0.219429034
-    ## CE3                  0.004333314                  0.041762329
-    ## CE4                  0.058892710                  0.063478179
-    ## CE5                  0.148527987                  0.088747961
-    ## CE6                  0.017818807                  0.009232854
+    ## LE1                   0.13700230                   0.05801216
+    ## LE2                   0.03932840                   0.04340269
+    ## LE3                   0.25247584                   0.49820232
+    ## LE4                   0.10528174                   0.02365418
+    ## LE5                   0.06864643                   0.03466751
+    ## LE6                   0.09809911                   0.05476600
     ##     TCGA.05.4249.01A.01R.1107.07
-    ## CE1                   0.11162555
-    ## CE2                   0.03073282
-    ## CE3                   0.08510031
-    ## CE4                   0.04811969
-    ## CE5                   0.08697437
-    ## CE6                   0.07069911
+    ## LE1                   0.10219731
+    ## LE2                   0.05493172
+    ## LE3                   0.10202715
+    ## LE4                   0.12493246
+    ## LE5                   0.09788877
+    ## LE6                   0.10122469
 
 -   The assignment of samples to the carcinoma ecotype with the highest
     abundance. If the cell state fractions from the dominant ecotype are
     not significantly higher than the other cell state fractions in a
     given sample, the sample is considered unassigned and filtered out
-    from this table:
+    from this table. For more information about the sample filtering
+    procedure please see the *Ecotype discovery* section of the
+    [EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014)
+    methods:
 
 ``` r
 discrete_assignments = read.delim("RecoveryOutput/bulk_lung_data/Ecotypes/ecotype_abundance.txt")
 dim(discrete_assignments)
 ```
 
-    ## [1]  10 250
+    ## [1]   9 250
 
 ``` r
 head(discrete_assignments[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443907e-03                  0.037977593
-    ## CE2                 1.621595e-01                  0.243041032
-    ## CE3                 1.386670e-14                  0.074717081
-    ## CE4                 7.257657e-02                  0.006520339
-    ## CE5                 1.618937e-01                  0.054195790
-    ## CE6                 1.908700e-02                  0.035478573
+    ## LE1                   0.16417228                   0.02365489
+    ## LE2                   0.08192505                   0.05046453
+    ## LE3                   0.12463032                   0.61936802
+    ## LE4                   0.01515642                   0.04878655
+    ## LE5                   0.16935221                   0.04596270
+    ## LE6                   0.18055183                   0.04292269
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189985630
-    ## CE2                  0.167842144                  0.219429034
-    ## CE3                  0.004333314                  0.041762329
-    ## CE4                  0.058892710                  0.063478179
-    ## CE5                  0.148527987                  0.088747961
-    ## CE6                  0.017818807                  0.009232854
+    ## LE1                   0.13700230                   0.05801216
+    ## LE2                   0.03932840                   0.04340269
+    ## LE3                   0.25247584                   0.49820232
+    ## LE4                   0.10528174                   0.02365418
+    ## LE5                   0.06864643                   0.03466751
+    ## LE6                   0.09809911                   0.05476600
     ##     TCGA.05.4249.01A.01R.1107.07
-    ## CE1                   0.11162555
-    ## CE2                   0.03073282
-    ## CE3                   0.08510031
-    ## CE4                   0.04811969
-    ## CE5                   0.08697437
-    ## CE6                   0.07069911
+    ## LE1                   0.10219731
+    ## LE2                   0.05493172
+    ## LE3                   0.10202715
+    ## LE4                   0.12493246
+    ## LE5                   0.09788877
+    ## LE6                   0.10122469
 
 -   A heatmap of cell state abundances across the samples assigned to
     ecotypes. Rows correspond to the cell states forming ecotypes, while
@@ -635,7 +640,13 @@ head(data[,1:5])
     ## S04 1.409287e-15 2.861731e-01 1.020793e-01 2.570570e-07 6.271926e-03
     ## S05 1.935706e-02 7.028482e-05 1.046191e-01 8.195354e-02 1.693508e-05
 
--   The assignment of samples to the state with highest abundance:
+-   The assignment of samples to the state with highest abundance. If
+    the cell state with the highest abundance is one of the cell states
+    filtered by the automatic QC filters of EcoTyper, the sample is
+    considered unassigned and filtered out from this table. For more
+    information about the sample filtering procedure please see the
+    *Cell state quality control* section of the \[EcoTyper paper\]
+    (<https://doi.org/10.1016/j.cell.2021.09.014>) methods:
 
 ``` r
 data = read.delim("RecoveryOutput/bulk_lymphoma_data/B.cells/state_assignment.txt")
@@ -689,7 +700,10 @@ head(assign[,1:5])
     abundance. If the cell state fractions from the dominant ecotype are
     not significantly higher than the other cell state fractions in a
     given sample, the sample is considered unassigned and filtered out
-    from this table:
+    from this table. For more information about the sample filtering
+    procedure please see the *Ecotype discovery* section of the
+    [EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014)
+    methods:
 
 ``` r
 discrete_assignments = read.delim("RecoveryOutput/bulk_lymphoma_data/Ecotypes/ecotype_abundance.txt")
@@ -731,7 +745,10 @@ cell states and ecotypes, that we defined across **carcinomas** and in
 **diffuse large B cell lymphoma** (DLBCL), in a downsampled version of a
 [scRNA-seq dataset](https://www.nature.com/articles/s41588-020-0636-z)
 from colorectal cancer specimens, and a downsampled version of a
-scRNA-seq dataset from lymphoma specimens, respectively.
+scRNA-seq dataset from lymphoma specimens, respectively. Plese note that
+the recovery procedure described in this tutorial can also be applied on
+user-defined cell states and ecotypes, derived as described in Tutorials
+4-6.
 
 ### 2.1. Recovery of **Carcinoma** Cell States and Ecotypes in scRNA-seq Data
 
@@ -997,7 +1014,10 @@ head(assign[,1:5])
     abundance. If the cell state fractions from the dominant ecotype are
     not significantly higher than the other cell state fractions in a
     given sample, the sample is considered unassigned and filtered out
-    from this table:
+    from this table. For more information about the sample filtering
+    procedure please see the *Ecotype discovery* section of the
+    [EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014)
+    methods:
 
 ``` r
 discrete_assignments = read.delim("RecoveryOutput/scRNA_CRC_data/Ecotypes/ecotype_abundance.txt")
@@ -1251,7 +1271,10 @@ Since in this case the annotation file did not contain a column called
 
 EcoTyper comes pre-loaded with the resources necessary for the
 reference-guided recovery of cell states and ecotypes previously defined
-in carcinoma and lymphoma, in user-provided expression data.
+in carcinoma and lymphoma, in user-provided expression data. The
+recovery procedure described in this tutorial can also be applied on
+user-defined cell states and ecotypes, derived as described in Tutorials
+4-6.
 
 Here we illustrate how one can perform cell state and ecotype recovery
 in Visium Spatial Gene Expression arrays from [10x
@@ -1541,26 +1564,26 @@ data = read.delim("VisiumOutput/VisiumBreast/state_abundances.txt")
 dim(data)
 ```
 
-    ## [1] 3813   76
+    ## [1] 3813   59
 
 ``` r
 head(data[,1:10])
 ```
 
     ##                   ID  X   Y       Sample Malignant B.cells_S01 B.cells_S02
-    ## 1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.2164860           0           0
-    ## 2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.6737582           0           0
-    ## 3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.3124031           0           0
-    ## 4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.1128586           1           0
-    ## 5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.5008316           0           0
-    ## 6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.7553180           0           0
-    ##   B.cells_S03 B.cells_S04 B.cells_S05
-    ## 1           0   0.0000000   0.8690817
-    ## 2           0   0.0000000   0.0000000
-    ## 3           0   0.0000000   0.0000000
-    ## 4           0   0.0000000   0.0000000
-    ## 5           0   0.2767688   0.0000000
-    ## 6           0   0.3345834   0.0000000
+    ## 1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.2164860     0.93234   0.0000000
+    ## 2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.6737582     0.00000   0.5003005
+    ## 3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.3124031     0.00000   0.0000000
+    ## 4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.1128586     1.00000   0.0000000
+    ## 5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.5008316     0.00000   0.2969141
+    ## 6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.7553180     0.00000   0.3589368
+    ##   B.cells_S03 B.cells_S04 CD4.T.cells_S01
+    ## 1           0           0               0
+    ## 2           0           0               0
+    ## 3           0           0               0
+    ## 4           0           0               1
+    ## 5           0           0               0
+    ## 6           0           0               0
 
 -   Plots illustrating the cell state abundance across state from each
     cell type. The intensity of charcoal represents the cell state
@@ -1580,26 +1603,26 @@ data = read.delim("VisiumOutput/VisiumBreast/ecotype_abundances.txt")
 dim(data)
 ```
 
-    ## [1] 3813   15
+    ## [1] 3813   13
 
 ``` r
 head(data[,1:10])
 ```
 
-    ##                                ID  X   Y       Sample Malignant        CE1
-    ## VisiumBreast.1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.1142685 0.93179887
-    ## VisiumBreast.2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.7334114 0.23355315
-    ## VisiumBreast.3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.2441395 0.00000000
-    ## VisiumBreast.4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.0000000 0.09941146
-    ## VisiumBreast.5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.4992702 0.64507665
-    ## VisiumBreast.6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.8438427 0.02056875
-    ##                      CE2       CE3       CE4 CE5
-    ## VisiumBreast.1 0.0000000 0.0000000 0.7497744   0
-    ## VisiumBreast.2 0.2357562 0.0000000 0.0000000   0
-    ## VisiumBreast.3 0.0000000 0.0000000 0.0000000   0
-    ## VisiumBreast.4 0.0000000 0.0000000 0.0000000   0
-    ## VisiumBreast.5 0.0000000 0.1836142 0.0000000   0
-    ## VisiumBreast.6 0.0000000 0.0000000 0.0000000   0
+    ##                                ID  X   Y       Sample Malignant        E1
+    ## VisiumBreast.1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.1142685 0.0000000
+    ## VisiumBreast.2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.7334114 0.3751726
+    ## VisiumBreast.3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.2441395 0.0000000
+    ## VisiumBreast.4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.0000000 0.4173973
+    ## VisiumBreast.5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.4992702 0.2870171
+    ## VisiumBreast.6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.8438427 0.1124896
+    ##                       E2        E3        E4        E5
+    ## VisiumBreast.1 0.0000000 0.0000000 0.5014347 0.3590839
+    ## VisiumBreast.2 0.9696322 0.0000000 0.0000000 0.4942756
+    ## VisiumBreast.3 0.0000000 0.0000000 0.0000000 0.0000000
+    ## VisiumBreast.4 0.6267933 0.0000000 0.0000000 0.6267933
+    ## VisiumBreast.5 0.1185850 0.0000000 0.5014347 0.0000000
+    ## VisiumBreast.6 0.0000000 0.1890679 0.0000000 0.3792658
 
 -   Plots illustrating the ecotype abundances. The intensity of charcoal
     represents the cell state abundance. The intensity of gray
@@ -1653,28 +1676,44 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
 3.  **Cell state discovery**: EcoTyper leverages nonnegative matrix
     factorization (NMF) to identify transcriptionally-defined cell
     states from expression profiles purified by CIBERSORTx HiRes (step
-    2). Given c cell types, let *V*<sub>*i*</sub> be a *g* × *n* cell
-    type-specific expression matrix for cell type *i* consisting of *g*
-    rows (the number of genes) and *n* columns (the number of samples).
-    The primary objective of NMF is to factorize *V*<sub>*i*</sub> into
-    two non-negative matrices: a *g* × *k* matrix, *W*, and a *k* × *n*
-    matrix, *H*, where *k* is a user-specified rank (i.e., number of
-    clusters). The basis matrix, *W*, encodes a representative
-    expression level for each gene in each cell state. The mixture
-    coefficients matrix *H*, scaled to sum to 1 across cell states,
-    encodes the representation (relative abundance) of each cell state
-    in each sample. <br/> EcoTyper applies NMF on the top 1000 genes
-    with highest relative dispersion across samples. If less than 1000
-    genes are available, all genes are selected. If less than 50 genes
-    are imputed for a given cell type, that cell type is not used for
-    cell state identification. Prior to NMF, each gene is scaled to mean
-    0 and unit variance. To satisfy the non-negativity requirement of
-    NMF, cell type-specific expression matrices are individually
-    processed using *posneg* transformation. This function converts an
-    input expression matrix *V*<sub>*i*</sub> into two matrices, one
-    containing only positive values and the other containing only
-    negative values with the sign inverted. These two matrices are
-    subsequently concatenated to produce *V*<sub>*i*</sub><sup>\*</sup>.
+    2). Given c cell types, let
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") be a
+    ![g×n](http://chart.apis.google.com/chart?cht=tx&chl=g%C3%97n "g×n")
+    cell type-specific expression matrix for cell type
+    ![i](http://chart.apis.google.com/chart?cht=tx&chl=i "i") consisting
+    of ![g](http://chart.apis.google.com/chart?cht=tx&chl=g "g") rows
+    (the number of genes) and
+    ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") columns
+    (the number of samples). The primary objective of NMF is to
+    factorize
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") into
+    two non-negative matrices: a
+    ![g×k](http://chart.apis.google.com/chart?cht=tx&chl=g%C3%97k "g×k")
+    matrix, ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W"),
+    and a
+    ![k×n](http://chart.apis.google.com/chart?cht=tx&chl=k%C3%97n "k×n")
+    matrix, ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H"),
+    where ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") is a
+    user-specified rank (i.e., number of clusters). The basis matrix,
+    ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W"), encodes a
+    representative expression level for each gene in each cell state.
+    The mixture coefficients matrix
+    ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H"), scaled to
+    sum to 1 across cell states, encodes the representation (relative
+    abundance) of each cell state in each sample. <br/> EcoTyper applies
+    NMF on the top 1000 genes with highest relative dispersion across
+    samples. If less than 1000 genes are available, all genes are
+    selected. If less than 50 genes are imputed for a given cell type,
+    that cell type is not used for cell state identification. Prior to
+    NMF, each gene is scaled to mean 0 and unit variance. To satisfy the
+    non-negativity requirement of NMF, cell type-specific expression
+    matrices are individually processed using *posneg* transformation.
+    This function converts an input expression matrix
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") into
+    two matrices, one containing only positive values and the other
+    containing only negative values with the sign inverted. These two
+    matrices are subsequently concatenated to produce
+    ![V_i^\*](http://chart.apis.google.com/chart?cht=tx&chl=V_i%5E%2A "V_i^*").
     <br/> For each cell type, EcoTyper applies NMF across a range of
     ranks (number of cell states), by default 2-20 states. For each
     rank, the NMF algorithm is applied multiple times (we recommend at
@@ -1714,7 +1753,7 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
     (AFI), a novel index defined as the ratio between the sum of weights
     from the W matrix corresponding to the negative and positive
     features. EcoTyper automatically filters the states with
-    *A**F**I* \>  = 1.
+    ![AFI >= 1](http://chart.apis.google.com/chart?cht=tx&chl=AFI%20%3E%3D%201 "AFI >= 1").
 
 7.  **Advanced cell state QC filter**: When the discovery dataset is
     comprised of multiple tumor types, we recommend using this advanced
@@ -1736,20 +1775,40 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
     cell states across samples. First, EcoTyper leverages the Jaccard
     index to quantify the degree of overlap between each pair of cell
     states across samples in the discovery cohort. Toward this end, it
-    discretizes each cell state *q* into a binary vector *a* of length
-    *l*, where *l* denotes the number of samples in the discovery
-    cohort. Collectively, these vectors comprise binary matrix *A*, with
-    same number of rows as cell states across cell types and *l* columns
-    (samples). Given sample *s*, if state *q* is the most abundant state
-    among all states in cell type *i*, EcoTyper sets
-    *A*<sub>(*q*,*s*)</sub> to 1; otherwise *A*<sub>(*q*,*s*)</sub> ← 0.
+    discretizes each cell state
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") into a
+    binary vector
+    ![a](http://chart.apis.google.com/chart?cht=tx&chl=a "a") of length
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l"), where
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l") denotes
+    the number of samples in the discovery cohort. Collectively, these
+    vectors comprise binary matrix
+    ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"), with same
+    number of rows as cell states across cell types and
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l") columns
+    (samples). Given sample
+    ![s](http://chart.apis.google.com/chart?cht=tx&chl=s "s"), if state
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") is the
+    most abundant state among all states in cell type
+    ![i](http://chart.apis.google.com/chart?cht=tx&chl=i "i"), EcoTyper
+    sets
+    ![A\_(q,s)](http://chart.apis.google.com/chart?cht=tx&chl=A_%28q%2Cs%29 "A_(q,s)")
+    to 1; otherwise
+    ![A\_(q,s) ← 0](http://chart.apis.google.com/chart?cht=tx&chl=A_%28q%2Cs%29%20%E2%86%90%200 "A_(q,s) ← 0").
     It then computes all pairwise Jaccard indices on the rows (states)
-    in matrix *A*, yielding matrix *J*. Using the hypergeometric test,
-    it evaluates the null hypothesis that any given pair of cell states
-    *q* and *k* have no overlap. In cases where the hypergeometric
-    p-value is >0.01, the Jaccard index for *J*<sub>(*q*,*k*)</sub> is
-    set to 0 (i.e., no overlap). To identify communities while
-    accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup>
+    in matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"),
+    yielding matrix
+    ![J](http://chart.apis.google.com/chart?cht=tx&chl=J "J"). Using the
+    hypergeometric test, it evaluates the null hypothesis that any given
+    pair of cell states
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") and
+    ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") have no
+    overlap. In cases where the hypergeometric p-value is >0.01, the
+    Jaccard index for
+    ![J\_(q,k)](http://chart.apis.google.com/chart?cht=tx&chl=J_%28q%2Ck%29 "J_(q,k)")
+    is set to 0 (i.e., no overlap). To identify communities while
+    accommodating outliers, the updated Jaccard matrix
+    ![J^'](http://chart.apis.google.com/chart?cht=tx&chl=J%5E%27 "J^'")
     is hierarchically clustered using average linkage with Euclidean
     distance (hclust in the R stats package). The optimal number of
     clusters is then determined via silhouette width maximization.
@@ -2230,10 +2289,19 @@ EcoTyper generates for each cell type the following outputs:
     sure that the automatic selection provides sensible results. If the
     user wants to adjust the Cophenetic coefficient cutoff after
     inspecting this plot, they can rerun the discovery procedure
-    skipping steps 1-3. **Please note that these plots indicate the
-    number of states obtained before applying the filters for
-    low-quality states in steps 6 and 7. Therefore, the final results
-    will probably contain fewer states**.
+    skipping steps 1-3. **Please note that:**
+
+    1.  **These plots indicate the number of states obtained before
+        applying the filters for low-quality states in steps 6 and 7.
+        Therefore, the final results will probably contain fewer
+        states**.
+    2.  **The plots below might look slightly different when generated
+        with R versions other than R/3.6.0. This is because some
+        EcoTyper steps, including NMF algorithm initialization, depend
+        on random number generation. Althoguh EcoTyper sets random seeds
+        before each such step, different R version output different
+        random numbers for the same seed. To mitigate this issue, we
+        recommend at least 50 NMF restarts when running EcoTyper**.
 
 ``` r
 knitr::include_graphics("DiscoveryOutput/rank_plot.png")
@@ -2466,10 +2534,12 @@ sequence of steps:
     randomly selected cells for this step. <br/> To satisfy the
     non-negativity requirement of NMF, correlation matrices are
     individually processed using *posneg* transformation. This function
-    converts a correlation matrix *V*<sub>*i*</sub> into two matrices,
-    one containing only positive values and the other containing only
-    negative values with the sign inverted. These two matrices are
-    subsequently concatenated to produce *V*<sub>*i*</sub><sup>\*</sup>.
+    converts a correlation matrix
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") into
+    two matrices, one containing only positive values and the other
+    containing only negative values with the sign inverted. These two
+    matrices are subsequently concatenated to produce
+    ![V_i^\*](http://chart.apis.google.com/chart?cht=tx&chl=V_i%5E%2A "V_i^*").
     <br/> For each cell type, EcoTyper applies NMF across a range of
     ranks (number of cell states), by default 2-20 states. For each
     rank, the NMF algorithm is applied multiple times (we recommend at
@@ -2511,14 +2581,16 @@ sequence of steps:
     to NMF, each gene is scaled to mean 0 and unit variance. To satisfy
     the non-negativity requirement of NMF, cell type-specific expression
     matrices are individually processed using *posneg* transformation.
-    This function converts an input expression matrix *V*<sub>*i*</sub>
-    into two matrices, one containing only positive values and the other
+    This function converts an input expression matrix
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") into
+    two matrices, one containing only positive values and the other
     containing only negative values with the sign inverted. These two
     matrices are subsequently concatenated to produce
-    *V*<sub>*i*</sub><sup>\*</sup>. <br/> For each cell type, EcoTyper
-    only applies NMF for the rank selected in step 3. As before, the NMF
-    algorithm is applied multiple times (we recommend at least 50) with
-    different starting seeds, for robustness.
+    ![V_i^\*](http://chart.apis.google.com/chart?cht=tx&chl=V_i%5E%2A "V_i^*").
+    <br/> For each cell type, EcoTyper only applies NMF for the rank
+    selected in step 3. As before, the NMF algorithm is applied multiple
+    times (we recommend at least 50) with different starting seeds, for
+    robustness.
 
 6.  **Extracting cell state information**: The NMF output resulting from
     step 5 is parsed and cell state information is extracted for the
@@ -2532,27 +2604,47 @@ sequence of steps:
     (AFI), a novel index defined as the ratio between the sum of weights
     from the W matrix corresponding to the negative and positive
     features. EcoTyper automatically filters the states with
-    *A**F**I* \>  = 1.
+    ![AFI >= 1](http://chart.apis.google.com/chart?cht=tx&chl=AFI%20%3E%3D%201 "AFI >= 1").
 
 8.  **Ecotype (cellular community) discovery**: *Ecotypes* or *cellular
     communities* are derived by identifying patterns of co-occurrence of
     cell states across samples. First, EcoTyper leverages the Jaccard
     index to quantify the degree of overlap between each pair of cell
     states across samples in the discovery cohort. Toward this end, it
-    discretizes each cell state *q* into a binary vector *a* of length
-    *l*, where *l* = the number of samples in the discovery cohort.
-    Collectively, these vectors comprise binary matrix *A*, with same
-    number of rows as cell states across cell types and *l* columns
-    (samples). Given sample *s*, if state *q* is the most abundant state
-    among all states in cell type *i*, EcoTyper sets
-    *A*<sub>(*q*,*s*)</sub> to 1; otherwise *A*<sub>(*q*,*s*)</sub> ← 0.
+    discretizes each cell state
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") into a
+    binary vector
+    ![a](http://chart.apis.google.com/chart?cht=tx&chl=a "a") of length
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l"), where
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l") = the
+    number of samples in the discovery cohort. Collectively, these
+    vectors comprise binary matrix
+    ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"), with same
+    number of rows as cell states across cell types and
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l") columns
+    (samples). Given sample
+    ![s](http://chart.apis.google.com/chart?cht=tx&chl=s "s"), if state
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") is the
+    most abundant state among all states in cell type
+    ![i](http://chart.apis.google.com/chart?cht=tx&chl=i "i"), EcoTyper
+    sets
+    ![A\_(q,s)](http://chart.apis.google.com/chart?cht=tx&chl=A_%28q%2Cs%29 "A_(q,s)")
+    to 1; otherwise
+    ![A\_(q,s) ← 0](http://chart.apis.google.com/chart?cht=tx&chl=A_%28q%2Cs%29%20%E2%86%90%200 "A_(q,s) ← 0").
     It then computes all pairwise Jaccard indices on the rows (states)
-    in matrix *A*, yielding matrix *J*. Using the hypergeometric test,
-    it evaluates the null hypothesis that any given pair of cell states
-    *q* and *k* have no overlap. In cases where the hypergeometric
-    p-value is >0.01, the Jaccard index for *J*<sub>(*q*,*k*)</sub> is
-    set to 0 (i.e., no overlap). To identify communities while
-    accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup>
+    in matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"),
+    yielding matrix
+    ![J](http://chart.apis.google.com/chart?cht=tx&chl=J "J"). Using the
+    hypergeometric test, it evaluates the null hypothesis that any given
+    pair of cell states
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") and
+    ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") have no
+    overlap. In cases where the hypergeometric p-value is >0.01, the
+    Jaccard index for
+    ![J\_(q,k)](http://chart.apis.google.com/chart?cht=tx&chl=J_%28q%2Ck%29 "J_(q,k)")
+    is set to 0 (i.e., no overlap). To identify communities while
+    accommodating outliers, the updated Jaccard matrix
+    ![J^'](http://chart.apis.google.com/chart?cht=tx&chl=J%5E%27 "J^'")
     is hierarchically clustered using average linkage with Euclidean
     distance (hclust in the R stats package). The optimal number of
     clusters is then determined via silhouette width maximization.
@@ -2655,12 +2747,17 @@ Expression matrix : "example_data/scRNA_CRC_data.txt"
 *Expression matrix* field should contain the path to a tab-delimited
 file containing the expression data, with genes as rows and cells as
 columns. The expression matrix should be in the TPM, CPM or other
-suitable normalized space. It should have gene symbols on the first
-column and gene counts for each cell on the next columns. Column (cells)
-names should be unique. Also, we recommend that the column names do not
-contain special characters that are modified by the R function
-*make.names*, *e.g.* having digits at the beginning of the name or
-containing characters such as *space*, *tab* or *-*:
+suitable normalized space. The users should perform their own quality
+control of the expression matrix before applying EcoTyper (e.g. to
+filter low-quality cells, doublets, etc.). However we do not recommend
+to pre-filter the matrix for variable genes, as EcoTyper performs an
+internal selection for genes that show cell-type specificity. The matrix
+should have gene symbols on the first column and gene counts for each
+cell on the next columns. Column (cells) names should be unique. Also,
+we recommend that the column names do not contain special characters
+that are modified by the R function *make.names*, *e.g.* having digits
+at the beginning of the name or containing characters such as *space*,
+*tab* or *-*:
 
 The expected format for the expression matrix is:
 
@@ -2904,10 +3001,19 @@ EcoTyper generates for each cell type the following outputs:
     sure that the automatic selection provides sensible results. If the
     user wants to adjust the Cophenetic coefficient cutoff after
     inspecting this plot, they can rerun the discovery procedure
-    skipping steps 1-3. **Please note that these plots indicate the
-    number of states obtained before applying the filters for
-    low-quality states in steps 6 and 7. Therefore, the final results
-    will probably contain fewer states**.
+    skipping steps 1-3. **Please note that:**
+
+    1.  **These plots indicate the number of states obtained before
+        applying the filters for low-quality states in steps 6 and 7.
+        Therefore, the final results will probably contain fewer
+        states**.
+    2.  **The plots below might look slightly different when generated
+        with R versions other than R/3.6.0. This is because some
+        EcoTyper steps, including NMF algorithm initialization, depend
+        on random number generation. Althoguh EcoTyper sets random seeds
+        before each such step, different R version output different
+        random numbers for the same seed. To mitigate this issue, we
+        recommend at least 50 NMF restarts when running EcoTyper**.
 
 ``` r
 knitr::include_graphics("DiscoveryOutput_scRNA/rank_plot.png")
@@ -3115,28 +3221,44 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
 2.  **Cell state discovery**: EcoTyper leverages nonnegative matrix
     factorization (NMF) to identify transcriptionally-defined cell
     states from cell type specific expression profiles (step 1). Given c
-    cell types, let *V*<sub>*i*</sub> be a *g* × *n* cell type-specific
-    expression matrix for cell type *i* consisting of *g* rows (the
-    number of genes) and *n* columns (the number of samples). The
-    primary objective of NMF is to factorize *V*<sub>*i*</sub> into two
-    non-negative matrices: a *g* × *k* matrix, *W*, and a *k* × *n*
-    matrix, *H*, where *k* is a user-specified rank (i.e., number of
-    clusters). The basis matrix, *W*, encodes a representative
-    expression level for each gene in each cell state. The mixture
-    coefficients matrix *H*, scaled to sum to 1 across cell states,
-    encodes the representation (relative abundance) of each cell state
-    in each sample. <br/> EcoTyper applies NMF on the top 1000 genes
-    with highest relative dispersion across samples. If less than 1000
-    genes are available, all genes are selected. If less than 50 genes
-    are imputed for a given cell type, that cell type is not used for
-    cell state identification. Prior to NMF, each gene is scaled to mean
-    0 and unit variance. To satisfy the non-negativity requirement of
-    NMF, cell type-specific expression matrices are individually
-    processed using *posneg* transformation. This function converts an
-    input expression matrix *V*<sub>*i*</sub> into two matrices, one
-    containing only positive values and the other containing only
-    negative values with the sign inverted. These two matrices are
-    subsequently concatenated to produce *V*<sub>*i*</sub><sup>\*</sup>.
+    cell types, let
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") be a
+    ![g×n](http://chart.apis.google.com/chart?cht=tx&chl=g%C3%97n "g×n")
+    cell type-specific expression matrix for cell type
+    ![i](http://chart.apis.google.com/chart?cht=tx&chl=i "i") consisting
+    of ![g](http://chart.apis.google.com/chart?cht=tx&chl=g "g") rows
+    (the number of genes) and
+    ![n](http://chart.apis.google.com/chart?cht=tx&chl=n "n") columns
+    (the number of samples). The primary objective of NMF is to
+    factorize
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") into
+    two non-negative matrices: a
+    ![g×k](http://chart.apis.google.com/chart?cht=tx&chl=g%C3%97k "g×k")
+    matrix, ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W"),
+    and a
+    ![k×n](http://chart.apis.google.com/chart?cht=tx&chl=k%C3%97n "k×n")
+    matrix, ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H"),
+    where ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") is a
+    user-specified rank (i.e., number of clusters). The basis matrix,
+    ![W](http://chart.apis.google.com/chart?cht=tx&chl=W "W"), encodes a
+    representative expression level for each gene in each cell state.
+    The mixture coefficients matrix
+    ![H](http://chart.apis.google.com/chart?cht=tx&chl=H "H"), scaled to
+    sum to 1 across cell states, encodes the representation (relative
+    abundance) of each cell state in each sample. <br/> EcoTyper applies
+    NMF on the top 1000 genes with highest relative dispersion across
+    samples. If less than 1000 genes are available, all genes are
+    selected. If less than 50 genes are imputed for a given cell type,
+    that cell type is not used for cell state identification. Prior to
+    NMF, each gene is scaled to mean 0 and unit variance. To satisfy the
+    non-negativity requirement of NMF, cell type-specific expression
+    matrices are individually processed using *posneg* transformation.
+    This function converts an input expression matrix
+    ![V_i](http://chart.apis.google.com/chart?cht=tx&chl=V_i "V_i") into
+    two matrices, one containing only positive values and the other
+    containing only negative values with the sign inverted. These two
+    matrices are subsequently concatenated to produce
+    ![V_i^\*](http://chart.apis.google.com/chart?cht=tx&chl=V_i%5E%2A "V_i^*").
     <br/> For each cell type, EcoTyper applies NMF across a range of
     ranks (number of cell states), by default 2-20 states. For each
     rank, the NMF algorithm is applied multiple times (we recommend at
@@ -3176,7 +3298,7 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
     (AFI), a novel index defined as the ratio between the sum of weights
     from the W matrix corresponding to the negative and positive
     features. EcoTyper automatically filters the states with
-    *A**F**I* \>  = 1.
+    ![AFI >= 1](http://chart.apis.google.com/chart?cht=tx&chl=AFI%20%3E%3D%201 "AFI >= 1").
 
 6.  **Advanced cell state QC filter**: When the discovery dataset is
     comprised of multiple tumor types, we recommend using this advanced
@@ -3198,20 +3320,40 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
     cell states across samples. First, EcoTyper leverages the Jaccard
     index to quantify the degree of overlap between each pair of cell
     states across samples in the discovery cohort. Toward this end, it
-    discretizes each cell state *q* into a binary vector *a* of length
-    *l*, where *l* = the number of samples in the discovery cohort.
-    Collectively, these vectors comprise binary matrix *A*, with same
-    number of rows as cell states across cell types and *l* columns
-    (samples). Given sample *s*, if state *q* is the most abundant state
-    among all states in cell type *i*, EcoTyper sets
-    *A*<sub>(*q*,*s*)</sub> to 1; otherwise *A*<sub>(*q*,*s*)</sub> ← 0.
+    discretizes each cell state
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") into a
+    binary vector
+    ![a](http://chart.apis.google.com/chart?cht=tx&chl=a "a") of length
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l"), where
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l") = the
+    number of samples in the discovery cohort. Collectively, these
+    vectors comprise binary matrix
+    ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"), with same
+    number of rows as cell states across cell types and
+    ![l](http://chart.apis.google.com/chart?cht=tx&chl=l "l") columns
+    (samples). Given sample
+    ![s](http://chart.apis.google.com/chart?cht=tx&chl=s "s"), if state
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") is the
+    most abundant state among all states in cell type
+    ![i](http://chart.apis.google.com/chart?cht=tx&chl=i "i"), EcoTyper
+    sets
+    ![A\_(q,s)](http://chart.apis.google.com/chart?cht=tx&chl=A_%28q%2Cs%29 "A_(q,s)")
+    to 1; otherwise
+    ![A\_(q,s) ← 0](http://chart.apis.google.com/chart?cht=tx&chl=A_%28q%2Cs%29%20%E2%86%90%200 "A_(q,s) ← 0").
     It then computes all pairwise Jaccard indices on the rows (states)
-    in matrix *A*, yielding matrix *J*. Using the hypergeometric test,
-    it evaluates the null hypothesis that any given pair of cell states
-    *q* and *k* have no overlap. In cases where the hypergeometric
-    p-value is >0.01, the Jaccard index for *J*<sub>(*q*,*k*)</sub> is
-    set to 0 (i.e., no overlap). To identify communities while
-    accommodating outliers, the updated Jaccard matrix *J*<sup>′</sup>
+    in matrix ![A](http://chart.apis.google.com/chart?cht=tx&chl=A "A"),
+    yielding matrix
+    ![J](http://chart.apis.google.com/chart?cht=tx&chl=J "J"). Using the
+    hypergeometric test, it evaluates the null hypothesis that any given
+    pair of cell states
+    ![q](http://chart.apis.google.com/chart?cht=tx&chl=q "q") and
+    ![k](http://chart.apis.google.com/chart?cht=tx&chl=k "k") have no
+    overlap. In cases where the hypergeometric p-value is >0.01, the
+    Jaccard index for
+    ![J\_(q,k)](http://chart.apis.google.com/chart?cht=tx&chl=J_%28q%2Ck%29 "J_(q,k)")
+    is set to 0 (i.e., no overlap). To identify communities while
+    accommodating outliers, the updated Jaccard matrix
+    ![J^'](http://chart.apis.google.com/chart?cht=tx&chl=J%5E%27 "J^'")
     is hierarchically clustered using average linkage with Euclidean
     distance (hclust in the R stats package). The optimal number of
     clusters is then determined via silhouette width maximization.
@@ -3558,10 +3700,19 @@ EcoTyper generates for each cell type the following outputs:
     sure that the automatic selection provides sensible results. If the
     user wants to adjust the Cophenetic coefficient cutoff after
     inspecting this plot, they can rerun the discovery procedure
-    skipping steps 1-3. **Please note that these plots indicate the
-    number of states obtained before applying the filters for
-    low-quality states in steps 6 and 7. Therefore, the final results
-    will probably contain fewer states**.
+    skipping steps 1-3. **Please note that:**
+
+    1.  **These plots indicate the number of states obtained before
+        applying the filters for low-quality states in steps 6 and 7.
+        Therefore, the final results will probably contain fewer
+        states**.
+    2.  **The plots below might look slightly different when generated
+        with R versions other than R/3.6.0. This is because some
+        EcoTyper steps, including NMF algorithm initialization, depend
+        on random number generation. Althoguh EcoTyper sets random seeds
+        before each such step, different R version output different
+        random numbers for the same seed. To mitigate this issue, we
+        recommend at least 50 NMF restarts when running EcoTyper**.
 
 ``` r
 knitr::include_graphics("PresortedDiscoveryOutput/rank_plot.png")
