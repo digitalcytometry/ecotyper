@@ -1,12 +1,12 @@
 ---
 output:
+  html_document: 
+    toc: true
+    toc_float: true
   github_document:
     math_method:
       engine: webtex
       url: http://chart.apis.google.com/chart?cht=tx&chl=
-  html_document:
-    toc: true
-    toc_float: true
   pdf_document: default
   word_document: default
   md_document: default
