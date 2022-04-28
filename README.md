@@ -1,4 +1,8 @@
 
+<p align="center">
+<img width="300" src="utils/EcoTyper_Logo.png">
+</p>
+
 ## Introduction
 
 [EcoTyper](https://ecotyper.stanford.edu/) is a machine learning
@@ -75,7 +79,7 @@ EcoTyper folder, allow users to:
 -   perform cell state and ecotype discovery in scRNA-seq and pre-sorted
     cell type-specific profiles (Tutorials 5 and 6).
 
-Besides these pacakges, the additional resources described in the next
+Besides these packages, the additional resources described in the next
 section are needed for analyses described in Tutorials 3 and 4.
 
 ### Additional resources

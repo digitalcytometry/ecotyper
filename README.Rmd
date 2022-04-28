@@ -1,12 +1,12 @@
 ---
 output:
-  html_document: 
-    toc: true
-    toc_float: true
   github_document:
     math_method:
       engine: webtex
       url: http://chart.apis.google.com/chart?cht=tx&chl=
+  html_document: 
+    toc: true
+    toc_float: true
   pdf_document: default
   word_document: default
   md_document: default
@@ -16,6 +16,10 @@ output:
 knitr::opts_knit$set(root.dir = '.')
 knitr::opts_knit$set(fig.path = '.') 
 ```
+
+<p align="center">
+  <img width="300" src="utils/EcoTyper_Logo.png">
+</p>
 
 ## Introduction
 
@@ -61,7 +65,7 @@ The R packages listed below are required for running EcoTyper. The version numbe
   * perform the recovery of previously defined cell states and ecotypes in their own bulk RNA-seq, microarray and scRNA-seq data (Tutorials 1 and 2).
   * perform cell state and ecotype discovery in scRNA-seq and pre-sorted cell type-specific profiles (Tutorials 5 and 6).
   
-  Besides these pacakges, the additional resources described in the next section are needed for analyses described in Tutorials 3 and 4.
+  Besides these packages, the additional resources described in the next section are needed for analyses described in Tutorials 3 and 4.
   
 ### Additional resources
   
