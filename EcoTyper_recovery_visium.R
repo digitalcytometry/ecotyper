@@ -53,14 +53,15 @@ if(!discovery %in% c("Carcinoma", "Lymphoma"))
 		stop("Error: Cannot read the configuration file used for the discovery of cell states and ecotypes. It should be in the following path: '", config_file, "'. Please make sure that the '--discovery (-d)' argument provided is correct!")
 	}
 	config <- config::get(file = discovery_config_file)
-	discovery_fractions = config$"Input"$"Cell type fractions"
+	print(config)
+	discovery_fractions = config$"Pipeline settings"$"Cell type fractions"
 	if(!is.null(discovery_fractions) && discovery_fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions"))
 	{
 		fractions = discovery_fractions
 	}else{
-		if(!is.null(config$"Input"$"Filter non cell type specific genes"))
+		if(!is.null(config$"Pipeline settings"$"Filter non cell type specific genes"))
 		{
-			if(config$"Input"$"Filter non cell type specific genes")
+			if(config$"Pipeline settings"$"Filter non cell type specific genes")
 			{
 				fractions = "Cell_type_specific_genes"
 			}else{
@@ -79,7 +80,7 @@ setwd("pipeline")
 start = Sys.time()
 
 cat("\nLoading visium data...\n")
-PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, input_path))
+#PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, input_path))
 RunJobQueue()
 
 if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists(fractions_path))
@@ -158,5 +159,5 @@ system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_State
 system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "Ecotype_spatial_heatmaps.png"), final_output))
 
 end = Sys.time()
-cat(paste0("\nEcoTyper finished succesfully! Please find the results in: '", final_output, "'.\nRun time: ", format(end - start, digits = 0), "\n"))
+cat(paste0("\nEcoTyper finished succesfully! Please find the results in: '", final_output, "'.\nRun time: ", format(end - start, digits = 1), "\n"))
 

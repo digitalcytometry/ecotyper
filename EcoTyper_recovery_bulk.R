@@ -160,5 +160,5 @@ system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Ecotypes",
 system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "heatmap_assigned_samples_viridis.png"), ct_output))
 
 end = Sys.time()
-cat(paste0("\nEcoTyper finished succesfully! Please find the results in: '", final_output, "'.\nRun time: ", format(end - start, digits = 0), "\n"))
+cat(paste0("\nEcoTyper finished succesfully! Please find the results in: '", final_output, "'.\nRun time: ", format(end - start, digits = 1), "\n"))
 
