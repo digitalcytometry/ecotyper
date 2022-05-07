@@ -80,7 +80,7 @@ setwd("pipeline")
 start = Sys.time()
 
 cat("\nLoading visium data...\n")
-#PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, input_path))
+PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, input_path))
 RunJobQueue()
 
 if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists(fractions_path))
