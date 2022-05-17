@@ -359,20 +359,26 @@ head(data[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## S01                 2.083264e-15                  0.018526046
-    ## S02                 1.379863e-01                  0.012301783
-    ## S03                 1.296628e-01                  0.003181937
-    ## S04                 7.119142e-03                  0.003346075
+    ## S01                 5.610752e-02                 9.612807e-15
+    ## S02                 1.280373e-02                 6.386013e-03
+    ## S03                 1.035601e-14                 6.176960e-05
+    ## S04                 1.451949e-02                 1.694937e-02
+    ## S05                 1.793168e-01                 1.726694e-02
+    ## S06                 2.209002e-01                 2.355230e-02
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## S01                   0.05884281                   0.01150542
-    ## S02                   0.18379510                   0.05917894
-    ## S03                   0.07466737                   0.06311084
-    ## S04                   0.05295505                   0.03820861
+    ## S01                  0.040894068                  0.007263805
+    ## S02                  0.005972317                  0.004142070
+    ## S03                  0.012142088                  0.028884848
+    ## S04                  0.063365960                  0.019739555
+    ## S05                  0.013198449                  0.001226978
+    ## S06                  0.126574543                  0.051897896
     ##     TCGA.05.4249.01A.01R.1107.07
-    ## S01                   0.35434105
-    ## S02                   0.28080083
-    ## S03                   0.11240927
-    ## S04                   0.04851547
+    ## S01                   0.02797270
+    ## S02                   0.05575916
+    ## S03                   0.03578894
+    ## S04                   0.25177782
+    ## S05                   0.16956906
+    ## S06                   0.03006488
 
 -   The assignment of samples to the state with highest abundance. If
     the cell state with the highest abundance is one of the cell states
@@ -388,12 +394,12 @@ head(data[,c("ID", "State")])
 ```
 
     ##                             ID State
-    ## 1 TCGA.05.4249.01A.01R.1107.07   S01
-    ## 2 TCGA.50.6590.01A.12R.1858.07   S01
-    ## 3 TCGA.55.6983.11A.01R.1949.07   S01
-    ## 4 TCGA.69.7761.01A.11R.2170.07   S01
-    ## 5 TCGA.93.7347.01A.11R.2187.07   S01
-    ## 6 TCGA.73.4662.01A.01R.1206.07   S01
+    ## 1 TCGA.L3.A524.01A.11R.A262.07   S01
+    ## 2 TCGA.05.4397.01A.01R.1206.07   S01
+    ## 3 TCGA.68.7757.01B.11R.2296.07   S01
+    ## 4 TCGA.44.8120.01A.11R.2241.07   S02
+    ## 5 TCGA.44.6776.11A.01R.1858.07   S02
+    ## 6 TCGA.77.7138.11A.01R.2045.07   S02
 
 -   Two heatmaps: the heatmap representing the expression of “marker”
     genes for each state (See Tutorial 4 for more details) in the
@@ -414,33 +420,33 @@ assign = read.delim("RecoveryOutput/bulk_lung_data/Ecotypes/ecotype_abundance.tx
 dim(assign)
 ```
 
-    ## [1]   9 250
+    ## [1]  10 250
 
 ``` r
 head(assign[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## LE1                   0.16417228                   0.02365489
-    ## LE2                   0.08192505                   0.05046453
-    ## LE3                   0.12463032                   0.61936802
-    ## LE4                   0.01515642                   0.04878655
-    ## LE5                   0.16935221                   0.04596270
-    ## LE6                   0.18055183                   0.04292269
+    ## CE1                 2.443917e-03                  0.037980002
+    ## CE2                 1.621595e-01                  0.243056291
+    ## CE3                 1.386670e-14                  0.074721775
+    ## CE4                 7.257657e-02                  0.006520748
+    ## CE5                 1.618937e-01                  0.054197440
+    ## CE6                 1.908700e-02                  0.035478083
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## LE1                   0.13700230                   0.05801216
-    ## LE2                   0.03932840                   0.04340269
-    ## LE3                   0.25247584                   0.49820232
-    ## LE4                   0.10528174                   0.02365418
-    ## LE5                   0.06864643                   0.03466751
-    ## LE6                   0.09809911                   0.05476600
+    ## CE1                  0.076640619                  0.189985313
+    ## CE2                  0.167842143                  0.219429926
+    ## CE3                  0.004333314                  0.041762348
+    ## CE4                  0.058892709                  0.063477887
+    ## CE5                  0.148527987                  0.088747720
+    ## CE6                  0.017818809                  0.009234279
     ##     TCGA.05.4249.01A.01R.1107.07
-    ## LE1                   0.10219731
-    ## LE2                   0.05493172
-    ## LE3                   0.10202715
-    ## LE4                   0.12493246
-    ## LE5                   0.09788877
-    ## LE6                   0.10122469
+    ## CE1                   0.11162555
+    ## CE2                   0.03073282
+    ## CE3                   0.08510031
+    ## CE4                   0.04811969
+    ## CE5                   0.08697437
+    ## CE6                   0.07069911
 
 -   The assignment of samples to the carcinoma ecotype with the highest
     abundance. If the cell state fractions from the dominant ecotype are
@@ -456,33 +462,33 @@ discrete_assignments = read.delim("RecoveryOutput/bulk_lung_data/Ecotypes/ecotyp
 dim(discrete_assignments)
 ```
 
-    ## [1]   9 250
+    ## [1]  10 250
 
 ``` r
 head(discrete_assignments[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## LE1                   0.16417228                   0.02365489
-    ## LE2                   0.08192505                   0.05046453
-    ## LE3                   0.12463032                   0.61936802
-    ## LE4                   0.01515642                   0.04878655
-    ## LE5                   0.16935221                   0.04596270
-    ## LE6                   0.18055183                   0.04292269
+    ## CE1                 2.443917e-03                  0.037980002
+    ## CE2                 1.621595e-01                  0.243056291
+    ## CE3                 1.386670e-14                  0.074721775
+    ## CE4                 7.257657e-02                  0.006520748
+    ## CE5                 1.618937e-01                  0.054197440
+    ## CE6                 1.908700e-02                  0.035478083
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## LE1                   0.13700230                   0.05801216
-    ## LE2                   0.03932840                   0.04340269
-    ## LE3                   0.25247584                   0.49820232
-    ## LE4                   0.10528174                   0.02365418
-    ## LE5                   0.06864643                   0.03466751
-    ## LE6                   0.09809911                   0.05476600
+    ## CE1                  0.076640619                  0.189985313
+    ## CE2                  0.167842143                  0.219429926
+    ## CE3                  0.004333314                  0.041762348
+    ## CE4                  0.058892709                  0.063477887
+    ## CE5                  0.148527987                  0.088747720
+    ## CE6                  0.017818809                  0.009234279
     ##     TCGA.05.4249.01A.01R.1107.07
-    ## LE1                   0.10219731
-    ## LE2                   0.05493172
-    ## LE3                   0.10202715
-    ## LE4                   0.12493246
-    ## LE5                   0.09788877
-    ## LE6                   0.10122469
+    ## CE1                   0.11162555
+    ## CE2                   0.03073282
+    ## CE3                   0.08510031
+    ## CE4                   0.04811969
+    ## CE5                   0.08697437
+    ## CE6                   0.07069911
 
 -   A heatmap of cell state abundances across the samples assigned to
     ecotypes. Rows correspond to the cell states forming ecotypes, while
@@ -2714,7 +2720,7 @@ default :
     Number of threads : 10
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
-    Cophenetic coefficient cutoff : 0.95
+    Cophenetic coefficient cutoff : 0.975
     #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for discovering ecotypes in step 8. Default: 1 (no filtering).
     Jaccard matrix p-value cutoff : 1
 ```
@@ -2889,6 +2895,7 @@ EcoTyper is run.
     #   step 6 (extracting information for re-discovered cell states)
     #   step 7 (cell state QC filter)
     #   step 8 (ecotype discovery)
+    Pipeline steps to skip : [] 
 ```
 
 The *Pipeline steps to skip* option allows user to skip some of the
@@ -3028,38 +3035,11 @@ knitr::include_graphics("DiscoveryOutput_scRNA/rank_plot.png")
 -   For each cell type, the following outputs, exemplified here for
     fibroblasts, are produced:
 
-    -   Abundances of cell states remaining after the QC filters in
-        steps 6 and 7 (if run), across samples in the discovery dataset:
-
-``` r
-data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_abundances.txt")
-dim(data)
-```
-
-    ## [1]    5 1500
-
-``` r
-head(data[,1:5])
-```
-
-    ##     SMC01.T_AAAGTAGAGTGGTAGC SMC01.T_ACACCCTGTTGGTAAA SMC01.T_ACATCAGTCGCCTGAG
-    ## S01             2.074345e-14             4.262766e-02             1.352784e-14
-    ## S02             2.074345e-14             3.332167e-01             3.957569e-01
-    ## S03             2.781436e-02             1.204917e-02             1.706085e-01
-    ## S04             2.074345e-14             9.441681e-13             1.352784e-14
-    ## S05             2.074345e-14             6.121064e-01             7.391235e-02
-    ##     SMC01.T_ACTATCTAGCTAGTCT SMC01.T_ACTGATGAGCACCGCT
-    ## S01             5.529717e-02             1.022447e-14
-    ## S02             2.081811e-14             1.805516e-01
-    ## S03             3.519208e-02             6.787254e-01
-    ## S04             2.081811e-14             1.022447e-14
-    ## S05             2.081811e-14             7.112757e-02
-
--   Assignment of samples in the discovery dataset to the cell state
-    with the highest abundance. Only samples assigned to the cell states
-    remaining after the QC filters in steps 6 and 7 (if run) are
-    included. The remaining ones are considered unassigned and removed
-    from this table:
+    -   Assignment of cells in the discovery dataset to the cell state
+        with the highest abundance. Only cells assigned to the cell
+        states remaining after the QC filters in steps 6 and 7 (if run)
+        are included. The remaining ones are considered unassigned and
+        removed from this table:
 
 ``` r
 data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_assignment.txt")
@@ -3952,6 +3932,8 @@ PushToJobQueue <- function(cmd){
 RunJobQueue <- function()
 {   
     name_substr = discovery
+    print("Sleeping 60s...") 
+    Sys.sleep(60) 
     while(job_is_running(name_substr))
     {
         print("Sleeping 60s...") 

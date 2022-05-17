@@ -1065,7 +1065,7 @@ default :
     Number of threads : 10
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
-    Cophenetic coefficient cutoff : 0.95
+    Cophenetic coefficient cutoff : 0.975
     #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for discovering ecotypes in step 8. Default: 1 (no filtering).
     Jaccard matrix p-value cutoff : 1
 ```
@@ -1156,6 +1156,7 @@ The last section, *Pipeline settings*, contains settings controlling how EcoType
     #   step 6 (extracting information for re-discovered cell states)
     #   step 7 (cell state QC filter)
     #   step 8 (ecotype discovery)
+    Pipeline steps to skip : [] 
 ```
 
 The *Pipeline steps to skip* option allows user to skip some of the steps outlined in section *Overview of the EcoTyper workflow for discovering cell states*. Please note that this option is only intended for cases when the pipeline had already been run once, and small adjustments are made to the parameters. For example, if the Cophenetic coefficient cutoff used in step 3 needs adjusting, the user might want to skip steps 1-2 and re-run from step 3 onwards.
@@ -1231,15 +1232,7 @@ knitr::include_graphics("DiscoveryOutput_scRNA/rank_plot.png")
 
 * For each cell type, the following outputs, exemplified here for fibroblasts, are produced:
 
-  * Abundances of cell states remaining after the QC filters in steps 6 and 7 (if run),  across samples in the discovery dataset:
-
-```{r}
-data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_abundances.txt")
-dim(data)
-head(data[,1:5])
-```
-
-  * Assignment of samples in the discovery dataset to the cell state with the highest abundance. Only samples assigned to the cell states remaining after the QC filters in steps 6 and 7 (if run) are included. The remaining ones are considered unassigned and removed from this table:
+  * Assignment of cells in the discovery dataset to the cell state with the highest abundance. Only cells assigned to the cell states remaining after the QC filters in steps 6 and 7 (if run) are included. The remaining ones are considered unassigned and removed from this table:
 
 ```{r}
 data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_assignment.txt")
@@ -1633,6 +1626,8 @@ PushToJobQueue <- function(cmd){
 RunJobQueue <- function()
 {	
 	name_substr = discovery
+	print("Sleeping 60s...") 
+	Sys.sleep(60) 
 	while(job_is_running(name_substr))
 	{
 		print("Sleeping 60s...") 
