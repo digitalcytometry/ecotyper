@@ -8,7 +8,7 @@ source("lib/heatmaps.R")
 })
 
 args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "Ecotype")
-#args = commandArgs(T) 
+args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
 fraction_processing = args[3]
