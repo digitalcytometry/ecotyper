@@ -200,6 +200,10 @@ draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge
 tmp = dev.off()
 
 small_H = as.matrix(all_H[,match(clinical_filt$ID, colnames(all_H))])
+if(is.null(small_H) || nrow(small_H) == 0 || ncol(small_H) == 0)
+{
+	stop(paste("No samples were assigned to ecotypes!"))
+}
 rownames(clinical_filt)= clinical_filt$ID
 h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),

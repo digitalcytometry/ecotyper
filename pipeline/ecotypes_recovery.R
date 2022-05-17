@@ -6,7 +6,6 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("discovery_scRNA_CRC", "scRNA_specific_genes", "TCGA_COAD_tpm.fullIDs.remapped")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -134,6 +133,12 @@ draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge
 tmp = dev.off()
 
 small_H = as.matrix(all_H[,match(clinical_filt$ID, colnames(all_H))])
+
+if(is.null(small_H) || nrow(small_H) == 0 || ncol(small_H) == 0)
+{
+	stop(paste("No samples were assigned to ecotypes!"))
+}
+
 h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
 	width = unit(5, "in"), height = unit(3, "in"),
@@ -144,42 +149,17 @@ pdf(file.path(output_dir, "heatmap_assigned_samples_viridis.pdf"), width = 8, he
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 #draw(h1, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 suppressWarnings({
-ord = ecotypes[row_order(h),]
+rect = rectangle_annotation_coordinates(ecotypes$Ecotype, clinical_filt$Ecotype)
 })
-dup = (which(!duplicated(ord$Ecotype)) - 1)
-fract = dup / nrow(ecotypes)
-height =  c(fract[-1], 1) - fract
-
-suppressWarnings({
-ord = clinical_filt[column_order(h),]
-})
-dup = (which(!duplicated(ord$Ecotype)) - 1)
-fract2 = dup / nrow(clinical_filt)
-
-missing = which(!levels(clinical_filt$Ecotype) %in% clinical_filt$Ecotype)
-if(length(missing) > 0)
-{
-	for(mis in missing)
-	{
-		if(mis == length(fract2))
-		{
-			fract2 = c(0, mis)
-		}else{
-			fract2 = c(fract2[1:mis], fract2[mis], fract2[(mis + 1):length(fract2)])
-		}
-	}
-}
-
-width =  c(fract2[-1], 1) - fract2
 decorate_heatmap_body("hmap", {
-    grid.rect(unit(fract2, "native"), unit(1-fract, "native"), width = unit(width, "native"), height = unit(height, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", lty = 1, lwd = 3))
+    grid.rect(x = unit(rect$x, "native"), y = unit(rect$y, "native"), width = unit(rect$w, "native"), height = unit(rect$h, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", fill = NA, lty = 1, lwd = 3))
 })
 tmp = dev.off()
 
 png(file.path(output_dir, "heatmap_assigned_samples_viridis.png"), width = 8, height = 7, units = "in", res = 300)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 decorate_heatmap_body("hmap", {
-    grid.rect(unit(fract2, "native"), unit(1-fract, "native"), width = unit(width, "native"), height = unit(height, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", fill = NA, lty = 1, lwd = 3))
+    grid.rect(x = unit(rect$x, "native"), y = unit(rect$y, "native"), width = unit(rect$w, "native"), height = unit(rect$h, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", fill = NA, lty = 1, lwd = 3))
 })
 tmp = dev.off()
 
@@ -192,14 +172,14 @@ h = heatmap_simple(small_H, top_annotation = clinical, top_columns = top_cols,
 pdf(file.path(output_dir, "heatmap_assigned_samples_YlGnBu.pdf"), width = 8, height = 7)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 decorate_heatmap_body("hmap", {
-    grid.rect(unit(fract2, "native"), unit(1-fract, "native"), width = unit(width, "native"), height = unit(height, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", lty = 1, lwd = 3))
+    grid.rect(x = unit(rect$x, "native"), y = unit(rect$y, "native"), width = unit(rect$w, "native"), height = unit(rect$h, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", fill = NA, lty = 1, lwd = 3))
 })
 tmp = dev.off()
 
 png(file.path(output_dir, "heatmap_assigned_samples_YlGnBu.png"), width = 8, height = 7, units = "in", res = 300)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 decorate_heatmap_body("hmap", {
-    grid.rect(unit(fract2, "native"), unit(1-fract, "native"), width = unit(width, "native"), height = unit(height, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", fill = NA, lty = 1, lwd = 3))
+    grid.rect(x = unit(rect$x, "native"), y = unit(rect$y, "native"), width = unit(rect$w, "native"), height = unit(rect$h, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", fill = NA, lty = 1, lwd = 3))
 })
 tmp = dev.off()
 

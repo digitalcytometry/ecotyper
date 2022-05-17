@@ -133,6 +133,10 @@ clinical_filt$Ecotype = ecotype_to_factor(clinical_filt$Ecotype)
 clinical_filt = clinical_filt[order(clinical_filt$Ecotype),]
 
 small_H = as.matrix(all_H[,match(clinical_filt$ID, colnames(all_H))])
+if(is.null(small_H) || nrow(small_H) == 0 || ncol(small_H) == 0)
+{
+	stop(paste("No samples were assigned to ecotypes!"))
+}
 h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
 	width = unit(5, "in"), height = unit(3, "in"),

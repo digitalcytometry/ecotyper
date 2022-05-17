@@ -176,6 +176,11 @@ gene_info$State = as.factor(as.character(gene_info$State))
 discovery_annotation$State = as.factor(as.character(discovery_annotation$State))
 assignment$State = factor(as.character(assignment$State), levels = levels(discovery_annotation$State))
 
+if(is.null(smoothed_data) || nrow(smoothed_data) == 0 || ncol(smoothed_data) == 0)
+{
+	stop(paste("No samples were assigned to cell states for cell type:", cell_type))
+}
+
 suppressWarnings({
 p <- heatmap_simple(discovery_data, top_annotation = discovery_annotation, dataset = dataset,
 	top_columns = unique(c(top_cols[top_cols %in% colnames(discovery_annotation)], "State")), 

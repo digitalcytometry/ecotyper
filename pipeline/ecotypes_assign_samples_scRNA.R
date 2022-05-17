@@ -8,7 +8,7 @@ source("lib/heatmaps.R")
 })
 
 args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "Ecotype")
-args = commandArgs(T) 
+#args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
 fraction_processing = args[3]
@@ -190,7 +190,10 @@ clinical_filt$Ecotype = factor(as.character(clinical_filt$Ecotype), levels = lev
 clinical_filt = clinical_filt[order(clinical_filt$Ecotype),]
 write.table(clinical_filt, file.path(output_dir, "ecotype_assignment.txt"), sep = "\t")
 small_H = as.matrix(all_H[,match(clinical_filt$ID, colnames(all_H))])
-
+if(is.null(small_H) || nrow(small_H) == 0 || ncol(small_H) == 0)
+{
+	stop(paste("No samples were assigned to ecotypes!"))
+}
 h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
 	width = unit(5, "in"), height = unit(3, "in"),
