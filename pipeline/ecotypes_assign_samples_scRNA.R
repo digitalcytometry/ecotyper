@@ -7,7 +7,7 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "Ecotype")
+args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "Ecotype", "Tissue")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -33,6 +33,7 @@ ecotypes = ecotypes[order(ecotypes$Ecotype),]
 
 all_H = NULL
 all_classes_filt = NULL
+cell_ids = c()
 for(cell_type in key[,1])
 {	
 	#print(cell_type) 
@@ -42,6 +43,8 @@ for(cell_type in key[,1])
 	clinical = read_clinical(classes$ID, dataset = dataset)
 	classes$Sample = clinical$Sample
 	
+	cell_ids = unique(c(cell_ids, classes$ID))
+
 	classes = as.data.frame(table(classes$Sample, classes$State))
 	colnames(classes) = c("ID", "State", "Freq")
 	splits = split(classes, classes$ID)
@@ -158,6 +161,26 @@ clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID
 clinical$Ecotype = ifelse( clinical$AssignedToEcotypeStates, as.character(clinical$MaxEcotype), "Unassigned")
 clinical$Ecotype = factor(as.character(clinical$Ecotype), levels = c(levels(ecotypes$Ecotype), "Unassigned"))
 
+annotation = read_clinical(cell_ids, dataset = dataset)
+additional_columns = top_cols[top_cols %in% colnames(annotation)]
+agg_ann = do.call(cbind, sapply(additional_columns, function(x){
+	tb = as.data.frame(table(annotation$Sample, annotation[,x]))
+	tb = tb[tb[,3] > 0,]
+	if(sum(duplicated(tb[,1])) > 0){
+		warning(paste0("Not plotting column '", x, "', as it has multiple distinct values within the same sample!"))
+		return(NULL)
+	}
+	tb = tb[match(clinical$ID, tb[,1]),]
+	as.character(tb[,2])
+	}, simplify = F))
+if(!is.null(agg_ann))
+{
+	clinical = cbind(clinical, agg_ann)
+	top_cols = unique(c(colnames(agg_ann), "Ecotype"))	
+}else{
+	top_cols = "Ecotype"
+}
+
 #tmp = read_clinical(clinical$ID, dataset = dataset)
 #to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
 #to_rem = to_rem[to_rem != "ID"]
@@ -181,7 +204,7 @@ h <- heatmap_simple(all_H, top_annotation = clinical, top_columns = top_cols,
 	legend_name = "State abundance",
 	color_range = seq(0, quantile(as.matrix(all_H), .9, na.rm = T), length.out = 8), color_palette = c("gray", viridis(8)), raster_quality = 5)
 
-pdf(file.path(output_dir, "heatmap_all_samples.pdf"), width = 12, height = 7)
+pdf(file.path(output_dir, "heatmap_all_samples.pdf"), width = 12, height = 9)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 tmp = dev.off()
 
@@ -200,7 +223,7 @@ h = heatmap_simple(small_H, top_annotation = clinical_filt, top_columns = top_co
 	legend_name = "State abundance",
 	color_range = seq(0, quantile(as.matrix(all_H), .9, na.rm = T), length.out = 8), color_palette = c("gray", viridis(8)), raster_quality = 20)
 
-pdf(file.path(output_dir, "heatmap_assigned_samples_viridis.pdf"), width = 8, height = 6)
+pdf(file.path(output_dir, "heatmap_assigned_samples_viridis.pdf"), width = 8, height = 8)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 #draw(h1, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 suppressWarnings({
@@ -211,7 +234,7 @@ decorate_heatmap_body("hmap", {
 })
 tmp = dev.off()
 
-png(file.path(output_dir, "heatmap_assigned_samples_viridis.png"), width = 8, height = 6, units = "in", res = 300)
+png(file.path(output_dir, "heatmap_assigned_samples_viridis.png"), width = 8, height = 8, units = "in", res = 300)
 draw(h, heatmap_legend_side = "bottom", annotation_legend_side = "bottom", merge_legends = T)	
 decorate_heatmap_body("hmap", {
 	grid.rect(x = unit(rect$x, "native"), y = unit(rect$y, "native"), width = unit(rect$w, "native"), height = unit(rect$h, "native"), hjust = 0, vjust = 1, gp = gpar(col = "white", fill = NA, lty = 1, lwd = 3)) 

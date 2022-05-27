@@ -7,7 +7,7 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("Carcinoma", "Carcinoma_Fractions", "scRNA_CRC_data")
+args = c("Carcinoma", "Carcinoma_Fractions", "scRNA_CRC_data", "Tissue")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
@@ -37,6 +37,7 @@ ecotypes = ecotypes[order(ecotypes$Ecotype),]
 
 all_H = NULL
 all_classes_filt = NULL
+cell_ids = c()
 for(cell_type in key[,1])
 {	
 	#print(cell_type) 
@@ -50,6 +51,8 @@ for(cell_type in key[,1])
 	clinical = read_clinical(classes$ID, dataset = test_dataset, dataset_type = "scRNA")
 	classes$Sample = clinical$Sample
 	
+	cell_ids = unique(c(cell_ids, classes$ID))
+
 	classes = as.data.frame(table(classes$Sample, classes$State))
 	colnames(classes) = c("ID", "State", "Freq")
 	splits = split(classes, classes$ID)
@@ -167,11 +170,25 @@ clinical$AssignedToEcotypeStates = clinical$ID %in% all_classes_filt$ID
 clinical$Ecotype = ifelse( clinical$AssignedToEcotypeStates, as.character(clinical$MaxEcotype), "Unassigned")
 clinical$Ecotype = factor(as.character(clinical$Ecotype), levels = c(levels(ecotypes$Ecotype), "Unassigned"))
 
-tmp = read_clinical(clinical$ID, dataset = test_dataset, dataset_type =  "scRNA")
-to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
-to_rem = to_rem[to_rem != "ID"]
-tmp = tmp[,!colnames(tmp) %in% to_rem]
-clinical = merge(clinical, tmp, by = "ID", all.x = T)
+annotation = read_clinical(cell_ids, dataset = test_dataset, dataset_type = "scRNA")
+additional_columns = top_cols[top_cols %in% colnames(annotation)]
+agg_ann = do.call(cbind, sapply(additional_columns, function(x){
+	tb = as.data.frame(table(annotation$Sample, annotation[,x]))
+	tb = tb[tb[,3] > 0,]
+	if(sum(duplicated(tb[,1])) > 0){
+		warning(paste0("Not plotting column '", x, "', as it has multiple distinct values within the same sample!"))
+		return(NULL)
+	}
+	tb = tb[match(clinical$ID, tb[,1]),]
+	as.character(tb[,2])
+	}, simplify = F))
+if(!is.null(agg_ann))
+{
+	clinical = cbind(clinical, agg_ann)
+	top_cols = unique(c(colnames(agg_ann), "Ecotype"))	
+}else{
+	top_cols = "Ecotype"
+}
 
 clinical = clinical[order(clinical$Ecotype),]
 H = H[,match(clinical$ID, colnames(H))]
