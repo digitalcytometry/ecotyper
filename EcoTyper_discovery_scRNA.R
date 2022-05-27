@@ -233,7 +233,7 @@ if(!7 %in% skip_steps)
 	{	
 		cat(paste("Filtering low-quality cell states for:", cell_type, "\n"))
 		n_clusters = key[key[,1] == cell_type, 2]
-		PushToJobQueue(paste("Rscript state_discovery_first_filter_scRNA.R", discovery, fractions, cell_type, n_clusters, "State", paste(additional_columns, collapse = " "))) 		 
+		PushToJobQueue(paste("Rscript state_discovery_first_filter_scRNA.R", discovery, fractions, cell_type, n_clusters)) 		 
 	}	
 	RunJobQueue()
 	cat("Step 7 (cell state QC filter) finished successfully!\n")
@@ -246,7 +246,7 @@ if(!8 %in% skip_steps)
 	cat("\nStep 8 (ecotype discovery)...\n")
 	PushToJobQueue(paste("Rscript ecotypes_scRNA.R", discovery, fractions, p_value_cutoff)) 
 	RunJobQueue()
-	PushToJobQueue(paste("Rscript ecotypes_assign_samples_scRNA.R", discovery, fractions, "State",paste(additional_columns, collapse = " "))) 
+	PushToJobQueue(paste("Rscript ecotypes_assign_samples_scRNA.R", discovery, fractions)) 
 	cat("Step 8 (ecotype discovery) finished successfully!\n")
 	RunJobQueue()
 }else{
