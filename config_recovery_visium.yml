@@ -5,7 +5,7 @@ default :
     Input Visium directory : "example_data/VisiumBreast"
     #Path to a file containing the precomputed cell fractions for the visium array
     Recovery cell type fractions : "NULL" 
-    Malignant cell of origin : "Epithelial.cells"
+    Background cell type : "Epithelial.cells"
     CIBERSORTx username : "<Please use your username from the CIBERSORTx website>"
     CIBERSORTx token : "<Please obtain a token from the CIBERSORTx website>"
     
@@ -14,3 +14,4 @@ default :
     
   Pipeline settings :
     Number of threads : 10
+    CIBERSORTx fractions Singularity path : NULL

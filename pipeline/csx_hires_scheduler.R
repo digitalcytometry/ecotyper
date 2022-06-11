@@ -12,6 +12,7 @@ fractions = args[3]
 username = args[4]
 token = args[5]
 n_threads = as.integer(args[6])
+image_path = args[7]
 
 output_dir = file.path("../CIBERSORTx/hires", dataset, fractions) 
 dir.create(output_dir, recursive = T, showWarning = F)
@@ -35,6 +36,6 @@ tmp = lapply(1:length(splits), function(x){
 	sub_dir = file.path(output_dir, paste0("worker_", x))
 	dir.create(sub_dir, recursive = T, showWarning = F)
 	fwrite(splits[[x]], file.path(sub_dir, paste0("input.txt")), sep = "\t", row.names = F, quote = F)
-	PushToJobQueue(paste("Rscript csx_hires_worker.R", dataset, fractions, x, 1, username, token))
+	PushToJobQueue(paste("Rscript csx_hires_worker.R", dataset, fractions, x, 1, username, token, image_path))
 })
 RunJobQueue()

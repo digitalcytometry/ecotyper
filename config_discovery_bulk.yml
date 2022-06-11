@@ -30,6 +30,8 @@ default :
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
+    CIBERSORTx fractions Singularity path : NULL
+    CIBERSORTx hires Singularity path : NULL
     
 
 

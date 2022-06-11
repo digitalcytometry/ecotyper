@@ -71,8 +71,8 @@ The R packages listed below are required for running EcoTyper. The version numbe
   
   For some use cases, such as cell state and ecotype recovery in spatial transcriptomics assays ([Tutorial 3](#tutorial-3-recovery-of-cell-states-and-ecotypes-in-spatial-transcriptomics-data)) and *de novo* identification of cell states and ecotypes from bulk expression data ([Tutorial 4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)), EcoTyper relies on CIBERSORTx ([Newman et al., Nature Biotechnology 2019](https://www.nature.com/articles/s41587-019-0114-2), a digital cytometry framework for enumerating cell types in bulk data and performing *in silico* deconvolution of cell type specific expression profiles. In these situations, the following additional resources are needed for running EcoTyper:
   
-  * Docker.
-  * CIBERSORTx executables than can be downloaded from the [CIBERSORTx website](https://cibersortx.stanford.edu/), as Docker images. Specifically, EcoTyper requires the **CIBERSORTx Fractions** and **CIBERSORTx HiRes** modules. Please follow the instructions on the [Download](https://cibersortx.stanford.edu/download.php) section of the website to download the Docker images and obtain the Docker tokens necessary for running them. 
+  * Docker or Singularity.
+  * CIBERSORTx executables than can be downloaded from the [CIBERSORTx website](https://cibersortx.stanford.edu/), as Docker images. Specifically, EcoTyper requires the **CIBERSORTx Fractions** and **CIBERSORTx HiRes** modules. Please follow the instructions on the [Download](https://cibersortx.stanford.edu/download.php) section of the website to download the Docker images and obtain the Docker tokens necessary for running them. If Singularity is used, the Docker images need to be [converted to Singularity Image Files (SIF)](https://sylabs.io/guides/3.0/user-guide/build_a_container.html). 
 
 ## EcoTyper implementation
 
@@ -499,7 +499,7 @@ default :
     Input Visium directory : "example_data/VisiumBreast"
     #Path to a file containing the precomputed cell fractions for the visium array
     Recovery cell type fractions : "NULL"
-    Malignant cell of origin : "Epithelial.cells"
+    Background cell type : "Epithelial.cells"
     CIBERSORTx username : "<Please use your username from the CIBERSORTx website>"
     CIBERSORTx token : "<Please obtain a token from the CIBERSORTx website>"
 
@@ -508,6 +508,7 @@ default :
 
   Pipeline settings :
     Number of threads : 10
+    CIBERSORTx fractions Singularity path : NULL
 ```
 
 The configuration file has three sections, *Input*, *Pipeline settings*, and *Output*. We next will describe the expected content in each of these sections, and instruct the user how to set the appropriate settings in their applications.
@@ -566,10 +567,10 @@ Since in this tutorial we use the *Carcinoma* dataset as the discovery dataset, 
 Recovery cell type fractions : "example_data/visium_fractions_example.txt"
 ```
 
-#### Malignant cell of origin
+#### Background cell type
 
 ```{cat, class.source='yaml'}
-Malignant cell of origin : "Epithelial.cells"
+Background cell type : "Epithelial.cells"
 ```
 
 The cell of origin population for the cancer type being analyzed, amongst the cell types used for discovery. This field is used for plotting a gray background in the resulting output plot, with the intensity of gray depicting the abundance of the cell of origin population in each spot. It is not used when the discovery dataset is *Carcinoma* or *Lymphoma* or when the discovery has been performed as described in *Tutorials 4-6*, using *Carcinoma_Fractions* or *Lymphoma_Fractions*. In these cases, the malignant cells are automatically considered to be originating from *Epithelial.cells* or *B.cells*, respectively. Otherwise, this field needs to contain a column name in the file provided in *Recovery cell type fractions* field, corresponding to the appropriate cell type of origin.
@@ -598,6 +599,14 @@ The last section, *Pipeline settings*, contains only one argument, the number of
 ```{cat, class.source='yaml'}
 Number of threads : 10
 ```
+
+#### CIBERSORTx fractions Singularity path
+
+```{cat, class.source='yaml'}
+CIBERSORTx fractions Singularity path : NULL
+```
+
+The path to the Singularity container (a .SIF file) for the CIBERSORTx fractions module. If this path is provided, cell fraction estimation at step 2 will be performed using Sngularity. Otherwise it will be performed using Docker.
 
 ### 3.3. The command line
 
@@ -729,6 +738,8 @@ default :
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
+    CIBERSORTx fractions Singularity path : NULL
+    CIBERSORTx hires Singularity path : NULL
 
 ```
 
@@ -900,6 +911,22 @@ Cophenetic coefficient cutoff : 0.95
 ```
 
 This field indicates the Cophenetic coefficient cutoff, in the range [0, 1], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified.
+
+#### CIBERSORTx fractions Singularity path
+
+```{cat, class.source='yaml'}
+CIBERSORTx fractions Singularity path : NULL
+```
+
+The path to the Singularity container (a .SIF file) for the CIBERSORTx fractions module. If this path is provided, cell fraction estimation at step 1 will be performed using Sngularity. Otherwise it will be performed using Docker.
+
+#### CIBERSORTx hires Singularity path
+
+```{cat, class.source='yaml'}
+CIBERSORTx hires Singularity path : NULL
+```
+
+The path to the Singularity container (a .SIF file) for the CIBERSORTx HiRes module. If this path is provided, in silico cell purification at stepp 2 will be performed using Sngularity. Otherwise it will be performed using Docker.
 
 ### 4.4. The command line
 

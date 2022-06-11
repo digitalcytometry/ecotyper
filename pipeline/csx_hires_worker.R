@@ -10,6 +10,7 @@ worker = args[3]
 threads = args[4]
 username = args[5]
 token = args[6]
+image_path = args[7]
 
 if(is.null(threads) | is.na(threads))
 {
@@ -23,7 +24,10 @@ dir.create(output_dir, recursive = T, showWarning = F)
 system(paste0("cp -fL ", normalizePath(file.path(input_dir, "classes.txt")), " ", file.path(output_dir, "classes.txt")))
 system(paste0("cp -fL ", normalizePath(file.path(input_dir, "cibresults.txt")), " ", file.path(output_dir, "cibresults.txt")))
 
-cmd_line = "docker run \\
+if(is.na(image_path) || is.null(image_path) || image_path == "NULL" || image_path == "NA")
+{
+	cat("Running on docker...\n")
+	cmd_line = "docker run \\
 				-v <output_dir>:/src/data \\
 				-v <output_dir>:/src/outdir \\
 				cibersortx/hires \\
@@ -35,11 +39,30 @@ cmd_line = "docker run \\
 				--heatmap FALSE \\
 				--threads <threads>
 				"
-cmd_line = gsub("<output_dir>", normalizePath(output_dir), cmd_line)
-cmd_line = gsub("<threads>", threads, cmd_line)
-cmd_line = gsub("<username>", username, cmd_line)
-cmd_line = gsub("<token>", token, cmd_line)
-
+	cmd_line = gsub("<output_dir>", normalizePath(output_dir), cmd_line)
+	cmd_line = gsub("<threads>", threads, cmd_line)
+	cmd_line = gsub("<username>", username, cmd_line)
+	cmd_line = gsub("<token>", token, cmd_line)
+}else{
+	cat("Running on singularity...\n")
+	cmd_line = "singularity exec -c \\
+				-B <output_dir>/:/src/data/ \\
+				-B <output_dir>/:/src/outdir/ \\
+				<image> \\
+				/src/CIBERSORTxHiRes --username <username> --token <token>  \\
+				--mixture /src/data/input.txt \\
+				--sigmatrix /src/data/classes.txt \\
+				--classes /src/data/classes.txt \\
+				--cibresults /src/data/cibresults.txt \\
+				--heatmap FALSE \\
+				--threads <threads> 
+				"
+	cmd_line = gsub("<output_dir>", output_dir, cmd_line)
+	cmd_line = gsub("<image>", image_path, cmd_line)
+	cmd_line = gsub("<threads>", threads, cmd_line)
+	cmd_line = gsub("<username>", username, cmd_line)
+	cmd_line = gsub("<token>", token, cmd_line)
+}
 #print(cmd_line)
 err = system(cmd_line)
 if(err != 0)

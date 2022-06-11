@@ -43,6 +43,8 @@ nmf_restarts = config$"Pipeline settings"$"Number of NMF restarts"
 max_clusters = config$"Pipeline settings"$"Maximum number of states per cell type"
 cohpenetic_cutoff = config$"Pipeline settings"$"Cophenetic coefficient cutoff"
 skip_steps = config$"Pipeline settings"$"Pipeline steps to skip"
+CSx_singularity_path_fractions = config$"Pipeline settings"$"CIBERSORTx fractions Singularity path"
+CSx_singularity_path_hires = config$"Pipeline settings"$"CIBERSORTx hires Singularity path"
 
 suppressWarnings({
 	final_output = abspath(final_output)	
@@ -69,29 +71,28 @@ if(!1 %in% skip_steps)
 		
 		if(discovery_type == "RNA-seq")
 		{
-			PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "TR4", "no_batch", CSx_username, CSx_token))	
+			PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "TR4", "no_batch", CSx_username, CSx_token, CSx_singularity_path_fractions))	
 			RunJobQueue()
-			PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "LM22", "B_mode", CSx_username, CSx_token))
+			PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "LM22", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions))
 			RunJobQueue() 
 			PushToJobQueue(paste("Rscript csx_fractions_two_tiered.R", "discovery", discovery, "TR4", "no_batch", "LM22", "B_mode", fractions))		
 			RunJobQueue()
 		}else{
 			if(discovery_type == "Affymetrix")
 			{
-				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "TR4", "B_mode", CSx_username, CSx_token))
+				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "TR4", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions))
 				RunJobQueue()
-				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "LM22", "no_batch", CSx_username, CSx_token))
+				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "LM22", "no_batch", CSx_username, CSx_token, CSx_singularity_path_fractions))
 				RunJobQueue()
 				PushToJobQueue(paste("Rscript csx_fractions_two_tiered.R", "discovery", discovery, "TR4", "B_mode", "LM22", "no_batch", fractions))
 				RunJobQueue()
 			}else{
-				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "LM22", "B_mode", CSx_username, CSx_token))
+				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "LM22", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions))
 				RunJobQueue()
-				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "TR4", "B_mode", CSx_username, CSx_token))			
+				PushToJobQueue(paste("Rscript csx_fractions.R", "discovery", discovery, "TR4", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions))			
 				RunJobQueue()
 				PushToJobQueue(paste("Rscript csx_fractions_two_tiered.R", "discovery", discovery, "TR4", "B_mode", "LM22", "B_mode", fractions))
 				RunJobQueue()
-				
 			}
 		}
 		
@@ -110,7 +111,7 @@ if(!1 %in% skip_steps)
 if(!2 %in% skip_steps)
 {
 	cat("\nStep 2 (cell type expression purification): Running CIBERSORTxHiRes...\n")
-	PushToJobQueue(paste("Rscript csx_hires_scheduler.R", "discovery", discovery, fractions, CSx_username, CSx_token, n_threads))
+	PushToJobQueue(paste("Rscript csx_hires_scheduler.R", "discovery", discovery, fractions, CSx_username, CSx_token, n_threads, CSx_singularity_path_hires))
 	RunJobQueue()
 
 	cat("Step 2 (cell type expression purification): Aggregating CIBERSORTxHiRes results...\n")

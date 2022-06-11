@@ -10,7 +10,8 @@ sigmatrix = args[3]
 id = args[4]
 username = args[5]
 token = args[6]
-filt_0 = as.logical(args[7])
+image_path = args[7]
+filt_0 = as.logical(args[8])
 
 if(is.na(filt_0))
 {
@@ -62,7 +63,7 @@ if(err != 0)
 if(id == "no_batch")
 {
 	cat(paste0("Running CIBERSORTx fractions with no batch correction, using the '", sigmatrix , "' signature matrix and '", dataset, "' dataset.\n"))
-	err = system(paste("Rscript csx_fractions_no_batch_mode.R ", output_dir, username, token))
+	err = system(paste("Rscript csx_fractions_no_batch_mode.R ", output_dir, username, token, image_path))
 	if(err != 0)
 	{
 		stop()
@@ -71,7 +72,7 @@ if(id == "no_batch")
 if(id == "B_mode")
 {
 	cat(paste0("Running CIBERSORTx fractions with B-mode batch correction, using the '", sigmatrix , "' signature matrix and '", dataset, "' dataset.\n"))
-	err = system(paste("Rscript csx_fractions_B_mode.R ", output_dir, username, token))
+	err = system(paste("Rscript csx_fractions_B_mode.R ", output_dir, username, token, image_path))
 	if(err != 0)
 	{
 		stop()
@@ -80,7 +81,7 @@ if(id == "B_mode")
 if(id == "S_mode")
 {
 	cat(paste0("Running CIBERSORTx fractions with S-mode batch correction, using the '", sigmatrix , "' signature matrix and '", dataset, "' dataset.\n"))
-	err = system(paste("Rscript csx_fractions_S_mode.R ", output_dir, username, token))
+	err = system(paste("Rscript csx_fractions_S_mode.R ", output_dir, username, token, image_path))
 	if(err != 0)
 	{
 		stop()

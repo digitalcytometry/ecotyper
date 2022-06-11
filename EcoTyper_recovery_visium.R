@@ -29,10 +29,16 @@ discovery = config$Input$"Discovery dataset name"
 recovery = config$Input$"Recovery dataset name"
 input_path = config$Input$"Input Visium directory"
 fractions = config$Input$"Recovery cell type fractions"
+coo = config$Input$"Background cell type"
+if(is.null(coo))
+{
+	coo = config$Input$"Malignant cell of origin"
+}
 coo = config$Input$"Malignant cell of origin"
 CSx_username = config$Input$"CIBERSORTx username"
 CSx_token = config$Input$"CIBERSORTx token"
 n_threads = config$"Pipeline settings"$"Number of threads"
+CSx_singularity_path_fractions = config$"Pipeline settings"$"CIBERSORTx fractions Singularity path"
 
 final_output = config$"Output"$"Output folder"
 
@@ -45,6 +51,11 @@ suppressWarnings({
 	fractions_path = abspath(fractions)	
 	})
 
+if(!is.na(CSx_singularity_path_fractions) && !is.null(CSx_singularity_path_fractions) && !file.exists(CSx_singularity_path_fractions))
+{
+	stop(paste0("CIBERSORTx fractions Singularity path provided does not exist:", CSx_singularity_path_fractions))
+}
+
 if(!discovery %in% c("Carcinoma", "Lymphoma"))
 {
 	discovery_config_file = file.path("EcoTyper", discovery, "config_used.yml")	
@@ -53,7 +64,7 @@ if(!discovery %in% c("Carcinoma", "Lymphoma"))
 		stop("Error: Cannot read the configuration file used for the discovery of cell states and ecotypes. It should be in the following path: '", config_file, "'. Please make sure that the '--discovery (-d)' argument provided is correct!")
 	}
 	config <- config::get(file = discovery_config_file)
-	print(config)
+	
 	discovery_fractions = config$"Pipeline settings"$"Cell type fractions"
 	if(!is.null(discovery_fractions) && discovery_fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions"))
 	{
@@ -86,9 +97,9 @@ RunJobQueue()
 if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists(fractions_path))
 {
 	cat("\nRunning CIBERSORTxFractions on the visium dataset...\n")
-	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "LM22", "B_mode", CSx_username, CSx_token, TRUE))
+	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "LM22", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))
 	RunJobQueue()
-	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "TR4", "B_mode", CSx_username, CSx_token, TRUE))			
+	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "TR4", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))			
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript csx_fractions_two_tiered.R", "visium", recovery, "TR4", "B_mode", "LM22", "B_mode", fractions))
 	RunJobQueue()

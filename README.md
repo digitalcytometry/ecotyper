@@ -97,14 +97,16 @@ performing *in silico* deconvolution of cell type specific expression
 profiles. In these situations, the following additional resources are
 needed for running EcoTyper:
 
--   Docker.
+-   Docker or Singularity.
 -   CIBERSORTx executables than can be downloaded from the [CIBERSORTx
     website](https://cibersortx.stanford.edu/), as Docker images.
     Specifically, EcoTyper requires the **CIBERSORTx Fractions** and
     **CIBERSORTx HiRes** modules. Please follow the instructions on the
     [Download](https://cibersortx.stanford.edu/download.php) section of
     the website to download the Docker images and obtain the Docker
-    tokens necessary for running them.
+    tokens necessary for running them. If Singularity is used, the
+    Docker images need to be [converted to Singularity Image Files
+    (SIF)](https://sylabs.io/guides/3.0/user-guide/build_a_container.html).
 
 ## EcoTyper implementation
 
@@ -360,14 +362,14 @@ head(data[,1:5])
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
     ## S01                 5.610752e-02                 9.612807e-15
-    ## S02                 1.280373e-02                 6.386013e-03
-    ## S03                 1.035601e-14                 6.176960e-05
+    ## S02                 1.280373e-02                 6.386029e-03
+    ## S03                 1.035601e-14                 6.174319e-05
     ## S04                 1.451949e-02                 1.694937e-02
     ## S05                 1.793168e-01                 1.726694e-02
-    ## S06                 2.209002e-01                 2.355230e-02
+    ## S06                 2.209002e-01                 2.355229e-02
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
     ## S01                  0.040894068                  0.007263805
-    ## S02                  0.005972317                  0.004142070
+    ## S02                  0.005972318                  0.004142070
     ## S03                  0.012142088                  0.028884848
     ## S04                  0.063365960                  0.019739555
     ## S05                  0.013198449                  0.001226978
@@ -427,19 +429,19 @@ head(assign[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443917e-03                  0.037980002
-    ## CE2                 1.621595e-01                  0.243056291
-    ## CE3                 1.386670e-14                  0.074721775
-    ## CE4                 7.257657e-02                  0.006520748
-    ## CE5                 1.618937e-01                  0.054197440
-    ## CE6                 1.908700e-02                  0.035478083
+    ## CE1                 2.443916e-03                  0.037978787
+    ## CE2                 1.621595e-01                  0.243048605
+    ## CE3                 1.386670e-14                  0.074719412
+    ## CE4                 7.257657e-02                  0.006520542
+    ## CE5                 1.618937e-01                  0.054196665
+    ## CE6                 1.908700e-02                  0.035478256
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189985313
-    ## CE2                  0.167842143                  0.219429926
-    ## CE3                  0.004333314                  0.041762348
-    ## CE4                  0.058892709                  0.063477887
-    ## CE5                  0.148527987                  0.088747720
-    ## CE6                  0.017818809                  0.009234279
+    ## CE1                  0.076640619                  0.189985983
+    ## CE2                  0.167842144                  0.219429250
+    ## CE3                  0.004333314                  0.041762461
+    ## CE4                  0.058892709                  0.063478225
+    ## CE5                  0.148527986                  0.088748029
+    ## CE6                  0.017818809                  0.009232609
     ##     TCGA.05.4249.01A.01R.1107.07
     ## CE1                   0.11162555
     ## CE2                   0.03073282
@@ -469,19 +471,19 @@ head(discrete_assignments[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443917e-03                  0.037980002
-    ## CE2                 1.621595e-01                  0.243056291
-    ## CE3                 1.386670e-14                  0.074721775
-    ## CE4                 7.257657e-02                  0.006520748
-    ## CE5                 1.618937e-01                  0.054197440
-    ## CE6                 1.908700e-02                  0.035478083
+    ## CE1                 2.443916e-03                  0.037978787
+    ## CE2                 1.621595e-01                  0.243048605
+    ## CE3                 1.386670e-14                  0.074719412
+    ## CE4                 7.257657e-02                  0.006520542
+    ## CE5                 1.618937e-01                  0.054196665
+    ## CE6                 1.908700e-02                  0.035478256
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189985313
-    ## CE2                  0.167842143                  0.219429926
-    ## CE3                  0.004333314                  0.041762348
-    ## CE4                  0.058892709                  0.063477887
-    ## CE5                  0.148527987                  0.088747720
-    ## CE6                  0.017818809                  0.009234279
+    ## CE1                  0.076640619                  0.189985983
+    ## CE2                  0.167842144                  0.219429250
+    ## CE3                  0.004333314                  0.041762461
+    ## CE4                  0.058892709                  0.063478225
+    ## CE5                  0.148527986                  0.088748029
+    ## CE6                  0.017818809                  0.009232609
     ##     TCGA.05.4249.01A.01R.1107.07
     ## CE1                   0.11162555
     ## CE2                   0.03073282
@@ -1368,7 +1370,7 @@ default :
     Input Visium directory : "example_data/VisiumBreast"
     #Path to a file containing the precomputed cell fractions for the visium array
     Recovery cell type fractions : "NULL"
-    Malignant cell of origin : "Epithelial.cells"
+    Background cell type : "Epithelial.cells"
     CIBERSORTx username : "<Please use your username from the CIBERSORTx website>"
     CIBERSORTx token : "<Please obtain a token from the CIBERSORTx website>"
 
@@ -1377,6 +1379,7 @@ default :
 
   Pipeline settings :
     Number of threads : 10
+    CIBERSORTx fractions Singularity path : NULL
 ```
 
 The configuration file has three sections, *Input*, *Pipeline settings*,
@@ -1499,10 +1502,10 @@ provided, it can be set as follows:
 Recovery cell type fractions : "example_data/visium_fractions_example.txt"
 ```
 
-#### Malignant cell of origin
+#### Background cell type
 
 ``` yaml
-Malignant cell of origin : "Epithelial.cells"
+Background cell type : "Epithelial.cells"
 ```
 
 The cell of origin population for the cancer type being analyzed,
@@ -1548,6 +1551,17 @@ number of threads used for performing recovery:
 ``` yaml
 Number of threads : 10
 ```
+
+#### CIBERSORTx fractions Singularity path
+
+``` yaml
+CIBERSORTx fractions Singularity path : NULL
+```
+
+The path to the Singularity container (a .SIF file) for the CIBERSORTx
+fractions module. If this path is provided, cell fraction estimation at
+step 2 will be performed using Sngularity. Otherwise it will be
+performed using Docker.
 
 ### 3.3. The command line
 
@@ -1918,6 +1932,8 @@ default :
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
+    CIBERSORTx fractions Singularity path : NULL
+    CIBERSORTx hires Singularity path : NULL
 ```
 
 The configuration file has three sections, *Input*, *Output* and
@@ -2271,6 +2287,28 @@ Cophenetic coefficient cutoff : 0.95
 This field indicates the Cophenetic coefficient cutoff, in the range
 \[0, 1\], used for automatically determining the number of states in
 step 4. Lower values generally lead to more clusters being identified.
+
+#### CIBERSORTx fractions Singularity path
+
+``` yaml
+CIBERSORTx fractions Singularity path : NULL
+```
+
+The path to the Singularity container (a .SIF file) for the CIBERSORTx
+fractions module. If this path is provided, cell fraction estimation at
+step 1 will be performed using Sngularity. Otherwise it will be
+performed using Docker.
+
+#### CIBERSORTx hires Singularity path
+
+``` yaml
+CIBERSORTx hires Singularity path : NULL
+```
+
+The path to the Singularity container (a .SIF file) for the CIBERSORTx
+HiRes module. If this path is provided, in silico cell purification at
+stepp 2 will be performed using Sngularity. Otherwise it will be
+performed using Docker.
 
 ### 4.4. The command line
 
@@ -3046,19 +3084,19 @@ data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_assignment.txt")
 dim(data)
 ```
 
-    ## [1] 899   3
+    ## [1] 640   3
 
 ``` r
 head(data)
 ```
 
     ##                           ID State InitialState
-    ## 723 SMC15.T_CATCGAAGTGACCAAG   S01         IS05
-    ## 724 SMC18.T_CTTGGCTCAGTGACAG   S01         IS05
-    ## 725 SMC24.T_TACTTACAGCGCCTTG   S01         IS05
-    ## 726 SMC01.N_CACCAGGCAATAAGCA   S01         IS05
-    ## 727 SMC02.N_AGAGCTTTCTAACCGA   S01         IS05
-    ## 728 SMC02.N_ATAACGCCAATACGCT   S01         IS05
+    ## 241 SMC01.T_ACTGATGAGCACCGCT   S01         IS03
+    ## 242 SMC01.T_GGGAGATGTGGCAAAC   S01         IS03
+    ## 243 SMC01.T_GTTCATTCATTGAGCT   S01         IS03
+    ## 244 SMC01.T_TTGACTTCACACTGCG   S01         IS03
+    ## 245 SMC02.T_AAGTCTGGTCGCGAAA   S01         IS03
+    ## 246 SMC02.T_CCTTCCCCACGTTGGC   S01         IS03
 
 -   A heatmap illustrating the expression of genes used for cell state
     discovery, that have the highest fold-change in one of the cell
@@ -3084,13 +3122,13 @@ ecotypes = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotypes.txt")
 head(ecotypes[,c("CellType", "State", "Ecotype")])
 ```
 
-    ##                    CellType State Ecotype
-    ## 1                   B.cells   S02      E1
-    ## 2               CD4.T.cells   S02      E1
-    ## 3               CD8.T.cells   S01      E1
-    ## 4           Dendritic.cells   S03      E1
-    ## 5               Fibroblasts   S05      E1
-    ## 6 Monocytes.and.Macrophages   S03      E1
+    ##          CellType State Ecotype
+    ## 1         B.cells   S02      E1
+    ## 2         B.cells   S03      E1
+    ## 3     CD4.T.cells   S03      E1
+    ## 4     CD4.T.cells   S05      E1
+    ## 5     CD8.T.cells   S01      E1
+    ## 6 Dendritic.cells   S03      E1
 
 -   The number of initial clusters obtained by clustering the Jaccard
     index matrix, selected using the average silhouette:
@@ -3118,19 +3156,19 @@ abundances = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_abundance.txt")
 dim(abundances)
 ```
 
-    ## [1]  9 33
+    ## [1]  8 33
 
 ``` r
 head(abundances[,1:5])
 ```
 
-    ##       SMC01.N    SMC01.T    SMC02.N    SMC02.T    SMC03.N
-    ## E1 0.34064095 0.07302366 0.20329837 0.02049678 0.27718758
-    ## E2 0.06078240 0.17093342 0.02937202 0.10322721 0.05241208
-    ## E3 0.02315383 0.34562878 0.01355632 0.36202739 0.01278497
-    ## E4 0.13787420 0.12543986 0.14604672 0.16681631 0.06725426
-    ## E5 0.16081886 0.10434607 0.28980392 0.11903111 0.14459666
-    ## E6 0.00000000 0.07347385 0.03524642 0.14282270 0.00000000
+    ##       SMC01.N     SMC01.T    SMC02.N    SMC02.T    SMC03.N
+    ## E1 0.36529972 0.112226383 0.37694206 0.09568419 0.33846514
+    ## E2 0.00000000 0.289587824 0.04471845 0.23978498 0.05062341
+    ## E3 0.17417011 0.006599186 0.19479843 0.00000000 0.18775166
+    ## E4 0.02162737 0.137419014 0.00000000 0.40639166 0.03374894
+    ## E5 0.06658287 0.108632760 0.02630497 0.14700301 0.00000000
+    ## E6 0.06179247 0.201232624 0.03105448 0.11113616 0.00000000
 
 -   The assignment of samples in the discovery dataset to ecotypes. The
     samples not assigned to any ecotype are filtered out from this file:
@@ -3140,19 +3178,19 @@ assignments = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_assignment.txt"
 dim(assignments)
 ```
 
-    ## [1] 32  6
+    ## [1] 33  7
 
 ``` r
 head(assignments[,1:5])
 ```
 
-    ##              ID MaxEcotype  AssignmentP  AssignmentQ AssignedToEcotypeStates
-    ## SMC01-N SMC01-N         E1 1.938649e-04 0.0012795085                    TRUE
-    ## SMC05-N SMC05-N         E1 5.000404e-03 0.0183348142                    TRUE
-    ## SMC05-T SMC05-T         E1 7.568441e-02 0.1541417608                    TRUE
-    ## SMC07-N SMC07-N         E1 2.928585e-03 0.0138061877                    TRUE
-    ## SMC08-N SMC08-N         E1 9.015769e-05 0.0007438009                    TRUE
-    ## SMC19-T SMC19-T         E1 5.936002e-03 0.0195888071                    TRUE
+    ##              ID MaxEcotype  AssignmentP AssignmentQ AssignedToEcotypeStates
+    ## SMC01-N SMC01-N         E1 1.622561e-03 0.013493158                    TRUE
+    ## SMC02-N SMC02-N         E1 4.094496e-03 0.021837311                    TRUE
+    ## SMC05-N SMC05-N         E1 1.686645e-03 0.013493158                    TRUE
+    ## SMC08-N SMC08-N         E1 2.037793e-05 0.000326047                    TRUE
+    ## SMC01-T SMC01-T         E2 1.406832e-01 0.236940129                    TRUE
+    ## SMC06-T SMC06-T         E2 2.349589e-01 0.317642040                    TRUE
 
 -   A heatmap of cell state fractions across the samples assigned to
     ecotypes:
