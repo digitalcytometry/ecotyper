@@ -2635,10 +2635,8 @@ sequence of steps:
     containing only negative values with the sign inverted. These two
     matrices are subsequently concatenated to produce
     ![V_i^\*](http://chart.apis.google.com/chart?cht=tx&chl=V_i%5E%2A "V_i^*").
-    <br/> For each cell type, EcoTyper only applies NMF for the rank
-    selected in step 3. As before, the NMF algorithm is applied multiple
-    times (we recommend at least 50) with different starting seeds, for
-    robustness.
+    <br/> For each cell type, EcoTyper only applies NMF once for the rank
+    selected in step 3. 
 
 6.  **Extracting cell state information**: The NMF output resulting from
     step 5 is parsed and cell state information is extracted for the
