@@ -186,6 +186,7 @@ types:
 -   [**Tutorial 6.** *De novo* Discovery of Cell States and Ecotypes in
     Pre-Sorted
     Data](#tutorial-6-de-novo-discovery-of-cell-states-and-ecotypes-in-pre-sorted-data)
+-   [**Frequently Asked Questions (FAQ)**](#frequently-asked-questions)
 
 A schema of the tutorials is presented below:
 
