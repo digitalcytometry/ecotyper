@@ -51,9 +51,14 @@ suppressWarnings({
 	fractions_path = abspath(fractions)	
 	})
 
-if(!is.na(CSx_singularity_path_fractions) && !is.null(CSx_singularity_path_fractions) && !file.exists(CSx_singularity_path_fractions))
+if(!is.na(CSx_singularity_path_fractions) && !is.null(CSx_singularity_path_fractions))
 {
-	stop(paste0("CIBERSORTx fractions Singularity path provided does not exist:", CSx_singularity_path_fractions))
+	if(!file.exists(CSx_singularity_path_fractions))
+	{
+		stop(paste0("CIBERSORTx fractions Singularity path provided does not exist:", CSx_singularity_path_fractions))
+	}
+}else{
+	CSx_singularity_path_fractions = "NULL"
 }
 
 if(!discovery %in% c("Carcinoma", "Lymphoma"))
@@ -91,12 +96,13 @@ setwd("pipeline")
 start = Sys.time()
 
 cat("\nLoading visium data...\n")
-PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, input_path))
-RunJobQueue()
+#PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, input_path))
+#RunJobQueue()
 
 if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists(fractions_path))
 {
 	cat("\nRunning CIBERSORTxFractions on the visium dataset...\n")
+	print(paste("Rscript csx_fractions.R", "visium", recovery, "LM22", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))
 	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "LM22", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "TR4", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))			

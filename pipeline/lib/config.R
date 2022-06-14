@@ -4,6 +4,8 @@ check_discovery_configuration <- function(config){
 	discovery = config$Input$"Discovery dataset name"
 	annotation = config$Input$"Annotation file"	
 	output_dir = file.path("datasets/discovery", discovery)
+	CSx_singularity_path_fractions = config$"Pipeline settings"$"CIBERSORTx fractions Singularity path"
+	CSx_singularity_path_hires = config$"Pipeline settings"$"CIBERSORTx hires Singularity path"
 
 	if(!file.exists(input_mat))
 	{
@@ -25,6 +27,14 @@ check_discovery_configuration <- function(config){
 			stop(paste0("Input format error: Annotation file '", annotation, "' is missing!"))
 		}
 		system(paste0("ln -sf ", normalizePath(annotation), " ", file.path(output_dir, "annotation.txt")))
+	}
+	if(!is.na(CSx_singularity_path_fractions) && !is.null(CSx_singularity_path_fractions) && !file.exists(CSx_singularity_path_fractions))
+	{
+		stop(paste0("CIBERSORTx fractions Singularity path provided does not exist:", CSx_singularity_path_fractions))
+	}
+	if(!is.na(CSx_singularity_path_hires) && !is.null(CSx_singularity_path_hires) && !file.exists(CSx_singularity_path_hires))
+	{
+		stop(paste0("CIBERSORTx hires Singularity path provided does not exist:", CSx_singularity_path_hires))
 	}
 } 
 
