@@ -3923,7 +3923,7 @@ knitr::include_graphics("PresortedDiscoveryOutput/Ecotypes/heatmap_assigned_samp
 
 <img src="PresortedDiscoveryOutput/Ecotypes/heatmap_assigned_samples_viridis.png" width="100%" style="display: block; margin: auto;" />
 
-## Frequently Asked Questions (FAQ)
+## Frequently Asked Questions
 
 **Question 1: How do I get access to CIBERSORTx for EcoTyper?** <br/>
 **Answer**: CIBERSORTx executables than can be downloaded from the CIBERSORTx website, as Docker images. Specifically, EcoTyper requires the CIBERSORTx Fractions and CIBERSORTx HiRes modules. Please follow the instructions on the Download section of the website to download the Docker images and obtain the Docker tokens necessary for running them. 
