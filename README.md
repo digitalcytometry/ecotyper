@@ -2583,7 +2583,7 @@ performed using Docker.
 Minimum number of states in ecotypes : 3
 ```
 
-The ecotypes with less cell states that indicated in this field will be
+The ecotypes with less cell states than indicated in this field will be
 filtered out.
 
 ### 4.4. The command line
@@ -3306,7 +3306,7 @@ reliably evaluate the significance of overlaps.
 Minimum number of states in ecotypes : 3
 ```
 
-The ecotypes with less cell states that indicated in this field will be
+The ecotypes with less cell states than indicated in this field will be
 filtered out.
 
 ### 5.4. The command line
@@ -3987,7 +3987,7 @@ step 4. Lower values generally lead to more clusters being identified.
 Minimum number of states in ecotypes : 3
 ```
 
-The ecotypes with less cell states that indicated in this field will be
+The ecotypes with less cell states than indicated in this field will be
 filtered out.
 
 ### 6.4. The command line

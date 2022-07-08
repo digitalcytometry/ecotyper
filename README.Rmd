@@ -1004,7 +1004,7 @@ The path to the Singularity container (a .SIF file) for the CIBERSORTx HiRes mod
 Minimum number of states in ecotypes : 3
 ```
 
-The ecotypes with less cell states that indicated in this field will be filtered out.
+The ecotypes with less cell states than indicated in this field will be filtered out.
 
 ### 4.4. The command line
 
@@ -1321,7 +1321,7 @@ Ecotype identification on step 8 is performed by clustering a jaccard matrix tha
 Minimum number of states in ecotypes : 3
 ```
 
-The ecotypes with less cell states that indicated in this field will be filtered out.
+The ecotypes with less cell states than indicated in this field will be filtered out.
 
 ### 5.4. The command line
 
@@ -1618,7 +1618,7 @@ This field indicates the Cophenetic coefficient cutoff, in the range [0, 1], use
 Minimum number of states in ecotypes : 3
 ```
 
-The ecotypes with less cell states that indicated in this field will be filtered out.
+The ecotypes with less cell states than indicated in this field will be filtered out.
 
 
 ### 6.4. The command line
