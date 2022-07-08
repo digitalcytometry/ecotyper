@@ -4220,11 +4220,17 @@ knitr::include_graphics("PresortedDiscoveryOutput/Ecotypes/heatmap_assigned_samp
 
 <img src="PresortedDiscoveryOutput/Ecotypes/heatmap_assigned_samples_viridis.png" width="100%" style="display: block; margin: auto;" />
 
-## Frequently asked questions
+## Frequently Asked Questions
 
-**Question**: How do I run EcoTyper on a high-performance cluster,
-rather than a single server? <br/> **Answer**: EcoTyper can be modified
-to run on a high-performance cluster, by overriding the
+**Question 1: How do I get access to CIBERSORTx for EcoTyper?** <br/>
+**Answer**: CIBERSORTx executables than can be downloaded from the CIBERSORTx website, as Docker images. Specifically, EcoTyper requires the CIBERSORTx Fractions and CIBERSORTx HiRes modules. Please follow the instructions on the Download section of the website to download the Docker images and obtain the Docker tokens necessary for running them. 
+
+**Question 2: What if I need to use Singularity as container platform to run CIBERSORTx?** <br/>
+**Answer**: If Singularity is used, the Docker images obtained following the instructions on the CIBERSORTx website (see above) need to be [converted to Singularity Image Files
+    (SIF)](https://sylabs.io/guides/3.0/user-guide/build_a_container.html).
+
+**Question 3: How do I run EcoTyper on a high-performance cluster, rather than a single server?**
+**Answer**: EcoTyper can be modified to run on a high-performance cluster, by overriding the
 `pipeline\lib\multithreading.R` library. Currently the library provides
 two functions, *PushToJobQueue* which adds a command line call to the
 job queue, and *RunJobQueue* which waits for all the jobs in the queue
