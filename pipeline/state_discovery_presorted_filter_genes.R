@@ -3,7 +3,7 @@ library(data.table)
 source("lib/misc.R")
 })
 
-args = c("PresortedDiscovery", "scRNA_all_genes", "B.cells") 
+args = c("Codefacs", "All_genes", "T.cell.Group2") 
 args = commandArgs(T)  
 discovery = args[1]
 fractions = args[2]
@@ -50,7 +50,18 @@ annotation = do.call(rbind, lapply(splits, function(spl){
 raw_input = raw_input[,colnames(raw_input) %in% annotation$ID]
 #raw_input = raw_input[apply(raw_input,  1, var) > 0 && apply(raw_input, 1, function(x) sum(x > 0) >= 3),] 
 
-log_data = log2(raw_input + 1)
+if(min(raw_input, na.rm = T) >= 1)
+{
+	log_data = log2(raw_input)	
+}else{
+	if(min(raw_input, na.rm = T) >= 0)
+	{
+		log_data = log2(raw_input + 1)
+	}else{
+		warning(paste0("Negative values found in the expression matrix of '", cell_type, "'. Not performing log-transformation...\n"))
+		log_data = raw_input
+	}
+}
 
 scaled_data = scale_data(log_data, by = NULL)
 #scaled_data[is.na(scaled_data)] = 0

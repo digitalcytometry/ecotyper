@@ -6,11 +6,17 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("MyDiscovery", "Carcinoma")
-args = c("MyDiscovery", "Carcinoma")
+args = c("MyDiscovery", "Carcinoma_Fractions", 3)
 args = commandArgs(T)  
 dataset = args[1]
 fractions = args[2]
+min_states = as.integer(as.character(args[3]))
+
+if(is.na(min_states) || is.null(min_states) || min_states < 1)
+{
+	warning(cat("Config file field 'Minimum number of states in ecotypes' has an invalid value. Setting to the default value, 3.\n"))
+	min_states = 3
+}
 
 key_dir = file.path("../EcoTyper", dataset, fractions, "Analysis", "rank_selection")
 states_dir = file.path("../EcoTyper", dataset, fractions, "Cell_States", "discovery")
@@ -135,7 +141,7 @@ top_ann$InitialEcotype = as.factor(sprintf("IE%02d", clust))
 write.table(top_ann, file.path(output_dir, "initial_ecotypes.txt"), sep = "\t")
 
 tb = table(top_ann$InitialEcotype)
-tb = tb[tb > 2]
+tb = tb[tb >= min_states]
 
 top_ann = top_ann[top_ann$InitialEcotype %in% names(tb),]
 

@@ -28,7 +28,14 @@ ecotype_data$Ecotype = ecotype_to_factor(ecotype_data$Ecotype)
 tb = as.data.frame(table(ecotypes$Ecotype))
 ecotype_data$Abundance = ecotype_data$Abundance * tb[match(as.character(ecotype_data$Ecotype), tb[,1]), 2]
 ecotype_data$Abundance = ecotype_data$Abundance / quantile(ecotype_data$Abundance, .99, na.rm = T)
-	
+
+legend_text = paste0("Background cell type (", malignant_cell, ")")
+if(all(is.na(ecotype_data$Malignant)) || all(ecotype_data$Malignant == 1))
+{
+	ecotype_data$Malignant = 1
+	legend_text = paste0("Array spots")
+}
+
 cat(paste0("Plotting ecotype heatmaps...\n"))
 
 spatial_heatmap_hexagon_confocal <- function(data, columns, colors, name = name, spot_col = "black", newpage = F, ...){
@@ -161,7 +168,7 @@ for(spl in splits)
 upViewport() 
 upViewport() 
 pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
-g <- Heatmap(as.matrix(c(paste0("Cell of origin (", malignant_cell, ")"), "Ecotype")), col = c(background, charcoal), name = "hmap", width = 0, height = 0, 
+g <- Heatmap(as.matrix(c(legend_text, "Ecotype")), col = c(background, charcoal), name = "hmap", width = 0, height = 0, 
 	heatmap_legend_param = list(title = NULL, legend_direction = "horizontal", nrow = 1, title_position = "leftcenter"))
 draw(g, newpage = F, heatmap_legend_side = "bottom")
 upViewport() 
@@ -207,7 +214,7 @@ for(spl in splits)
 upViewport() 
 upViewport() 
 pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
-g <- Heatmap(as.matrix(c(paste0("Cell of origin (", malignant_cell, ")"), "Ecotype")), col = c(background, charcoal), name = "hmap", width = 0, height = 0,
+g <- Heatmap(as.matrix(c(legend_text, "Ecotype")), col = c(background, charcoal), name = "hmap", width = 0, height = 0,
 	heatmap_legend_param = list(title = NULL, legend_direction = "horizontal", nrow = 1, title_position = "leftcenter"))
 draw(g, newpage = F, heatmap_legend_side = "bottom")
 upViewport() 

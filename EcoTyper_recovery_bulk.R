@@ -116,17 +116,17 @@ start = Sys.time()
 cur_dir = getwd()
 setwd("pipeline")
 
-key = read.delim(file.path("../EcoTyper", discovery, fractions, "Analysis", "rank_selection", "rank_data.txt"))
-for(cell_type in key[,1])
-{
-    n_states = key[key[,1] == cell_type, 2]
-    PushToJobQueue((paste("Rscript state_recovery_bulk.R", discovery, fractions, cell_type, n_states, recovery, "FALSE", paste(additional_columns, collapse = " ")))) 
-}   
-RunJobQueue()
-
-PushToJobQueue((paste("Rscript ecotypes_recovery.R", discovery, fractions, recovery, paste(additional_columns, collapse = " ")))) 
-RunJobQueue()
-
+#key = read.delim(file.path("../EcoTyper", discovery, fractions, "Analysis", "rank_selection", "rank_data.txt"))
+#for(cell_type in key[,1])
+#{
+#    n_states = key[key[,1] == cell_type, 2]
+#    PushToJobQueue((paste("Rscript state_recovery_bulk.R", discovery, fractions, cell_type, n_states, recovery, "FALSE", paste(additional_columns, collapse = " ")))) 
+#}   
+#RunJobQueue()
+#
+#PushToJobQueue((paste("Rscript ecotypes_recovery.R", discovery, fractions, recovery, paste(additional_columns, collapse = " ")))) 
+#RunJobQueue()
+#
 cat("\nCopying EcoTyper results to the output folder!\n")
 
 if(file.exists(final_output) && length(list.files(final_output)) > 0)
@@ -150,6 +150,8 @@ for(cell_type in key[,1])
 	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment.txt"), ct_output))
 	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment_heatmap.pdf"), ct_output))	
 	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment_heatmap.png"), ct_output))	
+	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "heatmap_data.txt"), ct_output))	
+	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "heatmap_top_ann.txt"), ct_output))	
 }	
 
 ct_output = file.path(final_output, "Ecotypes")

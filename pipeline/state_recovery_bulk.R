@@ -166,6 +166,9 @@ decorate_heatmap_body("hmap2", {
 
 tmp = dev.off()
 
+write.table(scRNA_plot_data, file.path(output_dir, "heatmap_data.txt"), sep = "\t")
+write.table(assignment, file.path(output_dir, "heatmap_top_ann.txt"), sep = "\t")
+
 ####
 
 initial_assignment = read.delim(file.path(output_dir, "initial_state_assignment.txt"))

@@ -6,7 +6,7 @@ library(ComplexHeatmap)
 source("lib/misc.R")
 })
 
-args = c("Carcinoma", "VisiumBreast", "Carcinoma_Fractions", "Epithelial.cells")
+args = c("Carcinoma", "VisiumBreast", "Carcinoma_Fractions", "Epithelial.cellss")
 args = commandArgs(T)
 
 discovery = args[1]
@@ -25,6 +25,22 @@ cell_fractions = read_fractions(file.path("../CIBERSORTx/fractions/visium", reco
 colnames(cell_fractions) = make.names(colnames(cell_fractions))
 
 write.table(cell_fractions, file.path(output_dir, paste0(recovery, "_CSx_fractions.txt")), sep = "\t", row.names = F)
+
+if(is.null(malignant_cell) || is.na(malignant_cell) || malignant_cell == "NULL")
+{
+	malignant_cell = "Placeholder"
+}else{
+	if(!malignant_cell %in% colnames(cell_fractions))
+	{
+		warning(paste0("Background cell type label, '", malignant_cell, "', not found amongst the cell populations analysed. Setting uniform gray background...\n"))
+		malignant_cell = "Placeholder"
+	}
+}
+
+if(malignant_cell == "Placeholder")
+{
+	cell_fractions$Placeholder = 1
+}
 
 key = read.delim(file.path("../EcoTyper", discovery, fractions, "Analysis", "rank_selection", "rank_data.txt"))
 all_melted = NULL

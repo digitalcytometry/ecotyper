@@ -2,7 +2,7 @@ suppressPackageStartupMessages({
 library(reshape2)
 })
 
-args = c("Carcinoma", "VisiumBreast", "Carcinoma_Fractions", "Epithelial.cells")
+args = c("Carcinoma", "VisiumBreast", "Carcinoma_Fractions", "Epithelial.cellss")
 args = commandArgs(T) 
 
 discovery = args[1]

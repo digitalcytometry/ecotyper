@@ -24,7 +24,7 @@ if(args$h || is.null(args$config))
 config_file = abspath(args$config)
 
 config <- config::get(file = config_file)
-
+print(config)
 discovery = config$Input$"Discovery dataset name"
 recovery = config$Input$"Recovery dataset name"
 input_path = config$Input$"Input Visium directory"
@@ -34,7 +34,11 @@ if(is.null(coo))
 {
 	coo = config$Input$"Malignant cell of origin"
 }
-coo = config$Input$"Malignant cell of origin"
+if(is.null(coo))
+{
+	print(NULL)
+	coo = "NULL"
+}
 CSx_username = config$Input$"CIBERSORTx username"
 CSx_token = config$Input$"CIBERSORTx token"
 n_threads = config$"Pipeline settings"$"Number of threads"
@@ -130,7 +134,7 @@ for(cell_type in key[,1])
     PushToJobQueue((paste("Rscript state_recovery_visium.R", discovery, fractions, cell_type, n_states, recovery, "FALSE"))) 
 }   
 RunJobQueue()
-
+print(coo)
 cat("\nCalculating cell state abundances...\n")
 print(paste("Rscript spatial_states.R", discovery, recovery, fractions, coo))
 PushToJobQueue((paste("Rscript spatial_states.R", discovery, recovery, fractions, coo))) 

@@ -162,11 +162,14 @@ EcoTyper can perform cell state and ecotype recovery in external
 expression datasets. The recovery can be performed in bulk, scRNA-seq
 and spatial transcriptomics data.
 
-We provide 6 tutorials illustrating these functionalities. The first
+An upcoming book chapter describing how to use EcoTyper in detail can be
+found
+[here](https://github.com/digitalcytometry/ecotyper/blob/master/EcoTyper_MiMB_Chapter_2022.pdf).
+Additionally, we provide below 6 tutorials illustrating these
+functionalities. The first three demonstrate how the recovery of cell
+states and ecotypes can be performed with various input types. The last
 three demonstrate how the recovery of cell states and ecotypes can be
-performed with various input types. The last three demonstrate how the
-recovery of cell states and ecotypes can be performed with various input
-types:
+performed with various input types:
 
 -   [**Tutorial 1:** Recovery of Cell States and Ecotypes in
     User-Provided Bulk
@@ -186,7 +189,6 @@ types:
 -   [**Tutorial 6.** *De novo* Discovery of Cell States and Ecotypes in
     Pre-Sorted
     Data](#tutorial-6-de-novo-discovery-of-cell-states-and-ecotypes-in-pre-sorted-data)
--   [**Frequently Asked Questions (FAQ)**](#frequently-asked-questions)
 
 A schema of the tutorials is presented below:
 
@@ -363,14 +365,14 @@ head(data[,1:5])
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
     ## S01                 5.610752e-02                 9.612807e-15
-    ## S02                 1.280373e-02                 6.386029e-03
-    ## S03                 1.035601e-14                 6.174319e-05
-    ## S04                 1.451949e-02                 1.694937e-02
+    ## S02                 1.280373e-02                 6.386054e-03
+    ## S03                 1.035601e-14                 6.170270e-05
+    ## S04                 1.451949e-02                 1.694938e-02
     ## S05                 1.793168e-01                 1.726694e-02
     ## S06                 2.209002e-01                 2.355229e-02
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
     ## S01                  0.040894068                  0.007263805
-    ## S02                  0.005972318                  0.004142070
+    ## S02                  0.005972317                  0.004142070
     ## S03                  0.012142088                  0.028884848
     ## S04                  0.063365960                  0.019739555
     ## S05                  0.013198449                  0.001226978
@@ -414,6 +416,71 @@ knitr::include_graphics("RecoveryOutput/bulk_lung_data/Fibroblasts/state_assignm
 
 <img src="RecoveryOutput/bulk_lung_data/Fibroblasts/state_assignment_heatmap.png" width="100%" style="display: block; margin: auto;" />
 
+-   The expression matrix used for plotting the heatmap of user-provided
+    bulk dataset:
+
+``` r
+data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/heatmap_data.txt")
+dim(data)
+```
+
+    ## [1] 806 164
+
+``` r
+head(data[,1:5])
+```
+
+    ##         TCGA.05.4397.01A.01R.1206.07 TCGA.68.7757.01B.11R.2296.07
+    ## TNNI1                     0.26382679                    0.9831063
+    ## TTN                       0.10859319                    0.2166813
+    ## STAC3                     2.69798126                    2.3112648
+    ## SMPX                      1.94973904                    0.0000000
+    ## APOBEC2                   0.07185907                    0.5085421
+    ## MYLK2                     0.80441445                    0.4992384
+    ##         TCGA.L3.A524.01A.11R.A262.07 TCGA.22.1016.01A.01R.0692.07
+    ## TNNI1                      3.3657514                   1.60817315
+    ## TTN                        0.5318695                   0.61421222
+    ## STAC3                      3.3572611                   3.42221177
+    ## SMPX                       1.6910667                   0.05425691
+    ## APOBEC2                    0.8058942                   1.06371266
+    ## MYLK2                      0.8130539                   0.34702012
+    ##         TCGA.22.4593.11A.01R.1820.07
+    ## TNNI1                     0.61589081
+    ## TTN                       0.20658476
+    ## STAC3                     2.74978570
+    ## SMPX                      0.05640682
+    ## APOBEC2                   0.89013275
+    ## MYLK2                     0.08401378
+
+-   The meta-information data frame used for plotting the color bar in
+    the heatmap of user-provided bulk dataset:
+
+``` r
+data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/heatmap_top_ann.txt")
+dim(data)
+```
+
+    ## [1] 164   8
+
+``` r
+head(data[,1:5])
+```
+
+    ##                                                        ID State InitialState
+    ## TCGA.05.4397.01A.01R.1206.07 TCGA.05.4397.01A.01R.1206.07   S01         IS02
+    ## TCGA.68.7757.01B.11R.2296.07 TCGA.68.7757.01B.11R.2296.07   S01         IS02
+    ## TCGA.L3.A524.01A.11R.A262.07 TCGA.L3.A524.01A.11R.A262.07   S01         IS02
+    ## TCGA.22.1016.01A.01R.0692.07 TCGA.22.1016.01A.01R.0692.07   S02         IS11
+    ## TCGA.22.4593.11A.01R.1820.07 TCGA.22.4593.11A.01R.1820.07   S02         IS11
+    ## TCGA.22.5478.11A.11R.1635.07 TCGA.22.5478.11A.11R.1635.07   S02         IS11
+    ##                              Tissue Histology
+    ## TCGA.05.4397.01A.01R.1206.07  Tumor      LUAD
+    ## TCGA.68.7757.01B.11R.2296.07  Tumor      LUSC
+    ## TCGA.L3.A524.01A.11R.A262.07  Tumor      LUSC
+    ## TCGA.22.1016.01A.01R.0692.07  Tumor      LUSC
+    ## TCGA.22.4593.11A.01R.1820.07 Normal      LUSC
+    ## TCGA.22.5478.11A.11R.1635.07 Normal      LUSC
+
 The output for ecotypes includes:
 
 -   The abundance (fraction) of each ecotype in each sample:
@@ -430,19 +497,19 @@ head(assign[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443916e-03                  0.037978787
-    ## CE2                 1.621595e-01                  0.243048605
-    ## CE3                 1.386670e-14                  0.074719412
-    ## CE4                 7.257657e-02                  0.006520542
-    ## CE5                 1.618937e-01                  0.054196665
-    ## CE6                 1.908700e-02                  0.035478256
+    ## CE1                 2.443910e-03                  0.037979470
+    ## CE2                 1.621595e-01                  0.243053129
+    ## CE3                 1.386670e-14                  0.074720804
+    ## CE4                 7.257657e-02                  0.006520664
+    ## CE5                 1.618937e-01                  0.054197120
+    ## CE6                 1.908700e-02                  0.035478145
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189985983
-    ## CE2                  0.167842144                  0.219429250
-    ## CE3                  0.004333314                  0.041762461
-    ## CE4                  0.058892709                  0.063478225
-    ## CE5                  0.148527986                  0.088748029
-    ## CE6                  0.017818809                  0.009232609
+    ## CE1                  0.076640619                  0.189986117
+    ## CE2                  0.167842143                  0.219429316
+    ## CE3                  0.004333314                  0.041762496
+    ## CE4                  0.058892709                  0.063478215
+    ## CE5                  0.148527987                  0.088748024
+    ## CE6                  0.017818807                  0.009232477
     ##     TCGA.05.4249.01A.01R.1107.07
     ## CE1                   0.11162555
     ## CE2                   0.03073282
@@ -472,19 +539,19 @@ head(discrete_assignments[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443916e-03                  0.037978787
-    ## CE2                 1.621595e-01                  0.243048605
-    ## CE3                 1.386670e-14                  0.074719412
-    ## CE4                 7.257657e-02                  0.006520542
-    ## CE5                 1.618937e-01                  0.054196665
-    ## CE6                 1.908700e-02                  0.035478256
+    ## CE1                 2.443910e-03                  0.037979470
+    ## CE2                 1.621595e-01                  0.243053129
+    ## CE3                 1.386670e-14                  0.074720804
+    ## CE4                 7.257657e-02                  0.006520664
+    ## CE5                 1.618937e-01                  0.054197120
+    ## CE6                 1.908700e-02                  0.035478145
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189985983
-    ## CE2                  0.167842144                  0.219429250
-    ## CE3                  0.004333314                  0.041762461
-    ## CE4                  0.058892709                  0.063478225
-    ## CE5                  0.148527986                  0.088748029
-    ## CE6                  0.017818809                  0.009232609
+    ## CE1                  0.076640619                  0.189986117
+    ## CE2                  0.167842143                  0.219429316
+    ## CE3                  0.004333314                  0.041762496
+    ## CE4                  0.058892709                  0.063478215
+    ## CE5                  0.148527987                  0.088748024
+    ## CE6                  0.017818807                  0.009232477
     ##     TCGA.05.4249.01A.01R.1107.07
     ## CE1                   0.11162555
     ## CE2                   0.03073282
@@ -647,11 +714,11 @@ head(data[,1:5])
 ```
 
     ##     MS2010072001 MS2010072003 MS2010072004 MS2010072017 MS2010072019
-    ## S01 2.373248e-03 3.595618e-01 3.806641e-05 3.697861e-01 5.385940e-01
-    ## S02 4.782425e-01 5.127354e-02 4.068437e-01 8.661441e-16 1.260096e-15
-    ## S03 5.000272e-01 2.657648e-01 3.208192e-01 3.871464e-02 1.262404e-01
-    ## S04 1.409287e-15 2.861731e-01 1.020793e-01 2.570570e-07 6.271926e-03
-    ## S05 1.935706e-02 7.028482e-05 1.046191e-01 8.195354e-02 1.693508e-05
+    ## S01 2.373248e-03 3.595636e-01 3.569422e-05 3.697861e-01 5.385940e-01
+    ## S02 4.782425e-01 5.127410e-02 4.068442e-01 8.661441e-16 1.260096e-15
+    ## S03 5.000272e-01 2.657681e-01 3.208196e-01 3.871465e-02 1.262404e-01
+    ## S04 1.409287e-15 2.861767e-01 1.020794e-01 2.303560e-07 6.272040e-03
+    ## S05 1.935706e-02 5.983296e-05 1.046199e-01 8.195355e-02 1.681125e-05
 
 -   The assignment of samples to the state with highest abundance. If
     the cell state with the highest abundance is one of the cell states
@@ -686,6 +753,92 @@ knitr::include_graphics("RecoveryOutput/bulk_lymphoma_data/B.cells/state_assignm
 
 <img src="RecoveryOutput/bulk_lymphoma_data/B.cells/state_assignment_heatmap.png" width="100%" style="display: block; margin: auto;" />
 
+-   The expression matrix used for plotting the heatmap of user-provided
+    bulk dataset:
+
+``` r
+data = read.delim("RecoveryOutput/bulk_lymphoma_data/B.cells/heatmap_data.txt")
+dim(data)
+```
+
+    ## [1] 951  64
+
+``` r
+head(data[,1:5])
+```
+
+    ##          LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_B03_830732
+    ## MARCKSL1                                           11.859007
+    ## AFF2                                                6.712095
+    ## RUNDC2C                                             0.000000
+    ## ANUBL1                                              0.000000
+    ## RASL11A                                             9.304902
+    ## SPRED2                                              8.377341
+    ##          LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C01_830810
+    ## MARCKSL1                                           11.977873
+    ## AFF2                                                3.293527
+    ## RUNDC2C                                             0.000000
+    ## ANUBL1                                              0.000000
+    ## RASL11A                                            10.723609
+    ## SPRED2                                              6.620119
+    ##          LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C06_830812
+    ## MARCKSL1                                           11.951445
+    ## AFF2                                                8.421034
+    ## RUNDC2C                                             0.000000
+    ## ANUBL1                                              0.000000
+    ## RASL11A                                             7.561106
+    ## SPRED2                                              8.430200
+    ##          LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C07_830734
+    ## MARCKSL1                                           12.689936
+    ## AFF2                                                6.228481
+    ## RUNDC2C                                             0.000000
+    ## ANUBL1                                              0.000000
+    ## RASL11A                                            10.351692
+    ## SPRED2                                              7.449911
+    ##          LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_D07_830762
+    ## MARCKSL1                                           13.056685
+    ## AFF2                                                7.484197
+    ## RUNDC2C                                             0.000000
+    ## ANUBL1                                              0.000000
+    ## RASL11A                                             6.406415
+    ## SPRED2                                              7.083581
+
+-   The meta-information data frame used for plotting the color bar in
+    the heatmap of user-provided bulk dataset:
+
+``` r
+data = read.delim("RecoveryOutput/bulk_lymphoma_data/B.cells/heatmap_top_ann.txt")
+dim(data)
+```
+
+    ## [1] 64  5
+
+``` r
+head(data[,1:5])
+```
+
+    ##                                                                                                      ID
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_B03_830732 LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_B03_830732
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C01_830810 LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C01_830810
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C06_830812 LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C06_830812
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C07_830734 LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C07_830734
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_D07_830762 LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_D07_830762
+    ## MS2010072003                                                                               MS2010072003
+    ##                                                     State InitialState COO
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_B03_830732   S01         IS06 GCB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C01_830810   S01         IS06 GCB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C06_830812   S01         IS06 GCB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C07_830734   S01         IS06 GCB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_D07_830762   S01         IS06 GCB
+    ## MS2010072003                                          S01         IS06 GCB
+    ##                                                     schmitz_labels
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_B03_830732            EZB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C01_830810            EZB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C06_830812            EZB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_C07_830734            EZB
+    ## LONGS_p_DLBCL_AffyExpr_01_HG_U133_Plus_2_D07_830762          Other
+    ## MS2010072003                                                    N1
+
 The output for ecotypes includes:
 
 -   The abundance (fraction) of each ecotype in each sample:
@@ -702,12 +855,12 @@ head(assign[,1:5])
 ```
 
     ##     MS2010072001 MS2010072003 MS2010072004 MS2010072017 MS2010072019
-    ## LE1   0.04957052   0.08169883   0.08724611 7.549536e-02  0.039440174
-    ## LE2   0.01006307   0.12841183   0.09457992 2.747772e-02  0.002943328
-    ## LE3   0.05278894   0.03158038   0.07019048 2.622030e-01  0.246744970
-    ## LE4   0.30161978   0.03494590   0.08382893 4.458162e-15  0.009809012
-    ## LE5   0.17506202   0.19692135   0.14271831 1.226647e-01  0.137689497
-    ## LE6   0.09394966   0.09523241   0.13293934 2.158494e-01  0.155547222
+    ## LE1   0.04957053   0.08169580   0.08724631 7.549477e-02  0.039440134
+    ## LE2   0.01006307   0.12841338   0.09457999 2.747771e-02  0.002943381
+    ## LE3   0.05278895   0.03158044   0.07019052 2.622025e-01  0.246744962
+    ## LE4   0.30161981   0.03494594   0.08382898 4.458163e-15  0.009809031
+    ## LE5   0.17506195   0.19692185   0.14271841 1.226648e-01  0.137689510
+    ## LE6   0.09394961   0.09523248   0.13293941 2.158490e-01  0.155547253
 
 -   The assignment of samples to the lymphoma ecotype with the highest
     abundance. If the cell state fractions from the dominant ecotype are
@@ -730,12 +883,12 @@ head(discrete_assignments[,1:5])
 ```
 
     ##     MS2010072001 MS2010072003 MS2010072004 MS2010072017 MS2010072019
-    ## LE1   0.04957052   0.08169883   0.08724611 7.549536e-02  0.039440174
-    ## LE2   0.01006307   0.12841183   0.09457992 2.747772e-02  0.002943328
-    ## LE3   0.05278894   0.03158038   0.07019048 2.622030e-01  0.246744970
-    ## LE4   0.30161978   0.03494590   0.08382893 4.458162e-15  0.009809012
-    ## LE5   0.17506202   0.19692135   0.14271831 1.226647e-01  0.137689497
-    ## LE6   0.09394966   0.09523241   0.13293934 2.158494e-01  0.155547222
+    ## LE1   0.04957053   0.08169580   0.08724631 7.549477e-02  0.039440134
+    ## LE2   0.01006307   0.12841338   0.09457999 2.747771e-02  0.002943381
+    ## LE3   0.05278895   0.03158044   0.07019052 2.622025e-01  0.246744962
+    ## LE4   0.30161981   0.03494594   0.08382898 4.458163e-15  0.009809031
+    ## LE5   0.17506195   0.19692185   0.14271841 1.226648e-01  0.137689510
+    ## LE6   0.09394961   0.09523248   0.13293941 2.158490e-01  0.155547253
 
 -   A heatmap of cell state abundances across the samples assigned to
     ecotypes. Rows correspond to the cell states forming ecotypes, while
@@ -990,6 +1143,71 @@ knitr::include_graphics("RecoveryOutput/scRNA_CRC_data/Fibroblasts/state_assignm
 ```
 
 <img src="RecoveryOutput/scRNA_CRC_data/Fibroblasts/state_assignment_heatmap.png" width="100%" style="display: block; margin: auto;" />
+
+-   The expression matrix used for plotting the heatmap of user-provided
+    scRNA-seq dataset:
+
+``` r
+data = read.delim("RecoveryOutput/scRNA_CRC_data/Fibroblasts/heatmap_data.txt")
+dim(data)
+```
+
+    ## [1] 806 857
+
+``` r
+head(data[,1:5])
+```
+
+    ##         SMC01.N_CCTTTCTGTCTCAACA SMC01.T_TGCGCAGTCGGATGGA
+    ## TNNI1                          0                        0
+    ## TTN                            0                        0
+    ## STAC3                          0                        0
+    ## SMPX                           0                        0
+    ## APOBEC2                        0                        0
+    ## MYLK2                          0                        0
+    ##         SMC02.N_TACAGTGAGAGCCCAA SMC04.T_CACAAACTCTACTATC
+    ## TNNI1                          0                        0
+    ## TTN                            0                        0
+    ## STAC3                          0                        0
+    ## SMPX                           0                        0
+    ## APOBEC2                        0                        0
+    ## MYLK2                          0                        0
+    ##         SMC06.N_TCTCATAAGTCCATAC
+    ## TNNI1                          0
+    ## TTN                            0
+    ## STAC3                          0
+    ## SMPX                           0
+    ## APOBEC2                        0
+    ## MYLK2                          0
+
+-   The meta-information data frame used for plotting the color bar in
+    the heatmap of user-provided scRNA-seq dataset:
+
+``` r
+data = read.delim("RecoveryOutput/scRNA_CRC_data/Fibroblasts/heatmap_top_ann.txt")
+dim(data)
+```
+
+    ## [1] 857  11
+
+``` r
+head(data[,1:5])
+```
+
+    ##                                                ID State InitialState
+    ## SMC01.N_CCTTTCTGTCTCAACA SMC01.N_CCTTTCTGTCTCAACA   S01         IS02
+    ## SMC01.T_TGCGCAGTCGGATGGA SMC01.T_TGCGCAGTCGGATGGA   S01         IS02
+    ## SMC02.N_TACAGTGAGAGCCCAA SMC02.N_TACAGTGAGAGCCCAA   S01         IS02
+    ## SMC04.T_CACAAACTCTACTATC SMC04.T_CACAAACTCTACTATC   S01         IS02
+    ## SMC06.N_TCTCATAAGTCCATAC SMC06.N_TCTCATAAGTCCATAC   S01         IS02
+    ## SMC07.N_CATCAAGCACACTGCG SMC07.N_CATCAAGCACACTGCG   S01         IS02
+    ##                                             Index Patient
+    ## SMC01.N_CCTTTCTGTCTCAACA SMC01-N_CCTTTCTGTCTCAACA   SMC01
+    ## SMC01.T_TGCGCAGTCGGATGGA SMC01-T_TGCGCAGTCGGATGGA   SMC01
+    ## SMC02.N_TACAGTGAGAGCCCAA SMC02-N_TACAGTGAGAGCCCAA   SMC02
+    ## SMC04.T_CACAAACTCTACTATC SMC04-T_CACAAACTCTACTATC   SMC04
+    ## SMC06.N_TCTCATAAGTCCATAC SMC06-N_TCTCATAAGTCCATAC   SMC06
+    ## SMC07.N_CATCAAGCACACTGCG SMC07-N_CATCAAGCACACTGCG   SMC07
 
 -   If the statistical significance quantification method is applied,
     the resulting z-scores for each cell state are output in the same
@@ -1268,6 +1486,50 @@ knitr::include_graphics("RecoveryOutput/scRNA_lymphoma_data/B.cells/state_assign
 
 <img src="RecoveryOutput/scRNA_lymphoma_data/B.cells/state_assignment_heatmap.png" width="100%" style="display: block; margin: auto;" />
 
+-   The expression matrix used for plotting the heatmap of user-provided
+    scRNA-seq dataset:
+
+``` r
+data = read.delim("RecoveryOutput/scRNA_lymphoma_data/B.cells/heatmap_data.txt")
+dim(data)
+```
+
+    ## [1] 951 728
+
+``` r
+head(data[,1:5])
+```
+
+    ##          Cell_101  Cell_103 Cell_108 Cell_113  Cell_118
+    ## MARCKSL1 0.000000 11.352804 8.755127  8.13621 10.228436
+    ## AFF2     0.000000  0.000000 0.000000  8.13621  0.000000
+    ## RUNDC2C  0.000000  0.000000 0.000000  0.00000  0.000000
+    ## ANUBL1   0.000000  0.000000 0.000000  0.00000  0.000000
+    ## RASL11A  7.922461  9.546828 6.446493  0.00000  0.000000
+    ## SPRED2   0.000000  0.000000 0.000000  0.00000  7.236829
+
+-   The meta-information data frame used for plotting the color bar in
+    the heatmap of user-provided scRNA-seq dataset:
+
+``` r
+data = read.delim("RecoveryOutput/scRNA_lymphoma_data/B.cells/heatmap_top_ann.txt")
+dim(data)
+```
+
+    ## [1] 728   5
+
+``` r
+head(data[,1:5])
+```
+
+    ##                ID State InitialState CellType Tissue
+    ## Cell_101 Cell_101   S01         IS06  B.cells  Tumor
+    ## Cell_103 Cell_103   S01         IS06  B.cells  Tumor
+    ## Cell_108 Cell_108   S01         IS06  B.cells  Tumor
+    ## Cell_113 Cell_113   S01         IS06  B.cells  Tumor
+    ## Cell_118 Cell_118   S01         IS06  B.cells Normal
+    ## Cell_120 Cell_120   S01         IS06  B.cells Normal
+
 -   If the statistical significance quantification method is applied,
     the resulting z-score for each cell state are output in the same
     directory:
@@ -1518,9 +1780,12 @@ population in each spot. It is not used when the discovery dataset is
 described in *Tutorials 4-6*, using *Carcinoma_Fractions* or
 *Lymphoma_Fractions*. In these cases, the malignant cells are
 automatically considered to be originating from *Epithelial.cells* or
-*B.cells*, respectively. Otherwise, this field needs to contain a column
-name in the file provided in *Recovery cell type fractions* field,
-corresponding to the appropriate cell type of origin.
+*B.cells*, respectively. Otherwise, this field can be set to one of the
+column names in the file provided in *Recovery cell type fractions*
+field, corresponding to the appropriate cell type of origin. If this
+field is not provided, or if the value provided is not found in the
+column names of the fractions file, the background will be uniformly set
+to gray.
 
 #### CIBERSORTx username and token
 
@@ -1596,12 +1861,12 @@ head(data[,1:10])
 ```
 
     ##                   ID  X   Y       Sample Malignant B.cells_S01 B.cells_S02
-    ## 1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.2164860     0.93234   0.0000000
-    ## 2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.6737582     0.00000   0.5003005
-    ## 3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.3124031     0.00000   0.0000000
-    ## 4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.1128586     1.00000   0.0000000
-    ## 5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.5008316     0.00000   0.2969141
-    ## 6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.7553180     0.00000   0.3589368
+    ## 1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast         1     0.93234   0.0000000
+    ## 2 AAACACCAATAACTGC.1 59  19 VisiumBreast         1     0.00000   0.5003005
+    ## 3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast         1     0.00000   0.0000000
+    ## 4 AAACAGGGTCTATATT.1 47  13 VisiumBreast         1     1.00000   0.0000000
+    ## 5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast         1     0.00000   0.2969141
+    ## 6 AAACATTTCCCGGATT.1 61  97 VisiumBreast         1     0.00000   0.3589368
     ##   B.cells_S03 B.cells_S04 CD4.T.cells_S01
     ## 1           0           0               0
     ## 2           0           0               0
@@ -1635,12 +1900,12 @@ head(data[,1:10])
 ```
 
     ##                                ID  X   Y       Sample Malignant        E1
-    ## VisiumBreast.1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.1142685 0.0000000
-    ## VisiumBreast.2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.7334114 0.3751726
-    ## VisiumBreast.3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.2441395 0.0000000
-    ## VisiumBreast.4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.0000000 0.4173973
-    ## VisiumBreast.5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.4992702 0.2870171
-    ## VisiumBreast.6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.8438427 0.1124896
+    ## VisiumBreast.1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast        NA 0.0000000
+    ## VisiumBreast.2 AAACACCAATAACTGC.1 59  19 VisiumBreast        NA 0.3751726
+    ## VisiumBreast.3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast        NA 0.0000000
+    ## VisiumBreast.4 AAACAGGGTCTATATT.1 47  13 VisiumBreast        NA 0.4173973
+    ## VisiumBreast.5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast        NA 0.2870171
+    ## VisiumBreast.6 AAACATTTCCCGGATT.1 61  97 VisiumBreast        NA 0.1124896
     ##                       E2        E3        E4        E5
     ## VisiumBreast.1 0.0000000 0.0000000 0.5014347 0.3590839
     ## VisiumBreast.2 0.9696322 0.0000000 0.0000000 0.4942756
@@ -1935,6 +2200,7 @@ default :
     Cophenetic coefficient cutoff : 0.95
     CIBERSORTx fractions Singularity path : NULL
     CIBERSORTx hires Singularity path : NULL
+    Minimum number of states in ecotypes : 3
 ```
 
 The configuration file has three sections, *Input*, *Output* and
@@ -2311,6 +2577,15 @@ HiRes module. If this path is provided, in silico cell purification at
 stepp 2 will be performed using Sngularity. Otherwise it will be
 performed using Docker.
 
+#### Minimum number of states in ecotypes
+
+``` yaml
+Minimum number of states in ecotypes : 3
+```
+
+The ecotypes with less cell states that indicated in this field will be
+filtered out.
+
 ### 4.4. The command line
 
 After editing the configuration file (`config_discovery_bulk.yml`), the
@@ -2636,8 +2911,10 @@ sequence of steps:
     containing only negative values with the sign inverted. These two
     matrices are subsequently concatenated to produce
     ![V_i^\*](http://chart.apis.google.com/chart?cht=tx&chl=V_i%5E%2A "V_i^*").
-    <br/> For each cell type, EcoTyper only applies NMF once for the rank
-    selected in step 3. 
+    <br/> For each cell type, EcoTyper only applies NMF for the rank
+    selected in step 3. As before, the NMF algorithm is applied multiple
+    times (we recommend at least 50) with different starting seeds, for
+    robustness.
 
 6.  **Extracting cell state information**: The NMF output resulting from
     step 5 is parsed and cell state information is extracted for the
@@ -2760,6 +3037,7 @@ default :
     Cophenetic coefficient cutoff : 0.975
     #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for discovering ecotypes in step 8. Default: 1 (no filtering).
     Jaccard matrix p-value cutoff : 1
+    Minimum number of states in ecotypes : 3
 ```
 
 The configuration file has three sections, *Input*, *Output* and
@@ -3022,6 +3300,15 @@ encourage users to set this cutoff to lower values (e.g. 0.05), if the
 discovery scRNA-seq dataset contains a number of samples large enough to
 reliably evaluate the significance of overlaps.
 
+#### Minimum number of states in ecotypes
+
+``` yaml
+Minimum number of states in ecotypes : 3
+```
+
+The ecotypes with less cell states that indicated in this field will be
+filtered out.
+
 ### 5.4. The command line
 
 After editing the configuration file (`config_discovery_scRNA.yml`), the
@@ -3177,7 +3464,7 @@ assignments = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_assignment.txt"
 dim(assignments)
 ```
 
-    ## [1] 33  7
+    ## [1] 33  6
 
 ``` r
 head(assignments[,1:5])
@@ -3444,6 +3731,7 @@ tutorial is available in `config_discovery_presorted.yml`:
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
+    Minimum number of states in ecotypes : 3
     
 ```
 
@@ -3692,6 +3980,15 @@ Cophenetic coefficient cutoff : 0.95
 This field indicates the Cophenetic coefficient cutoff, in the range
 \[0, 1\], used for automatically determining the number of states in
 step 4. Lower values generally lead to more clusters being identified.
+
+#### Minimum number of states in ecotypes
+
+``` yaml
+Minimum number of states in ecotypes : 3
+```
+
+The ecotypes with less cell states that indicated in this field will be
+filtered out.
 
 ### 6.4. The command line
 

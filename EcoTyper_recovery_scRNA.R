@@ -182,6 +182,8 @@ for(cell_type in key[,1])
 	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", "scRNA", recovery, cell_type, n_clusters, "state_assignment.txt"), ct_output))
 	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", "scRNA", recovery, cell_type, n_clusters, "state_assignment_heatmap.pdf"), ct_output))		
 	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", "scRNA", recovery, cell_type, n_clusters, "state_assignment_heatmap.png"), ct_output))		
+	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", "scRNA", recovery, cell_type, n_clusters, "heatmap_data.txt"), ct_output))	
+	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", "scRNA", recovery, cell_type, n_clusters, "heatmap_top_ann.txt"), ct_output))	
 	if(z_flag)
 	{
 		system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", "scRNA", recovery, cell_type, n_clusters, "recovery_z_scores.txt"), ct_output))	

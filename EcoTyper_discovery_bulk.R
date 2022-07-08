@@ -38,13 +38,13 @@ fractions = config$Input$"Cell type fractions"
 final_output = config$"Output"$"Output folder"
 
 n_threads = config$"Pipeline settings"$"Number of threads"
-
 nmf_restarts = config$"Pipeline settings"$"Number of NMF restarts"
 max_clusters = config$"Pipeline settings"$"Maximum number of states per cell type"
 cohpenetic_cutoff = config$"Pipeline settings"$"Cophenetic coefficient cutoff"
 skip_steps = config$"Pipeline settings"$"Pipeline steps to skip"
 CSx_singularity_path_fractions = config$"Pipeline settings"$"CIBERSORTx fractions Singularity path"
 CSx_singularity_path_hires = config$"Pipeline settings"$"CIBERSORTx hires Singularity path"
+min_states = config$"Pipeline settings"$"Minimum number of states in ecotypes"
 
 suppressWarnings({
 	final_output = abspath(final_output)	
@@ -244,7 +244,7 @@ if(!7 %in% skip_steps)
 if(!8 %in% skip_steps)
 {
 	cat("\nStep 8 (ecotype discovery)...\n")
-	PushToJobQueue(paste("Rscript ecotypes.R", discovery, fractions)) 
+	PushToJobQueue(paste("Rscript ecotypes.R", discovery, fractions, min_states)) 
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript ecotypes_assign_samples.R", discovery, fractions, "State",paste(additional_columns, collapse = " "))) 
 	cat("Step 8 (ecotype discovery) finished successfully!\n")

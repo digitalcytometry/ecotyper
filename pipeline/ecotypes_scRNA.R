@@ -7,15 +7,22 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "1") 
+args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "1", 3) 
 args = commandArgs(T)   
 dataset = args[1]
 fractions = args[2]
 p_val_cutoff = as.numeric(as.character(args[3]))
+min_states = as.integer(as.character(args[4]))
 
 if(is.na(p_val_cutoff))
 {
 	p_val_cutoff = 1
+}
+
+if(is.na(min_states) || is.null(min_states) || min_states < 1)
+{
+	warning(cat("Config file field 'Minimum number of states in ecotypes' has an invalid value. Setting to the default value, 3.\n"))
+	min_states = 3
 }
 
 key_dir = file.path("../EcoTyper", dataset, fractions, "Analysis", "rank_selection")
@@ -162,11 +169,11 @@ decorate_heatmap_body("ht1", {
 tmp = dev.off()
 
 initial_tb = table(top_ann$InitialEcotype)
-tb = initial_tb[initial_tb > 2]
+tb = initial_tb[initial_tb >= min_states]
 if(length(tb) < 2)
 {
-	warning("There are less than 2 ecotypes with more than three cell states. Including ecotypes of size 2.")
-	tb = initial_tb[initial_tb > 1]
+	warning(paste0("There are less than 2 ecotypes with more than ", min_states, " cell states. Including ecotypes of size ", min_states - 1, ".\n"))
+	tb = initial_tb[initial_tb >= min_states - 1]
 }
 
 top_ann = top_ann[top_ann$InitialEcotype %in% names(tb),]

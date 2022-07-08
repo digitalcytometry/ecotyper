@@ -37,6 +37,7 @@ max_clusters = config$"Pipeline settings"$"Maximum number of states per cell typ
 cohpenetic_cutoff = config$"Pipeline settings"$"Cophenetic coefficient cutoff"
 skip_steps = config$"Pipeline settings"$"Pipeline steps to skip"
 filter_genes = as.logical(config$"Pipeline settings"$"Filter non cell type specific genes")
+min_states = config$"Pipeline settings"$"Minimum number of states in ecotypes"
 
 if(config$"Pipeline settings"$"Filter non cell type specific genes")
 {
@@ -191,7 +192,7 @@ if(!6 %in% skip_steps)
 if(!7 %in% skip_steps)
 {
 	cat("\nStep 7 (ecotype discovery)...\n")
-	PushToJobQueue(paste("Rscript ecotypes.R", discovery, fractions)) 
+	PushToJobQueue(paste("Rscript ecotypes.R", discovery, fractions, min_states)) 
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript ecotypes_assign_samples.R", discovery, fractions, "State",paste(additional_columns, collapse = " "))) 
 	cat("Step 7 (ecotype discovery) finished successfully!\n")

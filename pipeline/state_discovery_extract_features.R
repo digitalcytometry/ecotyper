@@ -3,6 +3,7 @@ library(data.table)
 source("lib/misc.R")
 })
 
+args = c("Codefacs", "All_genes", "T.cell.Group2") 
 args = commandArgs(T)
 dataset = args[1]
 fractions = args[2]
@@ -28,7 +29,18 @@ if(nrow(raw_input) < 50)
 output_dir = file.path("../EcoTyper", dataset, fractions, "Cell_States", "discovery", cell_type) 
 dir.create(output_dir, recursive = T, showWarning = F)
 
-log_data = log2(raw_input)
+if(min(raw_input, na.rm = T) >= 1)
+{
+	log_data = log2(raw_input)	
+}else{
+	if(min(raw_input, na.rm = T) >= 0)
+	{
+		log_data = log2(raw_input + 1)
+	}else{
+		warning(paste0("Negative values found in the expression matrix of '", cell_type, "'. Not performing log-transformation...\n"))
+		log_data = raw_input
+	}
+}
 
 if(filter_genes)
 {

@@ -28,6 +28,12 @@ state_data = state_data[state_data$CellType == cell_type,]
 
 cat(paste0("Plotting cell state heatmaps for ", cell_type, "...\n"))
 
+legend_text = paste0("Background cell type (", malignant_cell, ")")
+if(all(state_data$Malignant == 1))
+{
+	legend_text = paste0("Array spots")
+}
+
 spatial_heatmap_hexagon_confocal <- function(data, columns, colors, name = name, spot_col = "black", newpage = F, ...){
 	
 	mat = dcast(data, X ~ Y, value.var = columns[1]) 
@@ -159,7 +165,8 @@ for(spl in splits)
 upViewport() 
 upViewport() 
 pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
-g <- Heatmap(as.matrix(c(paste0("Cell of origin (", malignant_cell, ")"), "Cell state")), col = c(background, charcoal), name = "hmap", width = 0, height = 0, 
+
+g <- Heatmap(as.matrix(c(legend_text, "Cell state")), col = c(background, charcoal), name = "hmap", width = 0, height = 0, 
 	heatmap_legend_param = list(title = NULL, legend_direction = "horizontal", nrow = 1, title_position = "leftcenter"))
 draw(g, newpage = F, heatmap_legend_side = "bottom")
 upViewport() 
@@ -205,7 +212,7 @@ for(spl in splits)
 upViewport() 
 upViewport() 
 pushViewport(viewport(layout.pos.row = 2, layout.pos.col = 1))
-g <- Heatmap(as.matrix(c(paste0("Cell of origin (", malignant_cell, ")"), "Cell state")), col = c(background, charcoal), name = "hmap", width = 0, height = 0, 
+g <- Heatmap(as.matrix(c(legend_text, "Cell state")), col = c(background, charcoal), name = "hmap", width = 0, height = 0, 
 	heatmap_legend_param = list(title = NULL, legend_direction = "horizontal", nrow = 1, title_position = "leftcenter"))
 draw(g, newpage = F, heatmap_legend_side = "bottom")
 upViewport() 

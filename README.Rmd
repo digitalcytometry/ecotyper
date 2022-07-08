@@ -1,12 +1,12 @@
 ---
 output:
+  html_document: 
+    toc: true
+    toc_float: true
   github_document:
     math_method:
       engine: webtex
       url: http://chart.apis.google.com/chart?cht=tx&chl=
-  html_document: 
-    toc: true
-    toc_float: true
   pdf_document: default
   word_document: default
   md_document: default
@@ -50,8 +50,6 @@ wget https://github.com/digitalcytometry/ecotyper/archive/refs/heads/master.zip
 unzip master.zip
 cd ecotyper-master
 ```
-
-
 
 ### Basic resources
 
@@ -98,7 +96,7 @@ When the input is scRNA-seq or bulk-sorted cell type-specific profiles (e.g., FA
 
 Regardless of the input type used for deriving cell states and ecotypes, EcoTyper can perform cell state and ecotype recovery in external expression datasets. The recovery can be performed in bulk, scRNA-seq and spatial transcriptomics data.
  
-We provide 6 tutorials illustrating these functionalities. The first three demonstrate how the recovery of cell states and ecotypes can be performed with various input types. The last three demonstrate how the recovery of cell states and ecotypes can be performed with various input types:
+An upcoming book chapter describing how to use EcoTyper in detail can be found [here](https://github.com/digitalcytometry/ecotyper/blob/master/EcoTyper_MiMB_Chapter_2022.pdf). Additionally, we provide below    6 tutorials illustrating these functionalities. The first three demonstrate how the recovery of cell states and ecotypes can be performed with various input types. The last three demonstrate how the recovery of cell states and ecotypes can be performed with various input types:
 
   * [**Tutorial 1:** Recovery of Cell States and Ecotypes in User-Provided Bulk Data](#tutorial-1-recovery-of-cell-states-and-ecotypes-in-user-provided-bulk-data)
   * [**Tutorial 2:** Recovery of Cell States and Ecotypes in User-Provided scRNA-seq Data](#tutorial-2-recovery-of-cell-states-and-ecotypes-in-user-provided-scrna-seq-data)
@@ -113,6 +111,7 @@ We provide 6 tutorials illustrating these functionalities. The first three demon
 knitr::include_graphics("utils/schema.png")
 ``` 
 
+  
 ## **Tutorial 1:** Recovery of Cell States and Ecotypes in User-Provided Bulk Data
 
 EcoTyper comes pre-loaded with the resources necessary for the reference-guided recovery of cell states and ecotypes previously defined in carcinoma or lymphoma, in user-provided bulk expression data. In the [carcinoma EcoTyper paper](https://doi.org/10.1016/j.cell.2021.09.014), we demonstrate that prior deconvolution of bulk data using *CIBERSORTx HiRes* is not necessary for high-fidelity recovery of cell states in bulk-tissue expression data. We can proceed to the recovery of states based on bulk data only.
@@ -180,6 +179,24 @@ head(data[,c("ID", "State")])
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("RecoveryOutput/bulk_lung_data/Fibroblasts/state_assignment_heatmap.png")
 ```
+
+* The expression matrix used for plotting the heatmap of user-provided bulk dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/heatmap_data.txt")
+dim(data)
+head(data[,1:5])
+```
+
+
+* The meta-information data frame used for plotting the color bar in the heatmap of user-provided bulk dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/bulk_lung_data/Fibroblasts/heatmap_top_ann.txt")
+dim(data)
+head(data[,1:5])
+```
+
 
 The output for ecotypes includes:
 
@@ -267,6 +284,24 @@ head(data[,c("ID", "State")])
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("RecoveryOutput/bulk_lymphoma_data/B.cells/state_assignment_heatmap.png")
 ```
+
+* The expression matrix used for plotting the heatmap of user-provided bulk dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/bulk_lymphoma_data/B.cells/heatmap_data.txt")
+dim(data)
+head(data[,1:5])
+```
+
+
+* The meta-information data frame used for plotting the color bar in the heatmap of user-provided bulk dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/bulk_lymphoma_data/B.cells/heatmap_top_ann.txt")
+dim(data)
+head(data[,1:5])
+```
+
 
 The output for ecotypes includes:
 
@@ -357,6 +392,23 @@ head(data[,c("ID", "State")])
 knitr::include_graphics("RecoveryOutput/scRNA_CRC_data/Fibroblasts/state_assignment_heatmap.png")
 ```
 
+* The expression matrix used for plotting the heatmap of user-provided scRNA-seq dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/scRNA_CRC_data/Fibroblasts/heatmap_data.txt")
+dim(data)
+head(data[,1:5])
+```
+
+* The meta-information data frame used for plotting the color bar in the heatmap of user-provided scRNA-seq dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/scRNA_CRC_data/Fibroblasts/heatmap_top_ann.txt")
+dim(data)
+head(data[,1:5])
+```
+
+
 * If the statistical significance quantification method is applied, the resulting z-scores for each cell state are output in the same directory:
 
 ```{r}
@@ -446,6 +498,23 @@ head(data[,c("ID", "State")])
 
 ```{r  echo = T, message=T, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("RecoveryOutput/scRNA_lymphoma_data/B.cells/state_assignment_heatmap.png")
+```
+
+* The expression matrix used for plotting the heatmap of user-provided scRNA-seq dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/scRNA_lymphoma_data/B.cells/heatmap_data.txt")
+dim(data)
+head(data[,1:5])
+```
+
+
+* The meta-information data frame used for plotting the color bar in the heatmap of user-provided scRNA-seq dataset:
+
+```{r}
+data = read.delim("RecoveryOutput/scRNA_lymphoma_data/B.cells/heatmap_top_ann.txt")
+dim(data)
+head(data[,1:5])
 ```
 
 * If the statistical significance quantification method is applied, the resulting z-score for each cell state are output in the same directory:
@@ -573,7 +642,7 @@ Recovery cell type fractions : "example_data/visium_fractions_example.txt"
 Background cell type : "Epithelial.cells"
 ```
 
-The cell of origin population for the cancer type being analyzed, amongst the cell types used for discovery. This field is used for plotting a gray background in the resulting output plot, with the intensity of gray depicting the abundance of the cell of origin population in each spot. It is not used when the discovery dataset is *Carcinoma* or *Lymphoma* or when the discovery has been performed as described in *Tutorials 4-6*, using *Carcinoma_Fractions* or *Lymphoma_Fractions*. In these cases, the malignant cells are automatically considered to be originating from *Epithelial.cells* or *B.cells*, respectively. Otherwise, this field needs to contain a column name in the file provided in *Recovery cell type fractions* field, corresponding to the appropriate cell type of origin.
+The cell of origin population for the cancer type being analyzed, amongst the cell types used for discovery. This field is used for plotting a gray background in the resulting output plot, with the intensity of gray depicting the abundance of the cell of origin population in each spot. It is not used when the discovery dataset is *Carcinoma* or *Lymphoma* or when the discovery has been performed as described in *Tutorials 4-6*, using *Carcinoma_Fractions* or *Lymphoma_Fractions*. In these cases, the malignant cells are automatically considered to be originating from *Epithelial.cells* or *B.cells*, respectively. Otherwise, this field can be set to one of the column names in the file provided in *Recovery cell type fractions* field, corresponding to the appropriate cell type of origin. If this field is not provided, or if the value provided is not found in the column names of the fractions file, the background will be uniformly set to gray. 
 
 #### CIBERSORTx username and token
 
@@ -740,6 +809,7 @@ default :
     Cophenetic coefficient cutoff : 0.95
     CIBERSORTx fractions Singularity path : NULL
     CIBERSORTx hires Singularity path : NULL
+    Minimum number of states in ecotypes : 3
 
 ```
 
@@ -928,6 +998,14 @@ CIBERSORTx hires Singularity path : NULL
 
 The path to the Singularity container (a .SIF file) for the CIBERSORTx HiRes module. If this path is provided, in silico cell purification at stepp 2 will be performed using Sngularity. Otherwise it will be performed using Docker.
 
+#### Minimum number of states in ecotypes
+
+```{cat, class.source='yaml'}
+Minimum number of states in ecotypes : 3
+```
+
+The ecotypes with less cell states that indicated in this field will be filtered out.
+
 ### 4.4. The command line
 
 After editing the configuration file (`config_discovery_bulk.yml`), the *de novo* discovery cell states and ecotypes can be run as is illustrated below. Please note that this script might take up to two hours to run on 10 threads. Also, although EcoTyper can be run on the example data from this tutorial using a typical laptop (16GB memory), it might not be the case for larger datasets. We recommend that cell type and ecotype discovery is generally run on a server with >32GB of RAM.
@@ -1095,6 +1173,7 @@ default :
     Cophenetic coefficient cutoff : 0.975
     #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for discovering ecotypes in step 8. Default: 1 (no filtering).
     Jaccard matrix p-value cutoff : 1
+    Minimum number of states in ecotypes : 3
 ```
 
 The configuration file has three sections, *Input*, *Output* and *Pipeline settings*. We next will describe the expected content in each of these three sections, and instruct the user how to set the appropriate settings in their applications.
@@ -1235,6 +1314,14 @@ Jaccard matrix p-value cutoff : 1
 ```
 
 Ecotype identification on step 8 is performed by clustering a jaccard matrix that quantifies the sample overlap between each pair of states. Prior to performing ecotype identification, the jaccard matrix values corresponding to pairs of states for which the sample overlap is not significant are set to 0, in order to mitigate the noise introduced by spurious overlaps. The value provided in this field specifies the p-value cutoff above which the overlaps are considered non-significant. When the number of samples in the scRNA-seq dataset is small, such as in the current example, we recommend this filter is disabled (p-value cutoff = 1), to avoid over-filtering the jaccard matrix. However, we encourage users to set this cutoff to lower values (e.g. 0.05), if the discovery scRNA-seq dataset contains a number of samples large enough to reliably evaluate the significance of overlaps.
+
+#### Minimum number of states in ecotypes
+
+```{cat, class.source='yaml'}
+Minimum number of states in ecotypes : 3
+```
+
+The ecotypes with less cell states that indicated in this field will be filtered out.
 
 ### 5.4. The command line
 
@@ -1389,6 +1476,7 @@ This script takes as input file a configuration file in [YAML](https://yaml.org/
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
     Cophenetic coefficient cutoff : 0.95
+    Minimum number of states in ecotypes : 3
     
 ```
 
@@ -1523,6 +1611,15 @@ Cophenetic coefficient cutoff : 0.95
 ```
 
 This field indicates the Cophenetic coefficient cutoff, in the range [0, 1], used for automatically determining the number of states in step 4. Lower values generally lead to more clusters being identified.
+
+#### Minimum number of states in ecotypes
+
+```{cat, class.source='yaml'}
+Minimum number of states in ecotypes : 3
+```
+
+The ecotypes with less cell states that indicated in this field will be filtered out.
+
 
 ### 6.4. The command line
 

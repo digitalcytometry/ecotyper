@@ -41,6 +41,7 @@ max_clusters = config$"Pipeline settings"$"Maximum number of states per cell typ
 cohpenetic_cutoff = config$"Pipeline settings"$"Cophenetic coefficient cutoff"
 skip_steps = config$"Pipeline settings"$"Pipeline steps to skip"
 p_value_cutoff = config$"Pipeline settings"$"Jaccard matrix p-value cutoff"
+min_states = config$"Pipeline settings"$"Minimum number of states in ecotypes"
 
 suppressWarnings({
 	final_output = abspath(final_output)	
@@ -244,7 +245,7 @@ if(!7 %in% skip_steps)
 if(!8 %in% skip_steps)
 {
 	cat("\nStep 8 (ecotype discovery)...\n")
-	PushToJobQueue(paste("Rscript ecotypes_scRNA.R", discovery, fractions, p_value_cutoff)) 
+	PushToJobQueue(paste("Rscript ecotypes_scRNA.R", discovery, fractions, p_value_cutoff, min_states))
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript ecotypes_assign_samples_scRNA.R", discovery, fractions, "Ecotype",paste(additional_columns, collapse = " "))) 
 	cat("Step 8 (ecotype discovery) finished successfully!\n")
