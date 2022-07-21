@@ -246,7 +246,7 @@ if(!8 %in% skip_steps)
 	cat("\nStep 8 (ecotype discovery)...\n")
 	PushToJobQueue(paste("Rscript ecotypes.R", discovery, fractions, min_states)) 
 	RunJobQueue()
-	PushToJobQueue(paste("Rscript ecotypes_assign_samples.R", discovery, fractions, "State",paste(additional_columns, collapse = " "))) 
+	PushToJobQueue(paste("Rscript ecotypes_assign_samples.R", discovery, fractions, "Ecotype", paste(additional_columns, collapse = " "))) 
 	cat("Step 8 (ecotype discovery) finished successfully!\n")
 	RunJobQueue()
 }else{

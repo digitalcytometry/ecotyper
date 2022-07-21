@@ -6,7 +6,7 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = commandArgs(T) 
+args = commandArgs(T)  
 dataset = args[1]
 fractions = args[2]
 top_cols = args[3:length(args)] 
@@ -110,6 +110,7 @@ write.table(clinical, file.path(output_dir, "initial_ecotype_assignment.txt"), s
 
 rownames(clinical) = clinical$ID
 rownames(ecotypes) = ecotypes$ID
+top_cols = top_cols[top_cols %in% colnames(clinical)]
 
 h <- heatmap_simple(all_H, top_annotation = clinical, top_columns = top_cols, 
 	left_annotation = ecotypes, left_columns = c("Ecotype", "CellType", "State"),
