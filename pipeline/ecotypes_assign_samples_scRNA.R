@@ -11,8 +11,7 @@ args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "Ecotype", "Tissue")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
-fraction_processing = args[3]
-top_cols = args[4:length(args)]
+top_cols = args[3:length(args)]
 
 if(is.na(top_cols[1]))
 {

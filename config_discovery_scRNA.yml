@@ -28,6 +28,7 @@ default :
     #The p-value cutoff used for filtering non-significant overlaps in the jaccard matrix used for 
     #discovering ecotypes in step 8. Default: 1 (no filtering).
     Jaccard matrix p-value cutoff : 1
+    Minimum number of states in ecotypes : 3
     
 
 

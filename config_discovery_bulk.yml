@@ -32,6 +32,7 @@ default :
     Cophenetic coefficient cutoff : 0.95
     CIBERSORTx fractions Singularity path : NULL
     CIBERSORTx hires Singularity path : NULL
+    Minimum number of states in ecotypes : 3
     
 
 

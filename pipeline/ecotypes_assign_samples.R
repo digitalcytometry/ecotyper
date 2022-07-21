@@ -6,14 +6,10 @@ source("lib/misc.R")
 source("lib/heatmaps.R")
 })
 
-args = c("Lung", "TR12", "Ecotype", "Histology", "Tissue")
-args = c("Lung", "TR12", "Ecotype", "Histology", "Tissue")
 args = commandArgs(T) 
 dataset = args[1]
 fractions = args[2]
-fraction_processing = args[3]
-top_cols = args[4:length(args)]
-
+top_cols = args[3:length(args)] 
 
 if(is.na(top_cols[1]))
 {
@@ -102,7 +98,7 @@ clinical$Ecotype = ifelse((clinical$AssignmentQ < 0.25) & clinical$AssignedToEco
 tmp = read_clinical(clinical$ID, dataset = dataset)
 to_rem = colnames(tmp)[colnames(tmp) %in% colnames(clinical)]
 to_rem = to_rem[to_rem != "ID"]
-tmp = tmp[,!colnames(tmp) %in% to_rem]
+tmp = tmp[,!colnames(tmp) %in% to_rem, drop = F] 
 clinical = merge(clinical, tmp, by = "ID", all.x = T)
 
 clinical = clinical[order(clinical$MaxEcotype),]
