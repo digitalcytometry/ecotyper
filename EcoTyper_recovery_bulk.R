@@ -116,17 +116,17 @@ start = Sys.time()
 cur_dir = getwd()
 setwd("pipeline")
 
-#key = read.delim(file.path("../EcoTyper", discovery, fractions, "Analysis", "rank_selection", "rank_data.txt"))
-#for(cell_type in key[,1])
-#{
-#    n_states = key[key[,1] == cell_type, 2]
-#    PushToJobQueue((paste("Rscript state_recovery_bulk.R", discovery, fractions, cell_type, n_states, recovery, "FALSE", paste(additional_columns, collapse = " ")))) 
-#}   
-#RunJobQueue()
-#
-#PushToJobQueue((paste("Rscript ecotypes_recovery.R", discovery, fractions, recovery, paste(additional_columns, collapse = " ")))) 
-#RunJobQueue()
-#
+key = read.delim(file.path("../EcoTyper", discovery, fractions, "Analysis", "rank_selection", "rank_data.txt"))
+for(cell_type in key[,1])
+{
+    n_states = key[key[,1] == cell_type, 2]
+    PushToJobQueue((paste("Rscript state_recovery_bulk.R", discovery, fractions, cell_type, n_states, recovery, "FALSE", paste(additional_columns, collapse = " ")))) 
+}   
+RunJobQueue()
+
+PushToJobQueue((paste("Rscript ecotypes_recovery.R", discovery, fractions, recovery, paste(additional_columns, collapse = " ")))) 
+RunJobQueue()
+
 cat("\nCopying EcoTyper results to the output folder!\n")
 
 if(file.exists(final_output) && length(list.files(final_output)) > 0)
