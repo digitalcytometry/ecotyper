@@ -46,6 +46,11 @@ if(config$"Pipeline settings"$"Filter non cell type specific genes")
 	fractions = "All_genes"
 }
 
+if(is.null(scale_column))
+{
+	scale_column = "NULL"
+}
+
 suppressWarnings({
 	final_output = abspath(final_output)		
 })
