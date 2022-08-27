@@ -56,9 +56,9 @@ for(cell_type in key[,1])
 	classes$CellType = cell_type		
 	H = dcast(classes, State~ID, value.var = "Frac")
 	rownames(H)  = H[,1]
-	H = H[,-1]
+	H = H[,-1,drop = F]
 	H_raw = H
-	H =H[match(mapping$InitialState, rownames(H)),]
+	H =H[match(mapping$InitialState, rownames(H)),,drop = F]
 	rownames(H) = mapping$State
 
 	rownames(H) = paste0(cell_type, "_", rownames(H))	
