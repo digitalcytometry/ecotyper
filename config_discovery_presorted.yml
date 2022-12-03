@@ -19,7 +19,11 @@ default :
     #   step 6 (advanced cell state QC filter)
     #   step 7 (ecotype discovery)
     Pipeline steps to skip : [6,] # Step 6 is skipped by default
-    Filter non cell type specific genes : False
+    # Accepted values: 
+    # "cell type specific" - select genes overexpressed in a cell type    
+    # <integer> - e.g. 1000, select top <integer> genes with highest variance in a cell type
+    # "no filter" - use all genes
+    Filter genes : "no filter"
     Number of threads : 10    
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20

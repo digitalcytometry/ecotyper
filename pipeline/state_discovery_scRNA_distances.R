@@ -4,8 +4,9 @@ library(HiClimR)
 source("lib/misc.R")
 })
 
-args = c("scRNA_CRC_Park", "scRNA_specific_genes", "B.cells", "TRUE") 
+args = c("discovery_scRNA_CRC", "Top_1000", "B.cells", "TRUE") 
 args = commandArgs(T)  
+
 dataset = args[1]
 fractions = args[2]
 cell_type = args[3]
@@ -24,8 +25,9 @@ annotation = read.delim(file.path(dataset_dir, paste0("annotation.txt")))
 annotation = annotation[annotation$CellType == cell_type,]
 
 if(nrow(annotation) < 50)
-{
-	stop(paste0("Only ", nrow(annotation), " single cells are available for cell type: ", cell_type, ". At least 50 are required. Skipping this cell type!\n"))	
+{	
+	warning(paste0("Only ", nrow(annotation), " single cells are available for cell type: ", cell_type, ". At least 50 are required. Skipping this cell type!\n"))
+	quit(status=0, save='no')
 }
 
 if(nrow(annotation) > 2500)

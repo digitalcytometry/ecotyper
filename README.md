@@ -2829,23 +2829,26 @@ the sample annotation file `example_data/scRNA_CRC_annotation.txt`.
 EcoTyper derives cell states and ecotypes from scRNA-seq data in a
 sequence of steps:
 
-1.  **Extract cell type specific genes**: The removal of genes that are
-    not specifically expressed in a given cell type, is an important
-    consideration for reducing the likelihood of identifying spurious
-    cell states. Ecotyper applies by default a filter for non-cell type
-    specific genes, before performing cell state discovery in scRNA-seq
-    data. Specifically, it performs a differential expression between
-    cells from a given cell type and all other cell types combined. For
-    computational efficency and balanced representation of cell types,
-    only up to 500 randomly selected cells per cell type are used for
-    this step. Genes with a Q-value > 0.05 (two-sided Wilcox test, with
-    Benjamini-Hochberg correction for multiple hypothesis correction)
-    are filtered out from each cell type. Of note, this filter is not
-    necessary when discovering cell states in cell type specific
-    profiles purified using CIBERSORTx high resolution ([Tutorial
+1.  **Extract cell type specific or top variable genes**: The removal of
+    genes that are not specifically expressed in a given cell type is an
+    important consideration for reducing the likelihood of identifying
+    spurious cell states. Ecotyper applies by default a filter for
+    non-cell type specific genes, before performing cell state discovery
+    in scRNA-seq data. Specifically, it performs a differential
+    expression between cells from a given cell type and all other cell
+    types combined. For computational efficency and balanced
+    representation of cell types, only up to 500 randomly selected cells
+    per cell type are used for this step. Genes with a Q-value > 0.05
+    (two-sided Wilcox test, with Benjamini-Hochberg correction for
+    multiple hypothesis correction) are filtered out from each cell
+    type. Of note, this filter is not necessary when discovering cell
+    states in cell type specific profiles purified using CIBERSORTx high
+    resolution ([Tutorial
     4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)).
     CIBERSORTx incorporates its own filter for genes without evidence of
-    expression in a given cell type.
+    expression in a given cell type. <br/> Alternatively, users can
+    include into analysis only top x genes with the highest variance in
+    a given cell type.
 
 2.  **Cell state discovery on correlation matrices**: EcoTyper leverages
     nonnegative matrix factorization (NMF) to identify
@@ -3030,7 +3033,11 @@ default :
     #   step 7 (cell state QC filter)
     #   step 8 (ecotype discovery)
     Pipeline steps to skip : [] 
-    Filter non cell type specific genes : True
+    # Accepted values: 
+    # "cell type specific" - select genes overexpressed in a cell type
+    # <integer> - e.g. 1000, select top <integer> genes with highest variance in a cell type
+    # "no filter" - use all genes
+    Filter genes : "cell type specific"
     Number of threads : 10
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
@@ -3224,13 +3231,21 @@ to skip steps 1-2 and re-run from step 3 onwards.
 #### Filter non cell type specific genes
 
 ``` yaml
-Filter non cell type specific genes : True
+# Accepted values: 
+    # "cell type specific" - select genes overexpressed in a cell type
+    # <integer> - e.g. 1000, select top <integer> genes with highest variance in a cell type
+    # "no filter" - use all genes
+    Filter genes : "cell type specific"
 ```
 
-Flag indicated whether to apply the filter for cell type specific genes
-in step 1, outlined in section *Overview of the EcoTyper workflow for
-discovering cell states*. For best results, we do recommend applying
-this filter.
+This options allows user to filter the genes from each cell type.
+Accepted values are: “cell type specific”, which will only include cell
+type specific genes, as outlined in section *Overview of the EcoTyper
+workflow for discovering cell states*, an integer value, <integer>,
+which will select the top <integer> genes with the highest variance in a
+cell type, and “no filter”, which will not apply any filter, and use all
+genes for the downstream analysis. For best results, we do recommend
+applying one of the first two filters.
 
 #### Number of threads
 
@@ -3524,7 +3539,8 @@ EcoTyper derives cell states and ecotypes in a sequence of steps:
     of expression in a given cell type. We do recommend applying it if
     cell type specific profiles were obtained through FACS-sorting or
     other deconvolution tool that does not filter for cell type specific
-    genes.
+    genes. <br/> Alternatively, users can include into analysis only top
+    x genes with the highest variance in a given cell type.
 
 2.  **Cell state discovery**: EcoTyper leverages nonnegative matrix
     factorization (NMF) to identify transcriptionally-defined cell
@@ -3726,7 +3742,11 @@ tutorial is available in `config_discovery_presorted.yml`:
     #   step 6 (advanced cell state QC filter)
     #   step 7 (ecotype discovery)
     Pipeline steps to skip : [6,] 
-    Filter non cell type specific genes : False
+    # Accepted values: 
+    # "cell type specific" - select genes overexpressed in a cell type    
+    # <integer> - e.g. 1000, select top <integer> genes with highest variance in a cell type
+    # "no filter" - use all genes
+    Filter genes : "no filter"
     Number of threads : 10    
     Number of NMF restarts : 5
     Maximum number of states per cell type : 20
@@ -3917,22 +3937,30 @@ to skip steps 1-2 and re-run from step 3 onwards.
 #### Filter non cell type specific genes
 
 ``` yaml
-Filter non cell type specific genes : False
+# Accepted values: 
+    # "cell type specific" - select genes overexpressed in a cell type    
+    # <integer> - e.g. 1000, select top <integer> genes with highest variance in a cell type
+    # "no filter" - use all genes
+    Filter genes : "no filter"
 ```
 
-Flag indicated whether to apply the filter for cell type specific genes
-in step 1, outlined in section *Overview of the EcoTyper workflow for
-discovering cell states*. This filter is not necessary when discovering
-cell states in cell type specific profiles purified using CIBERSORTx
-high resolution (e.g. [Tutorial
+This options allows user to filter the genes from each cell type.
+Accepted values are: “cell type specific”, which will only include cell
+type specific genes, as outlined in section *Overview of the EcoTyper
+workflow for discovering cell states*, an integer value, <integer>,
+which will select the top <integer> genes with the highest variance in a
+cell type, and “no filter”, which will not apply any filter, and use all
+genes for the downstream analysis. This filter is not necessary when
+discovering cell states in cell type specific profiles purified using
+CIBERSORTx high resolution (e.g. [Tutorial
 4](#tutorial-4-de-novo-discovery-of-cell-states-and-ecotypes-in-bulk-data)),
 as CIBERSORTx incorporates its own filter for genes without evidence of
 expression in a given cell type. We do recommend applying it if cell
 type specific profiles were obtained through FACS-sorting or other
 deconvolution tool that does not filter for cell type specific genes.
 
-We set it to False in this tutorial, as the input matrices were obtained
-using CIBERSORTx.
+We set it to “no filter” in this tutorial, as the input matrices were
+obtained using CIBERSORTx.
 
 #### Number of threads
 

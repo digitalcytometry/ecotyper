@@ -64,11 +64,17 @@ if(!discovery %in% c("Carcinoma", "Lymphoma"))
 	fractions = config$"Input"$"Cell type fractions" 
 	if(is.null(fractions))
 	{
-		if(config$"Pipeline settings"$"Filter non cell type specific genes")
+		if(config$"Pipeline settings"$"Filter genes" == "cell type specific")
 		{
 			fractions = "Cell_type_specific_genes"
 		}else{
-			fractions = "All_genes"
+			if(config$"Pipeline settings"$"Filter genes" == "no filter")
+			{
+				fractions = "All_genes"
+			}else{
+				n_genes = as.integer(as.numeric(config$"Pipeline settings"$"Filter genes"))				
+				fractions = paste0("Top_", n_genes)
+			}
 		}
 	}else{
 		if(!fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions"))

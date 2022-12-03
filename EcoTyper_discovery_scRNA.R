@@ -51,14 +51,24 @@ suppressWarnings({
 setwd("pipeline")
 start = Sys.time()
 
-if(config$"Pipeline settings"$"Filter non cell type specific genes")
+if(config$"Pipeline settings"$"Filter genes" == "cell type specific")
 {
 	fractions = "Cell_type_specific_genes"
 }else{
-	fractions = "All_genes"
+	if(config$"Pipeline settings"$"Filter genes" == "no filter")
+	{
+		fractions = "All_genes"
+	}else{
+		n_genes = as.integer(as.numeric(config$"Pipeline settings"$"Filter genes"))
+		if(is.na(n_genes))
+		{
+			stop(paste0("Invalid value provided in field 'Filter genes' of the configuration file."))
+		}
+		fractions = paste0("Top_", n_genes)
+	}
 }
 
-if(!1 %in% skip_steps & config$"Pipeline settings"$"Filter non cell type specific genes")
+if(!1 %in% skip_steps & fractions != "All_genes")
 {
 	cat("\nStep 1 (extract cell type specific genes)...\n")
 
@@ -85,7 +95,7 @@ if(!2 %in% skip_steps)
 
 	for(cell_type in cell_types)
 	{
-		filter_genes = (fractions == "Cell_type_specific_genes")
+		filter_genes = (fractions == "Cell_type_specific_genes") || grepl("Top_", fractions)
 		PushToJobQueue(paste("Rscript state_discovery_scRNA_distances.R", discovery, fractions, cell_type, filter_genes, scale_column))	
 	}	
 	RunJobQueue() 

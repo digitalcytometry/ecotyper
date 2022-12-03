@@ -3,8 +3,10 @@ library(data.table)
 source("lib/misc.R")
 })
 
-args = c("scRNA_CRC_Park", "scRNA_specific_genes", "B.cells") 
+args = c("discovery_scRNA_CRC", "Cell_type_specific_genes", "B.cells") 
+args = c("discovery_scRNA_CRC", "Top_1000", "B.cells") 
 args = commandArgs(T)  
+
 dataset = args[1]
 fractions = args[2]
 cell_type = args[3]
@@ -25,18 +27,14 @@ annotation = annotation[annotation$ID %in% colnames(raw_input),]
 
 tb = as.data.frame(table(as.character(annotation$CellType)))
 
-for(i in 1:nrow(tb))
+if(!cell_type %in% tb[,1])
 {
-	if(tb[i,2] < 50)
-	{
-		warning(paste0("Only ", tb[i,2], " single cells are available for cell type: ", tb[i,1], ". At least 50 are required. Skipping this cell type from the EcoTyper analysis!"))
-	}
+	stop(paste0("Cell type ", cell_type, " not found in annotation file!"))
 }
-
-tb = tb[tb[,2] >= 50,]
-if(nrow(tb) == 0)
+if(tb[tb[,1] == cell_type,2] < 50)
 {
-	stop("No cell type has at least 50 cells! EcoTyper cannot run!")
+	warning(paste0("Only ", nrow(annotation), " single cells are available for cell type: ", cell_type, ". At least 50 are required. Skipping this cell type!\n"))			
+	quit(status=0, save='no')
 }
 
 annotation = annotation[annotation$CellType %in% tb[,1],]
@@ -62,9 +60,30 @@ if(is.na(scaling_column))
 
 scaled_data = scale_data(log_data, by = by)
 scaled_data[is.na(scaled_data)] = 0
-gene_info = doDE(scaled_data, clinical$CellType, cell_type)
+if(fractions == "Cell_type_specific_genes")
+{
+	gene_info = doDE(scaled_data, clinical$CellType, cell_type)
+	colnames(gene_info)[2] = "CellType"
+	write.table(gene_info, file.path(output_dir, paste0(cell_type, "_cell_type_specific_genes_raw.txt")), sep = "\t", row.names = F)
+	gene_info = gene_info[gene_info$Q <= 0.05 & gene_info$FC > 0,]	
+	write.table(gene_info, file.path(output_dir, paste0(cell_type, "_cell_type_specific_genes.txt")), sep = "\t", row.names = F)
+}else{
+	if(grepl("Top", fractions))
+	{
+		n_genes = as.integer(gsub("Top_", "", fractions))
+		if(is.na(n_genes))
+		{
+			stop("The number of genes to be selected is not an integer!")
+		}
+		gene_info = doCV(log_data, clinical$CellType, cell_type)
+		colnames(gene_info)[2] = "CellType"
+		if(n_genes > nrow(gene_info))
+		{
+			warning(paste0("Could not select top ", n_genes, ". Only ", nrow(gene_info), " availale!"))
+		}
+		write.table(gene_info, file.path(output_dir, paste0(cell_type, "_cell_type_specific_genes_raw.txt")), sep = "\t", row.names = F)
+		gene_info = gene_info[1:(min(nrow(gene_info), n_genes)),]	
+		write.table(gene_info, file.path(output_dir, paste0(cell_type, "_cell_type_specific_genes.txt")), sep = "\t", row.names = F)
+	}	
+}
 
-colnames(gene_info)[2] = "CellType"
-write.table(gene_info, file.path(output_dir, paste0(cell_type, "_cell_type_specific_genes_raw.txt")), sep = "\t", row.names = F)
-gene_info = gene_info[gene_info$Q <= 0.05 & gene_info$FC > 0,]
-write.table(gene_info, file.path(output_dir, paste0(cell_type, "_cell_type_specific_genes.txt")), sep = "\t", row.names = F)

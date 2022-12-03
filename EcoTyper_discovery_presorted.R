@@ -39,11 +39,22 @@ skip_steps = config$"Pipeline settings"$"Pipeline steps to skip"
 filter_genes = as.logical(config$"Pipeline settings"$"Filter non cell type specific genes")
 min_states = config$"Pipeline settings"$"Minimum number of states in ecotypes"
 
-if(config$"Pipeline settings"$"Filter non cell type specific genes")
+
+if(config$"Pipeline settings"$"Filter genes" == "cell type specific")
 {
 	fractions = "Cell_type_specific_genes"
 }else{
-	fractions = "All_genes"
+	if(config$"Pipeline settings"$"Filter genes" == "no filter")
+	{
+		fractions = "All_genes"
+	}else{
+		n_genes = as.integer(as.numeric(config$"Pipeline settings"$"Filter genes"))
+		if(is.na(n_genes))
+		{
+			stop(paste0("Invalid value provided in field 'Filter genes' of the configuration file."))
+		}
+		fractions = paste0("Top_", n_genes)
+	}
 }
 
 if(is.null(scale_column))
@@ -59,7 +70,7 @@ suppressWarnings({
 setwd("pipeline")
 start = Sys.time()
 
-if(!1 %in% skip_steps & filter_genes)
+if(!1 %in% skip_steps & fractions != "All_genes")
 {
 	cat("\nStep 1 (extract cell type specific genes)...\n")
 
@@ -84,6 +95,7 @@ if(!2 %in% skip_steps)
 	classes = read.delim(classes_path)
 	for(cell_type in colnames(classes))
 	{
+		filter_genes = (fractions == "Cell_type_specific_genes") || grepl("Top_", fractions)
 		PushToJobQueue(paste("Rscript state_discovery_extract_features.R", discovery, fractions, cell_type, scale_column, filter_genes))
 	}
 	RunJobQueue() 

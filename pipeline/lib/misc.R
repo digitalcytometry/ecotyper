@@ -361,6 +361,28 @@ doDE <- function(data, variable, value = NULL)
 	logFC_data 
 }
 
+doCV <- function(data, variable, value = NULL)
+{
+	
+	vals = levels(as.factor(as.character(variable)))
+	if(!is.null(value))
+	{
+		vals = value
+	}
+	logFC_data = do.call(rbind, lapply(vals, function(cluster){
+		clust_samples = variable == cluster
+		clust_mean_exp = apply(data[,clust_samples,drop = F], 1, function(x){
+			var(x, na.rm = T) 
+		})		
+		
+		data.frame(Gene = rownames(data), State= cluster, Var = clust_mean_exp)
+	}))	
+	logFC_data$Var[is.na(logFC_data$Var)] = 0	
+	logFC_data = logFC_data[order(logFC_data$State, -logFC_data$Var),]
+	logFC_data 
+}
+
+
 lookup_celltype <- function(values)
 {
 	unlist(lapply(as.character(values), function(x) gsub(".", " ", gsub(".and.", "/", x, fixed = T), fixed = T)))
