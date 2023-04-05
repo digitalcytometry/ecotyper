@@ -19,15 +19,17 @@ check_discovery_configuration <- function(config){
 	}	
 	
 	dir.create(output_dir, recursive = T, showWarning = F)
-	system(paste0("ln -sf ", normalizePath(input_mat), " ", file.path(output_dir, "data.txt")))
+	system(paste0("ln -sf '", normalizePath(input_mat), "' '", file.path(output_dir, "data.txt"), "'"))
+	
 	if(!is.null(annotation))
 	{
 		if(!file.exists(annotation))
 		{
 			stop(paste0("Input format error: Annotation file '", annotation, "' is missing!"))
 		}
-		system(paste0("ln -sf ", normalizePath(annotation), " ", file.path(output_dir, "annotation.txt")))
+		system(paste0("ln -sf '", normalizePath(annotation), "' '", file.path(output_dir, "annotation.txt"), "'"))
 	}
+
 	if(!is.na(CSx_singularity_path_fractions) && !is.null(CSx_singularity_path_fractions) && !file.exists(CSx_singularity_path_fractions))
 	{
 		stop(paste0("CIBERSORTx fractions Singularity path provided does not exist:", CSx_singularity_path_fractions))
@@ -61,9 +63,8 @@ check_discovery_configuration_scRNA <- function(config){
 	{
 		stop(paste0(ncol(mat), " columns detected in file '", input_mat, "'. Please make sure that the file is tab-delimited!"))
 	}	
-	
 	dir.create(output_dir, recursive = T, showWarning = F)
-	system(paste0("ln -sf ", normalizePath(input_mat), " ", file.path(output_dir, "data.txt")))
+	system(paste0("ln -sf '", normalizePath(input_mat), "' '", file.path(output_dir, "data.txt"), "'"))
 	
 	if(!file.exists(annotation))
 	{
@@ -86,8 +87,7 @@ check_discovery_configuration_scRNA <- function(config){
 		stop(paste0("Input format error: The following ids present in the column names of the expression matrix are missing from the annotation file (column 'ID'): '", paste(colnames(mat)[-1][!colnames(mat)[-1] %in% ann$ID], collapse = "', '"), "'."))	
 	}
 
-	system(paste0("ln -sf ", normalizePath(annotation), " ", file.path(output_dir, "annotation.txt")))
-
+	system(paste0("ln -sf '", normalizePath(annotation), "' '", file.path(output_dir, "annotation.txt"), "'"))
 } 
 
 check_discovery_configuration_presorted <- function(config){
@@ -119,7 +119,7 @@ check_discovery_configuration_presorted <- function(config){
 		{
 			stop(paste0("Input format error: Annotation file '", annotation, "' is missing!"))
 		}
-		system(paste0("ln -sf ", normalizePath(annotation), " ", file.path(output_dir, "annotation.txt")))
+		system(paste0("ln -sf '", normalizePath(annotation), "' '", file.path(output_dir, "annotation.txt"), "'"))
 	}
 
 	classes = NULL
@@ -138,8 +138,9 @@ check_discovery_configuration_presorted <- function(config){
 			stop(paste0(ncol(mat), " columns detected in file '", input_mat, "'. Please make sure that the file is tab-delimited!"))
 		}	
 		classes = rbind(classes, data.frame(x = cell_type))
-		system(paste0("ln -sf ", normalizePath(input_mat), " ", file.path(csx_dir, paste0(cell_type, ".txt"))))
+		system(paste0("ln -sf '", normalizePath(input_mat), "' '", file.path(csx_dir, paste0(cell_type, ".txt")), "'"))
 	}	
 	write.table(t(classes), file.path(csx_dir, "classes.txt"), sep = "\t", row.names = F, col.names = F)
+	
 	
 } 

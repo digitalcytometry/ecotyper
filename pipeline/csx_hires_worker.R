@@ -21,10 +21,10 @@ input_dir = file.path("../CIBERSORTx/hires", dataset, fractions)
 output_dir = file.path("../CIBERSORTx/hires", dataset, fractions, paste0("worker_", worker))
 dir.create(output_dir, recursive = T, showWarning = F)
 
-system(paste0("cp -fL ", normalizePath(file.path(input_dir, "classes.txt")), " ", file.path(output_dir, "classes.txt")))
-system(paste0("cp -fL ", normalizePath(file.path(input_dir, "cibresults.txt")), " ", file.path(output_dir, "cibresults.txt")))
+system(paste0("cp -fL '", normalizePath(file.path(input_dir, "classes.txt")), "' ", file.path(output_dir, "classes.txt")))
+system(paste0("cp -fL '", normalizePath(file.path(input_dir, "cibresults.txt")), "' ", file.path(output_dir, "cibresults.txt")))
 
-if(is.na(image_path) || is.null(image_path) || image_path == "NULL" || image_path == "NA")
+if(is.na(image_path) || is.null(image_path) || image_path == "NULL" || image_path == "'NULL'" || image_path == "NA")
 {
 	cat("Running on docker...\n")
 	cmd_line = "docker run \\
@@ -48,7 +48,7 @@ if(is.na(image_path) || is.null(image_path) || image_path == "NULL" || image_pat
 	cmd_line = "singularity exec -c \\
 				-B <output_dir>/:/src/data/ \\
 				-B <output_dir>/:/src/outdir/ \\
-				<image> \\
+				'<image>' \\
 				/src/CIBERSORTxHiRes --username <username> --token <token>  \\
 				--mixture /src/data/input.txt \\
 				--sigmatrix /src/data/classes.txt \\

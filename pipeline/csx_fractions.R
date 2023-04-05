@@ -49,6 +49,7 @@ if(!filt_0)
 
 	write.table(data, file.path(normalizePath(output_dir), "mixture.txt"), row.names = F, sep = "\t")
 }
+
 err = system(paste0("cp -fL '", normalizePath(sigmatrix_path), "' '", file.path(normalizePath(output_dir), "sigmatrix.txt'")))
 if(err != 0)
 {
@@ -62,8 +63,8 @@ if(err != 0)
 
 if(id == "no_batch")
 {
-	cat(paste0("Running CIBERSORTx fractions with no batch correction, using the '", sigmatrix , "' signature matrix and '", dataset, "' dataset.\n"))
-	err = system(paste("Rscript csx_fractions_no_batch_mode.R ", output_dir, username, token, image_path))
+	cat(paste0("Running CIBERSORTx fractions with no batch correction, using the '", sigmatrix , "' signature matrix and '", dataset, "' dataset.\n"))	
+	err = system(paste0("Rscript csx_fractions_no_batch_mode.R '", output_dir, "' '", username, "' '", token, "' '", image_path, "'"))
 	if(err != 0)
 	{
 		stop()
@@ -72,7 +73,8 @@ if(id == "no_batch")
 if(id == "B_mode")
 {
 	cat(paste0("Running CIBERSORTx fractions with B-mode batch correction, using the '", sigmatrix , "' signature matrix and '", dataset, "' dataset.\n"))
-	err = system(paste("Rscript csx_fractions_B_mode.R ", output_dir, username, token, image_path))
+	err = system(paste0("Rscript csx_fractions_B_mode.R '", output_dir, "' '", username, "' '", token, "' '", image_path, "'"))
+	
 	if(err != 0)
 	{
 		stop()
@@ -81,7 +83,7 @@ if(id == "B_mode")
 if(id == "S_mode")
 {
 	cat(paste0("Running CIBERSORTx fractions with S-mode batch correction, using the '", sigmatrix , "' signature matrix and '", dataset, "' dataset.\n"))
-	err = system(paste("Rscript csx_fractions_S_mode.R ", output_dir, username, token, image_path))
+	err = system(paste0("Rscript csx_fractions_S_mode.R '", output_dir, "' '", username, "' '", token, "' '", image_path, "'"))
 	if(err != 0)
 	{
 		stop()

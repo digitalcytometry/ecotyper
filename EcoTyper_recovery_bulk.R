@@ -113,10 +113,8 @@ dir.create(input_dir, recursive = T, showWarning = F)
 dir.create(file.path(args$output, recovery), recursive = T, showWarnings = F)
 final_output = normalizePath(file.path(args$output, recovery))
 
-PushToJobQueue(paste0("ln -sf ", input_mat, " ", file.path(input_dir, "data.txt")))
-RunJobQueue()
-PushToJobQueue(paste0("ln -sf ", annotation_path, " ", file.path(input_dir, "annotation.txt")))
-RunJobQueue()
+system(paste0("ln -sf '", input_mat, "' '", file.path(input_dir, "data.txt"), "'"))
+system(paste0("ln -sf '", annotation_path, "' '", file.path(input_dir, "annotation.txt"), "'"))
 
 start = Sys.time()
 cur_dir = getwd()
@@ -140,7 +138,8 @@ if(file.exists(final_output) && length(list.files(final_output)) > 0)
 	old_results_folder = paste0(final_output, format(Sys.time(), " %a %b %d %X %Y"))
 	dir.create(old_results_folder, recursive = T, showWarnings = F)
 	warning(paste0("The output folder contains files from a previous run. Moving those files to: '", old_results_folder, "'"))	
-	system(paste0("mv -f ", final_output, "/* '", old_results_folder, "'"))
+	system(paste0("mv -f '", final_output, "'/* '", old_results_folder, "'"))
+
 }
 
 dir.create(final_output, recursive = T, showWarnings = F)
@@ -151,21 +150,22 @@ for(cell_type in key[,1])
 	n_clusters = key[key[,1] == cell_type, 2]	
 	ct_output = file.path(final_output, cell_type)
 	dir.create(ct_output, recursive = T, showWarnings = F)
+
+	system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_abundances.txt"), "' '", ct_output, "'"))
+    system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment.txt"), "' '", ct_output, "'"))
+    system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment_heatmap.pdf"), "' '", ct_output, "'")) 
+    system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment_heatmap.png"), "' '", ct_output, "'")) 
+    system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "heatmap_data.txt"), "' '", ct_output, "'"))    
+    system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "heatmap_top_ann.txt"), "' '", ct_output, "'"))    
 	
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_abundances.txt"), ct_output))
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment.txt"), ct_output))
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment_heatmap.pdf"), ct_output))	
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "state_assignment_heatmap.png"), ct_output))	
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "heatmap_data.txt"), ct_output))	
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, cell_type, n_clusters, "heatmap_top_ann.txt"), ct_output))	
 }	
 
 ct_output = file.path(final_output, "Ecotypes")
 dir.create(ct_output, recursive = T, showWarnings = F)
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "ecotype_assignment.txt"), ct_output))
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "ecotype_abundance.txt"), ct_output))
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "heatmap_assigned_samples_viridis.pdf"), ct_output))
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "heatmap_assigned_samples_viridis.png"), ct_output))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "ecotype_assignment.txt"), "' '", ct_output, "'"))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "ecotype_abundance.txt"), "' '", ct_output, "'"))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "heatmap_assigned_samples_viridis.pdf"), "' '", ct_output, "'"))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Ecotypes", "recovery", recovery, "heatmap_assigned_samples_viridis.png"), "' '", ct_output, "'"))
 
 end = Sys.time()
 cat(paste0("\nEcoTyper finished succesfully! Please find the results in: '", final_output, "'.\nRun time: ", format(end - start, digits = 1), "\n"))

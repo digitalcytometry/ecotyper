@@ -5,12 +5,12 @@ token = args[3]
 image_path = args[4]
 id = "S_mode"
 
-if(is.na(image_path) || is.null(image_path) || image_path == "NULL" || image_path == "NA")
+if(is.na(image_path) || is.null(image_path) || image_path == "NULL" || image_path == "'NULL'" || image_path == "NA")
 {
 	cat("Running on docker...\n")
 	cmd_line = "docker run \\
-				-v <output_dir>:/src/data \\
-				-v <output_dir>:/src/outdir \\
+				-v '<output_dir>':/src/data \\
+				-v '<output_dir>':/src/outdir \\
 				cibersortx/fractions \\
 				--username <username> --token <token>  \\
 				--mixture /src/data/mixture.txt \\
@@ -19,15 +19,15 @@ if(is.na(image_path) || is.null(image_path) || image_path == "NULL" || image_pat
 				--rmbatchSmode TRUE \\
 				--verbose TRUE
 				"
-	cmd_line = gsub("<output_dir>", output_dir, cmd_line)
+	cmd_line = gsub("<output_dir>", cmd_line)
 	cmd_line = gsub("<username>", username, cmd_line)
 	cmd_line = gsub("<token>", token, cmd_line)
 }else{
 	cat("Running on singularity...\n")
 	cmd_line = "singularity exec -c \\
-				-B <output_dir>/:/src/data \\
-				-B <output_dir>/:/src/outdir \\
-				<image> \\
+				-B '<output_dir>/':/src/data \\
+				-B '<output_dir>/':/src/outdir \\
+				'<image>' \\
 				/src/CIBERSORTxFractions --username <username> --token <token>  \\
 				--mixture /src/data/mixture.txt \\
 				--sigmatrix /src/data/sigmatrix.txt \\

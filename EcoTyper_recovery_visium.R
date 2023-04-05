@@ -24,7 +24,6 @@ if(args$h || is.null(args$config))
 config_file = abspath(args$config)
 
 config <- config::get(file = config_file)
-print(config)
 discovery = config$Input$"Discovery dataset name"
 recovery = config$Input$"Recovery dataset name"
 input_path = config$Input$"Input Visium directory"
@@ -106,16 +105,16 @@ setwd("pipeline")
 start = Sys.time()
 
 cat("\nLoading visium data...\n")
-PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, input_path))
+PushToJobQueue(paste("Rscript spatial_load_visium_data.R", recovery, paste0("'", input_path, "'")))
 RunJobQueue()
 
 if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists(fractions_path))
 {
-	cat("\nRunning CIBERSORTxFractions on the visium dataset...\n")
-	print(paste("Rscript csx_fractions.R", "visium", recovery, "LM22", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))
-	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "LM22", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))
+	cat("\nRunning CIBERSORTxFractions on the visium dataset...\n") 
+	
+	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "LM22", "B_mode", CSx_username, CSx_token, paste0("'", CSx_singularity_path_fractions, "'"), TRUE))
 	RunJobQueue()
-	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "TR4", "B_mode", CSx_username, CSx_token, CSx_singularity_path_fractions, TRUE))			
+	PushToJobQueue(paste("Rscript csx_fractions.R", "visium", recovery, "TR4", "B_mode", CSx_username, CSx_token, paste0("'", CSx_singularity_path_fractions, "'"), TRUE))			
 	RunJobQueue()
 	PushToJobQueue(paste("Rscript csx_fractions_two_tiered.R", "visium", recovery, "TR4", "B_mode", "LM22", "B_mode", fractions))
 	RunJobQueue()
@@ -127,8 +126,8 @@ if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists
 }else{
 	cat("\nLoading user-provided cell type fractions...\n")
 		
-	dir.create(file.path("../CIBERSORTx/fractions/visium", recovery, fractions), recursive = T, showWarnings = F)
-	PushToJobQueue(paste("cp -f", fractions_path, file.path("../CIBERSORTx/fractions/visium", recovery, fractions, "CIBERSORTx_Adjusted.txt")))
+	dir.create(file.path("../CIBERSORTx/fractions/visium", recovery, fractions), recursive = T, showWarnings = F)	
+	PushToJobQueue(paste("cp -f '", fractions_path, "' '", file.path("../CIBERSORTx/fractions/visium", recovery, fractions, "CIBERSORTx_Adjusted.txt"), "'"))
 	RunJobQueue()		
 }
 
@@ -176,14 +175,14 @@ dir.create(final_output, recursive = T, showWarnings = F)
 key = read.delim(file.path("../EcoTyper", discovery, fractions, "Analysis", "rank_selection", "rank_data.txt"))
 for(cell_type in key[,1])
 {			
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, paste0(cell_type, "_spatial_heatmaps.pdf")), final_output))
-	system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, paste0(cell_type, "_spatial_heatmaps.png")), final_output))
+	system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, paste0(cell_type, "_spatial_heatmaps.pdf")), "' '", final_output, "'"))
+	system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, paste0(cell_type, "_spatial_heatmaps.png")), "' '", final_output, "'"))
 }	
 
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "state_abundances.txt"), final_output))
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "ecotype_abundances.txt"), final_output))
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "Ecotype_spatial_heatmaps.pdf"), final_output))
-system(paste("cp -f", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "Ecotype_spatial_heatmaps.png"), final_output))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "state_abundances.txt"), "' '", final_output, "'"))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "ecotype_abundances.txt"), "' '", final_output, "'"))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "Ecotype_spatial_heatmaps.pdf"), "' '", final_output, "'"))
+system(paste0("cp -f '", file.path("../EcoTyper", discovery, fractions, "Cell_States", "recovery", recovery, "Ecotype_spatial_heatmaps.png"), "' '", final_output, "'"))
 
 end = Sys.time()
 cat(paste0("\nEcoTyper finished succesfully! Please find the results in: '", final_output, "'.\nRun time: ", format(end - start, digits = 1), "\n"))
