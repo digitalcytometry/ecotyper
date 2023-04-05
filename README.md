@@ -68,7 +68,7 @@ testing the EcoTyper code. Other R versions might work too:
     and v1.0.16), ggplot2 (v3.3.2, v3.3.3), grid (base package R v3.6.0
     and v4.1.0), reshape2 (v1.4.4), viridis (v0.5.1 and v0.6.1), config
     (v0.3.1), argparse (v2.0.3), colorspace (v1.4.1 and v2.0.1), plyr
-    (v1.8.6).
+    (v1.8.6), Biobase (v2.40.0).
 
 These packages, together with the other resources pre-stored in the
 EcoTyper folder, allow users to:
@@ -81,6 +81,7 @@ EcoTyper folder, allow users to:
 
 Besides these packages, the additional resources described in the next
 section are needed for analyses described in Tutorials 3 and 4.
+Moreover, Mac users might need xquartz.
 
 ### Additional resources
 
@@ -365,8 +366,8 @@ head(data[,1:5])
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
     ## S01                 5.610752e-02                 9.612807e-15
-    ## S02                 1.280373e-02                 6.386054e-03
-    ## S03                 1.035601e-14                 6.170270e-05
+    ## S02                 1.280373e-02                 6.386058e-03
+    ## S03                 1.035601e-14                 6.169635e-05
     ## S04                 1.451949e-02                 1.694938e-02
     ## S05                 1.793168e-01                 1.726694e-02
     ## S06                 2.209002e-01                 2.355229e-02
@@ -497,19 +498,19 @@ head(assign[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443910e-03                  0.037979470
-    ## CE2                 1.621595e-01                  0.243053129
-    ## CE3                 1.386670e-14                  0.074720804
-    ## CE4                 7.257657e-02                  0.006520664
-    ## CE5                 1.618937e-01                  0.054197120
-    ## CE6                 1.908700e-02                  0.035478145
+    ## CE1                 2.443907e-03                  0.037977593
+    ## CE2                 1.621595e-01                  0.243041032
+    ## CE3                 1.386670e-14                  0.074717081
+    ## CE4                 7.257657e-02                  0.006520339
+    ## CE5                 1.618937e-01                  0.054195790
+    ## CE6                 1.908700e-02                  0.035478573
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189986117
-    ## CE2                  0.167842143                  0.219429316
-    ## CE3                  0.004333314                  0.041762496
-    ## CE4                  0.058892709                  0.063478215
-    ## CE5                  0.148527987                  0.088748024
-    ## CE6                  0.017818807                  0.009232477
+    ## CE1                  0.076640619                  0.189985630
+    ## CE2                  0.167842144                  0.219429034
+    ## CE3                  0.004333314                  0.041762329
+    ## CE4                  0.058892710                  0.063478179
+    ## CE5                  0.148527987                  0.088747961
+    ## CE6                  0.017818807                  0.009232854
     ##     TCGA.05.4249.01A.01R.1107.07
     ## CE1                   0.11162555
     ## CE2                   0.03073282
@@ -539,19 +540,19 @@ head(discrete_assignments[,1:5])
 ```
 
     ##     TCGA.37.A5EN.01A.21R.A26W.07 TCGA.37.4133.01A.01R.1100.07
-    ## CE1                 2.443910e-03                  0.037979470
-    ## CE2                 1.621595e-01                  0.243053129
-    ## CE3                 1.386670e-14                  0.074720804
-    ## CE4                 7.257657e-02                  0.006520664
-    ## CE5                 1.618937e-01                  0.054197120
-    ## CE6                 1.908700e-02                  0.035478145
+    ## CE1                 2.443907e-03                  0.037977593
+    ## CE2                 1.621595e-01                  0.243041032
+    ## CE3                 1.386670e-14                  0.074717081
+    ## CE4                 7.257657e-02                  0.006520339
+    ## CE5                 1.618937e-01                  0.054195790
+    ## CE6                 1.908700e-02                  0.035478573
     ##     TCGA.77.7465.01A.11R.2045.07 TCGA.34.5240.01A.01R.1443.07
-    ## CE1                  0.076640619                  0.189986117
-    ## CE2                  0.167842143                  0.219429316
-    ## CE3                  0.004333314                  0.041762496
-    ## CE4                  0.058892709                  0.063478215
-    ## CE5                  0.148527987                  0.088748024
-    ## CE6                  0.017818807                  0.009232477
+    ## CE1                  0.076640619                  0.189985630
+    ## CE2                  0.167842144                  0.219429034
+    ## CE3                  0.004333314                  0.041762329
+    ## CE4                  0.058892710                  0.063478179
+    ## CE5                  0.148527987                  0.088747961
+    ## CE6                  0.017818807                  0.009232854
     ##     TCGA.05.4249.01A.01R.1107.07
     ## CE1                   0.11162555
     ## CE2                   0.03073282
@@ -714,11 +715,11 @@ head(data[,1:5])
 ```
 
     ##     MS2010072001 MS2010072003 MS2010072004 MS2010072017 MS2010072019
-    ## S01 2.373248e-03 3.595636e-01 3.569422e-05 3.697861e-01 5.385940e-01
-    ## S02 4.782425e-01 5.127410e-02 4.068442e-01 8.661441e-16 1.260096e-15
-    ## S03 5.000272e-01 2.657681e-01 3.208196e-01 3.871465e-02 1.262404e-01
-    ## S04 1.409287e-15 2.861767e-01 1.020794e-01 2.303560e-07 6.272040e-03
-    ## S05 1.935706e-02 5.983296e-05 1.046199e-01 8.195355e-02 1.681125e-05
+    ## S01 2.373248e-03 3.595618e-01 3.806641e-05 3.697861e-01 5.385940e-01
+    ## S02 4.782425e-01 5.127354e-02 4.068437e-01 8.661441e-16 1.260096e-15
+    ## S03 5.000272e-01 2.657648e-01 3.208192e-01 3.871464e-02 1.262404e-01
+    ## S04 1.409287e-15 2.861731e-01 1.020793e-01 2.570570e-07 6.271926e-03
+    ## S05 1.935706e-02 7.028482e-05 1.046191e-01 8.195354e-02 1.693508e-05
 
 -   The assignment of samples to the state with highest abundance. If
     the cell state with the highest abundance is one of the cell states
@@ -855,12 +856,12 @@ head(assign[,1:5])
 ```
 
     ##     MS2010072001 MS2010072003 MS2010072004 MS2010072017 MS2010072019
-    ## LE1   0.04957053   0.08169580   0.08724631 7.549477e-02  0.039440134
-    ## LE2   0.01006307   0.12841338   0.09457999 2.747771e-02  0.002943381
-    ## LE3   0.05278895   0.03158044   0.07019052 2.622025e-01  0.246744962
-    ## LE4   0.30161981   0.03494594   0.08382898 4.458163e-15  0.009809031
-    ## LE5   0.17506195   0.19692185   0.14271841 1.226648e-01  0.137689510
-    ## LE6   0.09394961   0.09523248   0.13293941 2.158490e-01  0.155547253
+    ## LE1   0.04957052   0.08169883   0.08724611 7.549536e-02  0.039440174
+    ## LE2   0.01006307   0.12841183   0.09457992 2.747772e-02  0.002943328
+    ## LE3   0.05278894   0.03158038   0.07019048 2.622030e-01  0.246744970
+    ## LE4   0.30161978   0.03494590   0.08382893 4.458162e-15  0.009809012
+    ## LE5   0.17506202   0.19692135   0.14271831 1.226647e-01  0.137689497
+    ## LE6   0.09394966   0.09523241   0.13293934 2.158494e-01  0.155547222
 
 -   The assignment of samples to the lymphoma ecotype with the highest
     abundance. If the cell state fractions from the dominant ecotype are
@@ -883,12 +884,12 @@ head(discrete_assignments[,1:5])
 ```
 
     ##     MS2010072001 MS2010072003 MS2010072004 MS2010072017 MS2010072019
-    ## LE1   0.04957053   0.08169580   0.08724631 7.549477e-02  0.039440134
-    ## LE2   0.01006307   0.12841338   0.09457999 2.747771e-02  0.002943381
-    ## LE3   0.05278895   0.03158044   0.07019052 2.622025e-01  0.246744962
-    ## LE4   0.30161981   0.03494594   0.08382898 4.458163e-15  0.009809031
-    ## LE5   0.17506195   0.19692185   0.14271841 1.226648e-01  0.137689510
-    ## LE6   0.09394961   0.09523248   0.13293941 2.158490e-01  0.155547253
+    ## LE1   0.04957052   0.08169883   0.08724611 7.549536e-02  0.039440174
+    ## LE2   0.01006307   0.12841183   0.09457992 2.747772e-02  0.002943328
+    ## LE3   0.05278894   0.03158038   0.07019048 2.622030e-01  0.246744970
+    ## LE4   0.30161978   0.03494590   0.08382893 4.458162e-15  0.009809012
+    ## LE5   0.17506202   0.19692135   0.14271831 1.226647e-01  0.137689497
+    ## LE6   0.09394966   0.09523241   0.13293934 2.158494e-01  0.155547222
 
 -   A heatmap of cell state abundances across the samples assigned to
     ecotypes. Rows correspond to the cell states forming ecotypes, while
@@ -1854,26 +1855,26 @@ data = read.delim("VisiumOutput/VisiumBreast/state_abundances.txt")
 dim(data)
 ```
 
-    ## [1] 3813   59
+    ## [1] 3813   76
 
 ``` r
 head(data[,1:10])
 ```
 
     ##                   ID  X   Y       Sample Malignant B.cells_S01 B.cells_S02
-    ## 1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast         1     0.93234   0.0000000
-    ## 2 AAACACCAATAACTGC.1 59  19 VisiumBreast         1     0.00000   0.5003005
-    ## 3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast         1     0.00000   0.0000000
-    ## 4 AAACAGGGTCTATATT.1 47  13 VisiumBreast         1     1.00000   0.0000000
-    ## 5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast         1     0.00000   0.2969141
-    ## 6 AAACATTTCCCGGATT.1 61  97 VisiumBreast         1     0.00000   0.3589368
-    ##   B.cells_S03 B.cells_S04 CD4.T.cells_S01
-    ## 1           0           0               0
-    ## 2           0           0               0
-    ## 3           0           0               0
-    ## 4           0           0               1
-    ## 5           0           0               0
-    ## 6           0           0               0
+    ## 1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.2164860           0           0
+    ## 2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.6737582           0           0
+    ## 3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.3124031           0           0
+    ## 4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.1128586           1           0
+    ## 5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.5008316           0           0
+    ## 6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.7553180           0           0
+    ##   B.cells_S03 B.cells_S04 B.cells_S05
+    ## 1           0   0.0000000   0.8690817
+    ## 2           0   0.0000000   0.0000000
+    ## 3           0   0.0000000   0.0000000
+    ## 4           0   0.0000000   0.0000000
+    ## 5           0   0.2767688   0.0000000
+    ## 6           0   0.3345834   0.0000000
 
 -   Plots illustrating the cell state abundance across state from each
     cell type. The intensity of charcoal represents the cell state
@@ -1893,26 +1894,26 @@ data = read.delim("VisiumOutput/VisiumBreast/ecotype_abundances.txt")
 dim(data)
 ```
 
-    ## [1] 3813   13
+    ## [1] 3813   15
 
 ``` r
 head(data[,1:10])
 ```
 
-    ##                                ID  X   Y       Sample Malignant        E1
-    ## VisiumBreast.1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast        NA 0.0000000
-    ## VisiumBreast.2 AAACACCAATAACTGC.1 59  19 VisiumBreast        NA 0.3751726
-    ## VisiumBreast.3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast        NA 0.0000000
-    ## VisiumBreast.4 AAACAGGGTCTATATT.1 47  13 VisiumBreast        NA 0.4173973
-    ## VisiumBreast.5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast        NA 0.2870171
-    ## VisiumBreast.6 AAACATTTCCCGGATT.1 61  97 VisiumBreast        NA 0.1124896
-    ##                       E2        E3        E4        E5
-    ## VisiumBreast.1 0.0000000 0.0000000 0.5014347 0.3590839
-    ## VisiumBreast.2 0.9696322 0.0000000 0.0000000 0.4942756
-    ## VisiumBreast.3 0.0000000 0.0000000 0.0000000 0.0000000
-    ## VisiumBreast.4 0.6267933 0.0000000 0.0000000 0.6267933
-    ## VisiumBreast.5 0.1185850 0.0000000 0.5014347 0.0000000
-    ## VisiumBreast.6 0.0000000 0.1890679 0.0000000 0.3792658
+    ##                                ID  X   Y       Sample Malignant        CE1
+    ## VisiumBreast.1 AAACAAGTATCTCCCA.1 50 102 VisiumBreast 0.1142685 0.93179887
+    ## VisiumBreast.2 AAACACCAATAACTGC.1 59  19 VisiumBreast 0.7334114 0.23355315
+    ## VisiumBreast.3 AAACAGAGCGACTCCT.1 14  94 VisiumBreast 0.2441395 0.00000000
+    ## VisiumBreast.4 AAACAGGGTCTATATT.1 47  13 VisiumBreast 0.0000000 0.09941146
+    ## VisiumBreast.5 AAACAGTGTTCCTGGG.1 73  43 VisiumBreast 0.4992702 0.64507665
+    ## VisiumBreast.6 AAACATTTCCCGGATT.1 61  97 VisiumBreast 0.8438427 0.02056875
+    ##                      CE2       CE3       CE4 CE5
+    ## VisiumBreast.1 0.0000000 0.0000000 0.7497744   0
+    ## VisiumBreast.2 0.2357562 0.0000000 0.0000000   0
+    ## VisiumBreast.3 0.0000000 0.0000000 0.0000000   0
+    ## VisiumBreast.4 0.0000000 0.0000000 0.0000000   0
+    ## VisiumBreast.5 0.0000000 0.1836142 0.0000000   0
+    ## VisiumBreast.6 0.0000000 0.0000000 0.0000000   0
 
 -   Plots illustrating the ecotype abundances. The intensity of charcoal
     represents the cell state abundance. The intensity of gray
@@ -2785,26 +2786,26 @@ assignments = read.delim("DiscoveryOutput/Ecotypes/ecotype_assignment.txt")
 dim(assignments)
 ```
 
-    ## [1] 190  11
+    ## [1] 190   6
 
 ``` r
 head(assignments[,1:5])
 ```
 
-    ##                                                        ID MaxEcotype
-    ## TCGA.22.4613.01A.01R.1443.07 TCGA.22.4613.01A.01R.1443.07         E1
-    ## TCGA.22.5471.01A.01R.1635.07 TCGA.22.5471.01A.01R.1635.07         E1
-    ## TCGA.22.5473.01A.01R.1635.07 TCGA.22.5473.01A.01R.1635.07         E1
-    ## TCGA.34.5240.01A.01R.1443.07 TCGA.34.5240.01A.01R.1443.07         E1
-    ## TCGA.34.8456.01A.21R.2326.07 TCGA.34.8456.01A.21R.2326.07         E1
-    ## TCGA.37.A5EM.01A.21R.A27Q.07 TCGA.37.A5EM.01A.21R.A27Q.07         E1
-    ##                              AssignmentP AssignmentQ AssignedToEcotypeStates
-    ## TCGA.22.4613.01A.01R.1443.07 0.006237509  0.02267708                    TRUE
-    ## TCGA.22.5471.01A.01R.1635.07 0.011589892  0.03408792                    TRUE
-    ## TCGA.22.5473.01A.01R.1635.07 0.173391227  0.21892832                    TRUE
-    ## TCGA.34.5240.01A.01R.1443.07 0.073719200  0.12710207                    TRUE
-    ## TCGA.34.8456.01A.21R.2326.07 0.002977868  0.01404655                    TRUE
-    ## TCGA.37.A5EM.01A.21R.A27Q.07 0.027084554  0.06573921                    TRUE
+    ##                              ID MaxEcotype AssignmentP AssignmentQ
+    ## 1  TCGA.37.A5EN.01A.21R.A26W.07         E1 0.004009105  0.01632571
+    ## 4  TCGA.34.5240.01A.01R.1443.07         E1 0.073719200  0.12710207
+    ## 27 TCGA.63.A5ML.01A.31R.A27Q.07         E1 0.001972521  0.01027355
+    ## 28 TCGA.94.8490.01A.11R.2326.07         E1 0.037336292  0.08348404
+    ## 31 TCGA.63.7023.01A.11R.1949.07         E1 0.011139835  0.03403160
+    ## 43 TCGA.66.2800.01A.01R.1201.07         E1 0.152024184  0.19898453
+    ##    AssignedToEcotypeStates
+    ## 1                     TRUE
+    ## 4                     TRUE
+    ## 27                    TRUE
+    ## 28                    TRUE
+    ## 31                    TRUE
+    ## 43                    TRUE
 
 -   A heatmap of cell state fractions across the samples assigned to
     ecotypes:
@@ -3385,19 +3386,19 @@ data = read.delim("DiscoveryOutput_scRNA/Fibroblasts/state_assignment.txt")
 dim(data)
 ```
 
-    ## [1] 640   3
+    ## [1] 899   3
 
 ``` r
 head(data)
 ```
 
     ##                           ID State InitialState
-    ## 241 SMC01.T_ACTGATGAGCACCGCT   S01         IS03
-    ## 242 SMC01.T_GGGAGATGTGGCAAAC   S01         IS03
-    ## 243 SMC01.T_GTTCATTCATTGAGCT   S01         IS03
-    ## 244 SMC01.T_TTGACTTCACACTGCG   S01         IS03
-    ## 245 SMC02.T_AAGTCTGGTCGCGAAA   S01         IS03
-    ## 246 SMC02.T_CCTTCCCCACGTTGGC   S01         IS03
+    ## 723 SMC15.T_CATCGAAGTGACCAAG   S01         IS05
+    ## 724 SMC18.T_CTTGGCTCAGTGACAG   S01         IS05
+    ## 725 SMC24.T_TACTTACAGCGCCTTG   S01         IS05
+    ## 726 SMC01.N_CACCAGGCAATAAGCA   S01         IS05
+    ## 727 SMC02.N_AGAGCTTTCTAACCGA   S01         IS05
+    ## 728 SMC02.N_ATAACGCCAATACGCT   S01         IS05
 
 -   A heatmap illustrating the expression of genes used for cell state
     discovery, that have the highest fold-change in one of the cell
@@ -3423,13 +3424,13 @@ ecotypes = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotypes.txt")
 head(ecotypes[,c("CellType", "State", "Ecotype")])
 ```
 
-    ##          CellType State Ecotype
-    ## 1         B.cells   S02      E1
-    ## 2         B.cells   S03      E1
-    ## 3     CD4.T.cells   S03      E1
-    ## 4     CD4.T.cells   S05      E1
-    ## 5     CD8.T.cells   S01      E1
-    ## 6 Dendritic.cells   S03      E1
+    ##                    CellType State Ecotype
+    ## 1                   B.cells   S02      E1
+    ## 2               CD4.T.cells   S02      E1
+    ## 3               CD8.T.cells   S01      E1
+    ## 4           Dendritic.cells   S03      E1
+    ## 5               Fibroblasts   S05      E1
+    ## 6 Monocytes.and.Macrophages   S03      E1
 
 -   The number of initial clusters obtained by clustering the Jaccard
     index matrix, selected using the average silhouette:
@@ -3457,19 +3458,19 @@ abundances = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_abundance.txt")
 dim(abundances)
 ```
 
-    ## [1]  8 33
+    ## [1]  9 33
 
 ``` r
 head(abundances[,1:5])
 ```
 
-    ##       SMC01.N     SMC01.T    SMC02.N    SMC02.T    SMC03.N
-    ## E1 0.36529972 0.112226383 0.37694206 0.09568419 0.33846514
-    ## E2 0.00000000 0.289587824 0.04471845 0.23978498 0.05062341
-    ## E3 0.17417011 0.006599186 0.19479843 0.00000000 0.18775166
-    ## E4 0.02162737 0.137419014 0.00000000 0.40639166 0.03374894
-    ## E5 0.06658287 0.108632760 0.02630497 0.14700301 0.00000000
-    ## E6 0.06179247 0.201232624 0.03105448 0.11113616 0.00000000
+    ##       SMC01.N    SMC01.T    SMC02.N    SMC02.T    SMC03.N
+    ## E1 0.34064095 0.07302366 0.20329837 0.02049678 0.27718758
+    ## E2 0.06078240 0.17093342 0.02937202 0.10322721 0.05241208
+    ## E3 0.02315383 0.34562878 0.01355632 0.36202739 0.01278497
+    ## E4 0.13787420 0.12543986 0.14604672 0.16681631 0.06725426
+    ## E5 0.16081886 0.10434607 0.28980392 0.11903111 0.14459666
+    ## E6 0.00000000 0.07347385 0.03524642 0.14282270 0.00000000
 
 -   The assignment of samples in the discovery dataset to ecotypes. The
     samples not assigned to any ecotype are filtered out from this file:
@@ -3479,19 +3480,19 @@ assignments = read.delim("DiscoveryOutput_scRNA/Ecotypes/ecotype_assignment.txt"
 dim(assignments)
 ```
 
-    ## [1] 33  6
+    ## [1] 32  6
 
 ``` r
 head(assignments[,1:5])
 ```
 
-    ##              ID MaxEcotype  AssignmentP AssignmentQ AssignedToEcotypeStates
-    ## SMC01-N SMC01-N         E1 1.622561e-03 0.013493158                    TRUE
-    ## SMC02-N SMC02-N         E1 4.094496e-03 0.021837311                    TRUE
-    ## SMC05-N SMC05-N         E1 1.686645e-03 0.013493158                    TRUE
-    ## SMC08-N SMC08-N         E1 2.037793e-05 0.000326047                    TRUE
-    ## SMC01-T SMC01-T         E2 1.406832e-01 0.236940129                    TRUE
-    ## SMC06-T SMC06-T         E2 2.349589e-01 0.317642040                    TRUE
+    ##              ID MaxEcotype  AssignmentP  AssignmentQ AssignedToEcotypeStates
+    ## SMC01-N SMC01-N         E1 1.938649e-04 0.0012795085                    TRUE
+    ## SMC05-N SMC05-N         E1 5.000404e-03 0.0183348142                    TRUE
+    ## SMC05-T SMC05-T         E1 7.568441e-02 0.1541417608                    TRUE
+    ## SMC07-N SMC07-N         E1 2.928585e-03 0.0138061877                    TRUE
+    ## SMC08-N SMC08-N         E1 9.015769e-05 0.0007438009                    TRUE
+    ## SMC19-T SMC19-T         E1 5.936002e-03 0.0195888071                    TRUE
 
 -   A heatmap of cell state fractions across the samples assigned to
     ecotypes:
@@ -4218,26 +4219,26 @@ assignments = read.delim("PresortedDiscoveryOutput/Ecotypes/ecotype_assignment.t
 dim(assignments)
 ```
 
-    ## [1] 190  11
+    ## [1] 190   6
 
 ``` r
 head(assignments[,1:5])
 ```
 
-    ##                                                        ID MaxEcotype
-    ## TCGA.22.4613.01A.01R.1443.07 TCGA.22.4613.01A.01R.1443.07         E1
-    ## TCGA.22.5471.01A.01R.1635.07 TCGA.22.5471.01A.01R.1635.07         E1
-    ## TCGA.22.5473.01A.01R.1635.07 TCGA.22.5473.01A.01R.1635.07         E1
-    ## TCGA.34.5240.01A.01R.1443.07 TCGA.34.5240.01A.01R.1443.07         E1
-    ## TCGA.34.8456.01A.21R.2326.07 TCGA.34.8456.01A.21R.2326.07         E1
-    ## TCGA.37.A5EM.01A.21R.A27Q.07 TCGA.37.A5EM.01A.21R.A27Q.07         E1
-    ##                              AssignmentP AssignmentQ AssignedToEcotypeStates
-    ## TCGA.22.4613.01A.01R.1443.07 0.006237509  0.02267708                    TRUE
-    ## TCGA.22.5471.01A.01R.1635.07 0.011589892  0.03408792                    TRUE
-    ## TCGA.22.5473.01A.01R.1635.07 0.173391227  0.21892832                    TRUE
-    ## TCGA.34.5240.01A.01R.1443.07 0.073719200  0.12710207                    TRUE
-    ## TCGA.34.8456.01A.21R.2326.07 0.002977868  0.01404655                    TRUE
-    ## TCGA.37.A5EM.01A.21R.A27Q.07 0.027084554  0.06573921                    TRUE
+    ##                              ID MaxEcotype AssignmentP AssignmentQ
+    ## 1  TCGA.37.A5EN.01A.21R.A26W.07         E1 0.004009105  0.01632571
+    ## 4  TCGA.34.5240.01A.01R.1443.07         E1 0.073719200  0.12710207
+    ## 27 TCGA.63.A5ML.01A.31R.A27Q.07         E1 0.001972521  0.01027355
+    ## 28 TCGA.94.8490.01A.11R.2326.07         E1 0.037336292  0.08348404
+    ## 31 TCGA.63.7023.01A.11R.1949.07         E1 0.011139835  0.03403160
+    ## 43 TCGA.66.2800.01A.01R.1201.07         E1 0.152024184  0.19898453
+    ##    AssignedToEcotypeStates
+    ## 1                     TRUE
+    ## 4                     TRUE
+    ## 27                    TRUE
+    ## 28                    TRUE
+    ## 31                    TRUE
+    ## 43                    TRUE
 
 -   A heatmap of cell state fractions across the samples assigned to
     ecotypes:

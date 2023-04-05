@@ -26,8 +26,7 @@ annotation = annotation[annotation$CellType == cell_type,]
 
 if(nrow(annotation) < 50)
 {	
-	warning(paste0("Only ", nrow(annotation), " single cells are available for cell type: ", cell_type, ". At least 50 are required. Skipping this cell type!\n"))
-	quit(status=0, save='no')
+	stop(paste0("Only ", nrow(annotation), " single cells are available for cell type: ", cell_type, ". At least 50 are required. Please remove this cell type from analysis and try again!\n"))	
 }
 
 if(nrow(annotation) > 2500)
