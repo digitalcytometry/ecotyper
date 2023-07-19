@@ -127,7 +127,7 @@ if(fractions %in% c("Carcinoma_Fractions", "Lymphoma_Fractions") && !file.exists
 	cat("\nLoading user-provided cell type fractions...\n")
 		
 	dir.create(file.path("../CIBERSORTx/fractions/visium", recovery, fractions), recursive = T, showWarnings = F)	
-	PushToJobQueue(paste("cp -f '", fractions_path, "' '", file.path("../CIBERSORTx/fractions/visium", recovery, fractions, "CIBERSORTx_Adjusted.txt"), "'"))
+	PushToJobQueue(paste0("cp -f '", fractions_path, "' '", file.path("../CIBERSORTx/fractions/visium", recovery, fractions, "CIBERSORTx_Adjusted.txt"), "'"))
 	RunJobQueue()		
 }
 
