@@ -29,8 +29,11 @@ for(cell_type in cell_types[1:length(cell_types)])
 		}
 		raw_input = fread(file.path(input_dir, folder, files[1]), data.table = F)
 		raw_input[is.na(raw_input)] <- 1
-		raw_input = raw_input[apply(raw_input[,-1], 1, var) > 0,]
-		
+		raw_input = raw_input[apply(raw_input[,-1], 1, var) > 0,,drop = F]
+		if(nrow(raw_input) == 0)
+		{
+			next
+		}
 		all_input = rbind(all_input, raw_input)
 		
 	}
