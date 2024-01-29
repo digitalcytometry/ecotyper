@@ -163,9 +163,10 @@ EcoTyper can perform cell state and ecotype recovery in external
 expression datasets. The recovery can be performed in bulk, scRNA-seq
 and spatial transcriptomics data.
 
-An upcoming book chapter describing how to use EcoTyper in detail can be
+A book chapter published in Methods in Molecular Biology describing how to use EcoTyper in detail can be
 found
 [here](https://github.com/digitalcytometry/ecotyper/blob/master/EcoTyper_MiMB_Chapter_2022.pdf).
+
 Additionally, we provide below 6 tutorials illustrating these
 functionalities. The first three demonstrate how the recovery of cell
 states and ecotypes can be performed with various input types. The last
