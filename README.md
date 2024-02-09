@@ -10,6 +10,8 @@ framework for large-scale identification of cell type-specific
 transcriptional states and their co-association patterns from bulk and
 single-cell (scRNA-seq) expression data.
 
+Ecotyper can be run in an easy-to-use web interface accessible [here](https://ecotyper.stanford.edu/). The software can also be run on a personal computer, server or high-performance computing cluster following the instructions described in this GitHub repository. For further details, users may refer to our [book chapter](https://github.com/digitalcytometry/ecotyper/blob/master/EcoTyper_MiMB_Chapter_2022.pdf) (Methods in Molecular Biology, 2023). 
+
 We have already defined cell states and ecotypes across **carcinomas**
 ([Luca/Steen et al., Cell
 2021](https://doi.org/10.1016/j.cell.2021.09.014)) and in **diffuse
